@@ -82,28 +82,24 @@ public class GameManager : MonoBehaviour
 
         else if (player.GetComponent<BoxCollider2D>().IsTouchingLayers(LayerMask.GetMask("UpArrow")))
         {
-            Debug.Log("Touching");
             Vector3 vector = new(0, 0, 0);
             Arrows(vector);
         }
 
         else if (player.GetComponent<BoxCollider2D>().IsTouchingLayers(LayerMask.GetMask("DownArrow")))
         {
-            Debug.Log("Touching");
             Vector3 vector = new(0, 0, 90);
             Arrows(vector);
         }
 
         else if (player.GetComponent<BoxCollider2D>().IsTouchingLayers(LayerMask.GetMask("LeftArrow")))
         {
-            Debug.Log("Touching");
             Vector3 vector = new(0, 0, 90);
             Arrows(vector);
         }
 
         else if (player.GetComponent<BoxCollider2D>().IsTouchingLayers(LayerMask.GetMask("RightArrow")))
         {
-            Debug.Log("Touching");
             Vector3 vector = new(0, 0, 90);
             Arrows(vector);
         }

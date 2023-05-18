@@ -21,14 +21,14 @@ public class Player : MonoBehaviour
     }
     private void MoveLeft()
     {
-        if (transform.position.x > -9.05f)
+        if (transform.position.x > -4.6f)
         {
             transform.Translate(speed * Time.deltaTime * Vector3.left);
         }
     }
     private void MoveRight()
     {
-        if (transform.position.x < 9.05f)
+        if (transform.position.x < 4.6f)
         {
             transform.Translate(speed * Time.deltaTime * Vector3.right);
         }
