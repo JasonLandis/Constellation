@@ -1,5 +1,4 @@
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -10,6 +9,11 @@ public class GameManager : MonoBehaviour
     public bool isGameOver = false;
 
     public GameObject player;
+
+    public GameObject DownArrow;
+    public GameObject UpArrow;
+    public GameObject LeftArrow;
+    public GameObject RightArrow;
 
     public float scrollSpeed;
     public GameObject map;
@@ -36,62 +40,42 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (player.GetComponent<PlayerController>().rb.IsTouchingLayers(LayerMask.GetMask("Barrier")))
+        if (player.GetComponent<Player>().rb.IsTouchingLayers(LayerMask.GetMask("Barrier")))
         {
             scrollSpeed = 3f;
         }
         
-        if (player.GetComponent<PlayerController>().rb.IsTouchingLayers(LayerMask.GetMask("Blockade")))
+        if (player.GetComponent<Player>().rb.IsTouchingLayers(LayerMask.GetMask("Blockade")))
         {
             EndGame();
         }
         
-        if (player.GetComponent<PlayerController>().rb.IsTouchingLayers(LayerMask.GetMask("ArrowLeft")))
+        if (player.GetComponent<Player>().rb.IsTouching(LeftArrow.GetComponent<BoxCollider2D>()))
         {
-            foreach (Transform child in map.transform)
-            {
-                Destroy(child.gameObject);
-            }
-            map.transform.SetPositionAndRotation(new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
-            map.GetComponent<MapGenerator>().GenerateMap();
-            map.transform.rotation = Quaternion.Euler(0, 0, 90);
-            scrollSpeed = 10;
+            Debug.Log("Touching");
+            Vector3 vector = new(0, 0, 90);
+            Arrows(vector);
         }
 
-        else if (player.GetComponent<PlayerController>().rb.IsTouchingLayers(LayerMask.GetMask("ArrowRight")))
+        else if (player.GetComponent<Player>().rb.IsTouching(RightArrow.GetComponent<BoxCollider2D>()))
         {
-            foreach (Transform child in map.transform)
-            {
-                Destroy(child.gameObject);
-            }
-            map.transform.SetPositionAndRotation(new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
-            map.GetComponent<MapGenerator>().GenerateMap();
-            map.transform.rotation = Quaternion.Euler(0, 0, 270);
-            scrollSpeed = 10;
+            Debug.Log("Touching");
+            Vector3 vector = new(0, 0, 90);
+            Arrows(vector);
         }
 
-        else if (player.GetComponent<PlayerController>().rb.IsTouchingLayers(LayerMask.GetMask("ArrowUp")))
+        else if (player.GetComponent<Player>().rb.IsTouching(UpArrow.GetComponent<BoxCollider2D>()))
         {
-            foreach (Transform child in map.transform)
-            {
-                Destroy(child.gameObject);
-            }
-            map.transform.SetPositionAndRotation(new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
-            map.GetComponent<MapGenerator>().GenerateMap();
-            map.transform.rotation = Quaternion.Euler(0, 0, 0);
-            scrollSpeed = 10;
+            Debug.Log("Touching");
+            Vector3 vector = new(0, 0, 0);
+            Arrows(vector);
         }
 
-        else if (player.GetComponent<PlayerController>().rb.IsTouchingLayers(LayerMask.GetMask("ArrowDown")))
+        else if (player.GetComponent<Player>().rb.IsTouching(DownArrow.GetComponent<BoxCollider2D>()))
         {
-            foreach (Transform child in map.transform)
-            {
-                Destroy(child.gameObject);
-            }
-            map.transform.SetPositionAndRotation(new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
-            map.GetComponent<MapGenerator>().GenerateMap();
-            map.transform.rotation = Quaternion.Euler(0, 0, 90);
-            scrollSpeed = 10;
+            Debug.Log("Touching");
+            Vector3 vector = new(0, 0, 90);
+            Arrows(vector);
         }
 
         score += Time.deltaTime;
@@ -105,5 +89,17 @@ public class GameManager : MonoBehaviour
         isGameOver = true;
         Time.timeScale = 0f;
         endScreen.SetActive(true);
+    }
+
+    public void Arrows(Vector3 vector)
+    {
+        foreach (Transform child in map.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        map.transform.SetPositionAndRotation(new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
+        map.GetComponent<MapGenerator>().GenerateMap();
+        map.transform.rotation = Quaternion.Euler(vector);
+        scrollSpeed = 10;
     }
 }
