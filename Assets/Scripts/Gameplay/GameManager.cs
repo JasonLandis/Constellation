@@ -5,21 +5,39 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public GameObject endScreen;
-    public bool isGameOver = false;
+    [Header("Customizable")]
+    [SerializeField] private float scrollSpeed;
 
-    public GameObject player;
+    [Header("Objects")]
+    [SerializeField] private GameObject player;
+    [SerializeField] private GameObject map;
 
-    public GameObject DownArrow;
-    public GameObject UpArrow;
-    public GameObject LeftArrow;
-    public GameObject RightArrow;
+    [Header("UI")]
+    [SerializeField] private PauseMenu pauseMenu;
+    [SerializeField] private GameObject endScreen;
+    [SerializeField] private TextMeshProUGUI scoreText;
 
-    public float scrollSpeed;
-    public GameObject map;
+    private bool isGameOver;
+    private readonly bool isGamePaused;
+    private float score;
 
-    public float score;
-    public TextMeshProUGUI scoreText;
+    private void Arrows(Vector3 vector)
+    {
+        foreach (Transform child in map.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        map.transform.SetPositionAndRotation(new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
+        map.GetComponent<MapGenerator>().GenerateMap();
+        map.transform.rotation = Quaternion.Euler(vector);
+        scrollSpeed = 10;
+    }
+    private void EndGame()
+    {
+        isGameOver = true;
+        Time.timeScale = 0f;
+        endScreen.SetActive(true);
+    }
 
     private void Awake()
     {
@@ -40,38 +58,50 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (player.GetComponent<Player>().rb.IsTouchingLayers(LayerMask.GetMask("Barrier")))
+        if (Input.GetKeyDown(KeyCode.Escape) && !isGameOver)
+        {
+            if (isGamePaused)
+            {
+                pauseMenu.Resume();
+            }
+            else 
+            {
+                pauseMenu.Pause();
+            }
+        }
+
+        if (player.GetComponent<BoxCollider2D>().IsTouchingLayers(LayerMask.GetMask("Barrier")))
         {
             scrollSpeed = 3f;
         }
         
-        if (player.GetComponent<Player>().rb.IsTouchingLayers(LayerMask.GetMask("Blockade")))
+        else if (player.GetComponent<BoxCollider2D>().IsTouchingLayers(LayerMask.GetMask("Meteor")))
         {
             EndGame();
         }
-        
-        if (player.GetComponent<Player>().rb.IsTouching(LeftArrow.GetComponent<BoxCollider2D>()))
-        {
-            Debug.Log("Touching");
-            Vector3 vector = new(0, 0, 90);
-            Arrows(vector);
-        }
 
-        else if (player.GetComponent<Player>().rb.IsTouching(RightArrow.GetComponent<BoxCollider2D>()))
-        {
-            Debug.Log("Touching");
-            Vector3 vector = new(0, 0, 90);
-            Arrows(vector);
-        }
-
-        else if (player.GetComponent<Player>().rb.IsTouching(UpArrow.GetComponent<BoxCollider2D>()))
+        else if (player.GetComponent<BoxCollider2D>().IsTouchingLayers(LayerMask.GetMask("UpArrow")))
         {
             Debug.Log("Touching");
             Vector3 vector = new(0, 0, 0);
             Arrows(vector);
         }
 
-        else if (player.GetComponent<Player>().rb.IsTouching(DownArrow.GetComponent<BoxCollider2D>()))
+        else if (player.GetComponent<BoxCollider2D>().IsTouchingLayers(LayerMask.GetMask("DownArrow")))
+        {
+            Debug.Log("Touching");
+            Vector3 vector = new(0, 0, 90);
+            Arrows(vector);
+        }
+
+        else if (player.GetComponent<BoxCollider2D>().IsTouchingLayers(LayerMask.GetMask("LeftArrow")))
+        {
+            Debug.Log("Touching");
+            Vector3 vector = new(0, 0, 90);
+            Arrows(vector);
+        }
+
+        else if (player.GetComponent<BoxCollider2D>().IsTouchingLayers(LayerMask.GetMask("RightArrow")))
         {
             Debug.Log("Touching");
             Vector3 vector = new(0, 0, 90);
@@ -80,26 +110,6 @@ public class GameManager : MonoBehaviour
 
         score += Time.deltaTime;
         scoreText.text = "Score: " + score;
-
         map.transform.Translate(scrollSpeed * Time.deltaTime * Vector3.down);
-    }
-
-    public void EndGame()
-    {
-        isGameOver = true;
-        Time.timeScale = 0f;
-        endScreen.SetActive(true);
-    }
-
-    public void Arrows(Vector3 vector)
-    {
-        foreach (Transform child in map.transform)
-        {
-            Destroy(child.gameObject);
-        }
-        map.transform.SetPositionAndRotation(new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
-        map.GetComponent<MapGenerator>().GenerateMap();
-        map.transform.rotation = Quaternion.Euler(vector);
-        scrollSpeed = 10;
     }
 }

@@ -5,10 +5,13 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
-    [SerializeField] private GameObject Meteor;
-    [SerializeField] private GameObject Slow_barrier;
-    [SerializeField] private List<GameObject> Arrows;
+    [Header("Customizable")]
     [SerializeField] private int difficulty;
+
+    [Header("Objects")]
+    [SerializeField] private GameObject meteor;
+    [SerializeField] private GameObject barrier;
+    [SerializeField] private List<GameObject> Arrows;
 
     public void GenerateMap()
     {
@@ -19,12 +22,12 @@ public class MapGenerator : MonoBehaviour
             {
                 int x = Random.Range(i, i + difficulty);
                 int y = Random.Range(j, j + difficulty);
-                Instantiate(Meteor, new Vector3(x, y, 0), Quaternion.identity, transform);
+                Instantiate(meteor, new Vector3(x, y, 0), Quaternion.identity, transform);
             }
         }
 
         // Create slow barrier
-        Instantiate(Slow_barrier, new Vector3(0, 85, 0), Quaternion.identity, transform);
+        Instantiate(barrier, new Vector3(0, 85, 0), Quaternion.identity, transform);
 
         // Create arrows
         for (float i = -6.75f; i <= 6.75f; i += 4.5f)

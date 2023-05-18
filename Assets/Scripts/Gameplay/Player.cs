@@ -3,9 +3,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("Customizable")]
-    [SerializeField]
-    private float speed;
-    public Rigidbody2D rb;
+    [SerializeField] private float speed;
 
     private void MoveUp()
     {

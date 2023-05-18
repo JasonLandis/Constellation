@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5217465830298560981}
   - component: {fileID: 5217465830298560978}
-  - component: {fileID: 4898510049010890967}
+  - component: {fileID: 5050640341830294155}
   m_Layer: 7
-  m_Name: Slow_barrier
+  m_Name: Barrier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &4898510049010890967
+--- !u!61 &5050640341830294155
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

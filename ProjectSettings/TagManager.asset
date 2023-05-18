@@ -11,12 +11,12 @@ TagManager:
   - 
   - Water
   - UI
-  - Blockade
+  - Meteor
   - Barrier
-  - Arrow
-  - 
-  - 
-  - 
+  - UpArrow
+  - DownArrow
+  - LeftArrow
+  - RightArrow
   - 
   - 
   - 
