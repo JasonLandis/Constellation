@@ -29,12 +29,13 @@ public class MapGenerator : MonoBehaviour
         // Create slow barrier
         Instantiate(barrier, new Vector3(0, 85, 0), Quaternion.identity, transform);
 
-        // Create arrows
+        /* Create arrows
         for (float i = -6.75f; i <= 6.75f; i += 4.5f)
         {
             int index = Random.Range(0, Arrows.Count);
             Instantiate(Arrows[index], new Vector3(i, 92, 0), Quaternion.identity, transform);
         }
+        */
     }
 
     void Start()
