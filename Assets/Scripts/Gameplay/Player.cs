@@ -2,59 +2,33 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [Header("Customizable")]
-    [SerializeField] private float speed;
-    public BoxCollider2D boxCollider2D;
-
-    private void MoveUp()
-    {
-        if (transform.position.y < 4f)
-        {
-            transform.Translate(speed * Time.deltaTime * Vector3.up);
-        }
-    }
-    private void MoveDown()
-    {
-        if (transform.position.y > -4f)
-        {
-            transform.Translate(speed * Time.deltaTime * Vector3.down);
-        }
-    }
-    private void MoveLeft()
-    {
-        if (transform.position.x > -4f)
-        {
-            transform.Translate(speed * Time.deltaTime * Vector3.left);
-        }
-    }
-    private void MoveRight()
-    {
-        if (transform.position.x < 4f)
-        {
-            transform.Translate(speed * Time.deltaTime * Vector3.right);
-        }
-    }
-
     void Update()
     {
-        if (Input.GetKey(KeyCode.W))
+        Vector3 mousePosition = Input.mousePosition;
+        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        if (worldPosition.x > -4f && worldPosition.x < 4f && worldPosition.y < 4f && worldPosition.y > -4f)
         {
-            MoveUp();        
+            transform.position = new Vector3(worldPosition.x, worldPosition.y, transform.position.z);
         }
 
-        if (Input.GetKey(KeyCode.S))
+        else if (worldPosition.x < -4f && worldPosition.x < 4f && worldPosition.y < 4f && worldPosition.y > -4f)
         {
-            MoveDown();
+            transform.position = new Vector3(-4f, worldPosition.y, transform.position.z);
         }
 
-        if (Input.GetKey(KeyCode.A))
+        else if (worldPosition.x > -4f && worldPosition.x > 4f && worldPosition.y < 4f && worldPosition.y > -4f)
         {
-            MoveLeft();
+            transform.position = new Vector3(4f, worldPosition.y, transform.position.z);
         }
 
-        if (Input.GetKey(KeyCode.D))
+        else if (worldPosition.x > -4f && worldPosition.x < 4f && worldPosition.y > 4f && worldPosition.y > -4f)
         {
-            MoveRight();
-        }        
+            transform.position = new Vector3(worldPosition.x, 4f, transform.position.z);
+        }
+
+        else if (worldPosition.x > -4f && worldPosition.x < 4f && worldPosition.y < 4f && worldPosition.y < -4f)
+        {
+            transform.position = new Vector3(worldPosition.x, -4f, transform.position.z);
+        }
     }
 }

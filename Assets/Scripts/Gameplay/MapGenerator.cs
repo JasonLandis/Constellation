@@ -11,14 +11,13 @@ public class MapGenerator : MonoBehaviour
     [Header("Objects")]
     [SerializeField] private GameObject meteor;
     [SerializeField] private GameObject barrier;
-    [SerializeField] private List<GameObject> Arrows;
 
     public void GenerateMap()
     {
         // Create meteors
-        for (int i = -10; i < 10; i += difficulty)
+        for (int i = -5; i < 5; i += difficulty)
         {
-            for (int j = 10; j < 80; j += difficulty)
+            for (int j = 5; j < 80; j += difficulty)
             {
                 int x = Random.Range(i, i + difficulty);
                 int y = Random.Range(j, j + difficulty);
@@ -26,16 +25,8 @@ public class MapGenerator : MonoBehaviour
             }
         }
 
-        // Create slow barrier
+        // Create end barrier
         Instantiate(barrier, new Vector3(0, 85, 0), Quaternion.identity, transform);
-
-        /* Create arrows
-        for (float i = -6.75f; i <= 6.75f; i += 4.5f)
-        {
-            int index = Random.Range(0, Arrows.Count);
-            Instantiate(Arrows[index], new Vector3(i, 92, 0), Quaternion.identity, transform);
-        }
-        */
     }
 
     void Start()

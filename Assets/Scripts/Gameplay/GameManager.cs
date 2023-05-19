@@ -17,13 +17,20 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PauseMenu pauseMenu;
     [SerializeField] private GameObject endScreen;
     [SerializeField] private TextMeshProUGUI scoreText;
-    [SerializeField] private GameObject arrowMap;
+    [SerializeField] private GameObject Up;
+    [SerializeField] private GameObject Down;
+    [SerializeField] private GameObject Left;
+    [SerializeField] private GameObject Right;
+    [SerializeField] private GameObject UpRight;
+    [SerializeField] private GameObject DownLeft;
+    [SerializeField] private GameObject UpLeft;
+    [SerializeField] private GameObject DownRight;
 
     private bool isGameOver;
     private readonly bool isGamePaused;
     private float score;
 
-    private void Arrows(Vector3 vector)
+    private void GenerateNewMap(Vector3 vector)
     {
         foreach (Transform child in map.transform)
         {
@@ -34,7 +41,66 @@ public class GameManager : MonoBehaviour
         map.transform.rotation = Quaternion.Euler(vector);
         scrollSpeed = 10;
     }
-    private void EndGame()
+    public void ClearArrows()
+    {
+        Up.SetActive(false);
+        Down.SetActive(false);
+        Left.SetActive(false);
+        Right.SetActive(false);
+        UpLeft.SetActive(false);
+        DownLeft.SetActive(false);
+        DownRight.SetActive(false);
+        UpRight.SetActive(false);
+    }
+    public void UpArrow()
+    {
+        ClearArrows();
+        Vector3 vector = Vector3.zero;
+        GenerateNewMap(vector);
+    }
+    public void DownArrow()
+    {
+        ClearArrows();
+        Vector3 vector = new (0, 0, 180);
+        GenerateNewMap(vector);
+    }
+    public void LeftArrow()
+    {
+        ClearArrows();
+        Vector3 vector = new(0, 0, 90);
+        GenerateNewMap(vector);
+    }
+    public void RightArrow()
+    {
+        ClearArrows();
+        Vector3 vector = new(0, 0, 270);
+        GenerateNewMap(vector);
+    }
+    public void UpRightArrow()
+    {
+        ClearArrows();
+        Vector3 vector = new(0, 0, 315);
+        GenerateNewMap(vector);
+    }
+    public void DownRightArrow()
+    {
+        ClearArrows();
+        Vector3 vector = new(0, 0, 225);
+        GenerateNewMap(vector);
+    }
+    public void UpLeftArrow()
+    {
+        ClearArrows();
+        Vector3 vector = new(0, 0, 45);
+        GenerateNewMap(vector);
+    }
+    public void DownLeftArrow()
+    {
+        ClearArrows();
+        Vector3 vector = new(0, 0, 135);
+        GenerateNewMap(vector);
+    }
+    public void EndGame()
     {
         isGameOver = true;
         Time.timeScale = 0f;
@@ -75,7 +141,14 @@ public class GameManager : MonoBehaviour
         if (player.GetComponent<BoxCollider2D>().IsTouchingLayers(LayerMask.GetMask("Barrier")))
         {
             scrollSpeed = 3f;
-            arrowMap.SetActive(true);
+            Up.SetActive(true);
+            Down.SetActive(true);
+            Left.SetActive(true);
+            Right.SetActive(true);
+            UpRight.SetActive(true);
+            DownLeft.SetActive(true);
+            DownRight.SetActive(true);
+            UpLeft.SetActive(true);
         }
         
         else if (player.GetComponent<BoxCollider2D>().IsTouchingLayers(LayerMask.GetMask("Meteor")))
@@ -85,63 +158,6 @@ public class GameManager : MonoBehaviour
                 EndGame();
             }
         }
-
-        else if (player.GetComponent<BoxCollider2D>().IsTouchingLayers(LayerMask.GetMask("UpArrow")))
-        {
-            arrowMap.SetActive(false);
-            Vector3 vector = new(0, 0, 0);
-            Arrows(vector);
-        }
-
-        else if (player.GetComponent<BoxCollider2D>().IsTouchingLayers(LayerMask.GetMask("DownArrow")))
-        {
-            arrowMap.SetActive(false);
-            Vector3 vector = new(0, 0, 180);
-            Arrows(vector);
-        }
-
-        else if (player.GetComponent<BoxCollider2D>().IsTouchingLayers(LayerMask.GetMask("LeftArrow")))
-        {
-            arrowMap.SetActive(false);
-            Vector3 vector = new(0, 0, 90);
-            Arrows(vector);
-        }
-
-        else if (player.GetComponent<BoxCollider2D>().IsTouchingLayers(LayerMask.GetMask("RightArrow")))
-        {
-            arrowMap.SetActive(false);
-            Vector3 vector = new(0, 0, 270);
-            Arrows(vector);
-        }
-
-        else if (player.GetComponent<BoxCollider2D>().IsTouchingLayers(LayerMask.GetMask("UpLeftArrow")))
-        {
-            arrowMap.SetActive(false);
-            Vector3 vector = new(0, 0, 45);
-            Arrows(vector);
-        }
-
-        else if (player.GetComponent<BoxCollider2D>().IsTouchingLayers(LayerMask.GetMask("UpRightArrow")))
-        {
-            arrowMap.SetActive(false);
-            Vector3 vector = new(0, 0, 315);
-            Arrows(vector);
-        }
-
-        else if (player.GetComponent<BoxCollider2D>().IsTouchingLayers(LayerMask.GetMask("DownLeftArrow")))
-        {
-            arrowMap.SetActive(false);
-            Vector3 vector = new(0, 0, 135);
-            Arrows(vector);
-        }
-
-        else if (player.GetComponent<BoxCollider2D>().IsTouchingLayers(LayerMask.GetMask("DownRightArrow")))
-        {
-            arrowMap.SetActive(false);
-            Vector3 vector = new(0, 0, 225);
-            Arrows(vector);
-        }
-
 
         score += Time.deltaTime;
         scoreText.text = "Score: " + score;
