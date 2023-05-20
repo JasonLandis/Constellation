@@ -25,10 +25,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject DownLeft;
     [SerializeField] private GameObject UpLeft;
     [SerializeField] private GameObject DownRight;
+    [SerializeField] private GameObject star;
 
     private bool isGameOver;
     private readonly bool isGamePaused;
-    private float score;
+    private int limit;
 
     private void GenerateNewMap(Vector3 vector)
     {
@@ -51,6 +52,7 @@ public class GameManager : MonoBehaviour
         DownLeft.SetActive(false);
         DownRight.SetActive(false);
         UpRight.SetActive(false);
+        limit += 100;
     }
     public void UpArrow()
     {
@@ -122,6 +124,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1f;
+        limit = 100;
     }
 
     void Update()
@@ -132,15 +135,15 @@ public class GameManager : MonoBehaviour
             {
                 pauseMenu.Resume();
             }
-            else 
+            else
             {
                 pauseMenu.Pause();
             }
         }
 
-        if (player.GetComponent<BoxCollider2D>().IsTouchingLayers(LayerMask.GetMask("Barrier")))
+        if (star.transform.position.y >= limit)
         {
-            scrollSpeed = 3f;
+            star.transform.position = new (0f, limit, 0f);
             Up.SetActive(true);
             Down.SetActive(true);
             Left.SetActive(true);
@@ -150,7 +153,7 @@ public class GameManager : MonoBehaviour
             DownRight.SetActive(true);
             UpLeft.SetActive(true);
         }
-        
+
         else if (player.GetComponent<BoxCollider2D>().IsTouchingLayers(LayerMask.GetMask("Meteor")))
         {
             if (immortal == false)
@@ -159,8 +162,11 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        score += Time.deltaTime;
-        scoreText.text = "Score: " + score;
-        map.transform.Translate(scrollSpeed * Time.deltaTime * Vector3.down);
+        else
+        {
+            star.transform.Translate(scrollSpeed * Time.deltaTime * Vector3.up);
+            scoreText.text = "Score\n" + (int)star.transform.position.y;
+            map.transform.Translate(scrollSpeed * Time.deltaTime * Vector3.down);
+        }
     }
 }
