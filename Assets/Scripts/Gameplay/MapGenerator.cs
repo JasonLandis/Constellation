@@ -1,25 +1,21 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 // I am Matthew. I leave my easter egg here. I hope you enjoy it. :) 
 
 public class MapGenerator : MonoBehaviour
 {
-    [Header("Customizable")]
-    [SerializeField] private int difficulty;
-
     [Header("Objects")]
     [SerializeField] private GameObject meteor;
 
     public void GenerateMap()
     {
         // Create meteors
-        for (int i = -5; i < 5; i += difficulty)
+        for (int i = -5; i < 5; i += GameManager.instance.difficulty)
         {
-            for (int j = 5; j < 95; j += difficulty)
+            for (int j = 8; j < GameManager.instance.mapLength - 8; j += GameManager.instance.difficulty)
             {
-                int x = Random.Range(i, i + difficulty);
-                int y = Random.Range(j, j + difficulty);
+                int x = Random.Range(i, i + GameManager.instance.difficulty);
+                int y = Random.Range(j, j + GameManager.instance.difficulty);
                 Instantiate(meteor, new Vector3(x, y, 0), Quaternion.identity, transform);
             }
         }

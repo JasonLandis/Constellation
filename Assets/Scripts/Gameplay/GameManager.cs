@@ -5,11 +5,13 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    [Header("Customizable")]
+    [Header("Options")]
+    public int difficulty;
+    public int mapLength;
     [SerializeField] private float scrollSpeed;
     [SerializeField] private bool immortal;
 
-    [Header("Objects")]
+    [Header("Gameplay")]
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject map;
 
@@ -17,6 +19,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PauseMenu pauseMenu;
     [SerializeField] private GameObject endScreen;
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private GameObject scoreTracker;
+
+    [Header("Arrows")]
     [SerializeField] private GameObject Up;
     [SerializeField] private GameObject Down;
     [SerializeField] private GameObject Left;
@@ -25,8 +30,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject DownLeft;
     [SerializeField] private GameObject UpLeft;
     [SerializeField] private GameObject DownRight;
-    [SerializeField] private GameObject star;
 
+    [Header("Constellation")]
+    [SerializeField] private GameObject star;
+    [SerializeField] private LineRenderer lineRenderer;
+    [SerializeField] private GameObject placeholderStar;
+ 
     private bool isGameOver;
     private readonly bool isGamePaused;
     private int limit;
@@ -37,6 +46,15 @@ public class GameManager : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+        limit += mapLength;
+
+        // Create another star in the constellation
+        Instantiate(placeholderStar, star.transform.position, Quaternion.identity, transform);
+        lineRenderer.positionCount++;
+        lineRenderer.SetPosition(lineRenderer.positionCount - 1, star.transform.position);
+        star.transform.rotation = Quaternion.Euler(vector);
+
+        // Create the new map
         map.transform.SetPositionAndRotation(new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
         map.GetComponent<MapGenerator>().GenerateMap();
         map.transform.rotation = Quaternion.Euler(vector);
@@ -52,7 +70,6 @@ public class GameManager : MonoBehaviour
         DownLeft.SetActive(false);
         DownRight.SetActive(false);
         UpRight.SetActive(false);
-        limit += 100;
     }
     public void UpArrow()
     {
@@ -124,7 +141,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1f;
-        limit = 100;
+        limit = 0;
     }
 
     void Update()
@@ -141,9 +158,9 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (star.transform.position.y >= limit)
+        if (scoreTracker.transform.position.y >= limit)
         {
-            star.transform.position = new (0f, limit, 0f);
+            scoreTracker.transform.position = new (0f, limit, 0f);
             Up.SetActive(true);
             Down.SetActive(true);
             Left.SetActive(true);
@@ -154,19 +171,17 @@ public class GameManager : MonoBehaviour
             UpLeft.SetActive(true);
         }
 
-        else if (player.GetComponent<BoxCollider2D>().IsTouchingLayers(LayerMask.GetMask("Meteor")))
+        else if (player.GetComponent<BoxCollider2D>().IsTouchingLayers(LayerMask.GetMask("Meteor")) && immortal == false)
         {
-            if (immortal == false)
-            {
-                EndGame();
-            }
+            EndGame();
         }
 
         else
         {
-            star.transform.Translate(scrollSpeed * Time.deltaTime * Vector3.up);
-            scoreText.text = "Score\n" + (int)star.transform.position.y;
+            scoreTracker.transform.Translate(scrollSpeed * Time.deltaTime * Vector3.up);
+            scoreText.text = "Score\n" + (int)scoreTracker.transform.position.y;
             map.transform.Translate(scrollSpeed * Time.deltaTime * Vector3.down);
+            star.transform.Translate(scrollSpeed * Time.deltaTime * Vector3.up);
         }
     }
 }
