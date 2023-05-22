@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     private bool isGameOver;
     private readonly bool isGamePaused;
     private int limit;
+    private bool finished = false;
 
     private void GenerateNewMap(Vector3 vector)
     {
@@ -46,15 +47,11 @@ public class GameManager : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-        limit += mapLength;
-
-        // Create another star in the constellation
-        Instantiate(placeholderStar, star.transform.position, Quaternion.identity, transform);
-        lineRenderer.positionCount++;
-        lineRenderer.SetPosition(lineRenderer.positionCount - 1, star.transform.position);
+        // Reset constellation mechanics
+        finished = false;
         star.transform.rotation = Quaternion.Euler(vector);
 
-        // Create the new map
+        // Generate new map
         map.transform.SetPositionAndRotation(new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
         map.GetComponent<MapGenerator>().GenerateMap();
         map.transform.rotation = Quaternion.Euler(vector);
@@ -158,9 +155,19 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (scoreTracker.transform.position.y >= limit)
+        if (scoreTracker.transform.position.y >= limit
+            && finished == false)
         {
-            scoreTracker.transform.position = new (0f, limit, 0f);
+            finished = true;
+
+            scoreTracker.transform.position = new(0f, limit, 0f);
+            scoreText.text = "Score\n" + (int)scoreTracker.transform.position.y;
+            limit += mapLength;
+
+            Instantiate(placeholderStar, star.transform.position, Quaternion.identity, transform);
+            lineRenderer.positionCount++;
+            lineRenderer.SetPosition(lineRenderer.positionCount - 1, star.transform.position);
+
             Up.SetActive(true);
             Down.SetActive(true);
             Left.SetActive(true);
@@ -176,7 +183,7 @@ public class GameManager : MonoBehaviour
             EndGame();
         }
 
-        else
+        else if (finished == false)
         {
             scoreTracker.transform.Translate(scrollSpeed * Time.deltaTime * Vector3.up);
             scoreText.text = "Score\n" + (int)scoreTracker.transform.position.y;
