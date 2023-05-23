@@ -188,7 +188,7 @@ public class GameManager : MonoBehaviour
             scoreTracker.transform.Translate(scrollSpeed * Time.deltaTime * Vector3.up);
             scoreText.text = "Score\n" + (int)scoreTracker.transform.position.y;
             map.transform.Translate(scrollSpeed * Time.deltaTime * Vector3.down);
-            star.transform.Translate(scrollSpeed * Time.deltaTime * Vector3.up);
+            star.transform.Translate(scrollSpeed * Time.deltaTime * (Vector3.up / 10));
         }
     }
 }
