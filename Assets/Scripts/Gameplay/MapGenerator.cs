@@ -16,7 +16,7 @@ public class MapGenerator : MonoBehaviour
             {
                 int x = Random.Range(i, i + GameManager.instance.difficulty);
                 int y = Random.Range(j, j + GameManager.instance.difficulty);
-                Instantiate(meteor, new Vector3(x, y, 0), Quaternion.identity, transform);
+                Instantiate(meteor, new(x, y, 0), Quaternion.identity, transform);
             }
         }
     }
