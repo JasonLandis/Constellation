@@ -273,7 +273,8 @@ public class GameManager : MonoBehaviour
             finished = true;
 
             scoreTracker.transform.position = new(0f, limit, 0f);
-            scoreText.text = "Score\n" + (int)scoreTracker.transform.position.y;
+            int value = (int)scoreTracker.transform.position.y;
+            scoreText.text = value.ToString();
             limit += mapLength;
 
             star.transform.position = new(Mathf.Round(star.transform.position.x), Mathf.Round(star.transform.position.y), 0);
@@ -301,7 +302,8 @@ public class GameManager : MonoBehaviour
         else if (finished == false)
         {
             scoreTracker.transform.Translate(scrollSpeed * Time.deltaTime * Vector3.up);
-            scoreText.text = "Score\n" + (int)scoreTracker.transform.position.y;
+            int value = (int)scoreTracker.transform.position.y;
+            scoreText.text = value.ToString();
             map.transform.Translate(scrollSpeed * Time.deltaTime * Vector3.down);
             if (diagonal)
             {
