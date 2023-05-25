@@ -23,8 +23,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject endScreen;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private GameObject scoreTracker;
+    public bool isGamePaused;
     private bool isGameOver;
-    private readonly bool isGamePaused;
 
     [Header("Arrows")]
     [SerializeField] private GameObject Up;
@@ -259,11 +259,14 @@ public class GameManager : MonoBehaviour
         {
             if (isGamePaused)
             {
+
                 pauseMenu.Resume();
+                isGamePaused = false;
             }
             else
             {
                 pauseMenu.Pause();
+                isGamePaused = true;
             }
         }
 
