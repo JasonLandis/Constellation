@@ -102,6 +102,12 @@ public class GameManager : MonoBehaviour
     // Function for when the game ends
     public void EndGame()
     {
+        // Create final line and end game
+        Instantiate(placeholderStar, star.transform.position, Quaternion.identity, transform);
+        vectors.Add(star.transform.position);
+        MoveConstellationCamera(vectors);
+        lineRenderer.positionCount++;
+        lineRenderer.SetPosition(lineRenderer.positionCount - 1, star.transform.position);
         isGameOver = true;
         Time.timeScale = 0f;
         endScreen.SetActive(true);
