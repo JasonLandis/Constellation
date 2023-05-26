@@ -17,15 +17,15 @@ public class GameManager : MonoBehaviour
     [Header("Gameplay")]
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject map;
+    public bool finished = false;
     private int limit;
-    private bool finished = false;
 
     // UI components
     [Header("UI")]
     [SerializeField] private GameObject endScreen;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private GameObject scoreTracker;
-    [SerializeField] private GameObject Arrows;
+    [SerializeField] private GameObject arrows;
     private bool diagonal = false;
     public bool isGameOver;
 
@@ -44,56 +44,56 @@ public class GameManager : MonoBehaviour
     // Arrow functions used for buttons
     public void UpArrow()
     {
-        Arrows.SetActive(false);
+        arrows.SetActive(false);
         Vector3 vector = Vector3.zero;
         GenerateNewMap(vector);
         diagonal = false;
     }
     public void DownArrow()
     {
-        Arrows.SetActive(false);
+        arrows.SetActive(false);
         Vector3 vector = new (0, 0, 180);
         GenerateNewMap(vector);
         diagonal = false;
     }
     public void LeftArrow()
     {
-        Arrows.SetActive(false);
+        arrows.SetActive(false);
         Vector3 vector = new(0, 0, 90);
         GenerateNewMap(vector);
         diagonal = false;
     }
     public void RightArrow()
     {
-        Arrows.SetActive(false);
+        arrows.SetActive(false);
         Vector3 vector = new(0, 0, 270);
         GenerateNewMap(vector);
         diagonal = false;
     }
     public void UpRightArrow()
     {
-        Arrows.SetActive(false);
+        arrows.SetActive(false);
         Vector3 vector = new(0, 0, 315);
         GenerateNewMap(vector);
         diagonal = true;
     }
     public void DownRightArrow()
     {
-        Arrows.SetActive(false);
+        arrows.SetActive(false);
         Vector3 vector = new(0, 0, 225);
         GenerateNewMap(vector);
         diagonal = true;
     }
     public void UpLeftArrow()
     {
-        Arrows.SetActive(false);
+        arrows.SetActive(false);
         Vector3 vector = new(0, 0, 45);
         GenerateNewMap(vector);
         diagonal = true;
     }
     public void DownLeftArrow()
     {
-        Arrows.SetActive(false);
+        arrows.SetActive(false);
         Vector3 vector = new(0, 0, 135);
         GenerateNewMap(vector);
         diagonal = true;
@@ -264,7 +264,7 @@ public class GameManager : MonoBehaviour
             lineRenderer.positionCount++;
             lineRenderer.SetPosition(lineRenderer.positionCount - 1, star.transform.position);
 
-            Arrows.SetActive(true);
+            arrows.SetActive(true);
         }
 
         else if (player.GetComponent<BoxCollider2D>().IsTouchingLayers(LayerMask.GetMask("Meteor")) && immortal == false)

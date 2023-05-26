@@ -1,35 +1,22 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenuUI;
-    [SerializeField] private TextMeshProUGUI countdownText;
-    [SerializeField] private float countdown;
-    private bool pressedResume;
-    private float speed;
-
     private bool isGamePaused;
+
     public void Resume()
     {
-        float count = countdown;
-        countdown -= Time.deltaTime;
-        int value = (int)Mathf.Ceil(countdown);
-        countdownText.text = value.ToString();
-        if (countdown <= 0)
-        {
-            countdownText.text = "";
-            countdown = count;
-            GameManager.instance.scrollSpeed = speed;
-            GameManager.instance.immortal = false;
-            isGamePaused = false;
-        }
+        pauseMenuUI.SetActive(false);
+        Time.timeScale = 1f;
+        isGamePaused = false;
     }
     public void Pause()
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
+        isGamePaused = true;
     }
     public void Menu()
     {
@@ -46,27 +33,16 @@ public class PauseMenu : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !GameManager.instance.isGameOver)
+        if (Input.GetKeyDown(KeyCode.Escape) && !GameManager.instance.isGameOver && GameManager.instance.finished)
         {
             if (isGamePaused)
             {
-                speed = GameManager.instance.scrollSpeed;
-                pauseMenuUI.SetActive(false);
-                GameManager.instance.scrollSpeed = 0f;
-                GameManager.instance.immortal = true;
-                pressedResume = true;
-                Time.timeScale = 1f;
+                Resume();
             }
             else
             {
                 Pause();
-                isGamePaused = true;
             }
-        }
-
-        if (pressedResume)
-        {
-            Resume();
         }
     }
 }
