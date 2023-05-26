@@ -6,37 +6,30 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    // Customizable components
     [Header("Options")]
     public int difficulty;
     public int mapLength;
-    [SerializeField] private float scrollSpeed;
-    [SerializeField] private bool immortal;
+    public float scrollSpeed;
+    public bool immortal;
 
+    // Gameplay components
     [Header("Gameplay")]
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject map;
     private int limit;
     private bool finished = false;
 
+    // UI components
     [Header("UI")]
-    [SerializeField] private PauseMenu pauseMenu;
     [SerializeField] private GameObject endScreen;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private GameObject scoreTracker;
-    public bool isGamePaused;
-    private bool isGameOver;
-
-    [Header("Arrows")]
-    [SerializeField] private GameObject Up;
-    [SerializeField] private GameObject Down;
-    [SerializeField] private GameObject Left;
-    [SerializeField] private GameObject Right;
-    [SerializeField] private GameObject UpRight;
-    [SerializeField] private GameObject DownLeft;
-    [SerializeField] private GameObject UpLeft;
-    [SerializeField] private GameObject DownRight;
+    [SerializeField] private GameObject Arrows;
     private bool diagonal = false;
+    public bool isGameOver;
 
+    // Constellation components
     [Header("Constellation")]
     [SerializeField] private GameObject star;
     [SerializeField] private LineRenderer lineRenderer;
@@ -48,86 +41,80 @@ public class GameManager : MonoBehaviour
     private float smallestY = 1000;
     private float largestY = 1000;
 
-    public void ClearArrows()
-    {
-        Up.SetActive(false);
-        Down.SetActive(false);
-        Left.SetActive(false);
-        Right.SetActive(false);
-        UpLeft.SetActive(false);
-        DownLeft.SetActive(false);
-        DownRight.SetActive(false);
-        UpRight.SetActive(false);
-    }
+    // Arrow functions used for buttons
     public void UpArrow()
     {
-        ClearArrows();
+        Arrows.SetActive(false);
         Vector3 vector = Vector3.zero;
         GenerateNewMap(vector);
         diagonal = false;
     }
     public void DownArrow()
     {
-        ClearArrows();
+        Arrows.SetActive(false);
         Vector3 vector = new (0, 0, 180);
         GenerateNewMap(vector);
         diagonal = false;
     }
     public void LeftArrow()
     {
-        ClearArrows();
+        Arrows.SetActive(false);
         Vector3 vector = new(0, 0, 90);
         GenerateNewMap(vector);
         diagonal = false;
     }
     public void RightArrow()
     {
-        ClearArrows();
+        Arrows.SetActive(false);
         Vector3 vector = new(0, 0, 270);
         GenerateNewMap(vector);
         diagonal = false;
     }
     public void UpRightArrow()
     {
-        ClearArrows();
+        Arrows.SetActive(false);
         Vector3 vector = new(0, 0, 315);
         GenerateNewMap(vector);
         diagonal = true;
     }
     public void DownRightArrow()
     {
-        ClearArrows();
+        Arrows.SetActive(false);
         Vector3 vector = new(0, 0, 225);
         GenerateNewMap(vector);
         diagonal = true;
     }
     public void UpLeftArrow()
     {
-        ClearArrows();
+        Arrows.SetActive(false);
         Vector3 vector = new(0, 0, 45);
         GenerateNewMap(vector);
         diagonal = true;
     }
     public void DownLeftArrow()
     {
-        ClearArrows();
+        Arrows.SetActive(false);
         Vector3 vector = new(0, 0, 135);
         GenerateNewMap(vector);
         diagonal = true;
     }
 
+    // Function for when the game ends
     public void EndGame()
     {
         isGameOver = true;
         Time.timeScale = 0f;
         endScreen.SetActive(true);
     }
+
+    // Function for generating a new map
     private void GenerateNewMap(Vector3 vector)
     {
         foreach (Transform child in map.transform)
         {
             Destroy(child.gameObject);
         }
+
         // Reset constellation mechanics
         finished = false;
         star.transform.rotation = Quaternion.Euler(vector);
@@ -138,7 +125,9 @@ public class GameManager : MonoBehaviour
         map.transform.rotation = Quaternion.Euler(vector);
         scrollSpeed = 10;
     }
-    public void moveConstellationCamera(List<Vector3> vectors)
+
+    // Function for resizing the constellation camera
+    private void MoveConstellationCamera(List<Vector3> vectors)
     {
         bool up = false;
         bool down = false;
@@ -235,6 +224,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
     private void Awake()
     {
         if (instance == null)
@@ -255,46 +245,26 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !isGameOver)
+        if (scoreTracker.transform.position.y >= limit && finished == false)
         {
-            if (isGamePaused)
-            {
-
-                pauseMenu.Resume();
-                isGamePaused = false;
-            }
-            else
-            {
-                pauseMenu.Pause();
-                isGamePaused = true;
-            }
-        }
-
-        if (scoreTracker.transform.position.y >= limit
-            && finished == false)
-        {
+            // Only execute this code once
             finished = true;
 
+            // Reset scoretracker postion and store its y value as the score
             scoreTracker.transform.position = new(0f, limit, 0f);
             int value = (int)scoreTracker.transform.position.y;
             scoreText.text = value.ToString();
             limit += mapLength;
 
+            // Round the stars postion, instantiate placeholder star, add vector to constellation, move the camera, create new line
             star.transform.position = new(Mathf.Round(star.transform.position.x), Mathf.Round(star.transform.position.y), 0);
             Instantiate(placeholderStar, star.transform.position, Quaternion.identity, transform);
             vectors.Add(star.transform.position);
-            moveConstellationCamera(vectors);
+            MoveConstellationCamera(vectors);
             lineRenderer.positionCount++;
             lineRenderer.SetPosition(lineRenderer.positionCount - 1, star.transform.position);
 
-            Up.SetActive(true);
-            Down.SetActive(true);
-            Left.SetActive(true);
-            Right.SetActive(true);
-            UpRight.SetActive(true);
-            DownLeft.SetActive(true);
-            DownRight.SetActive(true);
-            UpLeft.SetActive(true);
+            Arrows.SetActive(true);
         }
 
         else if (player.GetComponent<BoxCollider2D>().IsTouchingLayers(LayerMask.GetMask("Meteor")) && immortal == false)
@@ -304,9 +274,12 @@ public class GameManager : MonoBehaviour
 
         else if (finished == false)
         {
+            // Move the score tracker upwards and record its y position
             scoreTracker.transform.Translate(scrollSpeed * Time.deltaTime * Vector3.up);
             int value = (int)scoreTracker.transform.position.y;
             scoreText.text = value.ToString();
+
+            // Move the map down and move the star at a speed depending on the selected arrow being diagonal or not
             map.transform.Translate(scrollSpeed * Time.deltaTime * Vector3.down);
             if (diagonal)
             {
