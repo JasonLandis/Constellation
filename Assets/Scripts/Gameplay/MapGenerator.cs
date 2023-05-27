@@ -6,6 +6,7 @@ public class MapGenerator : MonoBehaviour
 {
     [Header("Objects")]
     [SerializeField] private GameObject meteor;
+    [SerializeField] private GameObject powerup;
 
     public void GenerateMap()
     {
@@ -16,7 +17,15 @@ public class MapGenerator : MonoBehaviour
             {
                 int x = Random.Range(i, i + GameManager.instance.difficulty);
                 int y = Random.Range(j, j + GameManager.instance.difficulty);
-                Instantiate(meteor, new(x, y, 0), Quaternion.identity, transform);
+                int val = Random.Range(0, 30);
+                if (val == 1)
+                {
+                    Instantiate(powerup, new(x, y, 0), Quaternion.identity, transform);
+                }
+                else
+                {
+                    Instantiate(meteor, new(x, y, 0), Quaternion.identity, transform);
+                }
             }
         }
     }

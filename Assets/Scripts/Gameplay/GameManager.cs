@@ -184,49 +184,41 @@ public class GameManager : MonoBehaviour
         if (up == true && right == true)
         {
             constellationCamera.transform.position = new(constellationCamera.transform.position.x + (addedWidth / 2), constellationCamera.transform.position.y + (addedHeight / 2), -10);
-            Debug.Log("up and right");
         }
 
         else if (right == true && down == true)
         {
             constellationCamera.transform.position = new(constellationCamera.transform.position.x + (addedWidth / 2), constellationCamera.transform.position.y - (addedHeight / 2), -10);
-            Debug.Log("down and right");
         }
 
         else if (down == true && left == true)
         {
             constellationCamera.transform.position = new(constellationCamera.transform.position.x - (addedWidth / 2), constellationCamera.transform.position.y - (addedHeight / 2), -10);
-            Debug.Log("down and left");
         }
 
         else if (left == true && up == true)
         {
             constellationCamera.transform.position = new(constellationCamera.transform.position.x - (addedWidth / 2), constellationCamera.transform.position.y + (addedHeight / 2), -10);
-            Debug.Log("up and left");
         }
 
         else if (up == true)
         {
             constellationCamera.transform.position = new(constellationCamera.transform.position.x, constellationCamera.transform.position.y + (addedHeight / 2), -10);
-            Debug.Log("up");
         }
 
         else if (right == true)
         {
             constellationCamera.transform.position = new(constellationCamera.transform.position.x + (addedWidth / 2), constellationCamera.transform.position.y, -10);
-            Debug.Log("right");
         }
 
         else if (down == true)
         {
             constellationCamera.transform.position = new(constellationCamera.transform.position.x, constellationCamera.transform.position.y - (addedHeight / 2), -10);
-            Debug.Log("down");
         }
 
         else if (left == true)
         {
             constellationCamera.transform.position = new(constellationCamera.transform.position.x - (addedWidth / 2), constellationCamera.transform.position.y, -10);
-            Debug.Log("left");
         }
     }
 

@@ -5787,6 +5787,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meteor: {fileID: 8074434361121936212, guid: 759d3de247a5a1d41989448ea8e70160, type: 3}
+  powerup: {fileID: 8744887347827846090, guid: 2caf0e6eaecebee43b17b3e0e7bc8b4f, type: 3}
 --- !u!210 &2066190569
 SortingGroup:
   m_ObjectHideFlags: 0
