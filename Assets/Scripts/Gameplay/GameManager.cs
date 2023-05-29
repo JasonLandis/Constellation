@@ -129,7 +129,6 @@ public class GameManager : MonoBehaviour
         map.transform.SetPositionAndRotation(new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
         map.GetComponent<MapGenerator>().GenerateMap();
         map.transform.rotation = Quaternion.Euler(vector);
-        scrollSpeed = 10;
     }
 
     // Function for resizing the constellation camera
