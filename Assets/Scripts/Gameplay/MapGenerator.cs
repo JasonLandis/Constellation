@@ -5,19 +5,37 @@ using UnityEngine;
 public class MapGenerator : MonoBehaviour
 {
     [Header("Objects")]
-    [SerializeField] private GameObject meteor;
-    [SerializeField] private GameObject powerup;
+    [SerializeField] private GameObject meteor1;
+    [SerializeField] private GameObject meteor2;
+    [SerializeField] private GameObject meteor3;
+    [SerializeField] private GameObject meteor4;
 
     public void GenerateMap()
     {
         // Create meteors
-        for (int i = -5; i < 5; i += GameManager.instance.difficulty)
+        for (float i = -5; i < 5; i += GameManager.instance.difficulty)
         {
-            for (int j = 8; j < GameManager.instance.mapLength - 8; j += GameManager.instance.difficulty)
+            for (float j = 8; j < GameManager.instance.mapLength - 8; j += GameManager.instance.difficulty)
             {
-                int x = Random.Range(i, i + GameManager.instance.difficulty);
-                int y = Random.Range(j, j + GameManager.instance.difficulty);
-                Instantiate(meteor, new(x, y, 0), Quaternion.identity, transform);
+                float x = Random.Range(i, i + GameManager.instance.difficulty);
+                float y = Random.Range(j, j + GameManager.instance.difficulty);
+                int rand = Random.Range(1, 5);
+                if (rand == 1)
+                {
+                    Instantiate(meteor1, new(x, y, 0), Quaternion.identity, transform);
+                }
+                else if (rand == 2)
+                {
+                    Instantiate(meteor2, new(x, y, 0), Quaternion.identity, transform);
+                }
+                else if (rand == 3)
+                {
+                    Instantiate(meteor3, new(x, y, 0), Quaternion.identity, transform);
+                }
+                else if (rand == 4)
+                {
+                    Instantiate(meteor4, new(x, y, 0), Quaternion.identity, transform);
+                }
             }
         }
     }
