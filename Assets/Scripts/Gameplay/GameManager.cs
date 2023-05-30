@@ -25,7 +25,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject endScreen;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private GameObject scoreTracker;
-    [SerializeField] private GameObject arrows;
+    [SerializeField] private GameObject fullConstellationImage;
+    public GameObject arrows;
     private bool diagonal = false;
     public bool isGameOver;
 
@@ -35,8 +36,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private GameObject placeholderStar;
     [SerializeField] private Camera constellationCamera;
+    [SerializeField] private Camera fullCamera;
     [SerializeField] private List<Vector3> vectors;
-    private float smallestX = 1000; 
+    private float smallestX = 1000;
     private float largestX = 1000;
     private float smallestY = 1000;
     private float largestY = 1000;
@@ -99,13 +101,25 @@ public class GameManager : MonoBehaviour
         diagonal = true;
     }
 
+    // Functions for showing the full constellation image
+    public void ShowFullConstellation()
+    {
+        arrows.SetActive(false);
+        fullConstellationImage.SetActive(true);
+    }
+    public void HideFullConstellation()
+    {
+        arrows.SetActive(true);
+        fullConstellationImage.SetActive(false);
+    }
+
     // Function for when the game ends
     public void EndGame()
     {
         // Create final line and end game
         Instantiate(placeholderStar, star.transform.position, Quaternion.identity, transform);
         vectors.Add(star.transform.position);
-        MoveConstellationCamera(vectors);
+        MoveFullCamera(vectors);
         lineRenderer.positionCount++;
         lineRenderer.SetPosition(lineRenderer.positionCount - 1, star.transform.position);
         isGameOver = true;
@@ -131,8 +145,8 @@ public class GameManager : MonoBehaviour
         map.transform.rotation = Quaternion.Euler(vector);
     }
 
-    // Function for resizing the constellation camera
-    private void MoveConstellationCamera(List<Vector3> vectors)
+    // Function for resizing the full constellation camera
+    private void MoveFullCamera(List<Vector3> vectors)
     {
         bool up = false;
         bool down = false;
@@ -175,49 +189,49 @@ public class GameManager : MonoBehaviour
         float completeWidth = largestX - smallestX;
         float completeHeight = largestY - smallestY;
 
-        if (constellationCamera.orthographicSize < completeWidth || constellationCamera.orthographicSize < completeHeight)
+        if (fullCamera.orthographicSize < completeWidth / 1.75 || fullCamera.orthographicSize < completeHeight / 1.75)
         {
-            constellationCamera.orthographicSize += 5;
+            fullCamera.orthographicSize += 10;
         }
 
         if (up == true && right == true)
         {
-            constellationCamera.transform.position = new(constellationCamera.transform.position.x + (addedWidth / 2), constellationCamera.transform.position.y + (addedHeight / 2), -10);
+            fullCamera.transform.position = new(fullCamera.transform.position.x + (addedWidth / 2), fullCamera.transform.position.y + (addedHeight / 2), -10);
         }
 
         else if (right == true && down == true)
         {
-            constellationCamera.transform.position = new(constellationCamera.transform.position.x + (addedWidth / 2), constellationCamera.transform.position.y - (addedHeight / 2), -10);
+            fullCamera.transform.position = new(fullCamera.transform.position.x + (addedWidth / 2), fullCamera.transform.position.y - (addedHeight / 2), -10);
         }
 
         else if (down == true && left == true)
         {
-            constellationCamera.transform.position = new(constellationCamera.transform.position.x - (addedWidth / 2), constellationCamera.transform.position.y - (addedHeight / 2), -10);
+            fullCamera.transform.position = new(fullCamera.transform.position.x - (addedWidth / 2), fullCamera.transform.position.y - (addedHeight / 2), -10);
         }
 
         else if (left == true && up == true)
         {
-            constellationCamera.transform.position = new(constellationCamera.transform.position.x - (addedWidth / 2), constellationCamera.transform.position.y + (addedHeight / 2), -10);
+            fullCamera.transform.position = new(fullCamera.transform.position.x - (addedWidth / 2), fullCamera.transform.position.y + (addedHeight / 2), -10);
         }
 
         else if (up == true)
         {
-            constellationCamera.transform.position = new(constellationCamera.transform.position.x, constellationCamera.transform.position.y + (addedHeight / 2), -10);
+            fullCamera.transform.position = new(fullCamera.transform.position.x, fullCamera.transform.position.y + (addedHeight / 2), -10);
         }
 
         else if (right == true)
         {
-            constellationCamera.transform.position = new(constellationCamera.transform.position.x + (addedWidth / 2), constellationCamera.transform.position.y, -10);
+            fullCamera.transform.position = new(fullCamera.transform.position.x + (addedWidth / 2), fullCamera.transform.position.y, -10);
         }
 
         else if (down == true)
         {
-            constellationCamera.transform.position = new(constellationCamera.transform.position.x, constellationCamera.transform.position.y - (addedHeight / 2), -10);
+            fullCamera.transform.position = new(fullCamera.transform.position.x, fullCamera.transform.position.y - (addedHeight / 2), -10);
         }
 
         else if (left == true)
         {
-            constellationCamera.transform.position = new(constellationCamera.transform.position.x - (addedWidth / 2), constellationCamera.transform.position.y, -10);
+            fullCamera.transform.position = new(fullCamera.transform.position.x - (addedWidth / 2), fullCamera.transform.position.y, -10);
         }
     }
 
@@ -257,7 +271,7 @@ public class GameManager : MonoBehaviour
             star.transform.position = new(Mathf.Round(star.transform.position.x), Mathf.Round(star.transform.position.y), 0);
             Instantiate(placeholderStar, star.transform.position, Quaternion.identity, transform);
             vectors.Add(star.transform.position);
-            MoveConstellationCamera(vectors);
+            MoveFullCamera(vectors);
             lineRenderer.positionCount++;
             lineRenderer.SetPosition(lineRenderer.positionCount - 1, star.transform.position);
 
@@ -275,6 +289,9 @@ public class GameManager : MonoBehaviour
             scoreTracker.transform.Translate(scrollSpeed * Time.deltaTime * Vector3.up);
             int value = (int)scoreTracker.transform.position.y;
             scoreText.text = value.ToString();
+
+            // Make the constellation camera follow the star
+            constellationCamera.transform.position = new(star.transform.position.x, star.transform.position.y, -10);
 
             // Move the map down and move the star at a speed depending on the selected arrow being diagonal or not
             map.transform.Translate(scrollSpeed * Time.deltaTime * Vector3.down);
