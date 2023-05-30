@@ -1,3 +1,3 @@
 # Constellation
 
-This is a simple sidescrolling game I'm making for itch.io.
+A roguelike bullet-hell mobile game I'm making 
