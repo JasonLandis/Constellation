@@ -142,6 +142,7 @@ public class GameManager : MonoBehaviour
         lineRenderer.SetPosition(lineRenderer.positionCount - 1, star.transform.position);
         isGameOver = true;
         Time.timeScale = 0f;
+        map.SetActive(false);
         endScreen.SetActive(true);
     }
 
@@ -245,6 +246,7 @@ public class GameManager : MonoBehaviour
         map.transform.SetPositionAndRotation(new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
         map.GetComponent<MapGenerator>().GenerateMap();
         map.transform.rotation = Quaternion.Euler(vector);
+        map.SetActive(true);
     }
 
     // Function for resizing the full constellation camera
@@ -360,7 +362,7 @@ public class GameManager : MonoBehaviour
         if (mapTracker.transform.position.y >= limit && finished == false)
         {
             // Only execute this code once
-            finished = true;
+            finished = true;            
 
             // Reset scoretracker postion and store its y value as the score
             mapTracker.transform.position = new(0f, limit, 0f);
@@ -378,6 +380,7 @@ public class GameManager : MonoBehaviour
             }
             lineRenderer.positionCount++;
             lineRenderer.SetPosition(lineRenderer.positionCount - 1, star.transform.position);
+            map.SetActive(false);
             arrows.SetActive(true);
         }
 
