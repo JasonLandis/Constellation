@@ -15,31 +15,33 @@ public class GameManager : MonoBehaviour
 
     // Gameplay components
     [Header("Gameplay")]
-    [SerializeField] private GameObject player;
-    [SerializeField] private GameObject map;
+    public GameObject player;
+    public GameObject map;
+    public GameObject mapTracker;
     public bool finished = false;
-    private int limit;
-    private int area;
+    public bool isGameOver;
+    private bool diagonal = false;
+    private int limit = 0;
+    private int area = 1;
 
     // UI components
     [Header("UI")]
-    [SerializeField] private GameObject endScreen;
-    [SerializeField] private TextMeshProUGUI scoreText;
-    [SerializeField] private GameObject mapTracker;
-    [SerializeField] private GameObject fullConstellationImage;
+    public GameObject endScreen;
+    public TextMeshProUGUI starText;
+    public TextMeshProUGUI areaText;
+    public GameObject fullConstellationImage;
     public GameObject arrows; 
-    public bool isGameOver;
     private int stars;
-    private bool diagonal = false;
 
     // Constellation components
     [Header("Constellation")]
     public GameObject star;
-    [SerializeField] private LineRenderer lineRenderer;
-    [SerializeField] private GameObject placeholderStar;
-    [SerializeField] private Camera constellationCamera;
-    [SerializeField] private Camera fullCamera;
-    [SerializeField] private List<Vector3> vectors;
+    public LineRenderer lineRenderer;
+    public GameObject placeholderStar;
+    public Camera constellationCamera;
+    public Camera fullCamera;
+    public ConstellationGenerator constellation;
+    public List<Vector3> vectors;
     private float smallestX = 1000;
     private float largestX = 1000;
     private float smallestY = 1000;
@@ -132,107 +134,25 @@ public class GameManager : MonoBehaviour
     // Function for when the game ends
     public void EndGame()
     {
-        // Create final line and end game
+        // Create final star and line
         Instantiate(placeholderStar, star.transform.position, Quaternion.identity, transform);
         stars += 1;
-        scoreText.text = stars.ToString();
+        starText.text = stars.ToString();
         vectors.Add(star.transform.position);
-        MoveFullCamera(vectors);
         lineRenderer.positionCount++;
         lineRenderer.SetPosition(lineRenderer.positionCount - 1, star.transform.position);
+
+        // Stop time, resize camera, and end game
         isGameOver = true;
         Time.timeScale = 0f;
+        MoveFullCamera(vectors);
         map.SetActive(false);
         endScreen.SetActive(true);
     }
 
     // Function for generating a new map
     private void GenerateNewMap(Vector3 vector)
-    {
-        if (star.transform.position.y > 975 && star.transform.position.y < 1025 && star.transform.position.x > 975 && star.transform.position.x < 1025)
-        {
-            area = 1;
-        }
-        else if (star.transform.position.y > 945 && star.transform.position.y < 1055 && star.transform.position.x > 945 && star.transform.position.x < 1055)
-        {
-            area = 2;
-        }
-        else if (star.transform.position.y > 915 && star.transform.position.y < 1085 && star.transform.position.x > 915 && star.transform.position.x < 1085)
-        {
-            area = 3;
-        }
-        else if (star.transform.position.y > 885 && star.transform.position.y < 1115 && star.transform.position.x > 885 && star.transform.position.x < 1115)
-        {
-            area = 4;
-        }
-        else if (star.transform.position.y > 855 && star.transform.position.y < 1145 && star.transform.position.x > 855 && star.transform.position.x < 1145)
-        {
-            area = 5;
-        }
-        else if (star.transform.position.y > 825 && star.transform.position.y < 1175 && star.transform.position.x > 825 && star.transform.position.x < 1175)
-        {
-            area = 6;
-        }
-        else if (star.transform.position.y > 795 && star.transform.position.y < 1205 && star.transform.position.x > 795 && star.transform.position.x < 1205)
-        {
-            area = 7;
-        }
-        else if (star.transform.position.y > 765 && star.transform.position.y < 1235 && star.transform.position.x > 765 && star.transform.position.x < 1235)
-        {
-            area = 8;
-        }
-        else if (star.transform.position.y > 735 && star.transform.position.y < 1265 && star.transform.position.x > 735 && star.transform.position.x < 1265)
-        {
-            area = 9;
-        }
-        else if (star.transform.position.y > 705 && star.transform.position.y < 1295 && star.transform.position.x > 705 && star.transform.position.x < 1295)
-        {
-            area = 10;
-        }
-
-        switch (area)
-        {
-            case 1:
-                scrollSpeed = 10;
-                difficulty = 5f;
-                break;
-            case 2:
-                scrollSpeed = 11;
-                difficulty = 4.7f;
-                break;
-            case 3:
-                scrollSpeed = 12;
-                difficulty = 4.4f;
-                break;
-            case 4:
-                scrollSpeed = 13;
-                difficulty = 4.1f;
-                break;
-            case 5:
-                scrollSpeed = 14;
-                difficulty = 3.8f;
-                break;
-            case 6:
-                scrollSpeed = 15;
-                difficulty = 3.5f;
-                break;
-            case 7:
-                scrollSpeed = 16;
-                difficulty = 3.2f;
-                break;
-            case 8:
-                scrollSpeed = 17;
-                difficulty = 2.9f;
-                break;
-            case 9:
-                scrollSpeed = 18;
-                difficulty = 2.6f;
-                break;
-            case 10:
-                scrollSpeed = 19;
-                difficulty = 2.3f;
-                break;
-        }
+    {        
         foreach (Transform child in map.transform)
         {
             Destroy(child.gameObject);
@@ -354,7 +274,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1f;
-        limit = 0;
     }
 
     void Update()
@@ -362,7 +281,94 @@ public class GameManager : MonoBehaviour
         if (mapTracker.transform.position.y >= limit && finished == false)
         {
             // Only execute this code once
-            finished = true;            
+            finished = true;
+
+            if (star.transform.position.y > 975 && star.transform.position.y < 1025 && star.transform.position.x > 975 && star.transform.position.x < 1025)
+            {
+                area = 1;
+            }
+            else if (star.transform.position.y > 945 && star.transform.position.y < 1055 && star.transform.position.x > 945 && star.transform.position.x < 1055)
+            {
+                area = 2;
+            }
+            else if (star.transform.position.y > 915 && star.transform.position.y < 1085 && star.transform.position.x > 915 && star.transform.position.x < 1085)
+            {
+                area = 3;
+            }
+            else if (star.transform.position.y > 885 && star.transform.position.y < 1115 && star.transform.position.x > 885 && star.transform.position.x < 1115)
+            {
+                area = 4;
+            }
+            else if (star.transform.position.y > 855 && star.transform.position.y < 1145 && star.transform.position.x > 855 && star.transform.position.x < 1145)
+            {
+                area = 5;
+            }
+            else if (star.transform.position.y > 825 && star.transform.position.y < 1175 && star.transform.position.x > 825 && star.transform.position.x < 1175)
+            {
+                area = 6;
+            }
+            else if (star.transform.position.y > 795 && star.transform.position.y < 1205 && star.transform.position.x > 795 && star.transform.position.x < 1205)
+            {
+                area = 7;
+            }
+            else if (star.transform.position.y > 765 && star.transform.position.y < 1235 && star.transform.position.x > 765 && star.transform.position.x < 1235)
+            {
+                area = 8;
+            }
+            else if (star.transform.position.y > 735 && star.transform.position.y < 1265 && star.transform.position.x > 735 && star.transform.position.x < 1265)
+            {
+                area = 9;
+            }
+            else if (star.transform.position.y > 705 && star.transform.position.y < 1295 && star.transform.position.x > 705 && star.transform.position.x < 1295)
+            {
+                area = 10;
+            }
+
+            switch (area)
+            {
+                case 1:
+                    scrollSpeed = 10;
+                    difficulty = 5f;
+                    break;
+                case 2:
+                    scrollSpeed = 11;
+                    difficulty = 4.7f;
+                    break;
+                case 3:
+                    scrollSpeed = 12;
+                    difficulty = 4.4f;
+                    break;
+                case 4:
+                    scrollSpeed = 13;
+                    difficulty = 4.1f;
+                    break;
+                case 5:
+                    scrollSpeed = 14;
+                    difficulty = 3.8f;
+                    break;
+                case 6:
+                    scrollSpeed = 15;
+                    difficulty = 3.5f;
+                    break;
+                case 7:
+                    scrollSpeed = 16;
+                    difficulty = 3.2f;
+                    break;
+                case 8:
+                    scrollSpeed = 17;
+                    difficulty = 2.9f;
+                    break;
+                case 9:
+                    scrollSpeed = 18;
+                    difficulty = 2.6f;
+                    break;
+                case 10:
+                    scrollSpeed = 19;
+                    difficulty = 2.3f;
+                    break;
+            }
+
+            areaText.text = area.ToString();
 
             // Reset scoretracker postion and store its y value as the score
             mapTracker.transform.position = new(0f, limit, 0f);
@@ -374,14 +380,20 @@ public class GameManager : MonoBehaviour
             {
                 Instantiate(placeholderStar, star.transform.position, Quaternion.identity, transform);
                 stars += 1;
-                scoreText.text = stars.ToString();
+                starText.text = stars.ToString();
                 vectors.Add(star.transform.position);
                 MoveFullCamera(vectors);
             }
+
             lineRenderer.positionCount++;
             lineRenderer.SetPosition(lineRenderer.positionCount - 1, star.transform.position);
             map.SetActive(false);
             arrows.SetActive(true);
+
+            if (constellation.constellationVectors.Contains(star.transform.position))
+            {
+                Debug.Log("Roguelike!");
+            }
         }
 
         else if (player.GetComponent<BoxCollider2D>().IsTouchingLayers(LayerMask.GetMask("Meteor")) && immortal == false && isGameOver == false)

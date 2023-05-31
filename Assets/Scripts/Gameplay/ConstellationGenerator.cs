@@ -1,9 +1,34 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class ConstellationGenerator : MonoBehaviour
 {
-    [SerializeField] private GameObject heart;
-    [SerializeField] private GameObject slowSpeed;
-    [SerializeField] private GameObject invisibility;
+    public GameObject constellationStar;
+    public List<Vector3> constellationVectors;
 
+    void Start()
+    {
+        for (int i = 760; i < 1270; i += 10)
+        {
+            for (int j = 760; j < 1270;  j += 10)
+            {
+                int rand = Random.Range(0, 20);
+                if (rand == 0 && (i != 1000 && j != 1000))
+                {
+                    float randScale = Random.Range(2.5f, 5f);
+                    constellationStar.transform.localScale = new Vector3(randScale, randScale, 1);
+
+                    int red = Random.Range(100, 256);
+                    int green = Random.Range(100, 256);
+                    int blue = Random.Range(100, 256);
+
+                    constellationStar.GetComponent<SpriteRenderer>().color = new Color((float)red / 255, (float)green / 255, (float)blue / 255, 1);
+                    constellationStar.GetComponent<Light2D>().color = new Color((float)red / 255, (float)green / 255, (float)blue / 255, 1);
+                    Instantiate(constellationStar, new(i, j, 0), Quaternion.identity, transform);
+                    constellationVectors.Add(new(i, j, 0));
+                }
+            }
+        }
+    }
 }
