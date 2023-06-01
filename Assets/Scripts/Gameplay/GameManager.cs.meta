@@ -3,7 +3,30 @@ guid: 6eb3ae91ba243b34fa388fa0c5e3f167
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - player: {fileID: 5706873387352023607, guid: d9c9cd75d3da62441964141614e34670, type: 3}
+  - map: {instanceID: 0}
+  - mapTracker: {instanceID: 0}
+  - endScreen: {instanceID: 0}
+  - starText: {instanceID: 0}
+  - areaText: {instanceID: 0}
+  - fullConstellationImage: {instanceID: 0}
+  - arrows: {instanceID: 0}
+  - roguelike: {instanceID: 0}
+  - star: {instanceID: 0}
+  - lineRenderer: {instanceID: 0}
+  - placeholderStar: {instanceID: 0}
+  - constellationCamera: {instanceID: 0}
+  - fullCamera: {instanceID: 0}
+  - constellation: {instanceID: 0}
+  - item1: {instanceID: 0}
+  - item2: {instanceID: 0}
+  - item3: {instanceID: 0}
+  - heart: {instanceID: 0}
+  - shield: {instanceID: 0}
+  - shrink: {instanceID: 0}
+  - invisibility: {instanceID: 0}
+  - speed: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

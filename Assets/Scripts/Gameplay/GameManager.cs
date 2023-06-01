@@ -30,7 +30,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI starText;
     public TextMeshProUGUI areaText;
     public GameObject fullConstellationImage;
-    public GameObject arrows; 
+    public GameObject arrows;
+    public GameObject roguelike;
     private int stars;
 
     // Constellation components
@@ -46,6 +47,17 @@ public class GameManager : MonoBehaviour
     private float largestX = 1000;
     private float smallestY = 1000;
     private float largestY = 1000;
+
+    // Roguelike components
+    [Header("Roguelike")]
+    public GameObject item1;
+    public GameObject item2;
+    public GameObject item3;
+    public GameObject heart;
+    public GameObject shield;
+    public GameObject shrink;
+    public GameObject invisibility;
+    public GameObject speed;
 
     // Arrow functions used for buttons
     public void UpArrow()
@@ -103,6 +115,26 @@ public class GameManager : MonoBehaviour
         Vector3 vector = new(0, 0, 135);
         GenerateNewMap(vector);
         diagonal = true;
+    }
+
+    // Roguelike functions
+    public void Heart()
+    {
+        Debug.Log("Heart");
+        roguelike.SetActive(false);
+        arrows.SetActive(true);
+    }
+    public void Shield()
+    {
+        Debug.Log("Shield");
+        roguelike.SetActive(false);
+        arrows.SetActive(true);
+    }
+    public void Speed()
+    {
+        Debug.Log("Speed");
+        roguelike.SetActive(false);
+        arrows.SetActive(true);
     }
 
     // Functions for showing the full constellation image
@@ -392,7 +424,11 @@ public class GameManager : MonoBehaviour
 
             if (constellation.constellationVectors.Contains(star.transform.position))
             {
-                Debug.Log("Roguelike!");
+                arrows.SetActive(false);
+                Instantiate(heart, item1.transform.position, Quaternion.identity, item1.transform);
+                Instantiate(shield, item2.transform.position, Quaternion.identity, item2.transform);
+                Instantiate(speed, item3.transform.position, Quaternion.identity, item3.transform);
+                roguelike.SetActive(true);
             }
         }
 
