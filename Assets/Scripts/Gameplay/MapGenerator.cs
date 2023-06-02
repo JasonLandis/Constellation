@@ -6,17 +6,17 @@ using UnityEngine.Rendering.Universal;
 public class MapGenerator : MonoBehaviour
 {
     [Header("Objects")]
-    [SerializeField] private GameObject meteor;
+    public GameObject meteor;
 
-    public void GenerateMap()
+    public void GenerateMap(float difficulty, int mapLength)
     {
         // Create meteors
-        for (float i = -5; i < 5; i += GameManager.instance.difficulty)
+        for (float i = -5; i < 5; i += difficulty)
         {
-            for (float j = 12; j < GameManager.instance.mapLength - 16; j += GameManager.instance.difficulty)
+            for (float j = 12; j < mapLength - 16; j += difficulty)
             {
-                float x = Random.Range(i, i + GameManager.instance.difficulty);
-                float y = Random.Range(j, j + GameManager.instance.difficulty);
+                float x = Random.Range(i, i + difficulty);
+                float y = Random.Range(j, j + difficulty);
 
                 // Generates a random scale
                 float rand = Random.Range(0.5f, 2f);
@@ -33,10 +33,5 @@ public class MapGenerator : MonoBehaviour
                 Instantiate(meteor, new(x, y, 0), Quaternion.identity, transform);
             }
         }
-    }
-
-    void Start()
-    {
-        GenerateMap();
     }
 }

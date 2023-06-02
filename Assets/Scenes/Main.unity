@@ -739,8 +739,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1748641963}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 511779354}
+        m_TargetAssemblyTypeName: Roguelike, Assembly-CSharp
         m_MethodName: Shield
         m_Mode: 1
         m_Arguments:
@@ -2086,7 +2086,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 369365081}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca9f4dd55c7eea343b7a8d9c583e099a, type: 3}
+  m_Script: {fileID: 11500000, guid: 59f591aa524f9244ab69b7e5e50dabac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   constellationStar: {fileID: 8074434361121936212, guid: 26d50e94b6a4e4340adc8963038ac3a4, type: 3}
@@ -2669,6 +2669,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 511779353}
+  - component: {fileID: 511779354}
   m_Layer: 0
   m_Name: Roguelike Icons
   m_TagString: Untagged
@@ -2694,6 +2695,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &511779354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511779352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8bcfde2a684cf7428b93924be66e326, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roguelike: {fileID: 149561341}
+  arrows: {fileID: 903454980}
+  item1: {fileID: 662288247}
+  item2: {fileID: 1517725087}
+  item3: {fileID: 828542030}
+  heart: {fileID: 938379088}
+  shield: {fileID: 171779589}
+  shrink: {fileID: 0}
+  invisibility: {fileID: 0}
+  speed: {fileID: 2085279863}
 --- !u!1 &519134948
 GameObject:
   m_ObjectHideFlags: 0
@@ -4034,6 +4057,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1912050674}
+  arrows: {fileID: 903454980}
 --- !u!1 &788556706
 GameObject:
   m_ObjectHideFlags: 0
@@ -5308,8 +5332,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1748641963}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 511779354}
+        m_TargetAssemblyTypeName: Roguelike, Assembly-CSharp
         m_MethodName: Heart
         m_Mode: 1
         m_Arguments:
@@ -9011,22 +9035,14 @@ MonoBehaviour:
   areaText: {fileID: 908305622}
   fullConstellationImage: {fileID: 1515199766}
   arrows: {fileID: 903454980}
-  roguelike: {fileID: 149561341}
   star: {fileID: 714254064}
   lineRenderer: {fileID: 714254067}
   placeholderStar: {fileID: 4125536124477613208, guid: 761aa13457e294a4e842a39725162941, type: 3}
   constellationCamera: {fileID: 325754412}
   fullCamera: {fileID: 1140142022}
-  constellation: {fileID: 369365083}
   vectors: []
-  item1: {fileID: 662288247}
-  item2: {fileID: 1517725087}
-  item3: {fileID: 828542030}
-  heart: {fileID: 938379088}
-  shield: {fileID: 171779589}
-  shrink: {fileID: 0}
-  invisibility: {fileID: 0}
-  speed: {fileID: 2085279863}
+  constellation: {fileID: 369365083}
+  roguelike: {fileID: 511779354}
 --- !u!1 &1771076144
 GameObject:
   m_ObjectHideFlags: 0
@@ -10378,8 +10394,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1748641963}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 511779354}
+        m_TargetAssemblyTypeName: Roguelike, Assembly-CSharp
         m_MethodName: Speed
         m_Mode: 1
         m_Arguments:

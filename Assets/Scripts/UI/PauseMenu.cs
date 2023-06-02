@@ -3,22 +3,21 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject pauseMenuUI;
-    private bool isGamePaused;
+    public GameObject pauseMenuUI;
+    public GameObject arrows;
 
+    // Menu buttons
     public void Resume()
     {
-        GameManager.instance.arrows.SetActive(true);
+        arrows.SetActive(true);
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
-        isGamePaused = false;
     }
     public void Pause()
     {
-        GameManager.instance.arrows.SetActive(false);
+        arrows.SetActive(false);
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
-        isGamePaused = true;
     }
     public void Menu()
     {
@@ -31,20 +30,5 @@ public class PauseMenu : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
-    }
-
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape) && !GameManager.instance.isGameOver && GameManager.instance.finished)
-        {
-            if (isGamePaused)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
-        }
     }
 }

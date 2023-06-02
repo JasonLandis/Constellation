@@ -2,16 +2,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-public class ConstellationGenerator : MonoBehaviour
+public class Constellation : MonoBehaviour
 {
     public GameObject constellationStar;
     public List<Vector3> constellationVectors;
 
-    void Start()
+    public void GenerateConstellation()
     {
         for (int i = 760; i < 1270; i += 10)
         {
-            for (int j = 760; j < 1270;  j += 10)
+            for (int j = 760; j < 1270; j += 10)
             {
                 int rand = Random.Range(0, 10);
                 if (rand == 0 && (i != 1000 && j != 1000))
@@ -33,5 +33,10 @@ public class ConstellationGenerator : MonoBehaviour
                 }
             }
         }
+    }
+
+    void Start()
+    {
+        GenerateConstellation();
     }
 }
