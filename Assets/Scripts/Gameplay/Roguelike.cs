@@ -28,7 +28,7 @@ public class Roguelike : MonoBehaviour
     [Header("Customizable")]
     public float countdownTime;
 
-    // Ability functions
+    // Passive ability functions
     public void OneHeart()
     {
         DestroyRoguelike();
@@ -53,21 +53,157 @@ public class Roguelike : MonoBehaviour
         roguelike.SetActive(false);
         arrows.SetActive(true);
     }
+    public void ShrinkOne()
+    {
+        Debug.Log("Shrink 1");
+        DestroyRoguelike();
+        roguelike.SetActive(false);
+        arrows.SetActive(true);
+    }
+    public void ShrinkTwo()
+    {
+        Debug.Log("Shrink 2");
+        DestroyRoguelike();
+        roguelike.SetActive(false);
+        arrows.SetActive(true);
+    }
+    public void ShrinkThree()
+    {
+        Debug.Log("Shrink 3");
+        DestroyRoguelike();
+        roguelike.SetActive(false);
+        arrows.SetActive(true);
+    }
+    public void DistanceOne()
+    {
+        Debug.Log("Distance 1");
+        DestroyRoguelike();
+        roguelike.SetActive(false);
+        arrows.SetActive(true);
+    }
+    public void DistanceTwo()
+    {
+        Debug.Log("Distance 2");
+        DestroyRoguelike();
+        roguelike.SetActive(false);
+        arrows.SetActive(true);
+    }
+    public void DistanceThree()
+    {
+        Debug.Log("Distance 3");
+        DestroyRoguelike();
+        roguelike.SetActive(false);
+        arrows.SetActive(true);
+    }
+    public void SpeedOne()
+    {
+        Debug.Log("Speed 1");
+        DestroyRoguelike();
+        roguelike.SetActive(false);
+        arrows.SetActive(true);
+    }
+    public void SpeedTwo()
+    {
+        Debug.Log("Speed 2");
+        DestroyRoguelike();
+        roguelike.SetActive(false);
+        arrows.SetActive(true);
+    }
+    public void SpeedThree()
+    {
+        Debug.Log("Speed 3");
+        DestroyRoguelike();
+        roguelike.SetActive(false);
+        arrows.SetActive(true);
+    }
 
-    public void Shield()
+    
+    // Activated ability functions
+    public void ShieldOne()
     {
         DestroyRoguelike();
-        Debug.Log("Shield");
+        Debug.Log("Shield 1");
         roguelike.SetActive(false);
         arrows.SetActive(true);
     }
-    public void Speed()
+    public void ShieldTwo()
     {
         DestroyRoguelike();
-        Debug.Log("Speed");
+        Debug.Log("Shield 2");
         roguelike.SetActive(false);
         arrows.SetActive(true);
     }
+    public void ShieldThree()
+    {
+        DestroyRoguelike();
+        Debug.Log("Shield 3");
+        roguelike.SetActive(false);
+        arrows.SetActive(true);
+    }
+    public void InstantOne()
+    {
+        DestroyRoguelike();
+        Debug.Log("Instant 1");
+        roguelike.SetActive(false);
+        arrows.SetActive(true);
+    }
+    public void InstantTwo()
+    {
+        DestroyRoguelike();
+        Debug.Log("Instant 2");
+        roguelike.SetActive(false);
+        arrows.SetActive(true);
+    }
+    public void InstantThree()
+    {
+        DestroyRoguelike();
+        Debug.Log("Instant 3");
+        roguelike.SetActive(false);
+        arrows.SetActive(true);
+    }
+    public void SmallOne()
+    {
+        DestroyRoguelike();
+        Debug.Log("Small 1");
+        roguelike.SetActive(false);
+        arrows.SetActive(true);
+    }
+    public void SmallTwo()
+    {
+        DestroyRoguelike();
+        Debug.Log("Small 2");
+        roguelike.SetActive(false);
+        arrows.SetActive(true);
+    }
+    public void SmallThree()
+    {
+        DestroyRoguelike();
+        Debug.Log("Small 3");
+        roguelike.SetActive(false);
+        arrows.SetActive(true);
+    }
+    public void SlowOne()
+    {
+        DestroyRoguelike();
+        Debug.Log("Slow 1");
+        roguelike.SetActive(false);
+        arrows.SetActive(true);
+    }
+    public void SlowTwo()
+    {
+        DestroyRoguelike();
+        Debug.Log("Slow 2");
+        roguelike.SetActive(false);
+        arrows.SetActive(true);
+    }
+    public void SlowThree()
+    {
+        DestroyRoguelike();
+        Debug.Log("Slow 3");
+        roguelike.SetActive(false);
+        arrows.SetActive(true);
+    }
+
 
     // Show roguelike feature
     public void ShowRoguelike()
