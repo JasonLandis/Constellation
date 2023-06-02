@@ -10,6 +10,13 @@ public class GameManager : MonoBehaviour
     public int mapLength;
     public float scrollSpeed;
     public bool immortal;
+    public float countdownTime = 0;
+
+    // Roguelike
+    [Header("Roguelike")]
+    public TextMeshProUGUI livesText;
+    public int lives;
+    public bool invincible;
 
     // Gameplay components
     [Header("Gameplay")]
@@ -392,17 +399,38 @@ public class GameManager : MonoBehaviour
             // Show roguelike component if play has landed on a star
             if (constellation.constellationVectors.Contains(star.transform.position))
             {
+                constellation.constellationVectors.Remove(star.transform.position);
                 roguelike.ShowRoguelike();
             }
         }
 
         else if (player.GetComponent<BoxCollider2D>().IsTouchingLayers(LayerMask.GetMask("Meteor")) && immortal == false && isGameOver == false)
         {
-            EndGame();
+            if (lives == 0)
+            {
+                EndGame();
+            }
+            else
+            {
+                lives -= 1;
+                livesText.text = lives.ToString();
+                immortal = true;
+            }
         }
 
         else if (finished == false)
         {
+            // Countdown for extra life invincibility
+            if (immortal == true)
+            {                
+                countdownTime += Time.deltaTime;
+                if (countdownTime >= 3)
+                {
+                    immortal = false;
+                    countdownTime = 0;
+                }
+            }
+
             // Move the score tracker upwards and record its y position
             mapTracker.transform.Translate(scrollSpeed * Time.deltaTime * Vector3.up);
 
