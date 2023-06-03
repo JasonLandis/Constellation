@@ -29,7 +29,7 @@ public class Roguelike : MonoBehaviour
     public float countdownTime;
 
     // Passive ability functions
-    public void OneHeart()
+    public void HeartOne()
     {
         DestroyRoguelike();
         gameManager.lives += 1;
@@ -37,7 +37,7 @@ public class Roguelike : MonoBehaviour
         roguelike.SetActive(false);
         arrows.SetActive(true);
     }
-    public void TwoHearts()
+    public void HeartTwo()
     {
         DestroyRoguelike();
         gameManager.lives += 2;
@@ -45,7 +45,7 @@ public class Roguelike : MonoBehaviour
         roguelike.SetActive(false);
         arrows.SetActive(true);
     }
-    public void ThreeHearts()
+    public void HeartThree()
     {
         DestroyRoguelike();
         gameManager.lives += 3;
@@ -53,27 +53,29 @@ public class Roguelike : MonoBehaviour
         roguelike.SetActive(false);
         arrows.SetActive(true);
     }
-    public void ShrinkOne()
+
+    public void SizeOne()
     {
-        Debug.Log("Shrink 1");
+        Debug.Log("Size 1");
         DestroyRoguelike();
         roguelike.SetActive(false);
         arrows.SetActive(true);
     }
-    public void ShrinkTwo()
+    public void SizeTwo()
     {
-        Debug.Log("Shrink 2");
+        Debug.Log("Size 2");
         DestroyRoguelike();
         roguelike.SetActive(false);
         arrows.SetActive(true);
     }
-    public void ShrinkThree()
+    public void SizeThree()
     {
-        Debug.Log("Shrink 3");
+        Debug.Log("Size 3");
         DestroyRoguelike();
         roguelike.SetActive(false);
         arrows.SetActive(true);
     }
+
     public void DistanceOne()
     {
         Debug.Log("Distance 1");
@@ -95,6 +97,7 @@ public class Roguelike : MonoBehaviour
         roguelike.SetActive(false);
         arrows.SetActive(true);
     }
+
     public void SpeedOne()
     {
         Debug.Log("Speed 1");
@@ -140,6 +143,7 @@ public class Roguelike : MonoBehaviour
         roguelike.SetActive(false);
         arrows.SetActive(true);
     }
+
     public void InstantOne()
     {
         DestroyRoguelike();
@@ -161,27 +165,29 @@ public class Roguelike : MonoBehaviour
         roguelike.SetActive(false);
         arrows.SetActive(true);
     }
-    public void SmallOne()
+
+    public void ShrinkOne()
     {
         DestroyRoguelike();
-        Debug.Log("Small 1");
+        Debug.Log("Shrink 1");
         roguelike.SetActive(false);
         arrows.SetActive(true);
     }
-    public void SmallTwo()
+    public void ShrinkTwo()
     {
         DestroyRoguelike();
-        Debug.Log("Small 2");
+        Debug.Log("Shrink 2");
         roguelike.SetActive(false);
         arrows.SetActive(true);
     }
-    public void SmallThree()
+    public void ShrinkThree()
     {
         DestroyRoguelike();
-        Debug.Log("Small 3");
+        Debug.Log("Shrink 3");
         roguelike.SetActive(false);
         arrows.SetActive(true);
     }
+
     public void SlowOne()
     {
         DestroyRoguelike();

@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 8074434361121936212}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.8895613, y: 1.8895613, z: 1}
+  m_LocalScale: {x: 1.0025961, y: 1.0025961, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: 2801620358c5cfb419a2bdcb84b98fc1, type: 3}
-  m_Color: {r: 0.87058824, g: 0.4509804, b: 0.44705883, a: 1}
+  m_Color: {r: 0.56078434, g: 0.9764706, b: 0.42745098, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_LightType: 3
   m_BlendStyleIndex: 1
   m_FalloffIntensity: 1
-  m_Color: {r: 0.87058824, g: 0.4509804, b: 0.44705883, a: 1}
+  m_Color: {r: 0.56078434, g: 0.9764706, b: 0.42745098, a: 1}
   m_Intensity: 0.34
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 1
