@@ -20,6 +20,7 @@ public class Roguelike : MonoBehaviour
     // Abilities
     [Header("Abilities")]
     public List<GameObject> abilities;
+    public List<GameObject> rarityList;
 
     // Text
     [Header("Text")]
@@ -219,19 +220,19 @@ public class Roguelike : MonoBehaviour
         GameObject ability3;
         int rand;
 
-        rand = Random.Range(0, abilities.Count);
-        ability1 = abilities[rand];
+        rand = Random.Range(0, rarityList.Count);
+        ability1 = rarityList[rand];
         Instantiate(ability1, item1.transform.position, Quaternion.identity, item1.transform);
 
-        rand = Random.Range(0, abilities.Count);
-        ability2 = abilities[rand];
+        rand = Random.Range(0, rarityList.Count);
+        ability2 = rarityList[rand];
 
         while (true)
         {
             if (ability1 == ability2)
             {
-                rand = Random.Range(0, abilities.Count);
-                ability2 = abilities[rand];
+                rand = Random.Range(0, rarityList.Count);
+                ability2 = rarityList[rand];
             }
             else
             {
@@ -240,15 +241,15 @@ public class Roguelike : MonoBehaviour
             }
         }
 
-        rand = Random.Range(0, abilities.Count);
-        ability3 = abilities[rand];
+        rand = Random.Range(0, rarityList.Count);
+        ability3 = rarityList[rand];
 
         while (true)
         {
             if (ability1 == ability3 || ability2 == ability3)
             {
-                rand = Random.Range(0, abilities.Count);
-                ability3 = abilities[rand];
+                rand = Random.Range(0, rarityList.Count);
+                ability3 = rarityList[rand];
             }
             else
             {
@@ -276,5 +277,41 @@ public class Roguelike : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+    }
+
+    private void Start()
+    {
+        for (int i = 0; i < 5;  i++)
+        {
+            rarityList.Add(abilities[0]);
+            rarityList.Add(abilities[1]);
+            rarityList.Add(abilities[2]);
+            rarityList.Add(abilities[3]);
+            rarityList.Add(abilities[4]);
+            rarityList.Add(abilities[5]);
+            rarityList.Add(abilities[6]);
+            rarityList.Add(abilities[7]);
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            rarityList.Add(abilities[8]);
+            rarityList.Add(abilities[9]);
+            rarityList.Add(abilities[10]);
+            rarityList.Add(abilities[11]);
+            rarityList.Add(abilities[12]);
+            rarityList.Add(abilities[13]);
+            rarityList.Add(abilities[14]);
+            rarityList.Add(abilities[15]);
+        }
+
+        rarityList.Add(abilities[16]);
+        rarityList.Add(abilities[17]);
+        rarityList.Add(abilities[18]);
+        rarityList.Add(abilities[19]);
+        rarityList.Add(abilities[20]);
+        rarityList.Add(abilities[21]);
+        rarityList.Add(abilities[22]);
+        rarityList.Add(abilities[23]);
     }
 }
