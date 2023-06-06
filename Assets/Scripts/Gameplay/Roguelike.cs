@@ -26,9 +26,6 @@ public class Roguelike : MonoBehaviour
     [Header("Text")]
     public TextMeshProUGUI livesText;
 
-    [Header("Customizable")]
-    public float countdownTime;
-
     // Passive ability functions
     public void HeartOne()
     {

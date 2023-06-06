@@ -1,161 +1,219 @@
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
-    // Customizable components
-    [Header("Options")]
-    public float difficulty;
-    public int mapLength;
-    public float scrollSpeed;
-    public bool immortal;
-    public float countdownTime = 0;
-
-    // Roguelike
-    [Header("Roguelike")]
-    public TextMeshProUGUI livesText;
-    public int lives;
-    public bool invincible;
-
-    // Gameplay components
+    // Gameplay values
     [Header("Gameplay")]
+    public int lives;
+    public float distance;
+    public float size;
+    public float speed;
+    public int mapLength;
+    public bool immortal;
+
+    // Gameplay objects
+    [Header("Objects")]
     public GameObject player;
     public GameObject map;
-    public GameObject mapTracker;
-    public bool finished = false;
-    public bool isGameOver;
-    private bool diagonal;
-    private int limit = 0;
-    private int zone = 0;
-
-    // UI components
-    [Header("UI")]
-    public GameObject background;
-    public GameObject endScreen;
-    public TextMeshProUGUI starText;
-    public TextMeshProUGUI areaText;
-    public GameObject fullConstellationImage;
-    public GameObject arrows;
-    private int stars;
-
-    // Constellation components
-    [Header("Constellation")]
     public GameObject star;
     public LineRenderer lineRenderer;
     public GameObject placeholderStar;
     public Camera constellationCamera;
     public Camera fullCamera;
-    public List<Vector3> vectors;
-    private float smallestX = 10000;
-    private float largestX = 10000;
-    private float smallestY = 10000;
-    private float largestY = 10000;
+    public GameObject mapTracker;
+
+    // Text objects
+    [Header("Text")]
+    public TextMeshProUGUI livesText;
+    public TextMeshProUGUI distanceText;
+    public TextMeshProUGUI sizeText;
+    public TextMeshProUGUI speedText;
+    public TextMeshProUGUI scoreText;
+
+    // UI components
+    [Header("UI")]
+    public GameObject arrows;
+    public GameObject Distance;
+    public GameObject fullConstellationImage;
+    public GameObject endScreen;
 
     // Scripts
     [Header("Scripts")]
     public Constellation constellation;
     public Roguelike roguelike;
 
-    private string Direction;
+    // Gameplay controllers
+    private bool isGameOver;
+    private int zone = 1;
+    private float countdownTime = 3;
+    private float score = 0;
+    private string direction;
+    private int limit = 0;
+    private bool finished;
+    private Vector3 vector;
+
+    // Constellation components
+    [HideInInspector] public List<Vector3> vectors;
+    private float smallestX = 1000;
+    private float largestX = 1000;
+    private float smallestY = 1000;
+    private float largestY = 1000;
 
 
     // Arrow buttons
     public void UpArrow()
     {
-        arrows.SetActive(false);
-        Vector3 vector = Vector3.zero;
-        GenerateNewMap(vector);
-        diagonal = false;
-        Direction = "up";
+        vector = Vector3.zero;
+        direction = "up";
+        ShowDistance();
     }
     public void DownArrow()
-    {       
-        arrows.SetActive(false);
-        Vector3 vector = new (0, 0, 180);
-        GenerateNewMap(vector);
-        diagonal = false;
-        Direction = "down";
+    {
+        vector = new (0, 0, 180);
+        direction = "down";
+        ShowDistance();
     }
     public void LeftArrow()
     {
-        arrows.SetActive(false);
-        Vector3 vector = new(0, 0, 90);
-        GenerateNewMap(vector);
-        diagonal = false;
-        Direction = "left";
+        vector = new(0, 0, 90);
+        direction = "left";
+        ShowDistance();
     }
     public void RightArrow()
     {
-        arrows.SetActive(false);
-        Vector3 vector = new(0, 0, 270);
-        GenerateNewMap(vector);
-        diagonal = false;
-        Direction = "right";
+        vector = new(0, 0, 270);
+        direction = "right";
+        ShowDistance();
     }
     public void UpRightArrow()
     {
-        arrows.SetActive(false);
-        Vector3 vector = new(0, 0, 315);
-        GenerateNewMap(vector);
-        diagonal = true;
-        Direction = "upright";
+        vector = new(0, 0, 315);
+        direction = "upright";
+        ShowDistance();
     }
     public void DownRightArrow()
     {
-        arrows.SetActive(false);
-        Vector3 vector = new(0, 0, 225);
-        GenerateNewMap(vector);
-        diagonal = true;
-        Direction = "downright";
+        vector = new(0, 0, 225);
+        direction = "downright";
+        ShowDistance();
     }
     public void UpLeftArrow()
     {
-        arrows.SetActive(false);
-        Vector3 vector = new(0, 0, 45);
-        GenerateNewMap(vector);
-        diagonal = true;
-        Direction = "upleft";
+        vector = new(0, 0, 45);
+        direction = "upleft";
+        ShowDistance();
     }
     public void DownLeftArrow()
     {
-        arrows.SetActive(false);
-        Vector3 vector = new(0, 0, 135);
-        GenerateNewMap(vector);
-        diagonal = true;
-        Direction = "downleft";
+        vector = new(0, 0, 135);
+        direction = "downleft";
+        ShowDistance();
     }
 
+    // Map length function
+    public void OneHundred()
+    {
+        mapLength = 100;
+        limit += mapLength;
+        GenerateNewMap(vector);
+        Distance.SetActive(false);
+    }
+    public void TwoHundred()
+    {
+        mapLength = 200;
+        limit += mapLength;
+        GenerateNewMap(vector);
+        Distance.SetActive(false);
+    }
+    public void ThreeHundred()
+    {
+        mapLength = 300;
+        limit += mapLength;
+        GenerateNewMap(vector);
+        Distance.SetActive(false);
+    }
+    public void FourHundred()
+    {
+        mapLength = 400;
+        limit += mapLength;
+        GenerateNewMap(vector);
+        Distance.SetActive(false);
+    }
+    public void FiveHundred()
+    {
+        mapLength = 500;
+        limit += mapLength;
+        GenerateNewMap(vector);
+        Distance.SetActive(false);
+    }
+    public void SixHundred()
+    {
+        mapLength = 600;
+        limit += mapLength;
+        GenerateNewMap(vector);
+        Distance.SetActive(false);
+    }
+    public void SevenHundred()
+    {
+        mapLength = 700;
+        limit += mapLength;
+        GenerateNewMap(vector);
+        Distance.SetActive(false);
+    }
+    public void EightHundred()
+    {
+        mapLength = 800;
+        limit += mapLength;
+        GenerateNewMap(vector);
+        Distance.SetActive(false);
+    }
+    public void NineHundred()
+    {
+        mapLength = 900;
+        limit += mapLength;
+        GenerateNewMap(vector);
+        Distance.SetActive(false);
+    }
+    public void OneThousand()
+    {
+        mapLength = 1000;
+        limit += mapLength;
+        GenerateNewMap(vector);
+        Distance.SetActive(false);
+    }
 
     // Other functions
     public void EndGame()
     {
         // Stop time, resize camera, and end game
         isGameOver = true;
-        Time.timeScale = 0f;
-        star.GetComponent<SpriteRenderer>().sortingOrder = -1;
-        MoveFullCamera(vectors);
-        map.SetActive(false);
         endScreen.SetActive(true);
+        MoveFullCamera(vectors);
+        Time.timeScale = 0f;
+        star.SetActive(false);
+        map.SetActive(false);
     }
     private void GenerateNewMap(Vector3 vector)
-    {        
+    {
+        // Remove old map
         foreach (Transform child in map.transform)
         {
             Destroy(child.gameObject);
         }
 
-        // Reset constellation mechanics
-        finished = false;
-        star.transform.rotation = Quaternion.Euler(vector);
-
         // Generate new map
         map.transform.SetPositionAndRotation(new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
-        map.GetComponent<MapGenerator>().GenerateMap(difficulty, mapLength);
+        map.GetComponent<MapGenerator>().GenerateMap(distance, mapLength);
         map.transform.rotation = Quaternion.Euler(vector);
         map.SetActive(true);
+        finished = false;
+    }
+    private void ShowDistance()
+    {
+        arrows.SetActive(false);
+        Distance.SetActive(true);
     }
 
 
@@ -204,7 +262,7 @@ public class GameManager : MonoBehaviour
         float completeWidth = largestX - smallestX;
         float completeHeight = largestY - smallestY;
 
-        if (fullCamera.orthographicSize < completeWidth / 1.75 || fullCamera.orthographicSize < completeHeight / 1.75)
+        if (fullCamera.orthographicSize < completeWidth / 1.75f || fullCamera.orthographicSize < completeHeight / 1.75f)
         {
             fullCamera.orthographicSize += 10;
         }
@@ -252,178 +310,91 @@ public class GameManager : MonoBehaviour
     private void DetectDifficulty()
     {
         // Detects difficulty level based on location within constellation map
-        if (star.transform.position.y > 9965 && star.transform.position.y < 10035 && star.transform.position.x > 9965 && star.transform.position.x < 10035)
-        {
-            zone = 0;
-        }
-        else if (star.transform.position.y > 9925 && star.transform.position.y < 10075 && star.transform.position.x > 9925 && star.transform.position.x < 10075)
+        if (star.transform.position.y > 975 && star.transform.position.y < 1025 && star.transform.position.x > 975 && star.transform.position.x < 1025)
         {
             zone = 1;
         }
-        else if (star.transform.position.y > 9885 && star.transform.position.y < 10115 && star.transform.position.x > 9885 && star.transform.position.x < 10115)
+        else if (star.transform.position.y > 945 && star.transform.position.y < 1055 && star.transform.position.x > 945 && star.transform.position.x < 1055)
         {
             zone = 2;
         }
-        else if (star.transform.position.y > 9845 && star.transform.position.y < 10155 && star.transform.position.x > 9845 && star.transform.position.x < 10155)
+        else if (star.transform.position.y > 915 && star.transform.position.y < 1085 && star.transform.position.x > 915 && star.transform.position.x < 1085)
         {
             zone = 3;
         }
-        else if (star.transform.position.y > 9815 && star.transform.position.y < 10195 && star.transform.position.x > 9815 && star.transform.position.x < 10195)
+        else if (star.transform.position.y > 885 && star.transform.position.y < 1115 && star.transform.position.x > 885 && star.transform.position.x < 1115)
         {
             zone = 4;
         }
-        else if (star.transform.position.y > 9775 && star.transform.position.y < 10235 && star.transform.position.x > 9775 && star.transform.position.x < 10235)
+        else if (star.transform.position.y > 855 && star.transform.position.y < 1145 && star.transform.position.x > 855 && star.transform.position.x < 1145)
         {
             zone = 5;
         }
-        else if (star.transform.position.y > 9735 && star.transform.position.y < 10275 && star.transform.position.x > 9735 && star.transform.position.x < 10275)
+        else if (star.transform.position.y > 825 && star.transform.position.y < 1175 && star.transform.position.x > 825 && star.transform.position.x < 1175)
         {
             zone = 6;
         }
-        else if (star.transform.position.y > 9695 && star.transform.position.y < 10315 && star.transform.position.x > 9695 && star.transform.position.x < 10315)
+        else if (star.transform.position.y > 795 && star.transform.position.y < 1205 && star.transform.position.x > 795 && star.transform.position.x < 1205)
         {
             zone = 7;
         }
-        else if (star.transform.position.y > 9655 && star.transform.position.y < 10355 && star.transform.position.x > 9655 && star.transform.position.x < 10355)
+        else if (star.transform.position.y > 765 && star.transform.position.y < 1235 && star.transform.position.x > 765 && star.transform.position.x < 1235)
         {
             zone = 8;
         }
-        else if (star.transform.position.y > 9615 && star.transform.position.y < 10395 && star.transform.position.x > 9615 && star.transform.position.x < 10395)
+        else if (star.transform.position.y > 735 && star.transform.position.y < 1265 && star.transform.position.x > 735 && star.transform.position.x < 1265)
         {
             zone = 9;
         }
-        else if (star.transform.position.y > 9575 && star.transform.position.y < 10435 && star.transform.position.x > 9575 && star.transform.position.x < 10435)
+        else if (star.transform.position.y > 705 && star.transform.position.y < 1295 && star.transform.position.x > 705 && star.transform.position.x < 1295)
         {
             zone = 10;
-        }
-        else if (star.transform.position.y > 9535 && star.transform.position.y < 10475 && star.transform.position.x > 9535 && star.transform.position.x < 10475)
-        {
-            zone = 11;
-        }
-        else if (star.transform.position.y > 9495 && star.transform.position.y < 10505 && star.transform.position.x > 9495 && star.transform.position.x < 10505)
-        {
-            zone = 12;
-        }
-        else if (star.transform.position.y > 9455 && star.transform.position.y < 10545 && star.transform.position.x > 9455 && star.transform.position.x < 10545)
-        {
-            zone = 13;
-        }
-        else if (star.transform.position.y > 9415 && star.transform.position.y < 10585 && star.transform.position.x > 9415 && star.transform.position.x < 10585)
-        {
-            zone = 14;
-        }
-        else if (star.transform.position.y > 9375 && star.transform.position.y < 10625 && star.transform.position.x > 9375 && star.transform.position.x < 10625)
-        {
-            zone = 15;
-        }
-        else if (star.transform.position.y > 9335 && star.transform.position.y < 10665 && star.transform.position.x > 9335 && star.transform.position.x < 10665)
-        {
-            zone = 16;
-        }
-        else if (star.transform.position.y > 9295 && star.transform.position.y < 10705 && star.transform.position.x > 9295 && star.transform.position.x < 10705)
-        {
-            zone = 17;
-        }
-        else if (star.transform.position.y > 9255 && star.transform.position.y < 10745 && star.transform.position.x > 9255 && star.transform.position.x < 10745)
-        {
-            zone = 18;
-        }
-        else if (star.transform.position.y > 9215 && star.transform.position.y < 10785 && star.transform.position.x > 9215 && star.transform.position.x < 10785)
-        {
-            zone = 19;
-        }
-        else if (star.transform.position.y > 9175 && star.transform.position.y < 10825 && star.transform.position.x > 9175 && star.transform.position.x < 10825)
-        {
-            zone = 20;
-        }
-        else if (star.transform.position.y > 9135 && star.transform.position.y < 10865 && star.transform.position.x > 9135 && star.transform.position.x < 10865)
-        {
-            zone = 21;
-        }
-        else if (star.transform.position.y > 9095 && star.transform.position.y < 10905 && star.transform.position.x > 9095 && star.transform.position.x < 10905)
-        {
-            zone = 22;
-        }
-        else if (star.transform.position.y > 9055 && star.transform.position.y < 10945 && star.transform.position.x > 9055 && star.transform.position.x < 10945)
-        {
-            zone = 23;
-        }
-        else if (star.transform.position.y > 9015 && star.transform.position.y < 10985 && star.transform.position.x > 9015 && star.transform.position.x < 10985)
-        {
-            zone = 24;
-        }
-        else if (star.transform.position.y > 8975 && star.transform.position.y < 11025 && star.transform.position.x > 8975 && star.transform.position.x < 11025)
-        {
-            zone = 25;
-        }
-        else if (star.transform.position.y > 8935 && star.transform.position.y < 11065 && star.transform.position.x > 8935 && star.transform.position.x < 11065)
-        {
-            zone = 26;
-        }
-        else if (star.transform.position.y > 8895 && star.transform.position.y < 11105 && star.transform.position.x > 8895 && star.transform.position.x < 11105)
-        {
-            zone = 27;
-        }
-        else if (star.transform.position.y > 8855 && star.transform.position.y < 11145 && star.transform.position.x > 8855 && star.transform.position.x < 11145)
-        {
-            zone = 28;
-        }
-        else if (star.transform.position.y > 8815 && star.transform.position.y < 11185 && star.transform.position.x > 8815 && star.transform.position.x < 11185)
-        {
-            zone = 29;
-        }
-        else if (star.transform.position.y > 8775 && star.transform.position.y < 11225 && star.transform.position.x > 8775 && star.transform.position.x < 11225)
-        {
-            zone = 30;
         }
 
         // Set difficulty levels
         switch (zone)
         {
             case 1:
-                scrollSpeed = 10;
-                difficulty = 5f;
+                speed = 10;
+                distance = 5f;
                 break;
             case 2:
-                scrollSpeed = 11;
-                difficulty = 4.7f;
+                speed = 11;
+                distance = 4.7f;
                 break;
             case 3:
-                scrollSpeed = 12;
-                difficulty = 4.4f;
+                speed = 12;
+                distance = 4.4f;
                 break;
             case 4:
-                scrollSpeed = 13;
-                difficulty = 4.1f;
+                speed = 13;
+                distance = 4.1f;
                 break;
             case 5:
-                scrollSpeed = 14;
-                difficulty = 3.8f;
+                speed = 14;
+                distance = 3.8f;
                 break;
             case 6:
-                scrollSpeed = 15;
-                difficulty = 3.5f;
+                speed = 15;
+                distance = 3.5f;
                 break;
             case 7:
-                scrollSpeed = 16;
-                difficulty = 3.2f;
+                speed = 16;
+                distance = 3.2f;
                 break;
             case 8:
-                scrollSpeed = 17;
-                difficulty = 2.9f;
+                speed = 17;
+                distance = 2.9f;
                 break;
             case 9:
-                scrollSpeed = 18;
-                difficulty = 2.6f;
+                speed = 18;
+                distance = 2.6f;
                 break;
             case 10:
-                scrollSpeed = 19;
-                difficulty = 2.3f;
+                speed = 19;
+                distance = 2.3f;
                 break;
         }
-
-        // Set area text
-        areaText.text = zone.ToString();
     }
     private void CreateNewStar()
     {
@@ -434,8 +405,6 @@ public class GameManager : MonoBehaviour
         if (!vectors.Contains(star.transform.position))
         {
             Instantiate(placeholderStar, star.transform.position, Quaternion.identity, transform);
-            stars += 1;
-            starText.text = stars.ToString();
             vectors.Add(star.transform.position);
             MoveFullCamera(vectors);
         }
@@ -480,15 +449,20 @@ public class GameManager : MonoBehaviour
     {
         if (mapTracker.transform.position.y >= limit && finished == false)
         {
-            // Only execute this code once
+            // Execute this code only once
             finished = true;
 
             // Change the difficulty if needed
             DetectDifficulty();
 
+            // Set the text
+            livesText.text = lives.ToString();
+            distanceText.text = distance.ToString();
+            sizeText.text = size.ToString();
+            speedText.text = speed.ToString();
+
             // Reset scoretracker postion and store its y value as the score
             mapTracker.transform.position = new(0f, limit, 0f);
-            limit += mapLength;
 
             // Create a new star
             CreateNewStar();
@@ -520,71 +494,60 @@ public class GameManager : MonoBehaviour
             // Countdown for extra life invincibility
             if (immortal == true)
             {                
-                countdownTime += Time.deltaTime;
-                if (countdownTime >= 3)
+                countdownTime -= Time.deltaTime;
+                if (countdownTime <= 0)
                 {
                     immortal = false;
-                    countdownTime = 0;
+                    countdownTime = 3;
                 }
             }
 
-            // Move the score tracker upwards and record its y position
-            mapTracker.transform.Translate(scrollSpeed * Time.deltaTime * Vector3.up);
-            map.transform.Translate(scrollSpeed * Time.deltaTime * Vector3.down);
+            // Update the mapTracker
+            mapTracker.transform.Translate(speed * Time.deltaTime * Vector3.up);
+            score = (int)mapTracker.transform.position.y / 10;
+            scoreText.text = score.ToString();
 
             // Make the constellation camera follow the star
             constellationCamera.transform.position = new(star.transform.position.x, star.transform.position.y, -10);
 
-            if (Direction == "up")
-            {
-                star.transform.Translate(scrollSpeed * Time.deltaTime * (Vector3.up / 10));
-                background.transform.Translate(scrollSpeed / 10 * Time.deltaTime * (Vector3.down));
-            }
+            // Move the map and the star
+            map.transform.Translate(speed * Time.deltaTime * Vector3.down);
 
-            else if (Direction == "left")
+            if (direction == "up")
             {
-                star.transform.Translate(scrollSpeed * Time.deltaTime * (Vector3.up / 10));
-                background.transform.Translate(scrollSpeed / 10 * Time.deltaTime * (Vector3.right));
+                star.transform.Translate(speed * Time.deltaTime * (Vector3.up / 10));
             }
-
-            else if (Direction == "right")
+            else if (direction == "left")
             {
-                star.transform.Translate(scrollSpeed * Time.deltaTime * (Vector3.up / 10));
-                background.transform.Translate(scrollSpeed / 10 * Time.deltaTime * (Vector3.left));
+                star.transform.Translate(speed * Time.deltaTime * (Vector3.left / 10));
             }
-
-            else if (Direction == "down")
+            else if (direction == "right")
             {
-                star.transform.Translate(scrollSpeed * Time.deltaTime * (Vector3.up / 10));
-                background.transform.Translate(scrollSpeed / 10 * Time.deltaTime * (Vector3.up));
+                star.transform.Translate(speed * Time.deltaTime * (Vector3.right / 10));
             }
-
-            else if (Direction == "upright")
+            else if (direction == "down")
             {
-                star.transform.Translate(scrollSpeed * Time.deltaTime * (Vector3.up / 7));
-                background.transform.Translate(scrollSpeed / 10 * Time.deltaTime * (Vector3.down / 10));
-                background.transform.Translate(scrollSpeed / 10 * Time.deltaTime * (Vector3.left / 10));
+                star.transform.Translate(speed * Time.deltaTime * (Vector3.down / 10));
             }
-
-            else if (Direction == "upleft")
+            else if (direction == "upright")
             {
-                star.transform.Translate(scrollSpeed * Time.deltaTime * (Vector3.up / 7));
-                background.transform.Translate(scrollSpeed / 10 * Time.deltaTime * (Vector3.down / 10));
-                background.transform.Translate(scrollSpeed / 10 * Time.deltaTime * (Vector3.right / 10));
+                star.transform.Translate(speed * Time.deltaTime * (Vector3.up / 10));
+                star.transform.Translate(speed * Time.deltaTime * (Vector3.right / 10));
             }
-
-            else if (Direction == "downright")
+            else if (direction == "upleft")
             {
-                star.transform.Translate(scrollSpeed * Time.deltaTime * (Vector3.up / 7));
-                background.transform.Translate(scrollSpeed / 10 * Time.deltaTime * (Vector3.up / 10));
-                background.transform.Translate(scrollSpeed / 10 * Time.deltaTime * (Vector3.left / 10));
+                star.transform.Translate(speed * Time.deltaTime * (Vector3.up / 10));
+                star.transform.Translate(speed * Time.deltaTime * (Vector3.left / 10));
             }
-
-            else if (Direction == "downleft")
+            else if (direction == "downright")
             {
-                star.transform.Translate(scrollSpeed * Time.deltaTime * (Vector3.up / 7));
-                background.transform.Translate(scrollSpeed / 10 * Time.deltaTime * (Vector3.up / 10));
-                background.transform.Translate(scrollSpeed / 10 * Time.deltaTime * (Vector3.right / 10));
+                star.transform.Translate(speed * Time.deltaTime * (Vector3.down / 10));
+                star.transform.Translate(speed * Time.deltaTime * (Vector3.right / 10));
+            }
+            else if (direction == "downleft")
+            {
+                star.transform.Translate(speed * Time.deltaTime * (Vector3.down / 10));
+                star.transform.Translate(speed * Time.deltaTime * (Vector3.left / 10));
             }
         }
     }

@@ -8,16 +8,24 @@ public class MapGenerator : MonoBehaviour
     [Header("Objects")]
     public GameObject meteor;
 
-    public void GenerateMap(float difficulty, int mapLength)
+    public void GenerateMap(float distance, int mapLength)
     {
         // Create meteors
-        for (float i = -5; i < 5; i += difficulty)
+        for (float i = -5; i < 5; i += distance)
         {
-            for (float j = 12; j < mapLength - 16; j += difficulty)
+            for (float j = 12; j < mapLength - 16; j += distance)
             {
-                float x = Random.Range(i, i + difficulty);
-                float y = Random.Range(j, j + difficulty);
-          
+                float x = Random.Range(i, i + distance);
+                float y = Random.Range(j, j + distance);
+
+                // Generates a random bright color
+                int red = Random.Range(100, 256);
+                int green = Random.Range(100, 256);
+                int blue = Random.Range(100, 256);
+
+                // Instantiates the meteor
+                meteor.GetComponent<SpriteRenderer>().color = new Color((float)red/255, (float)green/255, (float)blue/255, 1);
+                meteor.GetComponent<Light2D>().color = new Color((float)red / 255, (float)green / 255, (float)blue / 255, 1);
                 Instantiate(meteor, new(x, y, 0), Quaternion.identity, transform);
             }
         }
