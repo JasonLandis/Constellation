@@ -215,6 +215,11 @@ public class GameManager : MonoBehaviour
         arrows.SetActive(false);
         Distance.SetActive(true);
     }
+    public void HideDistance()
+    {
+        arrows.SetActive(true);
+        Distance.SetActive(false);
+    }
 
 
     // Functions used for the constellation mechanic
@@ -262,9 +267,13 @@ public class GameManager : MonoBehaviour
         float completeWidth = largestX - smallestX;
         float completeHeight = largestY - smallestY;
 
-        if (fullCamera.orthographicSize < completeWidth / 1.75f || fullCamera.orthographicSize < completeHeight / 1.75f)
+        if (completeHeight > completeWidth)
         {
-            fullCamera.orthographicSize += 10;
+            fullCamera.orthographicSize = completeHeight / 2 + 10;
+        }
+        else if (completeWidth > completeHeight)
+        {
+            fullCamera.orthographicSize = completeWidth / 2 + 10;
         }
 
         if (up == true && right == true)
@@ -346,52 +355,53 @@ public class GameManager : MonoBehaviour
         {
             zone = 9;
         }
-        else if (star.transform.position.y > 705 && star.transform.position.y < 1295 && star.transform.position.x > 705 && star.transform.position.x < 1295)
+        else
         {
             zone = 10;
         }
+
 
         // Set difficulty levels
         switch (zone)
         {
             case 1:
-                speed = 10;
+                speed = 100;
                 distance = 5f;
                 break;
             case 2:
-                speed = 11;
+                speed = 110;
                 distance = 4.7f;
                 break;
             case 3:
-                speed = 12;
+                speed = 120;
                 distance = 4.4f;
                 break;
             case 4:
-                speed = 13;
+                speed = 130;
                 distance = 4.1f;
                 break;
             case 5:
-                speed = 14;
+                speed = 140;
                 distance = 3.8f;
                 break;
             case 6:
-                speed = 15;
+                speed = 150;
                 distance = 3.5f;
                 break;
             case 7:
-                speed = 16;
+                speed = 160;
                 distance = 3.2f;
                 break;
             case 8:
-                speed = 17;
+                speed = 170;
                 distance = 2.9f;
                 break;
             case 9:
-                speed = 18;
+                speed = 180;
                 distance = 2.6f;
                 break;
             case 10:
-                speed = 19;
+                speed = 190;
                 distance = 2.3f;
                 break;
         }
@@ -417,26 +427,10 @@ public class GameManager : MonoBehaviour
     }
     public void ShowFullConstellation()
     {
-        if (isGameOver)
-        {
-            endScreen.SetActive(false);
-        }
-        else
-        {
-            arrows.SetActive(false);
-        }
         fullConstellationImage.SetActive(true);
     }
     public void HideFullConstellation()
     {
-        if (isGameOver)
-        {
-            endScreen.SetActive(true);
-        }
-        else
-        {
-            arrows.SetActive(true);
-        }
         fullConstellationImage.SetActive(false);
     }
 
