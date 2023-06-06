@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,10 +29,11 @@ public class GameManager : MonoBehaviour
     public bool isGameOver;
     private bool diagonal;
     private int limit = 0;
-    private int area = 1;
+    private int zone = 0;
 
     // UI components
     [Header("UI")]
+    public GameObject background;
     public GameObject endScreen;
     public TextMeshProUGUI starText;
     public TextMeshProUGUI areaText;
@@ -46,15 +49,17 @@ public class GameManager : MonoBehaviour
     public Camera constellationCamera;
     public Camera fullCamera;
     public List<Vector3> vectors;
-    private float smallestX = 1000;
-    private float largestX = 1000;
-    private float smallestY = 1000;
-    private float largestY = 1000;
+    private float smallestX = 10000;
+    private float largestX = 10000;
+    private float smallestY = 10000;
+    private float largestY = 10000;
 
     // Scripts
     [Header("Scripts")]
     public Constellation constellation;
     public Roguelike roguelike;
+
+    private string Direction;
 
 
     // Arrow buttons
@@ -64,6 +69,7 @@ public class GameManager : MonoBehaviour
         Vector3 vector = Vector3.zero;
         GenerateNewMap(vector);
         diagonal = false;
+        Direction = "up";
     }
     public void DownArrow()
     {       
@@ -71,6 +77,7 @@ public class GameManager : MonoBehaviour
         Vector3 vector = new (0, 0, 180);
         GenerateNewMap(vector);
         diagonal = false;
+        Direction = "down";
     }
     public void LeftArrow()
     {
@@ -78,6 +85,7 @@ public class GameManager : MonoBehaviour
         Vector3 vector = new(0, 0, 90);
         GenerateNewMap(vector);
         diagonal = false;
+        Direction = "left";
     }
     public void RightArrow()
     {
@@ -85,6 +93,7 @@ public class GameManager : MonoBehaviour
         Vector3 vector = new(0, 0, 270);
         GenerateNewMap(vector);
         diagonal = false;
+        Direction = "right";
     }
     public void UpRightArrow()
     {
@@ -92,6 +101,7 @@ public class GameManager : MonoBehaviour
         Vector3 vector = new(0, 0, 315);
         GenerateNewMap(vector);
         diagonal = true;
+        Direction = "upright";
     }
     public void DownRightArrow()
     {
@@ -99,6 +109,7 @@ public class GameManager : MonoBehaviour
         Vector3 vector = new(0, 0, 225);
         GenerateNewMap(vector);
         diagonal = true;
+        Direction = "downright";
     }
     public void UpLeftArrow()
     {
@@ -106,6 +117,7 @@ public class GameManager : MonoBehaviour
         Vector3 vector = new(0, 0, 45);
         GenerateNewMap(vector);
         diagonal = true;
+        Direction = "upleft";
     }
     public void DownLeftArrow()
     {
@@ -113,6 +125,7 @@ public class GameManager : MonoBehaviour
         Vector3 vector = new(0, 0, 135);
         GenerateNewMap(vector);
         diagonal = true;
+        Direction = "downleft";
     }
 
 
@@ -239,49 +252,133 @@ public class GameManager : MonoBehaviour
     private void DetectDifficulty()
     {
         // Detects difficulty level based on location within constellation map
-        if (star.transform.position.y > 975 && star.transform.position.y < 1025 && star.transform.position.x > 975 && star.transform.position.x < 1025)
+        if (star.transform.position.y > 9965 && star.transform.position.y < 10035 && star.transform.position.x > 9965 && star.transform.position.x < 10035)
         {
-            area = 1;
+            zone = 0;
         }
-        else if (star.transform.position.y > 945 && star.transform.position.y < 1055 && star.transform.position.x > 945 && star.transform.position.x < 1055)
+        else if (star.transform.position.y > 9925 && star.transform.position.y < 10075 && star.transform.position.x > 9925 && star.transform.position.x < 10075)
         {
-            area = 2;
+            zone = 1;
         }
-        else if (star.transform.position.y > 915 && star.transform.position.y < 1085 && star.transform.position.x > 915 && star.transform.position.x < 1085)
+        else if (star.transform.position.y > 9885 && star.transform.position.y < 10115 && star.transform.position.x > 9885 && star.transform.position.x < 10115)
         {
-            area = 3;
+            zone = 2;
         }
-        else if (star.transform.position.y > 885 && star.transform.position.y < 1115 && star.transform.position.x > 885 && star.transform.position.x < 1115)
+        else if (star.transform.position.y > 9845 && star.transform.position.y < 10155 && star.transform.position.x > 9845 && star.transform.position.x < 10155)
         {
-            area = 4;
+            zone = 3;
         }
-        else if (star.transform.position.y > 855 && star.transform.position.y < 1145 && star.transform.position.x > 855 && star.transform.position.x < 1145)
+        else if (star.transform.position.y > 9815 && star.transform.position.y < 10195 && star.transform.position.x > 9815 && star.transform.position.x < 10195)
         {
-            area = 5;
+            zone = 4;
         }
-        else if (star.transform.position.y > 825 && star.transform.position.y < 1175 && star.transform.position.x > 825 && star.transform.position.x < 1175)
+        else if (star.transform.position.y > 9775 && star.transform.position.y < 10235 && star.transform.position.x > 9775 && star.transform.position.x < 10235)
         {
-            area = 6;
+            zone = 5;
         }
-        else if (star.transform.position.y > 795 && star.transform.position.y < 1205 && star.transform.position.x > 795 && star.transform.position.x < 1205)
+        else if (star.transform.position.y > 9735 && star.transform.position.y < 10275 && star.transform.position.x > 9735 && star.transform.position.x < 10275)
         {
-            area = 7;
+            zone = 6;
         }
-        else if (star.transform.position.y > 765 && star.transform.position.y < 1235 && star.transform.position.x > 765 && star.transform.position.x < 1235)
+        else if (star.transform.position.y > 9695 && star.transform.position.y < 10315 && star.transform.position.x > 9695 && star.transform.position.x < 10315)
         {
-            area = 8;
+            zone = 7;
         }
-        else if (star.transform.position.y > 735 && star.transform.position.y < 1265 && star.transform.position.x > 735 && star.transform.position.x < 1265)
+        else if (star.transform.position.y > 9655 && star.transform.position.y < 10355 && star.transform.position.x > 9655 && star.transform.position.x < 10355)
         {
-            area = 9;
+            zone = 8;
         }
-        else if (star.transform.position.y > 705 && star.transform.position.y < 1295 && star.transform.position.x > 705 && star.transform.position.x < 1295)
+        else if (star.transform.position.y > 9615 && star.transform.position.y < 10395 && star.transform.position.x > 9615 && star.transform.position.x < 10395)
         {
-            area = 10;
+            zone = 9;
+        }
+        else if (star.transform.position.y > 9575 && star.transform.position.y < 10435 && star.transform.position.x > 9575 && star.transform.position.x < 10435)
+        {
+            zone = 10;
+        }
+        else if (star.transform.position.y > 9535 && star.transform.position.y < 10475 && star.transform.position.x > 9535 && star.transform.position.x < 10475)
+        {
+            zone = 11;
+        }
+        else if (star.transform.position.y > 9495 && star.transform.position.y < 10505 && star.transform.position.x > 9495 && star.transform.position.x < 10505)
+        {
+            zone = 12;
+        }
+        else if (star.transform.position.y > 9455 && star.transform.position.y < 10545 && star.transform.position.x > 9455 && star.transform.position.x < 10545)
+        {
+            zone = 13;
+        }
+        else if (star.transform.position.y > 9415 && star.transform.position.y < 10585 && star.transform.position.x > 9415 && star.transform.position.x < 10585)
+        {
+            zone = 14;
+        }
+        else if (star.transform.position.y > 9375 && star.transform.position.y < 10625 && star.transform.position.x > 9375 && star.transform.position.x < 10625)
+        {
+            zone = 15;
+        }
+        else if (star.transform.position.y > 9335 && star.transform.position.y < 10665 && star.transform.position.x > 9335 && star.transform.position.x < 10665)
+        {
+            zone = 16;
+        }
+        else if (star.transform.position.y > 9295 && star.transform.position.y < 10705 && star.transform.position.x > 9295 && star.transform.position.x < 10705)
+        {
+            zone = 17;
+        }
+        else if (star.transform.position.y > 9255 && star.transform.position.y < 10745 && star.transform.position.x > 9255 && star.transform.position.x < 10745)
+        {
+            zone = 18;
+        }
+        else if (star.transform.position.y > 9215 && star.transform.position.y < 10785 && star.transform.position.x > 9215 && star.transform.position.x < 10785)
+        {
+            zone = 19;
+        }
+        else if (star.transform.position.y > 9175 && star.transform.position.y < 10825 && star.transform.position.x > 9175 && star.transform.position.x < 10825)
+        {
+            zone = 20;
+        }
+        else if (star.transform.position.y > 9135 && star.transform.position.y < 10865 && star.transform.position.x > 9135 && star.transform.position.x < 10865)
+        {
+            zone = 21;
+        }
+        else if (star.transform.position.y > 9095 && star.transform.position.y < 10905 && star.transform.position.x > 9095 && star.transform.position.x < 10905)
+        {
+            zone = 22;
+        }
+        else if (star.transform.position.y > 9055 && star.transform.position.y < 10945 && star.transform.position.x > 9055 && star.transform.position.x < 10945)
+        {
+            zone = 23;
+        }
+        else if (star.transform.position.y > 9015 && star.transform.position.y < 10985 && star.transform.position.x > 9015 && star.transform.position.x < 10985)
+        {
+            zone = 24;
+        }
+        else if (star.transform.position.y > 8975 && star.transform.position.y < 11025 && star.transform.position.x > 8975 && star.transform.position.x < 11025)
+        {
+            zone = 25;
+        }
+        else if (star.transform.position.y > 8935 && star.transform.position.y < 11065 && star.transform.position.x > 8935 && star.transform.position.x < 11065)
+        {
+            zone = 26;
+        }
+        else if (star.transform.position.y > 8895 && star.transform.position.y < 11105 && star.transform.position.x > 8895 && star.transform.position.x < 11105)
+        {
+            zone = 27;
+        }
+        else if (star.transform.position.y > 8855 && star.transform.position.y < 11145 && star.transform.position.x > 8855 && star.transform.position.x < 11145)
+        {
+            zone = 28;
+        }
+        else if (star.transform.position.y > 8815 && star.transform.position.y < 11185 && star.transform.position.x > 8815 && star.transform.position.x < 11185)
+        {
+            zone = 29;
+        }
+        else if (star.transform.position.y > 8775 && star.transform.position.y < 11225 && star.transform.position.x > 8775 && star.transform.position.x < 11225)
+        {
+            zone = 30;
         }
 
         // Set difficulty levels
-        switch (area)
+        switch (zone)
         {
             case 1:
                 scrollSpeed = 10;
@@ -326,7 +423,7 @@ public class GameManager : MonoBehaviour
         }
 
         // Set area text
-        areaText.text = area.ToString();
+        areaText.text = zone.ToString();
     }
     private void CreateNewStar()
     {
@@ -433,19 +530,61 @@ public class GameManager : MonoBehaviour
 
             // Move the score tracker upwards and record its y position
             mapTracker.transform.Translate(scrollSpeed * Time.deltaTime * Vector3.up);
+            map.transform.Translate(scrollSpeed * Time.deltaTime * Vector3.down);
 
             // Make the constellation camera follow the star
             constellationCamera.transform.position = new(star.transform.position.x, star.transform.position.y, -10);
 
-            // Move the map down and move the star at a speed depending on the selected arrow being diagonal or not
-            map.transform.Translate(scrollSpeed * Time.deltaTime * Vector3.down);
-            if (diagonal)
-            {
-                star.transform.Translate(scrollSpeed * Time.deltaTime * (Vector3.up / 7));
-            }
-            else
+            if (Direction == "up")
             {
                 star.transform.Translate(scrollSpeed * Time.deltaTime * (Vector3.up / 10));
+                background.transform.Translate(scrollSpeed / 10 * Time.deltaTime * (Vector3.down));
+            }
+
+            else if (Direction == "left")
+            {
+                star.transform.Translate(scrollSpeed * Time.deltaTime * (Vector3.up / 10));
+                background.transform.Translate(scrollSpeed / 10 * Time.deltaTime * (Vector3.right));
+            }
+
+            else if (Direction == "right")
+            {
+                star.transform.Translate(scrollSpeed * Time.deltaTime * (Vector3.up / 10));
+                background.transform.Translate(scrollSpeed / 10 * Time.deltaTime * (Vector3.left));
+            }
+
+            else if (Direction == "down")
+            {
+                star.transform.Translate(scrollSpeed * Time.deltaTime * (Vector3.up / 10));
+                background.transform.Translate(scrollSpeed / 10 * Time.deltaTime * (Vector3.up));
+            }
+
+            else if (Direction == "upright")
+            {
+                star.transform.Translate(scrollSpeed * Time.deltaTime * (Vector3.up / 7));
+                background.transform.Translate(scrollSpeed / 10 * Time.deltaTime * (Vector3.down / 10));
+                background.transform.Translate(scrollSpeed / 10 * Time.deltaTime * (Vector3.left / 10));
+            }
+
+            else if (Direction == "upleft")
+            {
+                star.transform.Translate(scrollSpeed * Time.deltaTime * (Vector3.up / 7));
+                background.transform.Translate(scrollSpeed / 10 * Time.deltaTime * (Vector3.down / 10));
+                background.transform.Translate(scrollSpeed / 10 * Time.deltaTime * (Vector3.right / 10));
+            }
+
+            else if (Direction == "downright")
+            {
+                star.transform.Translate(scrollSpeed * Time.deltaTime * (Vector3.up / 7));
+                background.transform.Translate(scrollSpeed / 10 * Time.deltaTime * (Vector3.up / 10));
+                background.transform.Translate(scrollSpeed / 10 * Time.deltaTime * (Vector3.left / 10));
+            }
+
+            else if (Direction == "downleft")
+            {
+                star.transform.Translate(scrollSpeed * Time.deltaTime * (Vector3.up / 7));
+                background.transform.Translate(scrollSpeed / 10 * Time.deltaTime * (Vector3.up / 10));
+                background.transform.Translate(scrollSpeed / 10 * Time.deltaTime * (Vector3.right / 10));
             }
         }
     }
