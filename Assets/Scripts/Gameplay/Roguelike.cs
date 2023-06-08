@@ -25,50 +25,56 @@ public class Roguelike : MonoBehaviour
     // Text
     [Header("Text")]
     public TextMeshProUGUI livesText;
+    public TextMeshProUGUI sizeText;
+    public TextMeshProUGUI distanceText;
+    public TextMeshProUGUI speedText;
 
     // Passive ability functions
     public void HeartOne()
     {
-        DestroyRoguelike();
         gameManager.lives += 1;
         livesText.text = gameManager.lives.ToString();
+        DestroyRoguelike();
         roguelike.SetActive(false);
         arrows.SetActive(true);
     }
     public void HeartTwo()
     {
-        DestroyRoguelike();
         gameManager.lives += 2;
         livesText.text = gameManager.lives.ToString();
+        DestroyRoguelike();
         roguelike.SetActive(false);
         arrows.SetActive(true);
     }
     public void HeartThree()
     {
-        DestroyRoguelike();
         gameManager.lives += 3;
         livesText.text = gameManager.lives.ToString();
+        DestroyRoguelike();
         roguelike.SetActive(false);
         arrows.SetActive(true);
     }
 
     public void SizeOne()
     {
-        Debug.Log("Size 1");
+        gameManager.size -= 0.1f;
+        sizeText.text = gameManager.size.ToString();
         DestroyRoguelike();
         roguelike.SetActive(false);
         arrows.SetActive(true);
     }
     public void SizeTwo()
     {
-        Debug.Log("Size 2");
+        gameManager.size -= 0.25f;
+        sizeText.text = gameManager.size.ToString();
         DestroyRoguelike();
         roguelike.SetActive(false);
         arrows.SetActive(true);
     }
     public void SizeThree()
     {
-        Debug.Log("Size 3");
+        gameManager.size -= 0.5f;
+        sizeText.text = gameManager.size.ToString();
         DestroyRoguelike();
         roguelike.SetActive(false);
         arrows.SetActive(true);
@@ -76,21 +82,24 @@ public class Roguelike : MonoBehaviour
 
     public void DistanceOne()
     {
-        Debug.Log("Distance 1");
+        gameManager.distance += 0.2f;
+        distanceText.text = gameManager.distance.ToString();
         DestroyRoguelike();
         roguelike.SetActive(false);
         arrows.SetActive(true);
     }
     public void DistanceTwo()
     {
-        Debug.Log("Distance 2");
+        gameManager.distance += 0.4f;
+        distanceText.text = gameManager.distance.ToString();
         DestroyRoguelike();
         roguelike.SetActive(false);
         arrows.SetActive(true);
     }
     public void DistanceThree()
     {
-        Debug.Log("Distance 3");
+        gameManager.distance += 0.8f;
+        distanceText.text = gameManager.distance.ToString();
         DestroyRoguelike();
         roguelike.SetActive(false);
         arrows.SetActive(true);
@@ -98,21 +107,24 @@ public class Roguelike : MonoBehaviour
 
     public void SpeedOne()
     {
-        Debug.Log("Speed 1");
+        gameManager.speed -= 0.5f;
+        speedText.text = gameManager.speed.ToString();
         DestroyRoguelike();
         roguelike.SetActive(false);
         arrows.SetActive(true);
     }
     public void SpeedTwo()
     {
-        Debug.Log("Speed 2");
+        gameManager.speed -= 1f;
+        speedText.text = gameManager.speed.ToString();
         DestroyRoguelike();
         roguelike.SetActive(false);
         arrows.SetActive(true);
     }
     public void SpeedThree()
     {
-        Debug.Log("Speed 3");
+        gameManager.speed -= 2f;
+        speedText.text = gameManager.speed.ToString();
         DestroyRoguelike();
         roguelike.SetActive(false);
         arrows.SetActive(true);

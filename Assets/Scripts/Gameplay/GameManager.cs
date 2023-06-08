@@ -59,10 +59,10 @@ public class GameManager : MonoBehaviour
 
     // Constellation components
     [HideInInspector] public List<Vector3> vectors;
-    private float smallestX = 1000;
-    private float largestX = 1000;
-    private float smallestY = 1000;
-    private float largestY = 1000;
+    private float smallestX = 10000;
+    private float largestX = 10000;
+    private float smallestY = 10000;
+    private float largestY = 10000;
 
 
     // Arrow buttons
@@ -203,12 +203,15 @@ public class GameManager : MonoBehaviour
         // Remove old map
         foreach (Transform child in map.transform)
         {
-            Destroy(child.gameObject);
+            if (child.transform.position.x < -10 || child.transform.position.x > 10 || child.transform.position.y < -10 || child.transform.position.y > 10)
+            {
+                Destroy(child.gameObject);
+            }
         }
 
         // Generate new map
         map.transform.SetPositionAndRotation(new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
-        map.GetComponent<MapGenerator>().GenerateMap(distance, mapLength - (int)mapTracker.transform.position.y, size);
+        map.GetComponent<MapGenerator>().GenerateMap(distance, limit - (int)mapTracker.transform.position.y, size);
         map.transform.rotation = Quaternion.Euler(vector);
         map.SetActive(true);
         finished = false;
@@ -322,39 +325,39 @@ public class GameManager : MonoBehaviour
     private void DetectDifficulty()
     {
         // Detects difficulty level based on location within constellation map
-        if (star.transform.position.y > 965 && star.transform.position.y < 1035 && star.transform.position.x > 965 && star.transform.position.x < 1035)
+        if (star.transform.position.y > 9965 && star.transform.position.y < 10035 && star.transform.position.x > 9965 && star.transform.position.x < 10035)
         {
             zone = 1;
         }
-        else if (star.transform.position.y > 925 && star.transform.position.y < 1075 && star.transform.position.x > 925 && star.transform.position.x < 1075)
+        else if (star.transform.position.y > 9925 && star.transform.position.y < 10075 && star.transform.position.x > 9925 && star.transform.position.x < 10075)
         {
             zone = 2;
         }
-        else if (star.transform.position.y > 885 && star.transform.position.y < 1115 && star.transform.position.x > 885 && star.transform.position.x < 1115)
+        else if (star.transform.position.y > 9885 && star.transform.position.y < 10115 && star.transform.position.x > 9885 && star.transform.position.x < 10115)
         {
             zone = 3;
         }
-        else if (star.transform.position.y > 845 && star.transform.position.y < 1155 && star.transform.position.x > 845 && star.transform.position.x < 1155)
+        else if (star.transform.position.y > 9845 && star.transform.position.y < 10155 && star.transform.position.x > 9845 && star.transform.position.x < 10155)
         {
             zone = 4;
         }
-        else if (star.transform.position.y > 805 && star.transform.position.y < 1195 && star.transform.position.x > 805 && star.transform.position.x < 1195)
+        else if (star.transform.position.y > 9805 && star.transform.position.y < 10195 && star.transform.position.x > 9805 && star.transform.position.x < 10195)
         {
             zone = 5;
         }
-        else if (star.transform.position.y > 765 && star.transform.position.y < 1235 && star.transform.position.x > 765 && star.transform.position.x < 1235)
+        else if (star.transform.position.y > 9765 && star.transform.position.y < 10235 && star.transform.position.x > 9765 && star.transform.position.x < 10235)
         {
             zone = 6;
         }
-        else if (star.transform.position.y > 725 && star.transform.position.y < 1275 && star.transform.position.x > 725 && star.transform.position.x < 1275)
+        else if (star.transform.position.y > 9725 && star.transform.position.y < 10275 && star.transform.position.x > 9725 && star.transform.position.x < 10275)
         {
             zone = 7;
         }
-        else if (star.transform.position.y > 685 && star.transform.position.y < 1315 && star.transform.position.x > 685 && star.transform.position.x < 1315)
+        else if (star.transform.position.y > 9685 && star.transform.position.y < 10315 && star.transform.position.x > 9685 && star.transform.position.x < 10315)
         {
             zone = 8;
         }
-        else if (star.transform.position.y > 645 && star.transform.position.y < 1355 && star.transform.position.x > 645 && star.transform.position.x < 1355)
+        else if (star.transform.position.y > 9645 && star.transform.position.y < 10355 && star.transform.position.x > 9645 && star.transform.position.x < 10355)
         {
             zone = 9;
         }
@@ -371,56 +374,160 @@ public class GameManager : MonoBehaviour
         switch (zone)
         {
             case 1:
-                if (value != 1)
+                if (value > 1)
                 {
-                    speed = 10;
-                    distance = 5f;
-                    size = 0.5f;
+                    speed -= 1;
+                    distance += 0.4f;
+                    size -= 0.25f;
                     GenerateNewMap(vector);
                 }
                 value = 1;
                 break;
             case 2:
-                if (value != 2)
+                if (value > 2)
                 {
-                    speed = 11;
-                    distance = 4.7f;
-                    size = 0.75f;
+                    speed -= 1;
+                    distance += 0.4f;
+                    size -= 0.25f;
+                    GenerateNewMap(vector);
+                }
+                else if (value < 2)
+                {
+                    speed += 1;
+                    distance -= 0.4f;
+                    size += 0.25f;
                     GenerateNewMap(vector);
                 }
                 value = 2;
                 break;
             case 3:
-                speed = 13;
-                distance = 4.4f;
+                if (value > 3)
+                {
+                    speed -= 1;
+                    distance += 0.4f;
+                    size -= 0.25f;
+                    GenerateNewMap(vector);
+                }
+                else if (value < 3)
+                {
+                    speed += 1;
+                    distance -= 0.4f;
+                    size += 0.25f;
+                    GenerateNewMap(vector);
+                }
+                value = 3;
                 break;
             case 4:
-                speed = 14;
-                distance = 4.1f;
+                if (value > 4)
+                {
+                    speed -= 1;
+                    distance += 0.4f;
+                    size -= 0.25f;
+                    GenerateNewMap(vector);
+                }
+                else if (value < 4)
+                {
+                    speed += 1;
+                    distance -= 0.4f;
+                    size += 0.25f;
+                    GenerateNewMap(vector);
+                }
+                value = 4;
                 break;
             case 5:
-                speed = 15;
-                distance = 3.8f;
+                if (value > 5)
+                {
+                    speed -= 1;
+                    distance += 0.4f;
+                    size -= 0.25f;
+                    GenerateNewMap(vector);
+                }
+                else if (value < 5)
+                {
+                    speed += 1;
+                    distance -= 0.4f;
+                    size += 0.25f;
+                    GenerateNewMap(vector);
+                }
+                value = 5;
                 break;
             case 6:
-                speed = 16;
-                distance = 3.5f;
+                if (value > 6)
+                {
+                    speed -= 1;
+                    distance += 0.4f;
+                    size -= 0.25f;
+                    GenerateNewMap(vector);
+                }
+                else if (value < 6)
+                {
+                    speed += 1;
+                    distance -= 0.4f;
+                    size += 0.25f;
+                    GenerateNewMap(vector);
+                }
+                value = 6;
                 break;
             case 7:
-                speed = 17;
-                distance = 3.2f;
+                if (value > 7)
+                {
+                    speed -= 1;
+                    distance += 0.4f;
+                    size -= 0.25f;
+                    GenerateNewMap(vector);
+                }
+                else if (value < 7)
+                {
+                    speed += 1;
+                    distance -= 0.4f;
+                    size += 0.25f;
+                    GenerateNewMap(vector);
+                }
+                value = 7;
                 break;
             case 8:
-                speed = 18;
-                distance = 2.9f;
+                if (value > 8)
+                {
+                    speed -= 1;
+                    distance += 0.4f;
+                    size -= 0.25f;
+                    GenerateNewMap(vector);
+                }
+                else if (value < 8)
+                {
+                    speed += 1;
+                    distance -= 0.4f;
+                    size += 0.25f;
+                    GenerateNewMap(vector);
+                }
+                value = 8;
                 break;
             case 9:
-                speed = 180;
-                distance = 2.6f;
+                if (value > 9)
+                {
+                    speed -= 1;
+                    distance += 0.4f;
+                    size -= 0.25f;
+                    GenerateNewMap(vector);
+                }
+                else if (value < 9)
+                {
+                    speed += 1;
+                    distance -= 0.4f;
+                    size += 0.25f;
+                    GenerateNewMap(vector);
+                }
+                value = 9;
                 break;
             case 10:
-                speed = 190;
-                distance = 2.3f;
+                if (value < 10)
+                {
+                    speed -= 1;
+                    distance += 0.4f;
+                    size -= 0.25f;
+                    GenerateNewMap(vector);
+                }
+                value = 10;
                 break;
         }
     }
@@ -486,13 +593,14 @@ public class GameManager : MonoBehaviour
 
         else if (player.GetComponent<BoxCollider2D>().IsTouchingLayers(LayerMask.GetMask("Meteor")) && immortal == false && isGameOver == false)
         {
+            lives -= 1;
             if (lives == 0)
             {
+                livesText.text = lives.ToString();
                 EndGame();
             }
             else
             {
-                lives -= 1;
                 livesText.text = lives.ToString();
                 immortal = true;
             }
@@ -529,9 +637,21 @@ public class GameManager : MonoBehaviour
             // Make the constellation camera follow the star
             constellationCamera.transform.position = new(star.transform.position.x, star.transform.position.y, -10);
 
-            // Move the map and the star
-            map.transform.Translate(speed * Time.deltaTime * Vector3.down);
+            // Deactivate meteors that are out of view
+            foreach (Transform child in map.transform)
+            {
+                child.transform.Translate(speed * Time.deltaTime * Vector3.down);
+                if (child.transform.position.x < -12 || child.transform.position.x > 12 || child.transform.position.y < -8 || child.transform.position.y > 8)
+                {
+                    child.gameObject.SetActive(false);
+                }
+                else
+                {
+                    child.gameObject.SetActive(true);
+                }
+            }
 
+            // Move the map and the star
             if (direction == "up")
             {
                 background.transform.Translate(speed * Time.deltaTime * (Vector3.down / 10));

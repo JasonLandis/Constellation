@@ -19,14 +19,13 @@ public class MapGenerator : MonoBehaviour
                 float y = Random.Range(j, j + distance);
 
                 // Generates a random bright color
-                int red = Random.Range(0, 256);
-                int green = Random.Range(0, 256);
-                int blue = Random.Range(0, 256);
+                int red = Random.Range(50, 256);
+                int green = Random.Range(50, 256);
+                int blue = Random.Range(50, 256);
 
                 // Instantiates the meteor
                 meteor.transform.localScale = new Vector3(size, size, 1);
                 meteor.GetComponent<SpriteRenderer>().color = new Color((float)red/255, (float)green/255, (float)blue/255, 1);
-                meteor.GetComponent<Light2D>().color = new Color((float)red / 255, (float)green / 255, (float)blue / 255, 1);
                 Instantiate(meteor, new(x, y, 0), Quaternion.identity, transform);
             }
         }
