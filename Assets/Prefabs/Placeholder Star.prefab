@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4125536124477613190}
   - component: {fileID: 4125536124477613209}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Placeholder Star
   m_TagString: Untagged
   m_Icon: {fileID: 0}
