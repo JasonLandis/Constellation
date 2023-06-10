@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -79,6 +80,9 @@ public class GameManager : MonoBehaviour
     private int limit = 0;
     private Vector3 vector;
     private int value = 0;
+    private int minSpeedZone = 1;
+    private int minSizeZone = 1;
+    private int maxDistanceZone = 1;
 
     // Constellation components
     [HideInInspector] public List<Vector3> vectors;
@@ -225,11 +229,10 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         // Stop time, resize camera, and end game
+        CreateNewStar();
         isGameOver = true;
         endScreen.SetActive(true);
-        MoveFullCamera(vectors);
         Time.timeScale = 0f;
-        star.SetActive(false);
         map.SetActive(false);
     }
     private void GenerateNewMap(Vector3 vector)
@@ -434,6 +437,57 @@ public class GameManager : MonoBehaviour
 
         zoneText.text = zone.ToString();
     }
+    private void DecreaseZone()
+    {
+        if (speed > 5)
+        {
+            speed -= 1;
+        }
+        else
+        {
+            if (zone >= minSpeedZone)
+            {
+                minSpeedZone = zone + 1;
+            }
+        }
+        if (distance < 10f)
+        {
+            distance += 0.4f;
+        }
+        else
+        {
+            if (zone >= maxDistanceZone)
+            {
+                maxDistanceZone = zone + 1;
+            }
+        }
+        if (size > 0.25f)
+        {
+            size -= 0.25f;
+        }
+        else
+        {
+            if (zone >= minSizeZone)
+            {
+                minSizeZone = zone + 1;
+            }
+        }
+    }
+    private void IncreaseZone()
+    {
+        if (minSpeedZone < zone)
+        {
+            speed += 1;
+        }
+        if (distance > 0 && maxDistanceZone < zone)
+        {
+            distance -= 0.4f;
+        }
+        if (minSizeZone < zone)
+        {
+            size += 0.25f;
+        }
+    }
     private void SetDifficulty()
     {
         // Set difficulty levels
@@ -443,9 +497,7 @@ public class GameManager : MonoBehaviour
                 if (value > 1)
                 {
                     zone3.SetActive(false);
-                    speed -= 1;
-                    distance += 0.4f;
-                    size -= 0.25f;
+                    DecreaseZone();
                     GenerateNewMap(vector);
                 }
                 value = 1;
@@ -455,17 +507,13 @@ public class GameManager : MonoBehaviour
                 {
                     zone4.SetActive(false);
                     zone1.SetActive(true);
-                    speed -= 1;
-                    distance += 0.4f;
-                    size -= 0.25f;
+                    DecreaseZone();
                     GenerateNewMap(vector);
                 }
                 else if (value < 2)
                 {
                     zone3.SetActive(true);
-                    speed += 1;
-                    distance -= 0.4f;
-                    size += 0.25f;
+                    IncreaseZone();
                     GenerateNewMap(vector);
                 }
                 value = 2;
@@ -475,18 +523,14 @@ public class GameManager : MonoBehaviour
                 {
                     zone5.SetActive(false);
                     zone2.SetActive(true);
-                    speed -= 1;
-                    distance += 0.4f;
-                    size -= 0.25f;
+                    DecreaseZone();
                     GenerateNewMap(vector);
                 }
                 else if (value < 3)
                 {
                     zone1.SetActive(false);
                     zone4.SetActive(true);
-                    speed += 1;
-                    distance -= 0.4f;
-                    size += 0.25f;
+                    IncreaseZone();
                     GenerateNewMap(vector);
                 }
                 value = 3;
@@ -496,18 +540,14 @@ public class GameManager : MonoBehaviour
                 {
                     zone6.SetActive(false);
                     zone3.SetActive(true);
-                    speed -= 1;
-                    distance += 0.4f;
-                    size -= 0.25f;
+                    DecreaseZone();
                     GenerateNewMap(vector);
                 }
                 else if (value < 4)
                 {
                     zone2.SetActive(false);
                     zone5.SetActive(true);
-                    speed += 1;
-                    distance -= 0.4f;
-                    size += 0.25f;
+                    IncreaseZone();
                     GenerateNewMap(vector);
                 }
                 value = 4;
@@ -517,18 +557,14 @@ public class GameManager : MonoBehaviour
                 {
                     zone7.SetActive(false);
                     zone4.SetActive(true);
-                    speed -= 1;
-                    distance += 0.4f;
-                    size -= 0.25f;
+                    DecreaseZone();
                     GenerateNewMap(vector);
                 }
                 else if (value < 5)
                 {
                     zone3.SetActive(false);
                     zone6.SetActive(true);
-                    speed += 1;
-                    distance -= 0.4f;
-                    size += 0.25f;
+                    IncreaseZone();
                     GenerateNewMap(vector);
                 }
                 value = 5;
@@ -538,18 +574,14 @@ public class GameManager : MonoBehaviour
                 {
                     zone8.SetActive(false);
                     zone5.SetActive(true);
-                    speed -= 1;
-                    distance += 0.4f;
-                    size -= 0.25f;
+                    DecreaseZone();
                     GenerateNewMap(vector);
                 }
                 else if (value < 6)
                 {
                     zone4.SetActive(false);
                     zone7.SetActive(true);
-                    speed += 1;
-                    distance -= 0.4f;
-                    size += 0.25f;
+                    IncreaseZone();
                     GenerateNewMap(vector);
                 }
                 value = 6;
@@ -559,18 +591,14 @@ public class GameManager : MonoBehaviour
                 {
                     zone9.SetActive(false);
                     zone6.SetActive(true);
-                    speed -= 1;
-                    distance += 0.4f;
-                    size -= 0.25f;
+                    DecreaseZone();
                     GenerateNewMap(vector);
                 }
                 else if (value < 7)
                 {
                     zone5.SetActive(false);
                     zone8.SetActive(true);
-                    speed += 1;
-                    distance -= 0.4f;
-                    size += 0.25f;
+                    IncreaseZone();
                     GenerateNewMap(vector);
                 }
                 value = 7;
@@ -580,18 +608,14 @@ public class GameManager : MonoBehaviour
                 {
                     zone10.SetActive(false);
                     zone7.SetActive(true);
-                    speed -= 1;
-                    distance += 0.4f;
-                    size -= 0.25f;
+                    DecreaseZone();
                     GenerateNewMap(vector);
                 }
                 else if (value < 8)
                 {
                     zone6.SetActive(false);
                     zone9.SetActive(true);
-                    speed += 1;
-                    distance -= 0.4f;
-                    size += 0.25f;
+                    IncreaseZone();
                     GenerateNewMap(vector);
                 }
                 value = 8;
@@ -601,18 +625,14 @@ public class GameManager : MonoBehaviour
                 {
                     zone11.SetActive(false);
                     zone8.SetActive(true);
-                    speed -= 1;
-                    distance += 0.4f;
-                    size -= 0.25f;
+                    DecreaseZone();
                     GenerateNewMap(vector);
                 }
                 else if (value < 9)
                 {
                     zone7.SetActive(false);
                     zone10.SetActive(true);
-                    speed += 1;
-                    distance -= 0.4f;
-                    size += 0.25f;
+                    IncreaseZone();
                     GenerateNewMap(vector);
                 }
                 value = 9;
@@ -622,18 +642,14 @@ public class GameManager : MonoBehaviour
                 {
                     zone12.SetActive(false);
                     zone9.SetActive(true);
-                    speed -= 1;
-                    distance += 0.4f;
-                    size -= 0.25f;
+                    DecreaseZone();
                     GenerateNewMap(vector);
                 }
                 else if (value < 10)
                 {
                     zone8.SetActive(false);
                     zone11.SetActive(true);
-                    speed += 1;
-                    distance -= 0.4f;
-                    size += 0.25f;
+                    IncreaseZone();
                     GenerateNewMap(vector);
                 }
                 value = 10;
@@ -643,18 +659,14 @@ public class GameManager : MonoBehaviour
                 {
                     zone13.SetActive(false);
                     zone10.SetActive(true);
-                    speed -= 1;
-                    distance += 0.4f;
-                    size -= 0.25f;
+                    DecreaseZone();
                     GenerateNewMap(vector);
                 }
                 else if (value < 11)
                 {
                     zone9.SetActive(false);
                     zone12.SetActive(true);
-                    speed += 1;
-                    distance -= 0.4f;
-                    size += 0.25f;
+                    IncreaseZone();
                     GenerateNewMap(vector);
                 }
                 value = 11;
@@ -664,18 +676,14 @@ public class GameManager : MonoBehaviour
                 {
                     zone14.SetActive(false);
                     zone11.SetActive(true);
-                    speed -= 1;
-                    distance += 0.4f;
-                    size -= 0.25f;
+                    DecreaseZone();
                     GenerateNewMap(vector);
                 }
                 else if (value < 12)
                 {
                     zone10.SetActive(false);
                     zone13.SetActive(true);
-                    speed += 1;
-                    distance -= 0.4f;
-                    size += 0.25f;
+                    IncreaseZone();
                     GenerateNewMap(vector);
                 }
                 value = 12;
@@ -685,18 +693,14 @@ public class GameManager : MonoBehaviour
                 {
                     zone15.SetActive(false);
                     zone12.SetActive(true);
-                    speed -= 1;
-                    distance += 0.4f;
-                    size -= 0.25f;
+                    DecreaseZone();
                     GenerateNewMap(vector);
                 }
                 else if (value < 13)
                 {
                     zone11.SetActive(false);
                     zone14.SetActive(true);
-                    speed += 1;
-                    distance -= 0.4f;
-                    size += 0.25f;
+                    IncreaseZone();
                     GenerateNewMap(vector);
                 }
                 value = 13;
@@ -706,18 +710,14 @@ public class GameManager : MonoBehaviour
                 {
                     zone16.SetActive(false);
                     zone13.SetActive(true);
-                    speed -= 1;
-                    distance += 0.4f;
-                    size -= 0.25f;
+                    DecreaseZone();
                     GenerateNewMap(vector);
                 }
                 else if (value < 14)
                 {
                     zone12.SetActive(false);
                     zone15.SetActive(true);
-                    speed += 1;
-                    distance -= 0.4f;
-                    size += 0.25f;
+                    IncreaseZone();
                     GenerateNewMap(vector);
                 }
                 value = 14;
@@ -727,18 +727,14 @@ public class GameManager : MonoBehaviour
                 {
                     zone17.SetActive(false);
                     zone14.SetActive(true);
-                    speed -= 1;
-                    distance += 0.4f;
-                    size -= 0.25f;
+                    DecreaseZone();
                     GenerateNewMap(vector);
                 }
                 else if (value < 15)
                 {
                     zone13.SetActive(false);
                     zone16.SetActive(true);
-                    speed += 1;
-                    distance -= 0.4f;
-                    size += 0.25f;
+                    IncreaseZone();
                     GenerateNewMap(vector);
                 }
                 value = 15;
@@ -748,18 +744,14 @@ public class GameManager : MonoBehaviour
                 {
                     zone18.SetActive(false);
                     zone15.SetActive(true);
-                    speed -= 1;
-                    distance += 0.4f;
-                    size -= 0.25f;
+                    DecreaseZone();
                     GenerateNewMap(vector);
                 }
                 else if (value < 16)
                 {
                     zone14.SetActive(false);
                     zone17.SetActive(true);
-                    speed += 1;
-                    distance -= 0.4f;
-                    size += 0.25f;
+                    IncreaseZone();
                     GenerateNewMap(vector);
                 }
                 value = 16;
@@ -769,18 +761,14 @@ public class GameManager : MonoBehaviour
                 {
                     zone19.SetActive(false);
                     zone16.SetActive(true);
-                    speed -= 1;
-                    distance += 0.4f;
-                    size -= 0.25f;
+                    DecreaseZone();
                     GenerateNewMap(vector);
                 }
                 else if (value < 17)
                 {
                     zone15.SetActive(false);
                     zone18.SetActive(true);
-                    speed += 1;
-                    distance -= 0.4f;
-                    size += 0.25f;
+                    IncreaseZone();
                     GenerateNewMap(vector);
                 }
                 value = 17;
@@ -790,18 +778,14 @@ public class GameManager : MonoBehaviour
                 {
                     zone20.SetActive(false);
                     zone17.SetActive(true);
-                    speed -= 1;
-                    distance += 0.4f;
-                    size -= 0.25f;
+                    DecreaseZone();
                     GenerateNewMap(vector);
                 }
                 else if (value < 18)
                 {
                     zone16.SetActive(false);
                     zone19.SetActive(true);
-                    speed += 1;
-                    distance -= 0.4f;
-                    size += 0.25f;
+                    IncreaseZone();
                     GenerateNewMap(vector);
                 }
                 value = 18;
@@ -810,18 +794,14 @@ public class GameManager : MonoBehaviour
                 if (value > 19)
                 {
                     zone18.SetActive(true);
-                    speed -= 1;
-                    distance += 0.4f;
-                    size -= 0.25f;
+                    DecreaseZone();
                     GenerateNewMap(vector);
                 }
                 else if (value < 19)
                 {
                     zone17.SetActive(false);
                     zone20.SetActive(true);
-                    speed += 1;
-                    distance -= 0.4f;
-                    size += 0.25f;
+                    IncreaseZone();
                     GenerateNewMap(vector);
                 }
                 value = 19;
@@ -830,9 +810,7 @@ public class GameManager : MonoBehaviour
                 if (value < 20)
                 {
                     zone18.SetActive(false);
-                    speed += 1;
-                    distance -= 0.4f;
-                    size += 0.25f;
+                    IncreaseZone();
                     GenerateNewMap(vector);
                 }
                 value = 20;
@@ -884,7 +862,7 @@ public class GameManager : MonoBehaviour
 
             // Display text
             livesText.text = lives.ToString();
-            distanceText.text = distance.ToString();
+            distanceText.text = Math.Round(distance, 1).ToString();
             sizeText.text = size.ToString();
             speedText.text = speed.ToString();
 
@@ -903,7 +881,6 @@ public class GameManager : MonoBehaviour
 
         else if (player.GetComponent<BoxCollider2D>().IsTouchingLayers(LayerMask.GetMask("Meteor")) && immortal == false && isGameOver == false)
         {
-            lives -= 1;
             if (lives == 0)
             {
                 livesText.text = lives.ToString();
@@ -913,6 +890,7 @@ public class GameManager : MonoBehaviour
             {
                 livesText.text = lives.ToString();
                 immortal = true;
+                lives -= 1;
             }
         }
 
@@ -935,7 +913,7 @@ public class GameManager : MonoBehaviour
 
             // Display text
             livesText.text = lives.ToString();
-            distanceText.text = distance.ToString();
+            distanceText.text = Math.Round(distance, 1).ToString();
             sizeText.text = size.ToString();
             speedText.text = speed.ToString();
 

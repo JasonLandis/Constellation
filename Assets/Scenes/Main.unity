@@ -3920,7 +3920,7 @@ RectTransform:
   - {fileID: 1517725088}
   - {fileID: 828542031}
   m_Father: {fileID: 780453186}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5375,7 +5375,7 @@ RectTransform:
   - {fileID: 1407614060}
   - {fileID: 1050207753}
   m_Father: {fileID: 780453186}
-  m_RootOrder: 11
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -12865,7 +12865,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 36.03099, y: -0.59999996}
+  m_AnchoredPosition: {x: 32.3, y: 0}
   m_SizeDelta: {x: 21.245, y: 12.325}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &526486069
@@ -16593,7 +16593,7 @@ Transform:
   m_GameObject: {fileID: 714254064}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 0}
+  m_LocalScale: {x: 4, y: 4, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -16643,7 +16643,7 @@ LineRenderer:
   m_Positions: []
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 1.5
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -16699,7 +16699,7 @@ LineRenderer:
       m_NumAlphaKeys: 2
     numCornerVertices: 0
     numCapVertices: 0
-    alignment: 0
+    alignment: 1
     textureMode: 0
     shadowBias: 0.5
     generateLightingData: 0
@@ -17874,8 +17874,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -13, y: 11.388}
-  m_SizeDelta: {x: 34.736, y: 12.325}
+  m_AnchoredPosition: {x: -9.225, y: 11.388}
+  m_SizeDelta: {x: 42.286, y: 12.325}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &758507930
 MonoBehaviour:
@@ -17897,7 +17897,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lives
+  m_text: Extra lives
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -18794,10 +18794,10 @@ RectTransform:
   - {fileID: 1483372981}
   - {fileID: 903454981}
   - {fileID: 772844662}
-  - {fileID: 149561342}
-  - {fileID: 1515199767}
   - {fileID: 1912050675}
   - {fileID: 214271344}
+  - {fileID: 149561342}
+  - {fileID: 1515199767}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -38447,7 +38447,7 @@ RectTransform:
   - {fileID: 1393415472}
   - {fileID: 30071711}
   m_Father: {fileID: 780453186}
-  m_RootOrder: 9
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -43463,11 +43463,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eb3ae91ba243b34fa388fa0c5e3f167, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lives: 100
+  lives: 0
   distance: 5
   size: 1
   speed: 10
-  mapLength: 100
+  mapLength: 0
   immortal: 0
   player: {fileID: 43898626}
   map: {fileID: 2066190565}
@@ -48145,7 +48145,7 @@ RectTransform:
   - {fileID: 319492948}
   - {fileID: 1009696711}
   m_Father: {fileID: 780453186}
-  m_RootOrder: 10
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
