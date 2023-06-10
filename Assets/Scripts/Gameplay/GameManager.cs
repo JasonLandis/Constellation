@@ -74,7 +74,6 @@ public class GameManager : MonoBehaviour
     private bool isGameOver;
     private int zone = 1;
     private float countdownTime = 3;
-    private float score = 0;
     private string direction;
     private bool finished;
     private int limit = 0;
@@ -136,6 +135,18 @@ public class GameManager : MonoBehaviour
         vector = new(0, 0, 135);
         direction = "downleft";
         ShowDistance();
+    }
+
+    // Moving between direction and distance screens
+    private void ShowDistance()
+    {
+        arrows.SetActive(false);
+        Distance.SetActive(true);
+    }
+    public void HideDistance()
+    {
+        arrows.SetActive(true);
+        Distance.SetActive(false);
     }
 
     // Map length function
@@ -239,16 +250,6 @@ public class GameManager : MonoBehaviour
         map.SetActive(true);
         finished = false;
     }
-    private void ShowDistance()
-    {
-        arrows.SetActive(false);
-        Distance.SetActive(true);
-    }
-    public void HideDistance()
-    {
-        arrows.SetActive(true);
-        Distance.SetActive(false);
-    }
 
 
     // Functions used for the constellation mechanic
@@ -292,6 +293,8 @@ public class GameManager : MonoBehaviour
                 up = true;
             }
         }
+
+        scoreText.text = (Mathf.Abs(smallestX) + Mathf.Abs(smallestY) + largestX + largestY).ToString();
 
         float completeWidth = largestX - smallestX;
         float completeHeight = largestY - smallestY;
@@ -1004,10 +1007,8 @@ public class GameManager : MonoBehaviour
                 star.transform.Translate(speed * Time.deltaTime * (Vector3.left / 10));
             }
 
-            // Update the mapTracker
+            // Move the map tracker
             mapTracker.transform.Translate(speed * Time.deltaTime * Vector3.up / 10);
-            score = (int)mapTracker.transform.position.y;
-            scoreText.text = score.ToString();
         }
     }
 }
