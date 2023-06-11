@@ -1043,7 +1043,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1748641963}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: EightHundred
+        m_MethodName: Eighty
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4833,7 +4833,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1748641963}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OneThousand
+        m_MethodName: Hundred
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13777,7 +13777,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1748641963}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: ThreeHundred
+        m_MethodName: Thirty
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16643,7 +16643,7 @@ LineRenderer:
   m_Positions: []
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1.5
+    widthMultiplier: 1
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -17828,7 +17828,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1748641963}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: SixHundred
+        m_MethodName: Sixty
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -28643,7 +28643,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1748641963}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: FourHundred
+        m_MethodName: Forty
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -29353,7 +29353,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1748641963}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: SevenHundred
+        m_MethodName: Seventy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -42297,7 +42297,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1748641963}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: TwoHundred
+        m_MethodName: Twenty
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -42725,7 +42725,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1748641963}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: NineHundred
+        m_MethodName: Ninety
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -46791,7 +46791,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1748641963}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: FiveHundred
+        m_MethodName: Fifty
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -50004,7 +50004,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1748641963}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OneHundred
+        m_MethodName: Ten
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

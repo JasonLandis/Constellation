@@ -154,70 +154,70 @@ public class GameManager : MonoBehaviour
     }
 
     // Map length function
-    public void OneHundred()
+    public void Ten()
     {
         mapLength = 10;
         limit = 10;
         GenerateNewMap(vector);
         Distance.SetActive(false);
     }
-    public void TwoHundred()
+    public void Twenty()
     {
         mapLength = 20;
         limit = 20;
         GenerateNewMap(vector);
         Distance.SetActive(false);
     }
-    public void ThreeHundred()
+    public void Thirty()
     {
         mapLength = 30;
         limit = 30;
         GenerateNewMap(vector);
         Distance.SetActive(false);
     }
-    public void FourHundred()
+    public void Forty()
     {
         mapLength = 40;
         limit = 40;
         GenerateNewMap(vector);
         Distance.SetActive(false);
     }
-    public void FiveHundred()
+    public void Fifty()
     {
         mapLength = 50;
         limit = 50;
         GenerateNewMap(vector);
         Distance.SetActive(false);
     }
-    public void SixHundred()
+    public void Sixty()
     {
         mapLength = 60;
         limit = 60;
         GenerateNewMap(vector);
         Distance.SetActive(false);
     }
-    public void SevenHundred()
+    public void Seventy()
     {
         mapLength = 70;
         limit = 70;
         GenerateNewMap(vector);
         Distance.SetActive(false);
     }
-    public void EightHundred()
+    public void Eighty()
     {
         mapLength = 80;
         limit = 80;
         GenerateNewMap(vector);
         Distance.SetActive(false);
     }
-    public void NineHundred()
+    public void Ninety()
     {
         mapLength = 90;
         limit = 90;
         GenerateNewMap(vector);
         Distance.SetActive(false);
     }
-    public void OneThousand()
+    public void Hundred()
     {
         mapLength = 100;
         limit = 100;
@@ -439,9 +439,13 @@ public class GameManager : MonoBehaviour
     }
     private void DecreaseZone()
     {
-        if (speed > 5)
+        if (speed > 0)
         {
             speed -= 1;
+            if (speed < 0)
+            {
+                speed = 0;
+            }
         }
         else
         {
@@ -450,9 +454,13 @@ public class GameManager : MonoBehaviour
                 minSpeedZone = zone + 1;
             }
         }
-        if (distance < 10f)
+        if (distance < 10)
         {
             distance += 0.4f;
+            if (distance > 10)
+            {
+                distance = 10;
+            }
         }
         else
         {
@@ -461,9 +469,13 @@ public class GameManager : MonoBehaviour
                 maxDistanceZone = zone + 1;
             }
         }
-        if (size > 0.25f)
+        if (size > 0f)
         {
             size -= 0.25f;
+            if (size < 0)
+            {
+                size = 0;
+            }
         }
         else
         {

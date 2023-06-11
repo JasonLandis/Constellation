@@ -58,6 +58,10 @@ public class Roguelike : MonoBehaviour
     public void SizeOne()
     {
         gameManager.size -= 0.1f;
+        if (gameManager.size < 0)
+        {
+            gameManager.size = 0;
+        }
         sizeText.text = gameManager.size.ToString();
         DestroyRoguelike();
         roguelike.SetActive(false);
@@ -66,6 +70,10 @@ public class Roguelike : MonoBehaviour
     public void SizeTwo()
     {
         gameManager.size -= 0.25f;
+        if (gameManager.size < 0)
+        {
+            gameManager.size = 0;
+        }
         sizeText.text = gameManager.size.ToString();
         DestroyRoguelike();
         roguelike.SetActive(false);
@@ -74,6 +82,10 @@ public class Roguelike : MonoBehaviour
     public void SizeThree()
     {
         gameManager.size -= 0.5f;
+        if (gameManager.size < 0)
+        {
+            gameManager.size = 0;
+        }
         sizeText.text = gameManager.size.ToString();
         DestroyRoguelike();
         roguelike.SetActive(false);
@@ -83,6 +95,10 @@ public class Roguelike : MonoBehaviour
     public void DistanceOne()
     {
         gameManager.distance += 0.2f;
+        if (gameManager.distance > 10)
+        {
+            gameManager.distance = 10;
+        }
         distanceText.text = gameManager.distance.ToString();
         DestroyRoguelike();
         roguelike.SetActive(false);
@@ -91,6 +107,10 @@ public class Roguelike : MonoBehaviour
     public void DistanceTwo()
     {
         gameManager.distance += 0.4f;
+        if (gameManager.distance > 10)
+        {
+            gameManager.distance = 10;
+        }
         distanceText.text = gameManager.distance.ToString();
         DestroyRoguelike();
         roguelike.SetActive(false);
@@ -99,6 +119,10 @@ public class Roguelike : MonoBehaviour
     public void DistanceThree()
     {
         gameManager.distance += 0.8f;
+        if (gameManager.distance > 10)
+        {
+            gameManager.distance = 10;
+        }
         distanceText.text = gameManager.distance.ToString();
         DestroyRoguelike();
         roguelike.SetActive(false);
@@ -108,6 +132,10 @@ public class Roguelike : MonoBehaviour
     public void SpeedOne()
     {
         gameManager.speed -= 0.5f;
+        if (gameManager.speed < 0f)
+        {
+            gameManager.speed = 0f;
+        }
         speedText.text = gameManager.speed.ToString();
         DestroyRoguelike();
         roguelike.SetActive(false);
@@ -116,6 +144,10 @@ public class Roguelike : MonoBehaviour
     public void SpeedTwo()
     {
         gameManager.speed -= 1f;
+        if (gameManager.speed < 0f)
+        {
+            gameManager.speed = 0f;
+        }
         speedText.text = gameManager.speed.ToString();
         DestroyRoguelike();
         roguelike.SetActive(false);
@@ -124,6 +156,10 @@ public class Roguelike : MonoBehaviour
     public void SpeedThree()
     {
         gameManager.speed -= 2f;
+        if (gameManager.speed < 0f)
+        {
+            gameManager.speed = 0f;
+        }
         speedText.text = gameManager.speed.ToString();
         DestroyRoguelike();
         roguelike.SetActive(false);
