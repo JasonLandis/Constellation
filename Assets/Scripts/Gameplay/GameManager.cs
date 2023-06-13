@@ -225,6 +225,18 @@ public class GameManager : MonoBehaviour
         Distance.SetActive(false);
     }
 
+    // View full constellation buttons
+    public void ShowFullConstellation()
+    {
+        fullConstellationImage.SetActive(true);
+        fullBackground.SetActive(true);
+    }
+    public void HideFullConstellation()
+    {
+        fullConstellationImage.SetActive(false);
+        fullBackground.SetActive(false);
+    }
+
     // Other functions
     public void EndGame()
     {
@@ -253,7 +265,6 @@ public class GameManager : MonoBehaviour
         map.SetActive(true);
         finished = false;
     }
-
 
     // Functions used for the constellation mechanic
     private void MoveFullCamera(List<Vector3> vectors)
@@ -351,6 +362,28 @@ public class GameManager : MonoBehaviour
             fullCamera.transform.position = new(fullCamera.transform.position.x - (addedWidth / 2), fullCamera.transform.position.y, -10);
         }
     }
+    private void CreateNewStar()
+    {
+        // Round the stars postion
+        star.transform.position = new(Mathf.Round(star.transform.position.x), Mathf.Round(star.transform.position.y), 0);
+        background.transform.position = new(Mathf.Round(background.transform.position.x), Mathf.Round(background.transform.position.y), 0);
+
+        // Add star to list of vectors if the player has not already been to that location
+        if (!vectors.Contains(star.transform.position))
+        {
+            Instantiate(placeholderStar, star.transform.position, Quaternion.identity, transform);
+            vectors.Add(star.transform.position);
+            MoveFullCamera(vectors);
+        }
+
+        // Render a line and alter UI components
+        lineRenderer.positionCount++;
+        lineRenderer.SetPosition(lineRenderer.positionCount - 1, star.transform.position);
+        map.SetActive(false);
+        arrows.SetActive(true);
+    }
+
+    // Functions for zone detection
     private void DetectDifficulty()
     {
         // Detects difficulty level based on location within constellation map
@@ -436,69 +469,6 @@ public class GameManager : MonoBehaviour
         }
 
         zoneText.text = zone.ToString();
-    }
-    private void DecreaseZone()
-    {
-        if (speed > 0)
-        {
-            speed -= 1;
-            if (speed < 0)
-            {
-                speed = 0;
-            }
-        }
-        else
-        {
-            if (zone >= minSpeedZone)
-            {
-                minSpeedZone = zone + 1;
-            }
-        }
-        if (distance < 10)
-        {
-            distance += 0.4f;
-            if (distance > 10)
-            {
-                distance = 10;
-            }
-        }
-        else
-        {
-            if (zone >= maxDistanceZone)
-            {
-                maxDistanceZone = zone + 1;
-            }
-        }
-        if (size > 0f)
-        {
-            size -= 0.25f;
-            if (size < 0)
-            {
-                size = 0;
-            }
-        }
-        else
-        {
-            if (zone >= minSizeZone)
-            {
-                minSizeZone = zone + 1;
-            }
-        }
-    }
-    private void IncreaseZone()
-    {
-        if (minSpeedZone < zone)
-        {
-            speed += 1;
-        }
-        if (distance > 0 && maxDistanceZone < zone)
-        {
-            distance -= 0.4f;
-        }
-        if (minSizeZone < zone)
-        {
-            size += 0.25f;
-        }
     }
     private void SetDifficulty()
     {
@@ -829,35 +799,68 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
-    private void CreateNewStar()
+    private void DecreaseZone()
     {
-        // Round the stars postion
-        star.transform.position = new(Mathf.Round(star.transform.position.x), Mathf.Round(star.transform.position.y), 0);
-        background.transform.position = new(Mathf.Round(background.transform.position.x), Mathf.Round(background.transform.position.y), 0);
-
-        // Add star to list of vectors if the player has not already been to that location
-        if (!vectors.Contains(star.transform.position))
+        if (speed > 1)
         {
-            Instantiate(placeholderStar, star.transform.position, Quaternion.identity, transform);
-            vectors.Add(star.transform.position);
-            MoveFullCamera(vectors);
+            speed -= 1;
+            if (speed < 1)
+            {
+                speed = 1;
+            }
         }
-
-        // Render a line and alter UI components
-        lineRenderer.positionCount++;
-        lineRenderer.SetPosition(lineRenderer.positionCount - 1, star.transform.position);
-        map.SetActive(false);
-        arrows.SetActive(true);
+        else
+        {
+            if (zone >= minSpeedZone)
+            {
+                minSpeedZone = zone + 1;
+            }
+        }
+        if (distance < 10)
+        {
+            distance += 0.4f;
+            if (distance > 10)
+            {
+                distance = 10;
+            }
+        }
+        else
+        {
+            if (zone >= maxDistanceZone)
+            {
+                maxDistanceZone = zone + 1;
+            }
+        }
+        if (size > 0.125f)
+        {
+            size -= 0.25f;
+            if (size < 0)
+            {
+                size = 0.25f;
+            }
+        }
+        else
+        {
+            if (zone >= minSizeZone)
+            {
+                minSizeZone = zone + 1;
+            }
+        }
     }
-    public void ShowFullConstellation()
+    private void IncreaseZone()
     {
-        fullConstellationImage.SetActive(true);
-        fullBackground.SetActive(true);
-    }
-    public void HideFullConstellation()
-    {
-        fullConstellationImage.SetActive(false);
-        fullBackground.SetActive(false);
+        if (minSpeedZone < zone)
+        {
+            speed += 1;
+        }
+        if (distance > 0 && maxDistanceZone < zone)
+        {
+            distance -= 0.4f;
+        }
+        if (minSizeZone < zone)
+        {
+            size += 0.25f;
+        }
     }
 
     void Start()
