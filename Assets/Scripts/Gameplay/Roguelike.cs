@@ -54,13 +54,21 @@ public class Roguelike : MonoBehaviour
         roguelike.SetActive(false);
         arrows.SetActive(true);
     }
+    public void HeartFour()
+    {
+        gameManager.lives += 5;
+        livesText.text = gameManager.lives.ToString();
+        DestroyRoguelike();
+        roguelike.SetActive(false);
+        arrows.SetActive(true);
+    }
 
     public void SizeOne()
     {
         gameManager.size -= 0.125f;
-        if (gameManager.size < 0)
+        if (gameManager.size < 0.125f)
         {
-            gameManager.size = 0;
+            gameManager.size = 0.125f;
         }
         sizeText.text = gameManager.size.ToString();
         DestroyRoguelike();
@@ -70,9 +78,9 @@ public class Roguelike : MonoBehaviour
     public void SizeTwo()
     {
         gameManager.size -= 0.25f;
-        if (gameManager.size < 0)
+        if (gameManager.size < 0.125f)
         {
-            gameManager.size = 0;
+            gameManager.size = 0.125f;
         }
         sizeText.text = gameManager.size.ToString();
         DestroyRoguelike();
@@ -82,9 +90,21 @@ public class Roguelike : MonoBehaviour
     public void SizeThree()
     {
         gameManager.size -= 0.5f;
-        if (gameManager.size < 0)
+        if (gameManager.size < 0.125f)
         {
-            gameManager.size = 0;
+            gameManager.size = 0.125f;
+        }
+        sizeText.text = gameManager.size.ToString();
+        DestroyRoguelike();
+        roguelike.SetActive(false);
+        arrows.SetActive(true);
+    }
+    public void SizeFour()
+    {
+        gameManager.size -= 1;
+        if (gameManager.size < 0.125f)
+        {
+            gameManager.size = 0.125f;
         }
         sizeText.text = gameManager.size.ToString();
         DestroyRoguelike();
@@ -128,6 +148,18 @@ public class Roguelike : MonoBehaviour
         roguelike.SetActive(false);
         arrows.SetActive(true);
     }
+    public void DistanceFour()
+    {
+        gameManager.distance += 1.6f;
+        if (gameManager.distance > 10)
+        {
+            gameManager.distance = 10;
+        }
+        distanceText.text = gameManager.distance.ToString();
+        DestroyRoguelike();
+        roguelike.SetActive(false);
+        arrows.SetActive(true);
+    }
 
     public void SpeedOne()
     {
@@ -155,7 +187,7 @@ public class Roguelike : MonoBehaviour
     }
     public void SpeedThree()
     {
-        gameManager.speed -= 2f;
+        gameManager.speed -= 2;
         if (gameManager.speed < 1)
         {
             gameManager.speed = 1;
@@ -165,97 +197,18 @@ public class Roguelike : MonoBehaviour
         roguelike.SetActive(false);
         arrows.SetActive(true);
     }
-
-    
-    // Activated ability functions
-    public void ShieldOne()
+    public void SpeedFour()
     {
+        gameManager.speed -= 3;
+        if (gameManager.speed < 1)
+        {
+            gameManager.speed = 1;
+        }
+        speedText.text = gameManager.speed.ToString();
         DestroyRoguelike();
-        Debug.Log("Shield 1");
         roguelike.SetActive(false);
         arrows.SetActive(true);
     }
-    public void ShieldTwo()
-    {
-        DestroyRoguelike();
-        Debug.Log("Shield 2");
-        roguelike.SetActive(false);
-        arrows.SetActive(true);
-    }
-    public void ShieldThree()
-    {
-        DestroyRoguelike();
-        Debug.Log("Shield 3");
-        roguelike.SetActive(false);
-        arrows.SetActive(true);
-    }
-
-    public void InstantOne()
-    {
-        DestroyRoguelike();
-        Debug.Log("Instant 1");
-        roguelike.SetActive(false);
-        arrows.SetActive(true);
-    }
-    public void InstantTwo()
-    {
-        DestroyRoguelike();
-        Debug.Log("Instant 2");
-        roguelike.SetActive(false);
-        arrows.SetActive(true);
-    }
-    public void InstantThree()
-    {
-        DestroyRoguelike();
-        Debug.Log("Instant 3");
-        roguelike.SetActive(false);
-        arrows.SetActive(true);
-    }
-
-    public void ShrinkOne()
-    {
-        DestroyRoguelike();
-        Debug.Log("Shrink 1");
-        roguelike.SetActive(false);
-        arrows.SetActive(true);
-    }
-    public void ShrinkTwo()
-    {
-        DestroyRoguelike();
-        Debug.Log("Shrink 2");
-        roguelike.SetActive(false);
-        arrows.SetActive(true);
-    }
-    public void ShrinkThree()
-    {
-        DestroyRoguelike();
-        Debug.Log("Shrink 3");
-        roguelike.SetActive(false);
-        arrows.SetActive(true);
-    }
-
-    public void SlowOne()
-    {
-        DestroyRoguelike();
-        Debug.Log("Slow 1");
-        roguelike.SetActive(false);
-        arrows.SetActive(true);
-    }
-    public void SlowTwo()
-    {
-        DestroyRoguelike();
-        Debug.Log("Slow 2");
-        roguelike.SetActive(false);
-        arrows.SetActive(true);
-    }
-    public void SlowThree()
-    {
-        DestroyRoguelike();
-        Debug.Log("Slow 3");
-        roguelike.SetActive(false);
-        arrows.SetActive(true);
-    }
-
 
     // Show roguelike feature
     public void ShowRoguelike()
@@ -326,12 +279,16 @@ public class Roguelike : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < 5;  i++)
+        for (int i = 0; i < 10;  i++)
         {
             rarityList.Add(abilities[0]);
             rarityList.Add(abilities[1]);
             rarityList.Add(abilities[2]);
             rarityList.Add(abilities[3]);
+        }
+
+        for (int i = 0; i < 6; i++)
+        {
             rarityList.Add(abilities[4]);
             rarityList.Add(abilities[5]);
             rarityList.Add(abilities[6]);
@@ -344,19 +301,11 @@ public class Roguelike : MonoBehaviour
             rarityList.Add(abilities[9]);
             rarityList.Add(abilities[10]);
             rarityList.Add(abilities[11]);
-            rarityList.Add(abilities[12]);
-            rarityList.Add(abilities[13]);
-            rarityList.Add(abilities[14]);
-            rarityList.Add(abilities[15]);
         }
 
-        rarityList.Add(abilities[16]);
-        rarityList.Add(abilities[17]);
-        rarityList.Add(abilities[18]);
-        rarityList.Add(abilities[19]);
-        rarityList.Add(abilities[20]);
-        rarityList.Add(abilities[21]);
-        rarityList.Add(abilities[22]);
-        rarityList.Add(abilities[23]);
+        rarityList.Add(abilities[12]);
+        rarityList.Add(abilities[13]);
+        rarityList.Add(abilities[14]);
+        rarityList.Add(abilities[15]);
     }
 }

@@ -1,8 +1,11 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public TextMeshProUGUI text;
+
     public void Play()
     {
         SceneManager.LoadScene("Main");
@@ -10,5 +13,10 @@ public class MainMenu : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+    }
+
+    private void Start()
+    {
+        text.text = PlayerPrefs.GetInt("High Score").ToString();
     }
 }

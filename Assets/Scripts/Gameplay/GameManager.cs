@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public Camera fullCamera;
     public GameObject background;
     public GameObject mapTracker;
+    public GameObject stars;
 
     // Text objects
     [Header("Text")]
@@ -83,9 +84,10 @@ public class GameManager : MonoBehaviour
     private int minSpeedZone = 1;
     private int minSizeZone = 1;
     private int maxDistanceZone = 1;
+    public int score;
 
     // Constellation components
-    [HideInInspector] public List<Vector3> vectors;
+    public List<Vector3> vectors;
     private float smallestX = 0;
     private float largestX = 0;
     private float smallestY = 0;
@@ -242,6 +244,10 @@ public class GameManager : MonoBehaviour
     {
         // Stop time, resize camera, and end game
         CreateNewStar();
+        if (PlayerPrefs.GetInt("High Score") < score)
+        {
+            PlayerPrefs.SetInt("High Score", score);
+        }
         isGameOver = true;
         endScreen.SetActive(true);
         Time.timeScale = 0f;
@@ -308,7 +314,8 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        scoreText.text = (Mathf.Abs(smallestX) + Mathf.Abs(smallestY) + largestX + largestY).ToString();
+        score = (int)(Mathf.Abs(smallestX) + Mathf.Abs(smallestY) + largestX + largestY);
+        scoreText.text = score.ToString();
 
         float completeWidth = largestX - smallestX;
         float completeHeight = largestY - smallestY;
@@ -371,7 +378,7 @@ public class GameManager : MonoBehaviour
         // Add star to list of vectors if the player has not already been to that location
         if (!vectors.Contains(star.transform.position))
         {
-            Instantiate(placeholderStar, star.transform.position, Quaternion.identity, transform);
+            Instantiate(placeholderStar, star.transform.position, Quaternion.identity, stars.transform);
             vectors.Add(star.transform.position);
             MoveFullCamera(vectors);
         }
