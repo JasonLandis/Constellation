@@ -9,10 +9,11 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     [Header("Gameplay Variables")]
-    public int lives;
-    public float distance;
-    public float size;
-    public float speed;
+    public int lives = 0;
+    public float spread = 5;
+    public float size = 1;
+    public float speed = 10;
+    public int zone = 1;
 
     [Header("Objects")]
     public GameObject player;
@@ -116,12 +117,12 @@ public class GameManager : MonoBehaviour
     {
         mapLength *= 10;
         // Create meteors
-        for (float i = -5; i < 5; i += distance)
+        for (float i = -5; i < 5; i += spread)
         {
-            for (float j = 12; j < mapLength - 12; j += distance)
+            for (float j = 12; j < mapLength - 12; j += spread)
             {
-                float x = UnityEngine.Random.Range(i, i + distance);
-                float y = UnityEngine.Random.Range(j, j + distance);
+                float x = UnityEngine.Random.Range(i, i + spread);
+                float y = UnityEngine.Random.Range(j, j + spread);
 
                 meteor.transform.localScale = new Vector3(size, size, 1);
                 Instantiate(meteor, new(x, y, 0), Quaternion.identity, map.transform);

@@ -15,12 +15,12 @@ public class Roguelike : MonoBehaviour
     [Header("Abilities")]
     public List<GameObject> abilities;
     public List<GameObject> rarityList;
-    
+
     private void Start()
     {
         GameManager.instance.showRoguelike += ShowRoguelike;
 
-        for (int i = 0; i < 10;  i++)
+        for (int i = 0; i < 10; i++)
         {
             rarityList.Add(abilities[0]);
             rarityList.Add(abilities[1]);
@@ -134,49 +134,49 @@ public class Roguelike : MonoBehaviour
         arrows.SetActive(true);
     }
 
-    // Functions for the distance ability
-    public void DistanceOne()
+    // Functions for the spread ability
+    public void SpreadOne()
     {
-        GameManager.instance.distance += 0.2f;
-        if (GameManager.instance.distance > 10)
+        GameManager.instance.spread += 0.2f;
+        if (GameManager.instance.spread > 10)
         {
-            GameManager.instance.distance = 10;
+            GameManager.instance.spread = 10;
         }
         GameManager.instance.showText.Invoke();
         DestroyRoguelike();
         roguelike.SetActive(false);
         arrows.SetActive(true);
     }
-    public void DistanceTwo()
+    public void SpreadTwo()
     {
-        GameManager.instance.distance += 0.4f;
-        if (GameManager.instance.distance > 10)
+        GameManager.instance.spread += 0.4f;
+        if (GameManager.instance.spread > 10)
         {
-            GameManager.instance.distance = 10;
+            GameManager.instance.spread = 10;
         }
         GameManager.instance.showText.Invoke();
         DestroyRoguelike();
         roguelike.SetActive(false);
         arrows.SetActive(true);
     }
-    public void DistanceThree()
+    public void SpreadThree()
     {
-        GameManager.instance.distance += 0.8f;
-        if (GameManager.instance.distance > 10)
+        GameManager.instance.spread += 0.6f;
+        if (GameManager.instance.spread > 10)
         {
-            GameManager.instance.distance = 10;
+            GameManager.instance.spread = 10;
         }
         GameManager.instance.showText.Invoke();
         DestroyRoguelike();
         roguelike.SetActive(false);
         arrows.SetActive(true);
     }
-    public void DistanceFour()
+    public void SpreadFour()
     {
-        GameManager.instance.distance += 1.6f;
-        if (GameManager.instance.distance > 10)
+        GameManager.instance.spread += 1;
+        if (GameManager.instance.spread > 10)
         {
-            GameManager.instance.distance = 10;
+            GameManager.instance.spread = 10;
         }
         GameManager.instance.showText.Invoke();
         DestroyRoguelike();

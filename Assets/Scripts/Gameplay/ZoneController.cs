@@ -25,14 +25,10 @@ public class ZoneController : MonoBehaviour
     public GameObject zone19;
     public GameObject zone20;
 
-    [Header("Text")]
-    public TextMeshProUGUI zoneText;
-
-    private int zone = 1; // Zone the star is in
     private int value = 0; // Used for the previous zone the star was in
     private int minSpeedZone = 1; // Used for the highest zone at which speed should not decrease
     private int minSizeZone = 1; // Used for the highest zone at which size should not decrease
-    private int maxDistanceZone = 1; // Used for the highest zone at which the distance should not increase
+    private int maxSpreadZone = 1; // Used for the highest zone at which the spread should not increase
 
     void Start()
     {
@@ -46,83 +42,83 @@ public class ZoneController : MonoBehaviour
         // Detects difficulty level based on location within constellation map
         if (GameManager.instance.star.transform.position.y > -55 && GameManager.instance.star.transform.position.y < 55 && GameManager.instance.star.transform.position.x > -55 && GameManager.instance.star.transform.position.x < 55)
         {
-            zone = 1;
+            GameManager.instance.zone = 1;
         }
         else if (GameManager.instance.star.transform.position.y > -105 && GameManager.instance.star.transform.position.y < 105 && GameManager.instance.star.transform.position.x > -105 && GameManager.instance.star.transform.position.x < 105)
         {
-            zone = 2;
+            GameManager.instance.zone = 2;
         }
         else if (GameManager.instance.star.transform.position.y > -155 && GameManager.instance.star.transform.position.y < 155 && GameManager.instance.star.transform.position.x > -155 && GameManager.instance.star.transform.position.x < 155)
         {
-            zone = 3;
+            GameManager.instance.zone = 3;
         }
         else if (GameManager.instance.star.transform.position.y > -205 && GameManager.instance.star.transform.position.y < 205 && GameManager.instance.star.transform.position.x > -205 && GameManager.instance.star.transform.position.x < 205)
         {
-            zone = 4;
+            GameManager.instance.zone = 4;
         }
         else if (GameManager.instance.star.transform.position.y > -255 && GameManager.instance.star.transform.position.y < 255 && GameManager.instance.star.transform.position.x > -255 && GameManager.instance.star.transform.position.x < 255)
         {
-            zone = 5;
+            GameManager.instance.zone = 5;
         }
         else if (GameManager.instance.star.transform.position.y > -305 && GameManager.instance.star.transform.position.y < 305 && GameManager.instance.star.transform.position.x > -305 && GameManager.instance.star.transform.position.x < 305)
         {
-            zone = 6;
+            GameManager.instance.zone = 6;
         }
         else if (GameManager.instance.star.transform.position.y > -355 && GameManager.instance.star.transform.position.y < 355 && GameManager.instance.star.transform.position.x > -355 && GameManager.instance.star.transform.position.x < 355)
         {
-            zone = 7;
+            GameManager.instance.zone = 7;
         }
         else if (GameManager.instance.star.transform.position.y > -405 && GameManager.instance.star.transform.position.y < 405 && GameManager.instance.star.transform.position.x > -405 && GameManager.instance.star.transform.position.x < 405)
         {
-            zone = 8;
+            GameManager.instance.zone = 8;
         }
         else if (GameManager.instance.star.transform.position.y > -455 && GameManager.instance.star.transform.position.y < 455 && GameManager.instance.star.transform.position.x > -455 && GameManager.instance.star.transform.position.x < 455)
         {
-            zone = 9;
+            GameManager.instance.zone = 9;
         }
         else if (GameManager.instance.star.transform.position.y > -505 && GameManager.instance.star.transform.position.y < 505 && GameManager.instance.star.transform.position.x > -505 && GameManager.instance.star.transform.position.x < 505)
         {
-            zone = 10;
+            GameManager.instance.zone = 10;
         }
         else if (GameManager.instance.star.transform.position.y > -555 && GameManager.instance.star.transform.position.y < 555 && GameManager.instance.star.transform.position.x > -555 && GameManager.instance.star.transform.position.x < 555)
         {
-            zone = 11;
+            GameManager.instance.zone = 11;
         }
         else if (GameManager.instance.star.transform.position.y > -605 && GameManager.instance.star.transform.position.y < 605 && GameManager.instance.star.transform.position.x > -605 && GameManager.instance.star.transform.position.x < 605)
         {
-            zone = 12;
+            GameManager.instance.zone = 12;
         }
         else if (GameManager.instance.star.transform.position.y > -655 && GameManager.instance.star.transform.position.y < 655 && GameManager.instance.star.transform.position.x > -655 && GameManager.instance.star.transform.position.x < 655)
         {
-            zone = 13;
+            GameManager.instance.zone = 13;
         }
         else if (GameManager.instance.star.transform.position.y > -705 && GameManager.instance.star.transform.position.y < 705 && GameManager.instance.star.transform.position.x > -705 && GameManager.instance.star.transform.position.x < 705)
         {
-            zone = 14;
+            GameManager.instance.zone = 14;
         }
         else if (GameManager.instance.star.transform.position.y > -755 && GameManager.instance.star.transform.position.y < 755 && GameManager.instance.star.transform.position.x > -755 && GameManager.instance.star.transform.position.x < 755)
         {
-            zone = 15;
+            GameManager.instance.zone = 15;
         }
         else if (GameManager.instance.star.transform.position.y > -805 && GameManager.instance.star.transform.position.y < 805 && GameManager.instance.star.transform.position.x > -805 && GameManager.instance.star.transform.position.x < 805)
         {
-            zone = 16;
+            GameManager.instance.zone = 16;
         }
         else if (GameManager.instance.star.transform.position.y > -855 && GameManager.instance.star.transform.position.y < 855 && GameManager.instance.star.transform.position.x > -855 && GameManager.instance.star.transform.position.x < 855)
         {
-            zone = 17;
+            GameManager.instance.zone = 17;
         }
         else if (GameManager.instance.star.transform.position.y > -905 && GameManager.instance.star.transform.position.y < 905 && GameManager.instance.star.transform.position.x > -905 && GameManager.instance.star.transform.position.x < 905)
         {
-            zone = 18;
+            GameManager.instance.zone = 18;
         }
         else if (GameManager.instance.star.transform.position.y > -955 && GameManager.instance.star.transform.position.y < 955 && GameManager.instance.star.transform.position.x > -955 && GameManager.instance.star.transform.position.x < 955)
         {
-            zone = 19;
+            GameManager.instance.zone = 19;
         }
         else
         {
-            zone = 20;
+            GameManager.instance.zone = 20;
         }
     }
 
@@ -130,7 +126,7 @@ public class ZoneController : MonoBehaviour
     void SetDifficulty()
     {
         // Set difficulty levels
-        switch (zone)
+        switch (GameManager.instance.zone)
         {
             case 1:
                 if (value > 1)
@@ -454,12 +450,10 @@ public class ZoneController : MonoBehaviour
                 }
                 value = 20;
                 break;
-        }
-
-        zoneText.text = zone.ToString();
+        }        
     }
 
-    // Decreases the speed, distance, and size when moving to a lower zone
+    // Decreases the speed, spread, and size when moving to a lower zone
     void DecreaseZone()
     {
         if (GameManager.instance.speed > 1)
@@ -472,24 +466,24 @@ public class ZoneController : MonoBehaviour
         }
         else
         {
-            if (zone >= minSpeedZone)
+            if (GameManager.instance.zone >= minSpeedZone)
             {
-                minSpeedZone = zone + 1;
+                minSpeedZone = GameManager.instance.zone + 1;
             }
         }
-        if (GameManager.instance.distance < 10)
+        if (GameManager.instance.spread < 10)
         {
-            GameManager.instance.distance += 0.4f;
-            if (GameManager.instance.distance > 10)
+            GameManager.instance.spread += 0.4f;
+            if (GameManager.instance.spread > 10)
             {
-                GameManager.instance.distance = 10;
+                GameManager.instance.spread = 10;
             }
         }
         else
         {
-            if (zone >= maxDistanceZone)
+            if (GameManager.instance.zone >= maxSpreadZone)
             {
-                maxDistanceZone = zone + 1;
+                maxSpreadZone = GameManager.instance.zone + 1;
             }
         }
         if (GameManager.instance.size > 0.125f)
@@ -502,25 +496,25 @@ public class ZoneController : MonoBehaviour
         }
         else
         {
-            if (zone >= minSizeZone)
+            if (GameManager.instance.zone >= minSizeZone)
             {
-                minSizeZone = zone + 1;
+                minSizeZone = GameManager.instance.zone + 1;
             }
         }
     }
 
-    // Increases the speed, distance, and size when moving to a higher zone
+    // Increases the speed, spread, and size when moving to a higher zone
     void IncreaseZone()
     {
-        if (minSpeedZone < zone)
+        if (minSpeedZone < GameManager.instance.zone)
         {
             GameManager.instance.speed += 1;
         }
-        if (GameManager.instance.distance > 0 && maxDistanceZone < zone)
+        if (GameManager.instance.spread > 0 && maxSpreadZone < GameManager.instance.zone)
         {
-            GameManager.instance.distance -= 0.4f;
+            GameManager.instance.spread -= 0.4f;
         }
-        if (minSizeZone < zone)
+        if (minSizeZone < GameManager.instance.zone)
         {
             GameManager.instance.size += 0.25f;
         }

@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class GameUI : MonoBehaviour
 {
@@ -9,10 +10,11 @@ public class GameUI : MonoBehaviour
 
     [Header("Text")]
     public TextMeshProUGUI livesText;
-    public TextMeshProUGUI distanceText;
+    public TextMeshProUGUI spreadText;
     public TextMeshProUGUI sizeText;
     public TextMeshProUGUI speedText;
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI zoneText;
 
     void Start()
     {
@@ -156,18 +158,18 @@ public class GameUI : MonoBehaviour
 
     // Updates the text objects
     public void ShowText()
-    {        
+    {
         livesText.text = GameManager.instance.lives.ToString();
-        distanceText.text = GameManager.instance.distance.ToString();
+        spreadText.text = GameManager.instance.spread.ToString();
         sizeText.text = GameManager.instance.size.ToString();
         speedText.text = GameManager.instance.speed.ToString();
         scoreText.text = GameManager.instance.score.ToString();
+        zoneText.text = GameManager.instance.zone.ToString();
     }
 
-    // Set the distance UI to active
+    // Set the spread UI to active
     public void ShowDistanceUI()
     {
         directionUI.SetActive(true);
     }
 }
-
