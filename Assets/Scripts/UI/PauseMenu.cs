@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenuUI;
-    public GameManager gameManager;
     // Menu buttons
     public void Resume()
     {
@@ -17,12 +16,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
     }
     public void Menu()
-
     {
-        if (PlayerPrefs.GetInt("High Score") < gameManager.score)
-        {
-            PlayerPrefs.SetInt("High Score", gameManager.score);
-        }
         SceneManager.LoadScene("Menu");
     }
     public void Restart()

@@ -541,8 +541,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1748641963}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 780453188}
+        m_TargetAssemblyTypeName: GameUI, Assembly-CSharp
         m_MethodName: Eighty
         m_Mode: 1
         m_Arguments:
@@ -1009,8 +1009,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1748641963}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 53302278}
+        m_TargetAssemblyTypeName: Constellation, Assembly-CSharp
         m_MethodName: HideFullConstellation
         m_Mode: 1
         m_Arguments:
@@ -1323,6 +1323,7 @@ GameObject:
   m_Component:
   - component: {fileID: 53302277}
   - component: {fileID: 53302278}
+  - component: {fileID: 53302279}
   m_Layer: 7
   m_Name: Constellation Map
   m_TagString: Untagged
@@ -1345,8 +1346,9 @@ Transform:
   - {fileID: 455785675}
   - {fileID: 2104532312}
   - {fileID: 1955582009}
+  - {fileID: 1534761919}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &53302278
 MonoBehaviour:
@@ -1361,8 +1363,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   constellationStar: {fileID: 8074434361121936212, guid: 26d50e94b6a4e4340adc8963038ac3a4, type: 3}
-  constellationVectors: []
-  constellationMap: {fileID: 1955582008}
+  placeholderStar: {fileID: 4125536124477613208, guid: 761aa13457e294a4e842a39725162941, type: 3}
+  constellationStars: {fileID: 1955582008}
+  createdStars: {fileID: 70505087}
+  fullConstellation: {fileID: 1515199766}
+  fullBackground: {fileID: 455785674}
+  constellationCamera: {fileID: 325754412}
+  fullCamera: {fileID: 1140142022}
+  vectors: []
+--- !u!114 &53302279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53302276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddddd73062a6c51489ccbaf40d331f26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zone1: {fileID: 390188529}
+  zone2: {fileID: 1412114375}
+  zone3: {fileID: 552213855}
+  zone4: {fileID: 395615145}
+  zone5: {fileID: 724060301}
+  zone6: {fileID: 608487682}
+  zone7: {fileID: 1216727332}
+  zone8: {fileID: 714317994}
+  zone9: {fileID: 1249219018}
+  zone10: {fileID: 532982937}
+  zone11: {fileID: 1521423013}
+  zone12: {fileID: 1852305925}
+  zone13: {fileID: 1706639670}
+  zone14: {fileID: 1807674151}
+  zone15: {fileID: 933682214}
+  zone16: {fileID: 1694047294}
+  zone17: {fileID: 275556572}
+  zone18: {fileID: 1020502968}
+  zone19: {fileID: 431298821}
+  zone20: {fileID: 556233735}
+  zoneText: {fileID: 1140247346}
 --- !u!1 &64816971
 GameObject:
   m_ObjectHideFlags: 0
@@ -1439,6 +1480,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 64816971}
   m_CullTransparentMesh: 1
+--- !u!1 &70505087
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 70505088}
+  m_Layer: 0
+  m_Name: Created Stars
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &70505088
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70505087}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1534761919}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &96136566
 GameObject:
   m_ObjectHideFlags: 0
@@ -2887,8 +2959,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1748641963}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 780453188}
+        m_TargetAssemblyTypeName: GameUI, Assembly-CSharp
         m_MethodName: Hundred
         m_Mode: 1
         m_Arguments:
@@ -3426,9 +3498,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1748641963}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: DownRightArrow
+      - m_Target: {fileID: 780453188}
+        m_TargetAssemblyTypeName: GameUI, Assembly-CSharp
+        m_MethodName: DownRight
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4065,9 +4137,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1748641963}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: UpLeftArrow
+      - m_Target: {fileID: 780453188}
+        m_TargetAssemblyTypeName: GameUI, Assembly-CSharp
+        m_MethodName: UpLeft
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4448,8 +4520,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1748641963}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 53302278}
+        m_TargetAssemblyTypeName: Constellation, Assembly-CSharp
         m_MethodName: ShowFullConstellation
         m_Mode: 1
         m_Arguments:
@@ -5168,8 +5240,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 1534761919}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &325754414
 MonoBehaviour:
@@ -6153,9 +6225,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1748641963}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: DownArrow
+      - m_Target: {fileID: 780453188}
+        m_TargetAssemblyTypeName: GameUI, Assembly-CSharp
+        m_MethodName: Down
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8664,7 +8736,7 @@ Transform:
   m_Children:
   - {fileID: 27502451}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &511779354
 MonoBehaviour:
@@ -8678,7 +8750,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8bcfde2a684cf7428b93924be66e326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1748641963}
   roguelike: {fileID: 149561341}
   arrows: {fileID: 903454980}
   item1: {fileID: 662288247}
@@ -8702,10 +8773,6 @@ MonoBehaviour:
   - {fileID: 1258186338}
   - {fileID: 766083956}
   rarityList: []
-  livesText: {fileID: 995478357}
-  sizeText: {fileID: 1242968753}
-  distanceText: {fileID: 1617516527}
-  speedText: {fileID: 2096703889}
 --- !u!1 &517914607
 GameObject:
   m_ObjectHideFlags: 0
@@ -8827,7 +8894,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &519420033
 MonoBehaviour:
@@ -9380,8 +9447,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1748641963}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 780453188}
+        m_TargetAssemblyTypeName: GameUI, Assembly-CSharp
         m_MethodName: Thirty
         m_Mode: 1
         m_Arguments:
@@ -9710,13 +9777,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 577373044}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_Father: {fileID: 1748641962}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &578377599
 GameObject:
@@ -12027,7 +12094,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1534761919}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!120 &714254067
 LineRenderer:
@@ -12880,9 +12947,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1748641963}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: UpRightArrow
+      - m_Target: {fileID: 780453188}
+        m_TargetAssemblyTypeName: GameUI, Assembly-CSharp
+        m_MethodName: UpRight
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13212,8 +13279,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1748641963}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 780453188}
+        m_TargetAssemblyTypeName: GameUI, Assembly-CSharp
         m_MethodName: Sixty
         m_Mode: 1
         m_Arguments:
@@ -14131,6 +14198,7 @@ GameObject:
   - component: {fileID: 780453184}
   - component: {fileID: 780453183}
   - component: {fileID: 780453187}
+  - component: {fileID: 780453188}
   m_Layer: 5
   m_Name: Main Canvas
   m_TagString: Untagged
@@ -14223,7 +14291,7 @@ RectTransform:
   - {fileID: 1515199767}
   - {fileID: 1912050675}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -14243,7 +14311,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1912050674}
-  gameManager: {fileID: 1748641963}
+--- !u!114 &780453188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 780453182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b83117d2e625dc74abdacba229ffba4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  directionUI: {fileID: 903454980}
+  distanceUI: {fileID: 772844661}
+  livesText: {fileID: 995478357}
+  distanceText: {fileID: 1617516527}
+  sizeText: {fileID: 1242968753}
+  speedText: {fileID: 2096703889}
+  scoreText: {fileID: 1426760458}
 --- !u!1 &781982874
 GameObject:
   m_ObjectHideFlags: 0
@@ -14563,9 +14649,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1748641963}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: DownLeftArrow
+      - m_Target: {fileID: 780453188}
+        m_TargetAssemblyTypeName: GameUI, Assembly-CSharp
+        m_MethodName: DownLeft
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16082,7 +16168,7 @@ GameObject:
   - component: {fileID: 903454983}
   - component: {fileID: 903454982}
   m_Layer: 5
-  m_Name: Arrows
+  m_Name: Direction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16760,8 +16846,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1748641963}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 53302278}
+        m_TargetAssemblyTypeName: Constellation, Assembly-CSharp
         m_MethodName: ShowFullConstellation
         m_Mode: 1
         m_Arguments:
@@ -17602,7 +17688,7 @@ Transform:
   - {fileID: 1791964280}
   - {fileID: 1462055786}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &994705920
 GameObject:
@@ -19826,8 +19912,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1748641963}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 53302278}
+        m_TargetAssemblyTypeName: Constellation, Assembly-CSharp
         m_MethodName: ShowFullConstellation
         m_Mode: 1
         m_Arguments:
@@ -20449,9 +20535,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1748641963}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: UpArrow
+      - m_Target: {fileID: 780453188}
+        m_TargetAssemblyTypeName: GameUI, Assembly-CSharp
+        m_MethodName: Up
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -20728,7 +20814,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1534761919}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1140247344
 GameObject:
@@ -21282,8 +21368,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1748641963}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 780453188}
+        m_TargetAssemblyTypeName: GameUI, Assembly-CSharp
         m_MethodName: Forty
         m_Mode: 1
         m_Arguments:
@@ -21758,8 +21844,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1748641963}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 780453188}
+        m_TargetAssemblyTypeName: GameUI, Assembly-CSharp
         m_MethodName: Seventy
         m_Mode: 1
         m_Arguments:
@@ -27945,7 +28031,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1534761919}
   m_Layer: 0
-  m_Name: Stars
+  m_Name: Your Constellation
   m_TagString: Stars
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27958,15 +28044,17 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1534761918}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1140142023}
   - {fileID: 714254066}
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  - {fileID: 325754413}
+  - {fileID: 1140142023}
+  - {fileID: 70505088}
+  m_Father: {fileID: 53302277}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1540980951
 GameObject:
@@ -30721,8 +30809,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1748641963}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 780453188}
+        m_TargetAssemblyTypeName: GameUI, Assembly-CSharp
         m_MethodName: Twenty
         m_Mode: 1
         m_Arguments:
@@ -31149,8 +31237,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1748641963}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 780453188}
+        m_TargetAssemblyTypeName: GameUI, Assembly-CSharp
         m_MethodName: Ninety
         m_Mode: 1
         m_Arguments:
@@ -31757,9 +31845,11 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2066190567}
+  - {fileID: 577373045}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1748641963
 MonoBehaviour:
@@ -31777,53 +31867,20 @@ MonoBehaviour:
   distance: 5
   size: 1
   speed: 10
-  mapLength: 0
-  immortal: 0
   player: {fileID: 43898626}
+  meteor: {fileID: 8074434361121936212, guid: 759d3de247a5a1d41989448ea8e70160, type: 3}
   map: {fileID: 2066190565}
   star: {fileID: 714254064}
-  lineRenderer: {fileID: 714254067}
-  placeholderStar: {fileID: 4125536124477613208, guid: 761aa13457e294a4e842a39725162941, type: 3}
-  constellationCamera: {fileID: 325754412}
-  fullCamera: {fileID: 1140142022}
   background: {fileID: 989136698}
   mapTracker: {fileID: 577373044}
-  stars: {fileID: 1534761918}
-  livesText: {fileID: 995478357}
-  distanceText: {fileID: 1617516527}
-  sizeText: {fileID: 1242968753}
-  speedText: {fileID: 2096703889}
-  scoreText: {fileID: 1426760458}
-  zoneText: {fileID: 1140247346}
-  arrows: {fileID: 903454980}
-  Distance: {fileID: 772844661}
-  fullConstellationImage: {fileID: 1515199766}
-  fullBackground: {fileID: 455785674}
   endScreen: {fileID: 214271343}
-  zone1: {fileID: 390188529}
-  zone2: {fileID: 1412114375}
-  zone3: {fileID: 552213855}
-  zone4: {fileID: 395615145}
-  zone5: {fileID: 724060301}
-  zone6: {fileID: 608487682}
-  zone7: {fileID: 1216727332}
-  zone8: {fileID: 714317994}
-  zone9: {fileID: 1249219018}
-  zone10: {fileID: 532982937}
-  zone11: {fileID: 1521423013}
-  zone12: {fileID: 1852305925}
-  zone13: {fileID: 1706639670}
-  zone14: {fileID: 1807674151}
-  zone15: {fileID: 933682214}
-  zone16: {fileID: 1694047294}
-  zone17: {fileID: 275556572}
-  zone18: {fileID: 1020502968}
-  zone19: {fileID: 431298821}
-  zone20: {fileID: 556233735}
-  constellation: {fileID: 53302278}
-  roguelike: {fileID: 511779354}
+  mapLength: 0
+  direction: 
+  immortal: 0
+  directionVector: {x: 0, y: 0, z: 0}
   score: 0
-  vectors: []
+  limit: 0
+  constellationVectors: []
 --- !u!1 &1749894795
 GameObject:
   m_ObjectHideFlags: 0
@@ -33260,9 +33317,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1748641963}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: RightArrow
+      - m_Target: {fileID: 780453188}
+        m_TargetAssemblyTypeName: GameUI, Assembly-CSharp
+        m_MethodName: Right
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -33432,8 +33489,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1748641963}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 780453188}
+        m_TargetAssemblyTypeName: GameUI, Assembly-CSharp
         m_MethodName: Fifty
         m_Mode: 1
         m_Arguments:
@@ -33868,8 +33925,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1748641963}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 780453188}
+        m_TargetAssemblyTypeName: GameUI, Assembly-CSharp
         m_MethodName: HideDistance
         m_Mode: 1
         m_Arguments:
@@ -34640,9 +34697,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1748641963}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: LeftArrow
+      - m_Target: {fileID: 780453188}
+        m_TargetAssemblyTypeName: GameUI, Assembly-CSharp
+        m_MethodName: Left
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -34738,7 +34795,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1955582009}
   m_Layer: 7
-  m_Name: Stars
+  m_Name: Constellation Stars
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35740,8 +35797,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1748641963}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 780453188}
+        m_TargetAssemblyTypeName: GameUI, Assembly-CSharp
         m_MethodName: Ten
         m_Mode: 1
         m_Arguments:
@@ -36260,7 +36317,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2066190567}
-  - component: {fileID: 2066190568}
   m_Layer: 6
   m_Name: Map
   m_TagString: Untagged
@@ -36275,28 +36331,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2066190565}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_Father: {fileID: 1748641962}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2066190568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2066190565}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e095aef9908678c438347b98d2da3684, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meteor: {fileID: 8074434361121936212, guid: 759d3de247a5a1d41989448ea8e70160, type: 3}
-  coin: {fileID: 2195268636120050853, guid: 5ed36892227b4824480b14c99407e6b2, type: 3}
 --- !u!1 &2075439177
 GameObject:
   m_ObjectHideFlags: 0
