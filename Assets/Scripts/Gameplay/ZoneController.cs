@@ -473,7 +473,7 @@ public class ZoneController : MonoBehaviour
         }
         if (GameManager.instance.spread < 10)
         {
-            GameManager.instance.spread += 0.4f;
+            GameManager.instance.spread += 1;
             if (GameManager.instance.spread > 10)
             {
                 GameManager.instance.spread = 10;
@@ -486,12 +486,12 @@ public class ZoneController : MonoBehaviour
                 maxSpreadZone = GameManager.instance.zone + 1;
             }
         }
-        if (GameManager.instance.size > 0.125f)
+        if (GameManager.instance.size > 0.1f)
         {
-            GameManager.instance.size -= 0.25f;
-            if (GameManager.instance.size < 0)
+            GameManager.instance.size -= 0.5f;
+            if (GameManager.instance.size < 0.1f)
             {
-                GameManager.instance.size = 0.25f;
+                GameManager.instance.size = 0.1f;
             }
         }
         else
@@ -512,11 +512,11 @@ public class ZoneController : MonoBehaviour
         }
         if (GameManager.instance.spread > 0 && maxSpreadZone < GameManager.instance.zone)
         {
-            GameManager.instance.spread -= 0.4f;
+            GameManager.instance.spread -= 1;
         }
         if (minSizeZone < GameManager.instance.zone)
         {
-            GameManager.instance.size += 0.25f;
+            GameManager.instance.size += 0.5f;
         }
     }
 }

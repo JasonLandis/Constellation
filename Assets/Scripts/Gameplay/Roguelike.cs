@@ -87,10 +87,10 @@ public class Roguelike : MonoBehaviour
     // Functions for the size ability
     public void SizeOne()
     {
-        GameManager.instance.size -= 0.125f;
-        if (GameManager.instance.size < 0.125f)
+        GameManager.instance.size -= 0.1f;
+        if (GameManager.instance.size < 0.1f)
         {
-            GameManager.instance.size = 0.125f;
+            GameManager.instance.size = 0.1f;
         }
         GameManager.instance.showText.Invoke();
         DestroyRoguelike();
@@ -99,10 +99,10 @@ public class Roguelike : MonoBehaviour
     }
     public void SizeTwo()
     {
-        GameManager.instance.size -= 0.25f;
-        if (GameManager.instance.size < 0.125f)
+        GameManager.instance.size -= 0.2f;
+        if (GameManager.instance.size < 0.1f)
         {
-            GameManager.instance.size = 0.125f;
+            GameManager.instance.size = 0.1f;
         }
         GameManager.instance.showText.Invoke();
         DestroyRoguelike();
@@ -111,10 +111,10 @@ public class Roguelike : MonoBehaviour
     }
     public void SizeThree()
     {
-        GameManager.instance.size -= 0.5f;
-        if (GameManager.instance.size < 0.125f)
+        GameManager.instance.size -= 0.3f;
+        if (GameManager.instance.size < 0.1f)
         {
-            GameManager.instance.size = 0.125f;
+            GameManager.instance.size = 0.1f;
         }
         GameManager.instance.showText.Invoke();
         DestroyRoguelike();
@@ -123,10 +123,10 @@ public class Roguelike : MonoBehaviour
     }
     public void SizeFour()
     {
-        GameManager.instance.size -= 1;
-        if (GameManager.instance.size < 0.125f)
+        GameManager.instance.size -= 0.5f;
+        if (GameManager.instance.size < 0.1f)
         {
-            GameManager.instance.size = 0.125f;
+            GameManager.instance.size = 0.1f;
         }
         GameManager.instance.showText.Invoke();
         DestroyRoguelike();
@@ -187,7 +187,7 @@ public class Roguelike : MonoBehaviour
     // Functions for the speed ability
     public void SpeedOne()
     {
-        GameManager.instance.speed -= 0.5f;
+        GameManager.instance.speed -= 0.2f;
         if (GameManager.instance.speed < 1)
         {
             GameManager.instance.speed = 1;
@@ -199,7 +199,7 @@ public class Roguelike : MonoBehaviour
     }
     public void SpeedTwo()
     {
-        GameManager.instance.speed -= 1;
+        GameManager.instance.speed -= 0.4f;
         if (GameManager.instance.speed < 1)
         {
             GameManager.instance.speed = 1;
@@ -211,7 +211,7 @@ public class Roguelike : MonoBehaviour
     }
     public void SpeedThree()
     {
-        GameManager.instance.speed -= 2;
+        GameManager.instance.speed -= 0.6f;
         if (GameManager.instance.speed < 1)
         {
             GameManager.instance.speed = 1;
@@ -223,7 +223,7 @@ public class Roguelike : MonoBehaviour
     }
     public void SpeedFour()
     {
-        GameManager.instance.speed -= 3;
+        GameManager.instance.speed -= 1;
         if (GameManager.instance.speed < 1)
         {
             GameManager.instance.speed = 1;
