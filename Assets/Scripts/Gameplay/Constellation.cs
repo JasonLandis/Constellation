@@ -9,7 +9,6 @@ public class Constellation : MonoBehaviour
     public GameObject constellationStars;
     public GameObject createdStars;
     public GameObject fullConstellation;
-    public GameObject fullBackground;
 
     [Header("Cameras")]
     public Camera constellationCamera;
@@ -137,14 +136,12 @@ public class Constellation : MonoBehaviour
     public void ShowFullConstellation()
     {
         fullConstellation.SetActive(true);
-        fullBackground.SetActive(true);
     }
 
     // Button function that hides the full constellation view
     public void HideFullConstellation()
     {
         fullConstellation.SetActive(false);
-        fullBackground.SetActive(false);
     }
 
     // Moves the full camera to view the full constellation

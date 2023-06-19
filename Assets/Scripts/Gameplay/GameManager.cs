@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public Vector3 directionVector;
     [HideInInspector] public int score;
     [HideInInspector] public int limit = 0;
+    [HideInInspector] public bool finishedUniverse;
     [HideInInspector] public List<Vector3> constellationVectors;
     private bool isGameOver;
     private float countdownTime = 3;
@@ -99,6 +100,17 @@ public class GameManager : MonoBehaviour
             moveCamera.Invoke();
             DetectMeteors();
             MoveObjects();
+            if (finishedUniverse == true)
+            {
+                foreach (Transform child in map.transform)
+                {
+                    if (child.transform.position.x < -10 || child.transform.position.x > 10 || child.transform.position.y < -10 || child.transform.position.y > 10)
+                    {
+                        Destroy(child.gameObject);
+                    }
+                }
+                Debug.Log("brain");
+            }
         }
     }
 
