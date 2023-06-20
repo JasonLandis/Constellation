@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.XR;
@@ -160,10 +161,10 @@ public class GameUI : MonoBehaviour
     public void ShowText()
     {
         livesText.text = GameManager.instance.lives.ToString();
-        spreadText.text = GameManager.instance.spread.ToString();
-        sizeText.text = GameManager.instance.size.ToString();
-        speedText.text = GameManager.instance.speed.ToString();
-        scoreText.text = GameManager.instance.score.ToString();
+        spreadText.text = Math.Round(GameManager.instance.spread, 1).ToString();
+        sizeText.text = Math.Round(GameManager.instance.size, 1).ToString();
+        speedText.text = Math.Round(GameManager.instance.speed, 1).ToString();
+        scoreText.text = ((int)GameManager.instance.score).ToString();
         zoneText.text = GameManager.instance.zone.ToString();
     }
 

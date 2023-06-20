@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public string direction;
     [HideInInspector] public bool immortal;
     [HideInInspector] public Vector3 directionVector;
-    [HideInInspector] public int score;
+    [HideInInspector] public float score;
     [HideInInspector] public int limit = 0;
     [HideInInspector] public bool finishedUniverse;
     [HideInInspector] public List<Vector3> constellationVectors;
@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
     public Action moveCamera;
     public Action showRoguelike;
     public Action showDistanceUI;
+    public Action showFullConstellation;
+    public Action setFullCamera;
 
     void Awake()
     {
@@ -67,6 +69,7 @@ public class GameManager : MonoBehaviour
         {
             finished = true;
             mapTracker.transform.position = new(0f, 0f, 0f);
+            score = Mathf.Round(score);
 
             showText.Invoke();
             showDistanceUI.Invoke();
@@ -102,14 +105,25 @@ public class GameManager : MonoBehaviour
             MoveObjects();
             if (finishedUniverse == true)
             {
-                foreach (Transform child in map.transform)
-                {
-                    if (child.transform.position.x < -10 || child.transform.position.x > 10 || child.transform.position.y < -10 || child.transform.position.y > 10)
-                    {
-                        Destroy(child.gameObject);
-                    }
-                }
-                Debug.Log("brain");
+                finished = true;
+                setFullCamera.Invoke();
+                NextUniverse();
+            }
+        }
+
+        else if (finishedUniverse == true)
+        {
+            showFullConstellation.Invoke();
+        }
+    }
+
+    public void NextUniverse()
+    {
+        foreach (Transform child in map.transform)
+        {
+            if (child.transform.position.x < -10 || child.transform.position.x > 10 || child.transform.position.y < -10 || child.transform.position.y > 10)
+            {
+                Destroy(child.gameObject);
             }
         }
     }
@@ -245,5 +259,6 @@ public class GameManager : MonoBehaviour
 
         // Move the map tracker
         mapTracker.transform.Translate(speed * Time.deltaTime * Vector3.up / 10);
+        score += Time.deltaTime;
     }
 }

@@ -43,43 +43,43 @@ public class ZoneController : MonoBehaviour
     void DetectDifficulty()
     {
         // Detects difficulty level based on location within constellation map
-        if (GameManager.instance.star.transform.position.y > -55 && GameManager.instance.star.transform.position.y < 55 && GameManager.instance.star.transform.position.x > -55 && GameManager.instance.star.transform.position.x < 55)
+        if (GameManager.instance.star.transform.position.y > -35 && GameManager.instance.star.transform.position.y < 35 && GameManager.instance.star.transform.position.x > -35 && GameManager.instance.star.transform.position.x < 35)
         {
             GameManager.instance.zone = 1;
         }
-        else if (GameManager.instance.star.transform.position.y > -105 && GameManager.instance.star.transform.position.y < 105 && GameManager.instance.star.transform.position.x > -105 && GameManager.instance.star.transform.position.x < 105)
+        else if (GameManager.instance.star.transform.position.y > -65 && GameManager.instance.star.transform.position.y < 65 && GameManager.instance.star.transform.position.x > -65 && GameManager.instance.star.transform.position.x < 65)
         {
             GameManager.instance.zone = 2;
         }
-        else if (GameManager.instance.star.transform.position.y > -155 && GameManager.instance.star.transform.position.y < 155 && GameManager.instance.star.transform.position.x > -155 && GameManager.instance.star.transform.position.x < 155)
+        else if (GameManager.instance.star.transform.position.y > -95 && GameManager.instance.star.transform.position.y < 95 && GameManager.instance.star.transform.position.x > -95 && GameManager.instance.star.transform.position.x < 95)
         {
             GameManager.instance.zone = 3;
         }
-        else if (GameManager.instance.star.transform.position.y > -205 && GameManager.instance.star.transform.position.y < 205 && GameManager.instance.star.transform.position.x > -205 && GameManager.instance.star.transform.position.x < 205)
+        else if (GameManager.instance.star.transform.position.y > -125 && GameManager.instance.star.transform.position.y < 125 && GameManager.instance.star.transform.position.x > -125 && GameManager.instance.star.transform.position.x < 125)
         {
             GameManager.instance.zone = 4;
         }
-        else if (GameManager.instance.star.transform.position.y > -255 && GameManager.instance.star.transform.position.y < 255 && GameManager.instance.star.transform.position.x > -255 && GameManager.instance.star.transform.position.x < 255)
+        else if (GameManager.instance.star.transform.position.y > -155 && GameManager.instance.star.transform.position.y < 155 && GameManager.instance.star.transform.position.x > -155 && GameManager.instance.star.transform.position.x < 155)
         {
             GameManager.instance.zone = 5;
         }
-        else if (GameManager.instance.star.transform.position.y > -305 && GameManager.instance.star.transform.position.y < 305 && GameManager.instance.star.transform.position.x > -305 && GameManager.instance.star.transform.position.x < 305)
+        else if (GameManager.instance.star.transform.position.y > -185 && GameManager.instance.star.transform.position.y < 185 && GameManager.instance.star.transform.position.x > -185 && GameManager.instance.star.transform.position.x < 185)
         {
             GameManager.instance.zone = 6;
         }
-        else if (GameManager.instance.star.transform.position.y > -355 && GameManager.instance.star.transform.position.y < 355 && GameManager.instance.star.transform.position.x > -355 && GameManager.instance.star.transform.position.x < 355)
+        else if (GameManager.instance.star.transform.position.y > -215 && GameManager.instance.star.transform.position.y < 215 && GameManager.instance.star.transform.position.x > -215 && GameManager.instance.star.transform.position.x < 215)
         {
             GameManager.instance.zone = 7;
         }
-        else if (GameManager.instance.star.transform.position.y > -405 && GameManager.instance.star.transform.position.y < 405 && GameManager.instance.star.transform.position.x > -405 && GameManager.instance.star.transform.position.x < 405)
+        else if (GameManager.instance.star.transform.position.y > -245 && GameManager.instance.star.transform.position.y < 245 && GameManager.instance.star.transform.position.x > -245 && GameManager.instance.star.transform.position.x < 245)
         {
             GameManager.instance.zone = 8;
         }
-        else if (GameManager.instance.star.transform.position.y > -455 && GameManager.instance.star.transform.position.y < 455 && GameManager.instance.star.transform.position.x > -455 && GameManager.instance.star.transform.position.x < 455)
+        else if (GameManager.instance.star.transform.position.y > -275 && GameManager.instance.star.transform.position.y < 275 && GameManager.instance.star.transform.position.x > -275 && GameManager.instance.star.transform.position.x < 275)
         {
             GameManager.instance.zone = 9;
         }
-        else if (GameManager.instance.star.transform.position.y > -505 && GameManager.instance.star.transform.position.y < 505 && GameManager.instance.star.transform.position.x > -505 && GameManager.instance.star.transform.position.x < 505)
+        else if (GameManager.instance.star.transform.position.y > -305 && GameManager.instance.star.transform.position.y < 305 && GameManager.instance.star.transform.position.x > -305 && GameManager.instance.star.transform.position.x < 305)
         {
             GameManager.instance.zone = 10;
         }
@@ -314,7 +314,7 @@ public class ZoneController : MonoBehaviour
         }
         if (GameManager.instance.spread < 10)
         {
-            GameManager.instance.spread += 1;
+            GameManager.instance.spread += 0.5f;
             if (GameManager.instance.spread > 10)
             {
                 GameManager.instance.spread = 10;
@@ -329,7 +329,7 @@ public class ZoneController : MonoBehaviour
         }
         if (GameManager.instance.size > 0.1f)
         {
-            GameManager.instance.size -= 0.5f;
+            GameManager.instance.size -= 0.3f;
             if (GameManager.instance.size < 0.1f)
             {
                 GameManager.instance.size = 0.1f;
@@ -353,11 +353,11 @@ public class ZoneController : MonoBehaviour
         }
         if (GameManager.instance.spread > 0 && maxSpreadZone < GameManager.instance.zone)
         {
-            GameManager.instance.spread -= 1;
+            GameManager.instance.spread -= 0.5f;
         }
         if (minSizeZone < GameManager.instance.zone)
         {
-            GameManager.instance.size += 0.5f;
+            GameManager.instance.size += 0.3f;
         }
     }
 }
