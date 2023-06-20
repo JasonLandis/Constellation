@@ -15,6 +15,11 @@ public class GameManager : MonoBehaviour
     public float speed = 10;
     public int zone = 1;
 
+    [Header("Universe Variables")]
+    public float sizeChange;
+    public float spreadChange;
+    public float speedChange;
+
     [Header("Objects")]
     public GameObject player;
     public GameObject meteor;
@@ -60,6 +65,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        CreateUniverseStats();
         Time.timeScale = 1f;
     }
 
@@ -117,6 +123,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void CreateUniverseStats()
+    {
+        sizeChange = UnityEngine.Random.Range(2, 6) / 10f;
+        spreadChange = UnityEngine.Random.Range(3, 8) / 10f;
+        speedChange = UnityEngine.Random.Range(7, 13) / 10f;
+    }
+
     public void NextUniverse()
     {
         foreach (Transform child in map.transform)
@@ -151,6 +164,12 @@ public class GameManager : MonoBehaviour
                 float y = UnityEngine.Random.Range(j, j + spread);
 
                 meteor.transform.localScale = new Vector3(size, size, 1);
+
+                float red = UnityEngine.Random.Range(100, 255) / 255f;
+                float green = UnityEngine.Random.Range(100, 255) / 255f;
+                float blue = UnityEngine.Random.Range(100, 255) / 255f;
+
+                meteor.GetComponent<SpriteRenderer>().color = new(red, green, blue, 1);
                 Instantiate(meteor, new(x, y, 0), Quaternion.identity, map.transform);
             }
         }
@@ -259,6 +278,6 @@ public class GameManager : MonoBehaviour
 
         // Move the map tracker
         mapTracker.transform.Translate(speed * Time.deltaTime * Vector3.up / 10);
-        score += Time.deltaTime;
+        score += speed * Time.deltaTime / 10;
     }
 }

@@ -299,7 +299,7 @@ public class ZoneController : MonoBehaviour
     {
         if (GameManager.instance.speed > 1)
         {
-            GameManager.instance.speed -= 1;
+            GameManager.instance.speed -= GameManager.instance.speedChange;
             if (GameManager.instance.speed < 1)
             {
                 GameManager.instance.speed = 1;
@@ -314,7 +314,7 @@ public class ZoneController : MonoBehaviour
         }
         if (GameManager.instance.spread < 10)
         {
-            GameManager.instance.spread += 0.5f;
+            GameManager.instance.spread += GameManager.instance.spreadChange;
             if (GameManager.instance.spread > 10)
             {
                 GameManager.instance.spread = 10;
@@ -327,12 +327,12 @@ public class ZoneController : MonoBehaviour
                 maxSpreadZone = GameManager.instance.zone + 1;
             }
         }
-        if (GameManager.instance.size > 0.1f)
+        if (GameManager.instance.size > 0.2f)
         {
-            GameManager.instance.size -= 0.3f;
-            if (GameManager.instance.size < 0.1f)
+            GameManager.instance.size -= GameManager.instance.sizeChange;
+            if (GameManager.instance.size < 0.2f)
             {
-                GameManager.instance.size = 0.1f;
+                GameManager.instance.size = 0.2f;
             }
         }
         else
@@ -349,15 +349,15 @@ public class ZoneController : MonoBehaviour
     {
         if (minSpeedZone < GameManager.instance.zone)
         {
-            GameManager.instance.speed += 1;
+            GameManager.instance.speed += GameManager.instance.speedChange;
         }
         if (GameManager.instance.spread > 0 && maxSpreadZone < GameManager.instance.zone)
         {
-            GameManager.instance.spread -= 0.5f;
+            GameManager.instance.spread -= GameManager.instance.spreadChange;
         }
         if (minSizeZone < GameManager.instance.zone)
         {
-            GameManager.instance.size += 0.3f;
+            GameManager.instance.size += GameManager.instance.sizeChange;
         }
     }
 }

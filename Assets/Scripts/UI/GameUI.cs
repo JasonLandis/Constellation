@@ -16,6 +16,9 @@ public class GameUI : MonoBehaviour
     public TextMeshProUGUI speedText;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI zoneText;
+    public TextMeshProUGUI sizeChangeText;
+    public TextMeshProUGUI spreadChangeText;
+    public TextMeshProUGUI speedChangeText;
 
     void Start()
     {
@@ -166,6 +169,9 @@ public class GameUI : MonoBehaviour
         speedText.text = Math.Round(GameManager.instance.speed, 1).ToString();
         scoreText.text = ((int)GameManager.instance.score).ToString();
         zoneText.text = GameManager.instance.zone.ToString();
+        sizeChangeText.text = "+ " + GameManager.instance.sizeChange.ToString();
+        spreadChangeText.text = "- " + GameManager.instance.spreadChange.ToString();
+        speedChangeText.text = "+ " + GameManager.instance.speedChange.ToString();
     }
 
     // Set the spread UI to active

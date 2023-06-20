@@ -52,6 +52,12 @@ public class Constellation : MonoBehaviour
         {
             for (int j = -300; j < 300; j += 10)
             {
+                float red = Random.Range(100, 255) / 255f;
+                float green = Random.Range(100, 255) / 255f;
+                float blue = Random.Range(100, 255) / 255f;
+
+                constellationStar.GetComponent<SpriteRenderer>().color = new(red, green, blue, 1);
+
                 if (i > -35 && i < 35 && j > -35 && j < 35)
                 {
                     rand = Random.Range(0, 5);
