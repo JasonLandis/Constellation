@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 // I am Matthew. I leave my easter egg here. I hope you enjoy it. :) 
@@ -36,6 +37,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public float score;
     [HideInInspector] public int limit = 0;
     [HideInInspector] public bool finishedUniverse;
+    [HideInInspector] public bool destroyMeteors;
     [HideInInspector] public List<Vector3> constellationVectors;
     private bool isGameOver;
     private float countdownTime = 3;
@@ -48,7 +50,7 @@ public class GameManager : MonoBehaviour
     public Action moveCamera;
     public Action showRoguelike;
     public Action showDistanceUI;
-    public Action showFullConstellation;
+    public Action fullCameraTransition;
     public Action setFullCamera;
 
     void Awake()
@@ -77,6 +79,7 @@ public class GameManager : MonoBehaviour
             mapTracker.transform.position = new(0f, 0f, 0f);
             score = Mathf.Round(score);
 
+            player.SetActive(false);
             showText.Invoke();
             showDistanceUI.Invoke();
             createStar.Invoke();
@@ -105,21 +108,16 @@ public class GameManager : MonoBehaviour
         {
             ImmortalCheck();
             zoneDetection.Invoke();
+            DestroyMeteors();
             showText.Invoke();
             moveCamera.Invoke();
             DetectMeteors();
             MoveObjects();
-            if (finishedUniverse == true)
-            {
-                finished = true;
-                setFullCamera.Invoke();
-                NextUniverse();
-            }
         }
 
         else if (finishedUniverse == true)
         {
-            showFullConstellation.Invoke();
+            fullCameraTransition.Invoke();
         }
     }
 
@@ -130,13 +128,23 @@ public class GameManager : MonoBehaviour
         speedChange = UnityEngine.Random.Range(7, 13) / 10f;
     }
 
-    public void NextUniverse()
+    public void DestroyMeteors()
     {
-        foreach (Transform child in map.transform)
+        if (destroyMeteors == true)
         {
-            if (child.transform.position.x < -10 || child.transform.position.x > 10 || child.transform.position.y < -10 || child.transform.position.y > 10)
+            foreach (Transform child in map.transform)
             {
-                Destroy(child.gameObject);
+                if (child.transform.position.x < -10 || child.transform.position.x > 10 || child.transform.position.y < -10 || child.transform.position.y > 10)
+                {
+                    Destroy(child.gameObject);
+                }
+            }
+            if (finishedUniverse == true)
+            {
+                player.SetActive(false);
+                createStar();
+                setFullCamera.Invoke();
+                finished = true;
             }
         }
     }

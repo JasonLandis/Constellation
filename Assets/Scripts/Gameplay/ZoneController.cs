@@ -13,6 +13,8 @@ public class ZoneController : MonoBehaviour
     public GameObject zone8;
     public GameObject zone9;
     public GameObject zone10;
+    public GameObject zoneLine;
+    public GameObject zone10Extended;
 
     [Header("Background Zones")]
     public GameObject backgroundZone1;
@@ -25,6 +27,8 @@ public class ZoneController : MonoBehaviour
     public GameObject backgroundZone8;
     public GameObject backgroundZone9;
     public GameObject backgroundZone10;
+    public GameObject backgroundZoneLine;
+    public GameObject backgroundZone10Extended;
 
 
     private int value = 0; // Used for the previous zone the star was in
@@ -79,9 +83,13 @@ public class ZoneController : MonoBehaviour
         {
             GameManager.instance.zone = 9;
         }
-        else if (GameManager.instance.star.transform.position.y > -305 && GameManager.instance.star.transform.position.y < 305 && GameManager.instance.star.transform.position.x > -305 && GameManager.instance.star.transform.position.x < 305)
+        else if (GameManager.instance.star.transform.position.y > -302.5 && GameManager.instance.star.transform.position.y < 302.5 && GameManager.instance.star.transform.position.x > -302.5 && GameManager.instance.star.transform.position.x < 302.5)
         {
             GameManager.instance.zone = 10;
+        }
+        else if (GameManager.instance.star.transform.position.y > -305 && GameManager.instance.star.transform.position.y < 305 && GameManager.instance.star.transform.position.x > -305 && GameManager.instance.star.transform.position.x < 305)
+        {
+            GameManager.instance.destroyMeteors = true;
         }
         else
         {
@@ -147,6 +155,8 @@ public class ZoneController : MonoBehaviour
         backgroundZone8.GetComponent<SpriteRenderer>().color = new(red * 0.65f, green * 0.65f, blue * 0.65f, 1);
         backgroundZone9.GetComponent<SpriteRenderer>().color = new(red * 0.60f, green * 0.60f, blue * 0.60f, 1);
         backgroundZone10.GetComponent<SpriteRenderer>().color = new(red * 0.55f, green * 0.55f, blue * 0.55f, 1);
+        backgroundZoneLine.GetComponent<SpriteRenderer>().color = new(red * 0.65f, green * 0.65f, blue * 0.65f, 1);
+        backgroundZone10Extended.GetComponent<SpriteRenderer>().color = new(red * 0.55f, green * 0.55f, blue * 0.55f, 1);
 
         zone1.GetComponent<SpriteRenderer>().color = new(red, green, blue, 1);
         zone2.GetComponent<SpriteRenderer>().color = new(red * 0.95f, green * 0.95f, blue * 0.95f, 1);
@@ -158,6 +168,8 @@ public class ZoneController : MonoBehaviour
         zone8.GetComponent<SpriteRenderer>().color = new(red * 0.65f, green * 0.65f, blue * 0.65f, 1);
         zone9.GetComponent<SpriteRenderer>().color = new(red * 0.60f, green * 0.60f, blue * 0.60f, 1);
         zone10.GetComponent<SpriteRenderer>().color = new(red * 0.55f, green * 0.55f, blue * 0.55f, 1);
+        zoneLine.GetComponent<SpriteRenderer>().color = new(red * 0.65f, green * 0.65f, blue * 0.65f, 1);
+        zone10Extended.GetComponent<SpriteRenderer>().color = new(red * 0.55f, green * 0.55f, blue * 0.55f, 1);
     }
 
     // Sets the difficulty depending on the zone

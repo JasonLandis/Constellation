@@ -1,7 +1,6 @@
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.XR;
 
 public class GameUI : MonoBehaviour
 {
@@ -79,6 +78,7 @@ public class GameUI : MonoBehaviour
     // Button functions for map length
     public void Ten()
     {
+        GameManager.instance.player.SetActive(true);
         GameManager.instance.mapLength = 10;
         GameManager.instance.limit = 10;
         GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
@@ -86,6 +86,7 @@ public class GameUI : MonoBehaviour
     }
     public void Twenty()
     {
+        GameManager.instance.player.SetActive(true);
         GameManager.instance.mapLength = 20;
         GameManager.instance.limit = 20;
         GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
@@ -93,6 +94,7 @@ public class GameUI : MonoBehaviour
     }
     public void Thirty()
     {
+        GameManager.instance.player.SetActive(true);
         GameManager.instance.mapLength = 30;
         GameManager.instance.limit = 30;
         GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
@@ -100,6 +102,7 @@ public class GameUI : MonoBehaviour
     }
     public void Forty()
     {
+        GameManager.instance.player.SetActive(true);
         GameManager.instance.mapLength = 40;
         GameManager.instance.limit = 40;
         GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
@@ -107,6 +110,7 @@ public class GameUI : MonoBehaviour
     }
     public void Fifty()
     {
+        GameManager.instance.player.SetActive(true);
         GameManager.instance.mapLength = 50;
         GameManager.instance.limit = 50;
         GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
@@ -114,6 +118,7 @@ public class GameUI : MonoBehaviour
     }
     public void Sixty()
     {
+        GameManager.instance.player.SetActive(true);
         GameManager.instance.mapLength = 60;
         GameManager.instance.limit = 60;
         GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
@@ -121,6 +126,7 @@ public class GameUI : MonoBehaviour
     }
     public void Seventy()
     {
+        GameManager.instance.player.SetActive(true);
         GameManager.instance.mapLength = 70;
         GameManager.instance.limit = 70;
         GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
@@ -128,6 +134,7 @@ public class GameUI : MonoBehaviour
     }
     public void Eighty()
     {
+        GameManager.instance.player.SetActive(true);
         GameManager.instance.mapLength = 80;
         GameManager.instance.limit = 80;
         GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
@@ -135,6 +142,7 @@ public class GameUI : MonoBehaviour
     }
     public void Ninety()
     {
+        GameManager.instance.player.SetActive(true);
         GameManager.instance.mapLength = 90;
         GameManager.instance.limit = 90;
         GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
@@ -142,6 +150,7 @@ public class GameUI : MonoBehaviour
     }
     public void Hundred()
     {
+        GameManager.instance.player.SetActive(true);
         GameManager.instance.mapLength = 100;
         GameManager.instance.limit = 100;
         GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
