@@ -15,6 +15,7 @@ public class GameUI : MonoBehaviour
     public TextMeshProUGUI speedText;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI zoneText;
+    public TextMeshProUGUI universeTokensText;
     public TextMeshProUGUI sizeChangeText;
     public TextMeshProUGUI spreadChangeText;
     public TextMeshProUGUI speedChangeText;
@@ -22,6 +23,8 @@ public class GameUI : MonoBehaviour
     void Start()
     {
         GameManager.instance.showText += ShowText;
+        GameManager.instance.showStatText += ShowStatText;
+        GameManager.instance.showUniverseTokensText += ShowUniverseTokensText;
         GameManager.instance.showDistanceUI += ShowDistanceUI;
     }
 
@@ -178,12 +181,19 @@ public class GameUI : MonoBehaviour
         speedText.text = Math.Round(GameManager.instance.speed, 1).ToString();
         scoreText.text = ((int)GameManager.instance.score).ToString();
         zoneText.text = GameManager.instance.zone.ToString();
+    }
+    public void ShowStatText()
+    {
         sizeChangeText.text = "+ " + GameManager.instance.sizeChange.ToString();
         spreadChangeText.text = "- " + GameManager.instance.spreadChange.ToString();
         speedChangeText.text = "+ " + GameManager.instance.speedChange.ToString();
     }
+    public void ShowUniverseTokensText()
+    {
+        universeTokensText.text = GameManager.instance.universeTokens.ToString();
+    }
 
-    // Set the spread UI to active
+    // Set the distance UI to active
     public void ShowDistanceUI()
     {
         directionUI.SetActive(true);

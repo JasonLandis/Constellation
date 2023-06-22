@@ -9,6 +9,7 @@ public class Constellation : MonoBehaviour
     public GameObject constellationStars;
     public GameObject createdStars;
     public GameObject fullConstellation;
+    public GameObject endConstellation;
 
     [Header("Cameras")]
     public Camera constellationCamera;
@@ -23,25 +24,11 @@ public class Constellation : MonoBehaviour
     void Start()
     {
         GenerateConstellation();
-        GameManager.instance.createStar += CreateNewStar;
-        GameManager.instance.moveCamera += MoveConstellationCamera;
+        GameManager.instance.createNewStar += CreateNewStar;
+        GameManager.instance.moveConstellationCamera += MoveConstellationCamera;
         GameManager.instance.setFullCamera += SetFullCamera;
         GameManager.instance.fullCameraTransition += FullCameraTransition;
-    }
-
-    public void SetFullCamera()
-    {
-        ShowFullConstellation();
-        constellationStars.SetActive(false);
-        fullCamera.transform.position = new(0, 0, -10);
-        fullCamera.orthographicSize = 20;
-    }
-    public void FullCameraTransition()
-    {
-        if (fullCamera.orthographicSize < 305)
-        {
-            fullCamera.orthographicSize += (Time.deltaTime * 100);
-        }
+        GameManager.instance.resetConstellation += ResetConstellation;
     }
 
     // Generates stars on the constellation map
@@ -60,7 +47,7 @@ public class Constellation : MonoBehaviour
 
                 if (i > -35 && i < 35 && j > -35 && j < 35)
                 {
-                    rand = Random.Range(0, 4);
+                    rand = Random.Range(0, 6);
                     if (rand == 0)
                     {
                         if (i == 0 && j == 0)
@@ -76,7 +63,7 @@ public class Constellation : MonoBehaviour
                 }
                 else if (i > -65 && i < 65 && j > -65 && j < 65)
                 {
-                    rand = Random.Range(0, 5);
+                    rand = Random.Range(0, 7);
                     if (rand == 0)
                     {
                         Instantiate(constellationStar, new(i, j, 0), Quaternion.identity, constellationStars.transform);
@@ -85,7 +72,7 @@ public class Constellation : MonoBehaviour
                 }
                 else if (i > -95 && i < 95 && j > -95 && j < 95)
                 {
-                    rand = Random.Range(0, 6);
+                    rand = Random.Range(0, 8);
                     if (rand == 0)
                     {
                         Instantiate(constellationStar, new(i, j, 0), Quaternion.identity, constellationStars.transform);
@@ -94,7 +81,7 @@ public class Constellation : MonoBehaviour
                 }
                 else if (i > -125 && i < 125 && j > -125 && j < 125)
                 {
-                    rand = Random.Range(0, 7);
+                    rand = Random.Range(0, 9);
                     if (rand == 0)
                     {
                         Instantiate(constellationStar, new(i, j, 0), Quaternion.identity, constellationStars.transform);
@@ -103,7 +90,7 @@ public class Constellation : MonoBehaviour
                 }
                 else if (i > -155 && i < 155 && j > -155 && j < 155)
                 {
-                    rand = Random.Range(0, 8);
+                    rand = Random.Range(0, 10);
                     if (rand == 0)
                     {
                         Instantiate(constellationStar, new(i, j, 0), Quaternion.identity, constellationStars.transform);
@@ -112,7 +99,7 @@ public class Constellation : MonoBehaviour
                 }
                 else if (i > -185 && i < 185 && j > -185 && j < 185)
                 {
-                    rand = Random.Range(0, 9);
+                    rand = Random.Range(0, 11);
                     if (rand == 0)
                     {
                         Instantiate(constellationStar, new(i, j, 0), Quaternion.identity, constellationStars.transform);
@@ -121,7 +108,7 @@ public class Constellation : MonoBehaviour
                 }
                 else if (i > -215 && i < 215 && j > -215 && j < 215)
                 {
-                    rand = Random.Range(0, 10);
+                    rand = Random.Range(0, 12);
                     if (rand == 0)
                     {
                         Instantiate(constellationStar, new(i, j, 0), Quaternion.identity, constellationStars.transform);
@@ -130,7 +117,7 @@ public class Constellation : MonoBehaviour
                 }
                 else if (i > -245 && i < 245 && j > -245 && j < 245)
                 {
-                    rand = Random.Range(0, 11);
+                    rand = Random.Range(0, 13);
                     if (rand == 0)
                     {
                         Instantiate(constellationStar, new(i, j, 0), Quaternion.identity, constellationStars.transform);
@@ -139,7 +126,7 @@ public class Constellation : MonoBehaviour
                 }
                 else if (i > -275 && i < 275 && j > -275 && j < 275)
                 {
-                    rand = Random.Range(0, 12);
+                    rand = Random.Range(0, 14);
                     if (rand == 0)
                     {
                         Instantiate(constellationStar, new(i, j, 0), Quaternion.identity, constellationStars.transform);
@@ -148,7 +135,7 @@ public class Constellation : MonoBehaviour
                 }
                 else if (i > -300 && i < 300 && j > -300 && j < 300)
                 {
-                    rand = Random.Range(0, 13);
+                    rand = Random.Range(0, 15);
                     if (rand == 0)
                     {
                         Instantiate(constellationStar, new(i, j, 0), Quaternion.identity, constellationStars.transform);
@@ -159,16 +146,10 @@ public class Constellation : MonoBehaviour
         }
     }
 
-    // Button function that shows the full constellation view
-    public void ShowFullConstellation()
+    // Moves the constellation camera with the star
+    private void MoveConstellationCamera()
     {
-        fullConstellation.SetActive(true);
-    }
-
-    // Button function that hides the full constellation view
-    public void HideFullConstellation()
-    {
-        fullConstellation.SetActive(false);
+        constellationCamera.transform.position = new(GameManager.instance.star.transform.position.x, GameManager.instance.star.transform.position.y, -10);
     }
 
     // Moves the full camera to view the full constellation
@@ -286,9 +267,50 @@ public class Constellation : MonoBehaviour
         GameManager.instance.star.GetComponent<LineRenderer>().SetPosition(GameManager.instance.star.GetComponent<LineRenderer>().positionCount - 1, GameManager.instance.star.transform.position);
     }
 
-    // Moves the constellation camera with the star
-    private void MoveConstellationCamera()
+    // Button functions for viewing the full constellation
+    public void ShowFullConstellation()
     {
-        constellationCamera.transform.position = new(GameManager.instance.star.transform.position.x, GameManager.instance.star.transform.position.y, -10);
+        fullConstellation.SetActive(true);
+    }
+    public void HideFullConstellation()
+    {
+        fullConstellation.SetActive(false);
+    }
+
+    // Functions for resizing the full camera for full constellation preview at end of game
+    public void SetFullCamera()
+    {
+        endConstellation.SetActive(true);
+        constellationStars.SetActive(false);
+        fullCamera.transform.position = constellationCamera.transform.position;
+        fullCamera.orthographicSize = 20;
+    }
+    public void FullCameraTransition()
+    {
+        fullCamera.transform.position = Vector3.MoveTowards(fullCamera.transform.position, new(0, 0, -10), 0.3f);
+        if (fullCamera.orthographicSize < 300)
+        {
+            fullCamera.orthographicSize += Time.deltaTime * 80;
+        }
+    }
+
+    // Resets the constellation components on universe reset
+    public void ResetConstellation()
+    {
+        foreach (Transform star in constellationStars.transform)
+        {
+            Destroy(star.gameObject);
+        }
+        vectors.Clear();
+        smallestX = 0;
+        largestX = 0;
+        smallestY = 0;
+        largestY = 0;
+        constellationCamera.transform.position = new(0, 0, -10);
+        fullCamera.transform.position = new(0, 0, -10);
+        fullCamera.orthographicSize = 20;
+        GenerateConstellation();
+        constellationStars.SetActive(true);
+        endConstellation.SetActive(false);
     }
 }

@@ -5,7 +5,7 @@ public class Roguelike : MonoBehaviour
 {
     [Header("Objects")]
     public GameObject roguelike;
-    public GameObject arrows;
+    public GameObject direction;
 
     [Header("Containers")]
     public GameObject item1;
@@ -57,7 +57,7 @@ public class Roguelike : MonoBehaviour
         GameManager.instance.showText.Invoke();
         DestroyRoguelike();
         roguelike.SetActive(false);
-        arrows.SetActive(true);
+        direction.SetActive(true);
     }
     public void HeartTwo()
     {
@@ -65,7 +65,7 @@ public class Roguelike : MonoBehaviour
         GameManager.instance.showText.Invoke();
         DestroyRoguelike();
         roguelike.SetActive(false);
-        arrows.SetActive(true);
+        direction.SetActive(true);
     }
     public void HeartThree()
     {
@@ -73,7 +73,7 @@ public class Roguelike : MonoBehaviour
         GameManager.instance.showText.Invoke();
         DestroyRoguelike();
         roguelike.SetActive(false);
-        arrows.SetActive(true);
+        direction.SetActive(true);
     }
     public void HeartFour()
     {
@@ -81,7 +81,7 @@ public class Roguelike : MonoBehaviour
         GameManager.instance.showText.Invoke();
         DestroyRoguelike();
         roguelike.SetActive(false);
-        arrows.SetActive(true);
+        direction.SetActive(true);
     }
 
     // Functions for the size ability
@@ -95,7 +95,7 @@ public class Roguelike : MonoBehaviour
         GameManager.instance.showText.Invoke();
         DestroyRoguelike();
         roguelike.SetActive(false);
-        arrows.SetActive(true);
+        direction.SetActive(true);
     }
     public void SizeTwo()
     {
@@ -107,7 +107,7 @@ public class Roguelike : MonoBehaviour
         GameManager.instance.showText.Invoke();
         DestroyRoguelike();
         roguelike.SetActive(false);
-        arrows.SetActive(true);
+        direction.SetActive(true);
     }
     public void SizeThree()
     {
@@ -119,7 +119,7 @@ public class Roguelike : MonoBehaviour
         GameManager.instance.showText.Invoke();
         DestroyRoguelike();
         roguelike.SetActive(false);
-        arrows.SetActive(true);
+        direction.SetActive(true);
     }
     public void SizeFour()
     {
@@ -131,7 +131,7 @@ public class Roguelike : MonoBehaviour
         GameManager.instance.showText.Invoke();
         DestroyRoguelike();
         roguelike.SetActive(false);
-        arrows.SetActive(true);
+        direction.SetActive(true);
     }
 
     // Functions for the spread ability
@@ -145,7 +145,7 @@ public class Roguelike : MonoBehaviour
         GameManager.instance.showText.Invoke();
         DestroyRoguelike();
         roguelike.SetActive(false);
-        arrows.SetActive(true);
+        direction.SetActive(true);
     }
     public void SpreadTwo()
     {
@@ -157,7 +157,7 @@ public class Roguelike : MonoBehaviour
         GameManager.instance.showText.Invoke();
         DestroyRoguelike();
         roguelike.SetActive(false);
-        arrows.SetActive(true);
+        direction.SetActive(true);
     }
     public void SpreadThree()
     {
@@ -169,7 +169,7 @@ public class Roguelike : MonoBehaviour
         GameManager.instance.showText.Invoke();
         DestroyRoguelike();
         roguelike.SetActive(false);
-        arrows.SetActive(true);
+        direction.SetActive(true);
     }
     public void SpreadFour()
     {
@@ -181,7 +181,7 @@ public class Roguelike : MonoBehaviour
         GameManager.instance.showText.Invoke();
         DestroyRoguelike();
         roguelike.SetActive(false);
-        arrows.SetActive(true);
+        direction.SetActive(true);
     }
 
     // Functions for the speed ability
@@ -195,7 +195,7 @@ public class Roguelike : MonoBehaviour
         GameManager.instance.showText.Invoke();
         DestroyRoguelike();
         roguelike.SetActive(false);
-        arrows.SetActive(true);
+        direction.SetActive(true);
     }
     public void SpeedTwo()
     {
@@ -207,7 +207,7 @@ public class Roguelike : MonoBehaviour
         GameManager.instance.showText.Invoke();
         DestroyRoguelike();
         roguelike.SetActive(false);
-        arrows.SetActive(true);
+        direction.SetActive(true);
     }
     public void SpeedThree()
     {
@@ -219,7 +219,7 @@ public class Roguelike : MonoBehaviour
         GameManager.instance.showText.Invoke();
         DestroyRoguelike();
         roguelike.SetActive(false);
-        arrows.SetActive(true);
+        direction.SetActive(true);
     }
     public void SpeedFour()
     {
@@ -231,7 +231,7 @@ public class Roguelike : MonoBehaviour
         GameManager.instance.showText.Invoke();
         DestroyRoguelike();
         roguelike.SetActive(false);
-        arrows.SetActive(true);
+        direction.SetActive(true);
     }
 
     // Show roguelike feature
@@ -280,7 +280,7 @@ public class Roguelike : MonoBehaviour
             }
         }
 
-        arrows.SetActive(false);
+        direction.SetActive(false);
         roguelike.SetActive(true);
     }
 

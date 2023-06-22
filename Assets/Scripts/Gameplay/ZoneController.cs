@@ -13,8 +13,6 @@ public class ZoneController : MonoBehaviour
     public GameObject zone8;
     public GameObject zone9;
     public GameObject zone10;
-    public GameObject zoneLine;
-    public GameObject zone10Extended;
 
     [Header("Background Zones")]
     public GameObject backgroundZone1;
@@ -27,8 +25,6 @@ public class ZoneController : MonoBehaviour
     public GameObject backgroundZone8;
     public GameObject backgroundZone9;
     public GameObject backgroundZone10;
-    public GameObject backgroundZoneLine;
-    public GameObject backgroundZone10Extended;
 
 
     private int value = 0; // Used for the previous zone the star was in
@@ -38,67 +34,14 @@ public class ZoneController : MonoBehaviour
 
     void Start()
     {
-        CreateZones();
+        CreateZoneColors();
         GameManager.instance.zoneDetection += DetectDifficulty;
         GameManager.instance.zoneDetection += SetDifficulty;
+        GameManager.instance.resetZones += ResetZones;
     }
 
-    // Detects which zone the star is in
-    void DetectDifficulty()
-    {
-        // Detects difficulty level based on location within constellation map
-        if (GameManager.instance.star.transform.position.y > -35 && GameManager.instance.star.transform.position.y < 35 && GameManager.instance.star.transform.position.x > -35 && GameManager.instance.star.transform.position.x < 35)
-        {
-            GameManager.instance.zone = 1;
-        }
-        else if (GameManager.instance.star.transform.position.y > -65 && GameManager.instance.star.transform.position.y < 65 && GameManager.instance.star.transform.position.x > -65 && GameManager.instance.star.transform.position.x < 65)
-        {
-            GameManager.instance.zone = 2;
-        }
-        else if (GameManager.instance.star.transform.position.y > -95 && GameManager.instance.star.transform.position.y < 95 && GameManager.instance.star.transform.position.x > -95 && GameManager.instance.star.transform.position.x < 95)
-        {
-            GameManager.instance.zone = 3;
-        }
-        else if (GameManager.instance.star.transform.position.y > -125 && GameManager.instance.star.transform.position.y < 125 && GameManager.instance.star.transform.position.x > -125 && GameManager.instance.star.transform.position.x < 125)
-        {
-            GameManager.instance.zone = 4;
-        }
-        else if (GameManager.instance.star.transform.position.y > -155 && GameManager.instance.star.transform.position.y < 155 && GameManager.instance.star.transform.position.x > -155 && GameManager.instance.star.transform.position.x < 155)
-        {
-            GameManager.instance.zone = 5;
-        }
-        else if (GameManager.instance.star.transform.position.y > -185 && GameManager.instance.star.transform.position.y < 185 && GameManager.instance.star.transform.position.x > -185 && GameManager.instance.star.transform.position.x < 185)
-        {
-            GameManager.instance.zone = 6;
-        }
-        else if (GameManager.instance.star.transform.position.y > -215 && GameManager.instance.star.transform.position.y < 215 && GameManager.instance.star.transform.position.x > -215 && GameManager.instance.star.transform.position.x < 215)
-        {
-            GameManager.instance.zone = 7;
-        }
-        else if (GameManager.instance.star.transform.position.y > -245 && GameManager.instance.star.transform.position.y < 245 && GameManager.instance.star.transform.position.x > -245 && GameManager.instance.star.transform.position.x < 245)
-        {
-            GameManager.instance.zone = 8;
-        }
-        else if (GameManager.instance.star.transform.position.y > -275 && GameManager.instance.star.transform.position.y < 275 && GameManager.instance.star.transform.position.x > -275 && GameManager.instance.star.transform.position.x < 275)
-        {
-            GameManager.instance.zone = 9;
-        }
-        else if (GameManager.instance.star.transform.position.y > -302.5 && GameManager.instance.star.transform.position.y < 302.5 && GameManager.instance.star.transform.position.x > -302.5 && GameManager.instance.star.transform.position.x < 302.5)
-        {
-            GameManager.instance.zone = 10;
-        }
-        else if (GameManager.instance.star.transform.position.y > -305 && GameManager.instance.star.transform.position.y < 305 && GameManager.instance.star.transform.position.x > -305 && GameManager.instance.star.transform.position.x < 305)
-        {
-            GameManager.instance.destroyMeteors = true;
-        }
-        else
-        {
-            GameManager.instance.finishedUniverse = true;
-;       }
-    }
-
-    // Creates zone colors
-    void CreateZones()
+    // Create random zone colors
+    void CreateZoneColors()
     {
         float red = Random.Range(57, 73);
         float green = Random.Range(57, 73);
@@ -155,8 +98,6 @@ public class ZoneController : MonoBehaviour
         backgroundZone8.GetComponent<SpriteRenderer>().color = new(red * 0.65f, green * 0.65f, blue * 0.65f, 1);
         backgroundZone9.GetComponent<SpriteRenderer>().color = new(red * 0.60f, green * 0.60f, blue * 0.60f, 1);
         backgroundZone10.GetComponent<SpriteRenderer>().color = new(red * 0.55f, green * 0.55f, blue * 0.55f, 1);
-        backgroundZoneLine.GetComponent<SpriteRenderer>().color = new(red * 0.65f, green * 0.65f, blue * 0.65f, 1);
-        backgroundZone10Extended.GetComponent<SpriteRenderer>().color = new(red * 0.55f, green * 0.55f, blue * 0.55f, 1);
 
         zone1.GetComponent<SpriteRenderer>().color = new(red, green, blue, 1);
         zone2.GetComponent<SpriteRenderer>().color = new(red * 0.95f, green * 0.95f, blue * 0.95f, 1);
@@ -168,8 +109,60 @@ public class ZoneController : MonoBehaviour
         zone8.GetComponent<SpriteRenderer>().color = new(red * 0.65f, green * 0.65f, blue * 0.65f, 1);
         zone9.GetComponent<SpriteRenderer>().color = new(red * 0.60f, green * 0.60f, blue * 0.60f, 1);
         zone10.GetComponent<SpriteRenderer>().color = new(red * 0.55f, green * 0.55f, blue * 0.55f, 1);
-        zoneLine.GetComponent<SpriteRenderer>().color = new(red * 0.65f, green * 0.65f, blue * 0.65f, 1);
-        zone10Extended.GetComponent<SpriteRenderer>().color = new(red * 0.55f, green * 0.55f, blue * 0.55f, 1);
+    }
+
+    // Detects which zone the star is in
+    void DetectDifficulty()
+    {
+        // Detects difficulty level based on location within constellation map
+        if (GameManager.instance.star.transform.position.y > -35 && GameManager.instance.star.transform.position.y < 35 && GameManager.instance.star.transform.position.x > -35 && GameManager.instance.star.transform.position.x < 35)
+        {
+            GameManager.instance.zone = 1;
+        }
+        else if (GameManager.instance.star.transform.position.y > -65 && GameManager.instance.star.transform.position.y < 65 && GameManager.instance.star.transform.position.x > -65 && GameManager.instance.star.transform.position.x < 65)
+        {
+            GameManager.instance.zone = 2;
+        }
+        else if (GameManager.instance.star.transform.position.y > -95 && GameManager.instance.star.transform.position.y < 95 && GameManager.instance.star.transform.position.x > -95 && GameManager.instance.star.transform.position.x < 95)
+        {
+            GameManager.instance.zone = 3;
+        }
+        else if (GameManager.instance.star.transform.position.y > -125 && GameManager.instance.star.transform.position.y < 125 && GameManager.instance.star.transform.position.x > -125 && GameManager.instance.star.transform.position.x < 125)
+        {
+            GameManager.instance.zone = 4;
+        }
+        else if (GameManager.instance.star.transform.position.y > -155 && GameManager.instance.star.transform.position.y < 155 && GameManager.instance.star.transform.position.x > -155 && GameManager.instance.star.transform.position.x < 155)
+        {
+            GameManager.instance.zone = 5;
+        }
+        else if (GameManager.instance.star.transform.position.y > -185 && GameManager.instance.star.transform.position.y < 185 && GameManager.instance.star.transform.position.x > -185 && GameManager.instance.star.transform.position.x < 185)
+        {
+            GameManager.instance.zone = 6;
+        }
+        else if (GameManager.instance.star.transform.position.y > -215 && GameManager.instance.star.transform.position.y < 215 && GameManager.instance.star.transform.position.x > -215 && GameManager.instance.star.transform.position.x < 215)
+        {
+            GameManager.instance.zone = 7;
+        }
+        else if (GameManager.instance.star.transform.position.y > -245 && GameManager.instance.star.transform.position.y < 245 && GameManager.instance.star.transform.position.x > -245 && GameManager.instance.star.transform.position.x < 245)
+        {
+            GameManager.instance.zone = 8;
+        }
+        else if (GameManager.instance.star.transform.position.y > -275 && GameManager.instance.star.transform.position.y < 275 && GameManager.instance.star.transform.position.x > -275 && GameManager.instance.star.transform.position.x < 275)
+        {
+            GameManager.instance.zone = 9;
+        }
+        else if (GameManager.instance.star.transform.position.y > -305 && GameManager.instance.star.transform.position.y < 305 && GameManager.instance.star.transform.position.x > -305 && GameManager.instance.star.transform.position.x < 305)
+        {
+            GameManager.instance.zone = 10;
+        }
+        else if (GameManager.instance.star.transform.position.y > -310 && GameManager.instance.star.transform.position.y < 310 && GameManager.instance.star.transform.position.x > -310 && GameManager.instance.star.transform.position.x < 310)
+        {
+            GameManager.instance.destroyMeteors = true;
+        }
+        else
+        {
+            GameManager.instance.finishedUniverse = true;
+;       }
     }
 
     // Sets the difficulty depending on the zone
@@ -371,5 +364,14 @@ public class ZoneController : MonoBehaviour
         {
             GameManager.instance.size += GameManager.instance.sizeChange;
         }
+    }
+
+    // Function for reseting the zone values on a universe reset
+    public void ResetZones()
+    {
+        value = 0;
+        minSpeedZone = 1;
+        minSizeZone = 1;
+        maxSpreadZone = 1;
     }
 }

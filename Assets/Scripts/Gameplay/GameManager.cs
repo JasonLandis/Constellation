@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 // I am Matthew. I leave my easter egg here. I hope you enjoy it. :) 
@@ -16,10 +15,11 @@ public class GameManager : MonoBehaviour
     public float speed = 10;
     public int zone = 1;
 
-    [Header("Universe Variables")]
+    [Header("Universe Stats")]
     public float sizeChange;
     public float spreadChange;
     public float speedChange;
+    public int universeTokens;
 
     [Header("Objects")]
     public GameObject player;
@@ -36,22 +36,33 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public Vector3 directionVector;
     [HideInInspector] public float score;
     [HideInInspector] public int limit = 0;
-    [HideInInspector] public bool finishedUniverse;
     [HideInInspector] public bool destroyMeteors;
+    [HideInInspector] public bool finishedUniverse;
+    [HideInInspector] public bool resetUniverse;
     [HideInInspector] public List<Vector3> constellationVectors;
     private bool isGameOver;
     private float countdownTime = 3;
     private bool finished;
 
-    // Functions from other scripts
+    // Functions from ZoneController
     public Action zoneDetection;
+    public Action resetZones;
+
+    // Functions from GameUI
     public Action showText;
-    public Action createStar;
-    public Action moveCamera;
-    public Action showRoguelike;
-    public Action showDistanceUI;
+    public Action showStatText;
+    public Action showUniverseTokensText;
+
+    // Functions from Constellation
+    public Action createNewStar;
+    public Action moveConstellationCamera;
     public Action fullCameraTransition;
     public Action setFullCamera;
+    public Action resetConstellation;
+
+    // Functions from Roguelike
+    public Action showRoguelike;
+    public Action showDistanceUI;
 
     void Awake()
     {
@@ -68,6 +79,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         CreateUniverseStats();
+        showStatText.Invoke();
         Time.timeScale = 1f;
     }
 
@@ -82,7 +94,7 @@ public class GameManager : MonoBehaviour
             player.SetActive(false);
             showText.Invoke();
             showDistanceUI.Invoke();
-            createStar.Invoke();
+            createNewStar.Invoke();
 
             if (constellationVectors.Contains(star.transform.position))
             {
@@ -108,19 +120,24 @@ public class GameManager : MonoBehaviour
         {
             ImmortalCheck();
             zoneDetection.Invoke();
-            DestroyMeteors();
             showText.Invoke();
-            moveCamera.Invoke();
+            moveConstellationCamera.Invoke();
             DetectMeteors();
             MoveObjects();
+            DestroyMeteors();
         }
 
         else if (finishedUniverse == true)
         {
             fullCameraTransition.Invoke();
+            if (resetUniverse == true)
+            {
+                ResetUniverse();
+            }
         }
     }
 
+    // Creates the zone change values for the universe
     public void CreateUniverseStats()
     {
         sizeChange = UnityEngine.Random.Range(2, 6) / 10f;
@@ -128,76 +145,18 @@ public class GameManager : MonoBehaviour
         speedChange = UnityEngine.Random.Range(7, 13) / 10f;
     }
 
-    public void DestroyMeteors()
+    // Checks if the player is immortal
+    public void ImmortalCheck()
     {
-        if (destroyMeteors == true)
+        if (immortal == true)
         {
-            foreach (Transform child in map.transform)
+            countdownTime -= Time.deltaTime;
+            if (countdownTime <= 0)
             {
-                if (child.transform.position.x < -10 || child.transform.position.x > 10 || child.transform.position.y < -10 || child.transform.position.y > 10)
-                {
-                    Destroy(child.gameObject);
-                }
-            }
-            if (finishedUniverse == true)
-            {
-                player.SetActive(false);
-                createStar();
-                setFullCamera.Invoke();
-                finished = true;
+                immortal = false;
+                countdownTime = 3;
             }
         }
-    }
-
-    // Creates the last star and ends the game
-    public void EndGame()
-    {
-        showText.Invoke();
-        createStar.Invoke();
-        isGameOver = true;
-        endScreen.SetActive(true);
-        Time.timeScale = 0f;
-    }
-
-    // Generates a map of meteors
-    public void GenerateMap(int mapLength)
-    {
-        mapLength *= 10;
-        // Create meteors
-        for (float i = -5; i < 5; i += spread)
-        {
-            for (float j = 12; j < mapLength - 12; j += spread)
-            {
-                float x = UnityEngine.Random.Range(i, i + spread);
-                float y = UnityEngine.Random.Range(j, j + spread);
-
-                meteor.transform.localScale = new Vector3(size, size, 1);
-
-                float red = UnityEngine.Random.Range(100, 255) / 255f;
-                float green = UnityEngine.Random.Range(100, 255) / 255f;
-                float blue = UnityEngine.Random.Range(100, 255) / 255f;
-
-                meteor.GetComponent<SpriteRenderer>().color = new(red, green, blue, 1);
-                Instantiate(meteor, new(x, y, 0), Quaternion.identity, map.transform);
-            }
-        }
-    }
-
-    // Destroys the old map and generates a new one
-    public void GenerateNewMap(Vector3 vector)
-    {
-        foreach (Transform child in map.transform)
-        {
-            if (child.transform.position.x < -10 || child.transform.position.x > 10 || child.transform.position.y < -10 || child.transform.position.y > 10)
-            {
-                Destroy(child.gameObject);
-            }
-        }
-
-        map.transform.SetPositionAndRotation(new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
-        GenerateMap(limit - (int)mapTracker.transform.position.y);
-        map.transform.rotation = Quaternion.Euler(vector);
-        finished = false;
     }
 
     // Detects which meteors are out of view and sets them inactive
@@ -214,20 +173,6 @@ public class GameManager : MonoBehaviour
             else
             {
                 child.gameObject.SetActive(true);
-            }
-        }
-    }
-
-    // Checks if the player is immortal
-    public void ImmortalCheck()
-    {
-        if (immortal == true)
-        {
-            countdownTime -= Time.deltaTime;
-            if (countdownTime <= 0)
-            {
-                immortal = false;
-                countdownTime = 3;
             }
         }
     }
@@ -287,5 +232,103 @@ public class GameManager : MonoBehaviour
         // Move the map tracker
         mapTracker.transform.Translate(speed * Time.deltaTime * Vector3.up / 10);
         score += speed * Time.deltaTime / 10;
+    }
+
+    // Generates a map of meteors
+    public void GenerateMap(int mapLength)
+    {
+        mapLength *= 10;
+        // Create meteors
+        for (float i = -5; i < 5; i += spread)
+        {
+            for (float j = 12; j < mapLength - 12; j += spread)
+            {
+                float x = UnityEngine.Random.Range(i, i + spread);
+                float y = UnityEngine.Random.Range(j, j + spread);
+
+                meteor.transform.localScale = new Vector3(size, size, 1);
+
+                float red = UnityEngine.Random.Range(100, 255) / 255f;
+                float green = UnityEngine.Random.Range(100, 255) / 255f;
+                float blue = UnityEngine.Random.Range(100, 255) / 255f;
+
+                meteor.GetComponent<SpriteRenderer>().color = new(red, green, blue, 1);
+                Instantiate(meteor, new(x, y, 0), Quaternion.identity, map.transform);
+            }
+        }
+    }
+
+    // Destroys the old map and generates a new one
+    public void GenerateNewMap(Vector3 vector)
+    {
+        foreach (Transform child in map.transform)
+        {
+            if (child.transform.position.x < -10 || child.transform.position.x > 10 || child.transform.position.y < -10 || child.transform.position.y > 10)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+
+        map.transform.SetPositionAndRotation(new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
+        GenerateMap(limit - (int)mapTracker.transform.position.y);
+        map.transform.rotation = Quaternion.Euler(vector);
+        finished = false;
+    }
+
+    // Creates the last star and ends the game
+    public void EndGame()
+    {
+        showText.Invoke();
+        createNewStar.Invoke();
+        isGameOver = true;
+        endScreen.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    // Destroys remaining meteors and detects if the universe is finished
+    public void DestroyMeteors()
+    {
+        if (destroyMeteors == true)
+        {
+            limit = 110;
+            foreach (Transform child in map.transform)
+            {
+                if (child.transform.position.x < -10 || child.transform.position.x > 10 || child.transform.position.y < -10 || child.transform.position.y > 10)
+                {
+                    Destroy(child.gameObject);
+                }
+            }
+            if (finishedUniverse == true)
+            {
+                player.SetActive(false);
+                createNewStar();
+                setFullCamera.Invoke();
+                universeTokens += 1;
+                showUniverseTokensText.Invoke();
+                finished = true;
+            }
+        }
+    }
+
+    // Reset the universe
+    public void ResetUniverse()
+    {
+        resetZones.Invoke();
+        resetConstellation.Invoke();
+        star.GetComponent<LineRenderer>().positionCount = 0;
+        star.transform.position = Vector3.zero;
+        background.transform.position = Vector3.zero;
+        mapTracker.transform.position = new(0f, 0f, 0f);
+        limit = 0;
+        size = 1;
+        spread = 5;
+        speed = 10;
+        zone = 1;
+        finished = false;
+        finishedUniverse = false;
+        destroyMeteors = false;
+        resetUniverse = false;
+        showStatText.Invoke();
+        showDistanceUI.Invoke();
     }
 }
