@@ -2,6 +2,18 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    /*
+    void Update()
+    {
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
+            touchPosition.z = 0f;
+            transform.position = touchPosition;
+        }
+    }
+    */
     void Update()
     {
         Vector3 mousePosition = Input.mousePosition;
