@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    /*
     void Update()
     {
         if (Input.touchCount > 0)
@@ -13,7 +12,8 @@ public class Player : MonoBehaviour
             transform.position = touchPosition;
         }
     }
-    */
+
+    /*
     void Update()
     {
         Vector3 mousePosition = Input.mousePosition;
@@ -43,4 +43,5 @@ public class Player : MonoBehaviour
             transform.position = new Vector3(worldPosition.x, -4f, transform.position.z);
         }
     }
+    */
 }
