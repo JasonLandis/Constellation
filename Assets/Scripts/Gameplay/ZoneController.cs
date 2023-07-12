@@ -115,47 +115,47 @@ public class ZoneController : MonoBehaviour
     void DetectDifficulty()
     {
         // Detects difficulty level based on location within constellation map
-        if (GameManager.instance.star.transform.position.y > -35 && GameManager.instance.star.transform.position.y < 35 && GameManager.instance.star.transform.position.x > -35 && GameManager.instance.star.transform.position.x < 35)
+        if (GameManager.instance.star.transform.position.y > -3.5 && GameManager.instance.star.transform.position.y < 3.5 && GameManager.instance.star.transform.position.x > -3.5 && GameManager.instance.star.transform.position.x < 3.5)
         {
             GameManager.instance.zone = 1;
         }
-        else if (GameManager.instance.star.transform.position.y > -65 && GameManager.instance.star.transform.position.y < 65 && GameManager.instance.star.transform.position.x > -65 && GameManager.instance.star.transform.position.x < 65)
+        else if (GameManager.instance.star.transform.position.y > -6.5 && GameManager.instance.star.transform.position.y < 6.5 && GameManager.instance.star.transform.position.x > -6.5 && GameManager.instance.star.transform.position.x < 6.5)
         {
             GameManager.instance.zone = 2;
         }
-        else if (GameManager.instance.star.transform.position.y > -95 && GameManager.instance.star.transform.position.y < 95 && GameManager.instance.star.transform.position.x > -95 && GameManager.instance.star.transform.position.x < 95)
+        else if (GameManager.instance.star.transform.position.y > -9.5 && GameManager.instance.star.transform.position.y < 9.5 && GameManager.instance.star.transform.position.x > -9.5 && GameManager.instance.star.transform.position.x < 9.5)
         {
             GameManager.instance.zone = 3;
         }
-        else if (GameManager.instance.star.transform.position.y > -125 && GameManager.instance.star.transform.position.y < 125 && GameManager.instance.star.transform.position.x > -125 && GameManager.instance.star.transform.position.x < 125)
+        else if (GameManager.instance.star.transform.position.y > -12.5 && GameManager.instance.star.transform.position.y < 12.5 && GameManager.instance.star.transform.position.x > -12.5 && GameManager.instance.star.transform.position.x < 12.5)
         {
             GameManager.instance.zone = 4;
         }
-        else if (GameManager.instance.star.transform.position.y > -155 && GameManager.instance.star.transform.position.y < 155 && GameManager.instance.star.transform.position.x > -155 && GameManager.instance.star.transform.position.x < 155)
+        else if (GameManager.instance.star.transform.position.y > -15.5 && GameManager.instance.star.transform.position.y < 15.5 && GameManager.instance.star.transform.position.x > -15.5 && GameManager.instance.star.transform.position.x < 15.5)
         {
             GameManager.instance.zone = 5;
         }
-        else if (GameManager.instance.star.transform.position.y > -185 && GameManager.instance.star.transform.position.y < 185 && GameManager.instance.star.transform.position.x > -185 && GameManager.instance.star.transform.position.x < 185)
+        else if (GameManager.instance.star.transform.position.y > -18.5 && GameManager.instance.star.transform.position.y < 18.5 && GameManager.instance.star.transform.position.x > -18.5 && GameManager.instance.star.transform.position.x < 18.5)
         {
             GameManager.instance.zone = 6;
         }
-        else if (GameManager.instance.star.transform.position.y > -215 && GameManager.instance.star.transform.position.y < 215 && GameManager.instance.star.transform.position.x > -215 && GameManager.instance.star.transform.position.x < 215)
+        else if (GameManager.instance.star.transform.position.y > -21.5 && GameManager.instance.star.transform.position.y < 21.5 && GameManager.instance.star.transform.position.x > -21.5 && GameManager.instance.star.transform.position.x < 21.5)
         {
             GameManager.instance.zone = 7;
         }
-        else if (GameManager.instance.star.transform.position.y > -245 && GameManager.instance.star.transform.position.y < 245 && GameManager.instance.star.transform.position.x > -245 && GameManager.instance.star.transform.position.x < 245)
+        else if (GameManager.instance.star.transform.position.y > -24.5 && GameManager.instance.star.transform.position.y < 24.5 && GameManager.instance.star.transform.position.x > -24.5 && GameManager.instance.star.transform.position.x < 24.5)
         {
             GameManager.instance.zone = 8;
         }
-        else if (GameManager.instance.star.transform.position.y > -275 && GameManager.instance.star.transform.position.y < 275 && GameManager.instance.star.transform.position.x > -275 && GameManager.instance.star.transform.position.x < 275)
+        else if (GameManager.instance.star.transform.position.y > -27.5 && GameManager.instance.star.transform.position.y < 27.5 && GameManager.instance.star.transform.position.x > -27.5 && GameManager.instance.star.transform.position.x < 27.5)
         {
             GameManager.instance.zone = 9;
         }
-        else if (GameManager.instance.star.transform.position.y > -305 && GameManager.instance.star.transform.position.y < 305 && GameManager.instance.star.transform.position.x > -305 && GameManager.instance.star.transform.position.x < 305)
+        else if (GameManager.instance.star.transform.position.y > -30.5 && GameManager.instance.star.transform.position.y < 30.5 && GameManager.instance.star.transform.position.x > -30.5 && GameManager.instance.star.transform.position.x < 30.5)
         {
             GameManager.instance.zone = 10;
         }
-        else if (GameManager.instance.star.transform.position.y > -310 && GameManager.instance.star.transform.position.y < 310 && GameManager.instance.star.transform.position.x > -310 && GameManager.instance.star.transform.position.x < 310)
+        else if (GameManager.instance.star.transform.position.y > -31.0 && GameManager.instance.star.transform.position.y < 31.0 && GameManager.instance.star.transform.position.x > -31.0 && GameManager.instance.star.transform.position.x < 31.0)
         {
             GameManager.instance.destroyMeteors = true;
         }

@@ -35,9 +35,9 @@ public class Constellation : MonoBehaviour
     public void GenerateConstellation()
     {
         int rand;
-        for (int i = -300; i < 300; i += 10)
+        for (int i = -30; i < 30; i += 1)
         {
-            for (int j = -300; j < 300; j += 10)
+            for (int j = -30; j < 30; j += 1)
             {
                 float red = Random.Range(100, 255) / 255f;
                 float green = Random.Range(100, 255) / 255f;
@@ -45,7 +45,7 @@ public class Constellation : MonoBehaviour
 
                 constellationStar.GetComponent<SpriteRenderer>().color = new(red, green, blue, 1);
 
-                if (i > -35 && i < 35 && j > -35 && j < 35)
+                if (i > -3.5 && i < 3.5 && j > -3.5 && j < 3.5)
                 {
                     rand = Random.Range(0, 6);
                     if (rand == 0)
@@ -61,7 +61,7 @@ public class Constellation : MonoBehaviour
                         }
                     }
                 }
-                else if (i > -65 && i < 65 && j > -65 && j < 65)
+                else if (i > -6.5 && i < 6.5 && j > -6.5 && j < 6.5)
                 {
                     rand = Random.Range(0, 7);
                     if (rand == 0)
@@ -70,7 +70,7 @@ public class Constellation : MonoBehaviour
                         GameManager.instance.constellationVectors.Add(new(i, j, 0));
                     }
                 }
-                else if (i > -95 && i < 95 && j > -95 && j < 95)
+                else if (i > -9.5 && i < 9.5 && j > -9.5 && j < 9.5)
                 {
                     rand = Random.Range(0, 8);
                     if (rand == 0)
@@ -79,7 +79,7 @@ public class Constellation : MonoBehaviour
                         GameManager.instance.constellationVectors.Add(new(i, j, 0));
                     }
                 }
-                else if (i > -125 && i < 125 && j > -125 && j < 125)
+                else if (i > -12.5 && i < 12.5 && j > -12.5 && j < 12.5)
                 {
                     rand = Random.Range(0, 9);
                     if (rand == 0)
@@ -88,7 +88,7 @@ public class Constellation : MonoBehaviour
                         GameManager.instance.constellationVectors.Add(new(i, j, 0));
                     }
                 }
-                else if (i > -155 && i < 155 && j > -155 && j < 155)
+                else if (i > -15.5 && i < 15.5 && j > -15.5 && j < 15.5)
                 {
                     rand = Random.Range(0, 10);
                     if (rand == 0)
@@ -97,7 +97,7 @@ public class Constellation : MonoBehaviour
                         GameManager.instance.constellationVectors.Add(new(i, j, 0));
                     }
                 }
-                else if (i > -185 && i < 185 && j > -185 && j < 185)
+                else if (i > -18.5 && i < 18.5 && j > -18.5 && j < 18.5)
                 {
                     rand = Random.Range(0, 11);
                     if (rand == 0)
@@ -106,7 +106,7 @@ public class Constellation : MonoBehaviour
                         GameManager.instance.constellationVectors.Add(new(i, j, 0));
                     }
                 }
-                else if (i > -215 && i < 215 && j > -215 && j < 215)
+                else if (i > -21.5 && i < 21.5 && j > -21.5 && j < 21.5)
                 {
                     rand = Random.Range(0, 12);
                     if (rand == 0)
@@ -115,7 +115,7 @@ public class Constellation : MonoBehaviour
                         GameManager.instance.constellationVectors.Add(new(i, j, 0));
                     }
                 }
-                else if (i > -245 && i < 245 && j > -245 && j < 245)
+                else if (i > -24.5 && i < 24.5 && j > -24.5 && j < 24.5)
                 {
                     rand = Random.Range(0, 13);
                     if (rand == 0)
@@ -124,7 +124,7 @@ public class Constellation : MonoBehaviour
                         GameManager.instance.constellationVectors.Add(new(i, j, 0));
                     }
                 }
-                else if (i > -275 && i < 275 && j > -275 && j < 275)
+                else if (i > -27.5 && i < 27.5 && j > -27.5 && j < 27.5)
                 {
                     rand = Random.Range(0, 14);
                     if (rand == 0)
@@ -133,7 +133,7 @@ public class Constellation : MonoBehaviour
                         GameManager.instance.constellationVectors.Add(new(i, j, 0));
                     }
                 }
-                else if (i > -300 && i < 300 && j > -300 && j < 300)
+                else if (i > -30.0 && i < 30.0 && j > -30.0 && j < 30.0)
                 {
                     rand = Random.Range(0, 15);
                     if (rand == 0)

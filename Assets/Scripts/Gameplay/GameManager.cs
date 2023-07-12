@@ -166,15 +166,6 @@ public class GameManager : MonoBehaviour
         foreach (Transform child in map.transform)
         {
             child.transform.Translate(speed * Time.deltaTime * Vector3.down);
-            if (child.transform.position.x < -12 || child.transform.position.x > 12 ||
-                child.transform.position.y < -8 || child.transform.position.y > 8)
-            {
-                child.gameObject.SetActive(false);
-            }
-            else
-            {
-                child.gameObject.SetActive(true);
-            }
         }
     }
 
@@ -183,51 +174,51 @@ public class GameManager : MonoBehaviour
     {
         if (direction == "up")
         {
-            background.transform.Translate(speed * Time.deltaTime * (Vector3.down / 10));
-            star.transform.Translate(speed * Time.deltaTime * (Vector3.up / 10));
+            background.transform.Translate(speed * Time.deltaTime * (Vector3.down / 100));
+            star.transform.Translate(speed * Time.deltaTime * (Vector3.up / 100));
         }
         else if (direction == "left")
         {
-            background.transform.Translate(speed * Time.deltaTime * (Vector3.right / 10));
-            star.transform.Translate(speed * Time.deltaTime * (Vector3.left / 10));
+            background.transform.Translate(speed * Time.deltaTime * (Vector3.right / 100));
+            star.transform.Translate(speed * Time.deltaTime * (Vector3.left / 100));
         }
         else if (direction == "right")
         {
-            background.transform.Translate(speed * Time.deltaTime * (Vector3.left / 10));
-            star.transform.Translate(speed * Time.deltaTime * (Vector3.right / 10));
+            background.transform.Translate(speed * Time.deltaTime * (Vector3.left / 100));
+            star.transform.Translate(speed * Time.deltaTime * (Vector3.right / 100));
         }
         else if (direction == "down")
         {
-            background.transform.Translate(speed * Time.deltaTime * (Vector3.up / 10));
-            star.transform.Translate(speed * Time.deltaTime * (Vector3.down / 10));
+            background.transform.Translate(speed * Time.deltaTime * (Vector3.up / 100));
+            star.transform.Translate(speed * Time.deltaTime * (Vector3.down / 100));
         }
         else if (direction == "upright")
         {
-            background.transform.Translate(speed * Time.deltaTime * (Vector3.down / 10));
-            background.transform.Translate(speed * Time.deltaTime * (Vector3.left / 10));
-            star.transform.Translate(speed * Time.deltaTime * (Vector3.up / 10));
-            star.transform.Translate(speed * Time.deltaTime * (Vector3.right / 10));
+            background.transform.Translate(speed * Time.deltaTime * (Vector3.down / 100));
+            background.transform.Translate(speed * Time.deltaTime * (Vector3.left / 100));
+            star.transform.Translate(speed * Time.deltaTime * (Vector3.up / 100));
+            star.transform.Translate(speed * Time.deltaTime * (Vector3.right / 100));
         }
         else if (direction == "upleft")
         {
-            background.transform.Translate(speed * Time.deltaTime * (Vector3.down / 10));
-            background.transform.Translate(speed * Time.deltaTime * (Vector3.right / 10));
-            star.transform.Translate(speed * Time.deltaTime * (Vector3.up / 10));
-            star.transform.Translate(speed * Time.deltaTime * (Vector3.left / 10));
+            background.transform.Translate(speed * Time.deltaTime * (Vector3.down / 100));
+            background.transform.Translate(speed * Time.deltaTime * (Vector3.right / 100));
+            star.transform.Translate(speed * Time.deltaTime * (Vector3.up / 100));
+            star.transform.Translate(speed * Time.deltaTime * (Vector3.left / 100));
         }
         else if (direction == "downright")
         {
-            background.transform.Translate(speed * Time.deltaTime * (Vector3.up / 10));
-            background.transform.Translate(speed * Time.deltaTime * (Vector3.left / 10));
-            star.transform.Translate(speed * Time.deltaTime * (Vector3.down / 10));
-            star.transform.Translate(speed * Time.deltaTime * (Vector3.right / 10));
+            background.transform.Translate(speed * Time.deltaTime * (Vector3.up / 100));
+            background.transform.Translate(speed * Time.deltaTime * (Vector3.left / 100));
+            star.transform.Translate(speed * Time.deltaTime * (Vector3.down / 100));
+            star.transform.Translate(speed * Time.deltaTime * (Vector3.right / 100));
         }
         else if (direction == "downleft")
         {
-            background.transform.Translate(speed * Time.deltaTime * (Vector3.up / 10));
-            background.transform.Translate(speed * Time.deltaTime * (Vector3.right / 10));
-            star.transform.Translate(speed * Time.deltaTime * (Vector3.down / 10));
-            star.transform.Translate(speed * Time.deltaTime * (Vector3.left / 10));
+            background.transform.Translate(speed * Time.deltaTime * (Vector3.up / 100));
+            background.transform.Translate(speed * Time.deltaTime * (Vector3.right / 100));
+            star.transform.Translate(speed * Time.deltaTime * (Vector3.down / 100));
+            star.transform.Translate(speed * Time.deltaTime * (Vector3.left / 100));
         }
 
         // Move the map tracker
