@@ -165,7 +165,16 @@ public class GameManager : MonoBehaviour
     {
         foreach (Transform child in map.transform)
         {
-            child.transform.Translate(speed * Time.deltaTime * Vector3.down);
+            child.transform.Translate(speed * Time.deltaTime * Vector3.down / 10);
+            if (child.transform.position.x < -1 || child.transform.position.x > 1 ||
+                child.transform.position.y < -1.4 || child.transform.position.y > 0.4)
+            {
+                child.gameObject.SetActive(false);
+            }
+            else
+            {
+                child.gameObject.SetActive(true);
+            }
         }
     }
 
@@ -229,16 +238,15 @@ public class GameManager : MonoBehaviour
     // Generates a map of meteors
     public void GenerateMap(int mapLength)
     {
-        mapLength *= 10;
         // Create meteors
-        for (float i = -5; i < 5; i += spread)
+        for (float i = -1; i < 1; i += spread / 10)
         {
-            for (float j = 12; j < mapLength - 12; j += spread)
+            for (float j = 1; j < mapLength - 1; j += spread / 10)
             {
-                float x = UnityEngine.Random.Range(i, i + spread);
-                float y = UnityEngine.Random.Range(j, j + spread);
+                float x = UnityEngine.Random.Range(i, i + spread / 10);
+                float y = UnityEngine.Random.Range(j, j + spread / 10);
 
-                meteor.transform.localScale = new Vector3(size, size, 1);
+                meteor.transform.localScale = new Vector3(size / 10, size / 10, 1);
 
                 float red = UnityEngine.Random.Range(100, 255) / 255f;
                 float green = UnityEngine.Random.Range(100, 255) / 255f;
@@ -255,7 +263,7 @@ public class GameManager : MonoBehaviour
     {
         foreach (Transform child in map.transform)
         {
-            if (child.transform.position.x < -10 || child.transform.position.x > 10 || child.transform.position.y < -10 || child.transform.position.y > 10)
+            if (child.transform.position.x < -1 || child.transform.position.x > 1 || child.transform.position.y < -1.4 || child.transform.position.y > 0.4)
             {
                 Destroy(child.gameObject);
             }
