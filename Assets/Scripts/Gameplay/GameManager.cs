@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
     public GameObject background;
     public GameObject mapTracker;
     public GameObject endScreen;
+    public BoxCollider2D boxCollider;
+    public GameObject cover;
 
     [HideInInspector] public int mapLength;
     [HideInInspector] public string direction;
@@ -93,6 +95,7 @@ public class GameManager : MonoBehaviour
             score = Mathf.Round(score);
 
             player.SetActive(false);
+            cover.SetActive(false);
             showText.Invoke();
             showDistanceUI.Invoke();
             createNewStar.Invoke();
@@ -104,7 +107,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        else if (player.GetComponent<BoxCollider2D>().IsTouchingLayers(LayerMask.GetMask("Meteor")) && immortal == false && isGameOver == false)
+        else if (boxCollider.IsTouchingLayers(LayerMask.GetMask("Meteor")) && immortal == false && isGameOver == false)
         {
             if (lives == 0)
             {
@@ -115,7 +118,7 @@ public class GameManager : MonoBehaviour
                 immortal = true;
                 lives -= 1;
             }
-        }
+        }        
 
         else if (finished == false)
         {
@@ -241,7 +244,7 @@ public class GameManager : MonoBehaviour
         // Create meteors
         for (float i = -1; i < 1; i += spread / 10)
         {
-            for (float j = 1; j < mapLength - 1; j += spread / 10)
+            for (float j = 1; j < mapLength - 2; j += spread / 10)
             {
                 float x = UnityEngine.Random.Range(i, i + spread / 10);
                 float y = UnityEngine.Random.Range(j, j + spread / 10);

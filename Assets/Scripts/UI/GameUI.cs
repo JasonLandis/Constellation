@@ -86,6 +86,7 @@ public class GameUI : MonoBehaviour
         GameManager.instance.limit = 10;
         GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
         distanceUI.SetActive(false);
+        GameManager.instance.cover.SetActive(true);
     }
     public void Twenty()
     {
@@ -94,6 +95,7 @@ public class GameUI : MonoBehaviour
         GameManager.instance.limit = 20;
         GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
         distanceUI.SetActive(false);
+        GameManager.instance.cover.SetActive(true);
     }
     public void Thirty()
     {
@@ -102,6 +104,7 @@ public class GameUI : MonoBehaviour
         GameManager.instance.limit = 30;
         GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
         distanceUI.SetActive(false);
+        GameManager.instance.cover.SetActive(true);
     }
     public void Forty()
     {
@@ -110,6 +113,7 @@ public class GameUI : MonoBehaviour
         GameManager.instance.limit = 40;
         GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
         distanceUI.SetActive(false);
+        GameManager.instance.cover.SetActive(true);
     }
     public void Fifty()
     {
@@ -118,6 +122,7 @@ public class GameUI : MonoBehaviour
         GameManager.instance.limit = 50;
         GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
         distanceUI.SetActive(false);
+        GameManager.instance.cover.SetActive(true);
     }
     public void Sixty()
     {
@@ -126,6 +131,7 @@ public class GameUI : MonoBehaviour
         GameManager.instance.limit = 60;
         GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
         distanceUI.SetActive(false);
+        GameManager.instance.cover.SetActive(true);
     }
     public void Seventy()
     {
@@ -134,6 +140,7 @@ public class GameUI : MonoBehaviour
         GameManager.instance.limit = 70;
         GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
         distanceUI.SetActive(false);
+        GameManager.instance.cover.SetActive(true);
     }
     public void Eighty()
     {
@@ -142,6 +149,7 @@ public class GameUI : MonoBehaviour
         GameManager.instance.limit = 80;
         GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
         distanceUI.SetActive(false);
+        GameManager.instance.cover.SetActive(true);
     }
     public void Ninety()
     {
@@ -150,6 +158,7 @@ public class GameUI : MonoBehaviour
         GameManager.instance.limit = 90;
         GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
         distanceUI.SetActive(false);
+        GameManager.instance.cover.SetActive(true);
     }
     public void Hundred()
     {
@@ -158,6 +167,7 @@ public class GameUI : MonoBehaviour
         GameManager.instance.limit = 100;
         GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
         distanceUI.SetActive(false);
+        GameManager.instance.cover.SetActive(true);
     }
 
     // Button functions for switching between arrows and direction screen

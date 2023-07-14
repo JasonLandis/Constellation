@@ -10,6 +10,7 @@ public class Constellation : MonoBehaviour
     public GameObject createdStars;
     public GameObject fullConstellation;
     public GameObject endConstellation;
+    public GameObject fullCameraObject;
 
     [Header("Cameras")]
     public Camera constellationCamera;
@@ -149,7 +150,8 @@ public class Constellation : MonoBehaviour
     // Moves the constellation camera with the star
     private void MoveConstellationCamera()
     {
-        constellationCamera.transform.position = new(GameManager.instance.star.transform.position.x, GameManager.instance.star.transform.position.y, -10);
+        constellationCamera.transform.position = new(GameManager.instance.star.transform.position.x, GameManager.instance.star.transform.position.y, -1);
+        fullCameraObject.SetActive(false);
     }
 
     // Moves the full camera to view the full constellation
@@ -199,52 +201,54 @@ public class Constellation : MonoBehaviour
 
         if (completeHeight > completeWidth)
         {
-            fullCamera.orthographicSize = completeHeight / 2 + 10;
+            fullCamera.orthographicSize = completeHeight / 2 + 1;
         }
         else if (completeWidth > completeHeight)
         {
-            fullCamera.orthographicSize = completeWidth / 2 + 10;
+            fullCamera.orthographicSize = completeWidth / 2 + 1;
         }
 
         if (up == true && right == true)
         {
-            fullCamera.transform.position = new(fullCamera.transform.position.x + (addedWidth / 2), fullCamera.transform.position.y + (addedHeight / 2), -10);
+            fullCamera.transform.position = new(fullCamera.transform.position.x + (addedWidth / 2), fullCamera.transform.position.y + (addedHeight / 2), -1);
         }
 
         else if (right == true && down == true)
         {
-            fullCamera.transform.position = new(fullCamera.transform.position.x + (addedWidth / 2), fullCamera.transform.position.y - (addedHeight / 2), -10);
+            fullCamera.transform.position = new(fullCamera.transform.position.x + (addedWidth / 2), fullCamera.transform.position.y - (addedHeight / 2), -1);
         }
 
         else if (down == true && left == true)
         {
-            fullCamera.transform.position = new(fullCamera.transform.position.x - (addedWidth / 2), fullCamera.transform.position.y - (addedHeight / 2), -10);
+            fullCamera.transform.position = new(fullCamera.transform.position.x - (addedWidth / 2), fullCamera.transform.position.y - (addedHeight / 2), -1);
         }
 
         else if (left == true && up == true)
         {
-            fullCamera.transform.position = new(fullCamera.transform.position.x - (addedWidth / 2), fullCamera.transform.position.y + (addedHeight / 2), -10);
+            fullCamera.transform.position = new(fullCamera.transform.position.x - (addedWidth / 2), fullCamera.transform.position.y + (addedHeight / 2), -1);
         }
 
         else if (up == true)
         {
-            fullCamera.transform.position = new(fullCamera.transform.position.x, fullCamera.transform.position.y + (addedHeight / 2), -10);
+            fullCamera.transform.position = new(fullCamera.transform.position.x, fullCamera.transform.position.y + (addedHeight / 2), -1);
         }
 
         else if (right == true)
         {
-            fullCamera.transform.position = new(fullCamera.transform.position.x + (addedWidth / 2), fullCamera.transform.position.y, -10);
+            fullCamera.transform.position = new(fullCamera.transform.position.x + (addedWidth / 2), fullCamera.transform.position.y, -1);
         }
 
         else if (down == true)
         {
-            fullCamera.transform.position = new(fullCamera.transform.position.x, fullCamera.transform.position.y - (addedHeight / 2), -10);
+            fullCamera.transform.position = new(fullCamera.transform.position.x, fullCamera.transform.position.y - (addedHeight / 2), -1);
         }
 
         else if (left == true)
         {
-            fullCamera.transform.position = new(fullCamera.transform.position.x - (addedWidth / 2), fullCamera.transform.position.y, -10);
+            fullCamera.transform.position = new(fullCamera.transform.position.x - (addedWidth / 2), fullCamera.transform.position.y, -1);
         }
+
+        fullCameraObject.SetActive(true);
     }
 
     // Adds a new star to the constellation
@@ -252,8 +256,7 @@ public class Constellation : MonoBehaviour
     {
         // Round the stars postion
         GameManager.instance.star.transform.position = new(Mathf.Round(GameManager.instance.star.transform.position.x), Mathf.Round(GameManager.instance.star.transform.position.y), 0);
-        GameManager.instance.background.transform.position = new(Mathf.Round(GameManager.instance.background.transform.position.x), Mathf.Round(GameManager.instance.background.transform.position.y), 0);
-
+ 
         // Add star to list of vectors if the player has not already been to that location
         if (!vectors.Contains(GameManager.instance.star.transform.position))
         {
