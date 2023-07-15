@@ -255,7 +255,10 @@ public class Constellation : MonoBehaviour
     private void CreateNewStar()
     {
         // Round the stars postion
-        GameManager.instance.star.transform.position = new(Mathf.Round(GameManager.instance.star.transform.position.x), Mathf.Round(GameManager.instance.star.transform.position.y), 0);
+        if (!GameManager.instance.isGameOver)
+        {
+            GameManager.instance.star.transform.position = new(Mathf.Round(GameManager.instance.star.transform.position.x), Mathf.Round(GameManager.instance.star.transform.position.y), 0);
+        }
  
         // Add star to list of vectors if the player has not already been to that location
         if (!vectors.Contains(GameManager.instance.star.transform.position))
@@ -286,14 +289,14 @@ public class Constellation : MonoBehaviour
         endConstellation.SetActive(true);
         constellationStars.SetActive(false);
         fullCamera.transform.position = constellationCamera.transform.position;
-        fullCamera.orthographicSize = 20;
+        fullCamera.orthographicSize = 2;
     }
     public void FullCameraTransition()
     {
-        fullCamera.transform.position = Vector3.MoveTowards(fullCamera.transform.position, new(0, 0, -10), 0.3f);
-        if (fullCamera.orthographicSize < 300)
+        fullCamera.transform.position = Vector3.MoveTowards(fullCamera.transform.position, new(0, 0, -1), 0.2f);
+        if (fullCamera.orthographicSize < 34)
         {
-            fullCamera.orthographicSize += Time.deltaTime * 80;
+            fullCamera.orthographicSize += Time.deltaTime * 8;
         }
     }
 
@@ -309,9 +312,9 @@ public class Constellation : MonoBehaviour
         largestX = 0;
         smallestY = 0;
         largestY = 0;
-        constellationCamera.transform.position = new(0, 0, -10);
-        fullCamera.transform.position = new(0, 0, -10);
-        fullCamera.orthographicSize = 20;
+        constellationCamera.transform.position = new(0, 0, -1);
+        fullCamera.transform.position = new(0, 0, -1);
+        fullCamera.orthographicSize = 2;
         GenerateConstellation();
         constellationStars.SetActive(true);
         endConstellation.SetActive(false);

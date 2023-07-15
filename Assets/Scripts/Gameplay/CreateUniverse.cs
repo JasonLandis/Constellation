@@ -13,7 +13,6 @@ public class CreateUniverse : MonoBehaviour
     public GameObject universe1;
     public GameObject universe2;
     public GameObject universe3;
-    public GameObject universeRoguelike;
 
     [Header("Universe 1")]
     public TextMeshProUGUI sizeChangeText1;
@@ -51,24 +50,25 @@ public class CreateUniverse : MonoBehaviour
     private float green3;
     private float blue3;
 
-    [Header("Constellation Zones")]
+    [Header("Backgrounds")]
     public GameObject background;
-
-    [Header("Background Zones")]
     public GameObject constellationBackground;
+
+    private void Start()
+    {
+        GameManager.instance.createUniverseStats += CreateUniverseStats;
+    }
 
     // Resets the zones colors based on the universe selected by the player
     public void CreateZones(float red, float green, float blue)
     {
-        background.GetComponent<SpriteRenderer>().color = new(red * 0.55f, green * 0.55f, blue * 0.55f, 1);
-        constellationBackground.GetComponent<SpriteRenderer>().color = new(red * 0.55f, green * 0.55f, blue * 0.55f, 1);
+        background.GetComponent<SpriteRenderer>().color = new(red, green, blue, 1);
+        constellationBackground.GetComponent<SpriteRenderer>().color = new(red, green, blue, 1);
     }
 
     // Randomly generate stats for the next 3 possible universes
     public void CreateUniverseStats()
     {
-        universeRoguelike.SetActive(true);
-
         sizeChange1 = Random.Range(2, 6) / 10f;
         spreadChange1 = Random.Range(3, 8) / 10f;
         speedChange1 = Random.Range(7, 13) / 10f;
@@ -109,44 +109,44 @@ public class CreateUniverse : MonoBehaviour
     // Returns the rgb values of a randomly generated color
     public float[] GetColor()
     {
-        float red = Random.Range(57, 73);
-        float green = Random.Range(57, 73);
-        float blue = Random.Range(57, 73);
+        float red = Random.Range(83, 147);
+        float green = Random.Range(83, 147);
+        float blue = Random.Range(83, 147);
 
         if (red >= green && red >= blue)
         {
-            red = 73;
+            red = 147;
             if (green >= blue)
             {
-                blue = 57;
+                blue = 83;
             }
             else
             {
-                green = 57;
+                green = 83;
             }
         }
         else if (green >= red && green >= blue)
         {
-            green = 73;
+            green = 147;
             if (red >= blue)
             {
-                blue = 57;
+                blue = 83;
             }
             else
             {
-                red = 57;
+                red = 83;
             }
         }
         else if (blue >= red && blue >= green)
         {
-            blue = 73;
+            blue = 147;
             if (green >= red)
             {
-                red = 57;
+                red = 83;
             }
             else
             {
-                green = 57;
+                green = 83;
             }
         }
 
@@ -160,7 +160,6 @@ public class CreateUniverse : MonoBehaviour
     // Button functions for the 3 universes
     public void UniverseOne()
     {
-        universeRoguelike.SetActive(false);
         GameManager.instance.sizeChange = sizeChange1;
         GameManager.instance.spreadChange = spreadChange1;
         GameManager.instance.speedChange = speedChange1;
@@ -169,7 +168,6 @@ public class CreateUniverse : MonoBehaviour
     }
     public void UniverseTwo()
     {
-        universeRoguelike.SetActive(false);
         GameManager.instance.sizeChange = sizeChange2;
         GameManager.instance.spreadChange = spreadChange2;
         GameManager.instance.speedChange = speedChange2;
@@ -178,7 +176,6 @@ public class CreateUniverse : MonoBehaviour
     }
     public void UniverseThree()
     {
-        universeRoguelike.SetActive(false);
         GameManager.instance.sizeChange = sizeChange3;
         GameManager.instance.spreadChange = spreadChange3;
         GameManager.instance.speedChange = speedChange3;

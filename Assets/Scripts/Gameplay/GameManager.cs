@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 // I am Matthew. I leave my easter egg here. I hope you enjoy it. :) 
@@ -29,8 +30,12 @@ public class GameManager : MonoBehaviour
     public GameObject background;
     public GameObject mapTracker;
     public GameObject endScreen;
-    public BoxCollider2D boxCollider;
     public GameObject cover;
+
+    [Header("Other")]
+    public BoxCollider2D boxCollider;
+    public TextMeshProUGUI endScore;
+    public Animator Hit;
 
     [HideInInspector] public int mapLength;
     [HideInInspector] public string direction;
@@ -42,7 +47,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public bool finishedUniverse;
     [HideInInspector] public bool resetUniverse;
     [HideInInspector] public List<Vector3> constellationVectors;
-    private bool isGameOver;
+    [HideInInspector] public bool isGameOver;
     private float countdownTime = 3;
     private bool finished;
 
@@ -65,6 +70,9 @@ public class GameManager : MonoBehaviour
     // Functions from Roguelike
     public Action showRoguelike;
     public Action showDistanceUI;
+
+    // Functions from CreateUniverse
+    public Action createUniverseStats;
 
     void Awake()
     {
@@ -117,6 +125,7 @@ public class GameManager : MonoBehaviour
             {
                 immortal = true;
                 lives -= 1;
+                Hit.Play("Hit");
             }
         }        
 
@@ -244,18 +253,16 @@ public class GameManager : MonoBehaviour
         // Create meteors
         for (float i = -1; i < 1; i += spread / 10)
         {
-            for (float j = 1; j < mapLength - 2; j += spread / 10)
+            for (float j = 1; j < mapLength - 1; j += spread / 10)
             {
                 float x = UnityEngine.Random.Range(i, i + spread / 10);
                 float y = UnityEngine.Random.Range(j, j + spread / 10);
 
                 meteor.transform.localScale = new Vector3(size / 10, size / 10, 1);
 
-                float red = UnityEngine.Random.Range(100, 255) / 255f;
-                float green = UnityEngine.Random.Range(100, 255) / 255f;
-                float blue = UnityEngine.Random.Range(100, 255) / 255f;
+                float color = UnityEngine.Random.Range(20, 50) / 255f;
 
-                meteor.GetComponent<SpriteRenderer>().color = new(red, green, blue, 1);
+                meteor.GetComponent<SpriteRenderer>().color = new(color, color, color, 1);
                 Instantiate(meteor, new(x, y, 0), Quaternion.identity, map.transform);
             }
         }
@@ -273,7 +280,7 @@ public class GameManager : MonoBehaviour
         }
 
         map.transform.SetPositionAndRotation(new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
-        GenerateMap(limit - (int)mapTracker.transform.position.y);
+        GenerateMap(limit - (int)mapTracker.transform.position.y - 1);
         map.transform.rotation = Quaternion.Euler(vector);
         finished = false;
     }
@@ -281,9 +288,11 @@ public class GameManager : MonoBehaviour
     // Creates the last star and ends the game
     public void EndGame()
     {
+        player.SetActive(false);
+        endScore.text = ((int)score).ToString();
         showText.Invoke();
-        createNewStar.Invoke();
         isGameOver = true;
+        createNewStar.Invoke();
         endScreen.SetActive(true);
         Time.timeScale = 0f;
     }
@@ -296,7 +305,7 @@ public class GameManager : MonoBehaviour
             limit = 110;
             foreach (Transform child in map.transform)
             {
-                if (child.transform.position.x < -10 || child.transform.position.x > 10 || child.transform.position.y < -10 || child.transform.position.y > 10)
+                if (child.transform.position.x < -1 || child.transform.position.x > 1 || child.transform.position.y < -1.4 || child.transform.position.y > 0.3)
                 {
                     Destroy(child.gameObject);
                 }
@@ -304,6 +313,7 @@ public class GameManager : MonoBehaviour
             if (finishedUniverse == true)
             {
                 player.SetActive(false);
+                createUniverseStats.Invoke();
                 createNewStar();
                 setFullCamera.Invoke();
                 universeTokens += 1;

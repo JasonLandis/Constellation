@@ -5,6 +5,7 @@ public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenuUI;
     public GameObject stats;
+
     // Menu buttons
     public void Resume()
     {

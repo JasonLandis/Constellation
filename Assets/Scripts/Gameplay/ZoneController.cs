@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class ZoneController : MonoBehaviour
 {
-    [Header("Constellation Zones")]
+    [Header("Backgrounds")]
     public GameObject background;
-
-    [Header("Background Zones")]
     public GameObject constellationBackground;
 
+    [Header("Animation")]
+    public Animator zoneChange;
 
     private int value = 0; // Used for the previous zone the star was in
     private int minSpeedZone = 1; // Used for the highest zone at which speed should not decrease
@@ -25,44 +25,44 @@ public class ZoneController : MonoBehaviour
     // Create random zone colors
     void CreateZoneColors()
     {
-        float red = Random.Range(57, 73);
-        float green = Random.Range(57, 73);
-        float blue = Random.Range(57, 73);
+        float red = Random.Range(83, 147);
+        float green = Random.Range(83, 147);
+        float blue = Random.Range(83, 147);
 
         if (red >= green && red >= blue)
         {
-            red = 73;
+            red = 147;
             if (green >= blue)
             {
-                blue = 57;
+                blue = 83;
             }
             else
             {
-                green = 57;
+                green = 83;
             }
         }
         else if (green >= red && green >= blue)
         {
-            green = 73;
+            green = 147;
             if (red >= blue)
             {
-                blue = 57;
+                blue = 83;
             }
             else
             {
-                red = 57;
+                red = 83;
             }
         }
         else if (blue >= red && blue >= green)
         {
-            blue = 73;
+            blue = 147;
             if (green >= red)
             {
-                red = 57;
+                red = 83;
             }
             else
             {
-                green = 57;
+                green = 83;
             }
         }
 
@@ -265,6 +265,7 @@ public class ZoneController : MonoBehaviour
     // Decreases the speed, spread, and size when moving to a lower zone
     void DecreaseZone()
     {
+        zoneChange.Play("Zone");
         if (GameManager.instance.speed > 1)
         {
             GameManager.instance.speed -= GameManager.instance.speedChange;
@@ -315,6 +316,7 @@ public class ZoneController : MonoBehaviour
     // Increases the speed, spread, and size when moving to a higher zone
     void IncreaseZone()
     {
+        zoneChange.Play("Zone");
         if (minSpeedZone < GameManager.instance.zone)
         {
             GameManager.instance.speed += GameManager.instance.speedChange;
