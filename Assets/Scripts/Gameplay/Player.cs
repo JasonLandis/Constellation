@@ -4,7 +4,7 @@ public class Player : MonoBehaviour
 {
     void Update()
     {
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 0 && !GameManager.instance.isGameOver)
         {
             Touch touch = Input.GetTouch(0);
             Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);

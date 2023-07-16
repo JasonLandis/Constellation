@@ -265,12 +265,12 @@ public class Constellation : MonoBehaviour
         {
             Instantiate(placeholderStar, GameManager.instance.star.transform.position, Quaternion.identity, createdStars.transform);
             vectors.Add(GameManager.instance.star.transform.position);
-            MoveFullCamera(vectors);
         }
 
         // Render a line and alter UI components
         GameManager.instance.star.GetComponent<LineRenderer>().positionCount++;
         GameManager.instance.star.GetComponent<LineRenderer>().SetPosition(GameManager.instance.star.GetComponent<LineRenderer>().positionCount - 1, GameManager.instance.star.transform.position);
+        MoveFullCamera(vectors);
     }
 
     // Button functions for viewing the full constellation

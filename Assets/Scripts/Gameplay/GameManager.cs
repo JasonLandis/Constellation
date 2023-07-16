@@ -31,11 +31,13 @@ public class GameManager : MonoBehaviour
     public GameObject mapTracker;
     public GameObject endScreen;
     public GameObject cover;
+    public GameObject createdStars;
 
     [Header("Other")]
     public BoxCollider2D boxCollider;
     public TextMeshProUGUI endScore;
     public Animator Hit;
+    public Animator End;
 
     [HideInInspector] public int mapLength;
     [HideInInspector] public string direction;
@@ -49,6 +51,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public List<Vector3> constellationVectors;
     [HideInInspector] public bool isGameOver;
     private float countdownTime = 3;
+    private float endTime = 2;
     private bool finished;
 
     // Functions from ZoneController
@@ -115,11 +118,19 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        else if (boxCollider.IsTouchingLayers(LayerMask.GetMask("Meteor")) && immortal == false && isGameOver == false)
+        else if (boxCollider.IsTouchingLayers(LayerMask.GetMask("Meteor")) && immortal == false)
         {
             if (lives == 0)
             {
-                EndGame();
+                isGameOver = true;
+                End.Play("End");
+                Hit.Play("Hit");
+                player.isStatic = true;
+                endTime -= Time.deltaTime;
+                if (endTime <= 0)
+                {
+                    EndGame();
+                }
             }
             else
             {
@@ -288,12 +299,17 @@ public class GameManager : MonoBehaviour
     // Creates the last star and ends the game
     public void EndGame()
     {
+        if (score > PlayerPrefs.GetInt("HighScore", 0))
+        {
+            PlayerPrefs.SetInt("HighScore", (int)score);
+        }
         player.SetActive(false);
         endScore.text = ((int)score).ToString();
         showText.Invoke();
         isGameOver = true;
         createNewStar.Invoke();
         endScreen.SetActive(true);
+        createdStars.SetActive(false);
         Time.timeScale = 0f;
     }
 
