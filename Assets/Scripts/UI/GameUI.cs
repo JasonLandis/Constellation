@@ -24,7 +24,6 @@ public class GameUI : MonoBehaviour
     {
         GameManager.instance.showText += ShowText;
         GameManager.instance.showStatText += ShowStatText;
-        GameManager.instance.showUniverseTokensText += ShowUniverseTokensText;
         GameManager.instance.showDistanceUI += ShowDistanceUI;
     }
 
@@ -197,10 +196,6 @@ public class GameUI : MonoBehaviour
         sizeChangeText.text = "+ " + GameManager.instance.sizeChange.ToString();
         spreadChangeText.text = "- " + GameManager.instance.spreadChange.ToString();
         speedChangeText.text = "+ " + GameManager.instance.speedChange.ToString();
-    }
-    public void ShowUniverseTokensText()
-    {
-        universeTokensText.text = GameManager.instance.universeTokens.ToString();
     }
 
     // Set the distance UI to active

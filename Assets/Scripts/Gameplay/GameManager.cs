@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 // I am Matthew. I leave my easter egg here. I hope you enjoy it. :) 
@@ -20,7 +22,6 @@ public class GameManager : MonoBehaviour
     public float sizeChange;
     public float spreadChange;
     public float speedChange;
-    public int universeTokens;
 
     [Header("Objects")]
     public GameObject player;
@@ -44,12 +45,20 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public bool immortal;
     [HideInInspector] public Vector3 directionVector;
     [HideInInspector] public float score;
+    [HideInInspector] public float maxSize;
+    [HideInInspector] public float maxSpread;
+    [HideInInspector] public float maxSpeed;
+    [HideInInspector] public float minSize;
+    [HideInInspector] public float minSpread;
+    [HideInInspector] public float minSpeed;
     [HideInInspector] public int limit = 0;
     [HideInInspector] public bool destroyMeteors;
     [HideInInspector] public bool finishedUniverse;
     [HideInInspector] public bool resetUniverse;
     [HideInInspector] public List<Vector3> constellationVectors;
     [HideInInspector] public bool isGameOver;
+    private float singleScore = 0;
+    private int universesCleared;
     private float countdownTime = 3;
     private float endTime = 2;
     private bool finished;
@@ -104,21 +113,24 @@ public class GameManager : MonoBehaviour
             finished = true;
             mapTracker.transform.position = new(0f, 0f, 0f);
             score = Mathf.Round(score);
+            singleScore = Mathf.Round(singleScore);
 
             player.SetActive(false);
             cover.SetActive(false);
             showText.Invoke();
             showDistanceUI.Invoke();
             createNewStar.Invoke();
+            MaxValues();
 
             if (constellationVectors.Contains(star.transform.position))
             {
                 constellationVectors.Remove(star.transform.position);
                 showRoguelike.Invoke();
             }
+            
         }
 
-        else if (boxCollider.IsTouchingLayers(LayerMask.GetMask("Meteor")) && immortal == false)
+        else if (boxCollider.IsTouchingLayers(LayerMask.GetMask("Meteor")) && immortal == false && finished == false)
         {
             if (lives == 0)
             {
@@ -256,6 +268,7 @@ public class GameManager : MonoBehaviour
         // Move the map tracker
         mapTracker.transform.Translate(speed * Time.deltaTime * Vector3.up / 10);
         score += speed * Time.deltaTime / 10;
+        singleScore += speed * Time.deltaTime / 10;
     }
 
     // Generates a map of meteors
@@ -299,10 +312,25 @@ public class GameManager : MonoBehaviour
     // Creates the last star and ends the game
     public void EndGame()
     {
-        if (score > PlayerPrefs.GetInt("HighScore", 0))
+        if (score > PlayerPrefs.GetInt("High Score", 0))
         {
-            PlayerPrefs.SetInt("HighScore", (int)score);
+            PlayerPrefs.SetInt("High Score", (int)score);
         }
+
+        if (universesCleared > PlayerPrefs.GetInt("Universes Cleared", 0))
+        {
+            PlayerPrefs.SetInt("Universes Cleared", universesCleared);
+        }
+
+        if (singleScore > PlayerPrefs.GetInt("Single Score", 0))
+        {
+            PlayerPrefs.SetInt("Single Score", (int)singleScore);
+        }
+
+        MaxValues();
+
+        PlayerPrefs.SetInt("Total Distance", PlayerPrefs.GetInt("Total Distance", 0) + (int)score);
+
         player.SetActive(false);
         endScore.text = ((int)score).ToString();
         showText.Invoke();
@@ -311,6 +339,40 @@ public class GameManager : MonoBehaviour
         endScreen.SetActive(true);
         createdStars.SetActive(false);
         Time.timeScale = 0f;
+    }
+
+    // Setting max and min size, spread, and speed values
+    public void MaxValues()
+    {
+        if (speed > PlayerPrefs.GetFloat("Max Speed", 10))
+        {
+            PlayerPrefs.SetFloat("Max Speed", (float)Math.Round(speed, 1));
+        }
+
+        if (speed < PlayerPrefs.GetFloat("Min Speed", 10))
+        {
+            PlayerPrefs.SetFloat("Min Speed", (float)Math.Round(speed, 1));
+        }
+
+        if (size > PlayerPrefs.GetFloat("Max Size", 1))
+        {
+            PlayerPrefs.SetFloat("Max Size", (float)Math.Round(size, 1));
+        }
+
+        if (size < PlayerPrefs.GetFloat("Min Size", 1))
+        {
+            PlayerPrefs.SetFloat("Min Size", (float)Math.Round(size, 1));
+        }
+
+        if (spread > PlayerPrefs.GetFloat("Max Spread", 5))
+        {
+            PlayerPrefs.SetFloat("Max Spread", (float)Math.Round(spread, 1));
+        }
+
+        if (spread < PlayerPrefs.GetFloat("Min Spread", 5))
+        {
+            PlayerPrefs.SetFloat("Min Spread", (float)Math.Round(spread, 1));
+        }
     }
 
     // Destroys remaining meteors and detects if the universe is finished
@@ -332,8 +394,7 @@ public class GameManager : MonoBehaviour
                 createUniverseStats.Invoke();
                 createNewStar();
                 setFullCamera.Invoke();
-                universeTokens += 1;
-                showUniverseTokensText.Invoke();
+                universesCleared += 1;
                 finished = true;
             }
         }
@@ -353,6 +414,7 @@ public class GameManager : MonoBehaviour
         spread = 5;
         speed = 10;
         zone = 1;
+        singleScore = 0;
         finished = false;
         finishedUniverse = false;
         destroyMeteors = false;

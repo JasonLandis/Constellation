@@ -287,6 +287,7 @@ public class Roguelike : MonoBehaviour
     // Destroy old roguelike components
     public void DestroyRoguelike()
     {
+        GameManager.instance.MaxValues();
         foreach (Transform child in item1.transform)
         {
             Destroy(child.gameObject);
