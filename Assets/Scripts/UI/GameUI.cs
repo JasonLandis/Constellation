@@ -15,10 +15,10 @@ public class GameUI : MonoBehaviour
     public TextMeshProUGUI speedText;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI zoneText;
-    public TextMeshProUGUI universeTokensText;
     public TextMeshProUGUI sizeChangeText;
     public TextMeshProUGUI spreadChangeText;
     public TextMeshProUGUI speedChangeText;
+    public TextMeshProUGUI difficultyText;
 
     void Start()
     {
@@ -196,6 +196,7 @@ public class GameUI : MonoBehaviour
         sizeChangeText.text = "+ " + GameManager.instance.sizeChange.ToString();
         spreadChangeText.text = "- " + GameManager.instance.spreadChange.ToString();
         speedChangeText.text = "+ " + GameManager.instance.speedChange.ToString();
+        difficultyText.text = GameManager.instance.universeDifficulty;
     }
 
     // Set the distance UI to active

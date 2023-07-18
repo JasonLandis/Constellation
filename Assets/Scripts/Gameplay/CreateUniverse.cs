@@ -18,6 +18,7 @@ public class CreateUniverse : MonoBehaviour
     public TextMeshProUGUI sizeChangeText1;
     public TextMeshProUGUI spreadChangeText1;
     public TextMeshProUGUI speedChangeText1;
+    public TextMeshProUGUI difficultyText1;
     public GameObject symbol1;
     private float sizeChange1;
     private float spreadChange1;
@@ -25,11 +26,13 @@ public class CreateUniverse : MonoBehaviour
     private float red1;
     private float green1;
     private float blue1;
+    private string difficulty1;
 
     [Header("Universe 2")]
     public TextMeshProUGUI sizeChangeText2;
     public TextMeshProUGUI spreadChangeText2;
     public TextMeshProUGUI speedChangeText2;
+    public TextMeshProUGUI difficultyText2;
     public GameObject symbol2;
     private float sizeChange2;
     private float spreadChange2;
@@ -37,11 +40,13 @@ public class CreateUniverse : MonoBehaviour
     private float red2;
     private float green2;
     private float blue2;
+    private string difficulty2;
 
     [Header("Universe 3")]
     public TextMeshProUGUI sizeChangeText3;
     public TextMeshProUGUI spreadChangeText3;
     public TextMeshProUGUI speedChangeText3;
+    public TextMeshProUGUI difficultyText3;
     public GameObject symbol3;
     private float sizeChange3;
     private float spreadChange3;
@@ -49,6 +54,7 @@ public class CreateUniverse : MonoBehaviour
     private float red3;
     private float green3;
     private float blue3;
+    private string difficulty3;
 
     [Header("Backgrounds")]
     public GameObject background;
@@ -72,9 +78,24 @@ public class CreateUniverse : MonoBehaviour
         sizeChange1 = Random.Range(2, 6) / 10f;
         spreadChange1 = Random.Range(3, 8) / 10f;
         speedChange1 = Random.Range(7, 13) / 10f;
+        if (sizeChange1 + spreadChange1 + speedChange1 < 1.7)
+        {
+            difficulty1 = "<color=#11DC58>Easy</color>";
+        }
+
+        else if (sizeChange1 + spreadChange1 + speedChange1 < 2.1)
+        {
+            difficulty1 = "<color=#E0E0E0>Normal</color>";
+        }
+
+        else
+        {
+            difficulty1 = "<color=#E54B4B>Hard</color>";
+        }
         sizeChangeText1.text = "+ " + sizeChange1.ToString();
         spreadChangeText1.text = "- " + spreadChange1.ToString();
         speedChangeText1.text = "+ " + speedChange1.ToString();
+        difficultyText1.text = difficulty1;
         red1 = GetColor()[0];
         green1 = GetColor()[1];
         blue1 = GetColor()[2];
@@ -84,9 +105,24 @@ public class CreateUniverse : MonoBehaviour
         sizeChange2 = Random.Range(2, 6) / 10f;
         spreadChange2 = Random.Range(3, 8) / 10f;
         speedChange2 = Random.Range(7, 13) / 10f;
+        if (sizeChange2 + spreadChange2 + speedChange2 < 1.7)
+        {
+            difficulty2 = "<color=#11DC58>Easy</color>";
+        }
+
+        else if (sizeChange2 + spreadChange2 + speedChange2 < 2.1)
+        {
+            difficulty2 = "<color=#E0E0E0>Normal</color>";
+        }
+
+        else
+        {
+            difficulty2 = "<color=#E54B4B>Hard</color>";
+        }
         sizeChangeText2.text = "+ " + sizeChange2.ToString();
         spreadChangeText2.text = "- " + spreadChange2.ToString();
         speedChangeText2.text = "+ " + speedChange2.ToString();
+        difficultyText2.text = difficulty2;
         red2 = GetColor()[0];
         green2 = GetColor()[1];
         blue2 = GetColor()[2];
@@ -96,9 +132,24 @@ public class CreateUniverse : MonoBehaviour
         sizeChange3 = Random.Range(2, 6) / 10f;
         spreadChange3 = Random.Range(3, 8) / 10f;
         speedChange3 = Random.Range(7, 13) / 10f;
+        if (sizeChange3 + spreadChange3 + speedChange3 < 1.7)
+        {
+            difficulty3 = "<color=#11DC58>Easy</color>";
+        }
+
+        else if (sizeChange3 + spreadChange3 + speedChange3 < 2.1)
+        {
+            difficulty3 = "<color=#E0E0E0>Normal</color>";
+        }
+
+        else
+        {
+            difficulty3 = "<color=#E54B4B>Hard</color>";
+        }
         sizeChangeText3.text = "+ " + sizeChange3.ToString();
         spreadChangeText3.text = "- " + spreadChange3.ToString();
         speedChangeText3.text = "+ " + speedChange3.ToString();
+        difficultyText3.text = difficulty3;
         red3 = GetColor()[0];
         green3 = GetColor()[1];
         blue3 = GetColor()[2];
@@ -163,6 +214,7 @@ public class CreateUniverse : MonoBehaviour
         GameManager.instance.sizeChange = sizeChange1;
         GameManager.instance.spreadChange = spreadChange1;
         GameManager.instance.speedChange = speedChange1;
+        GameManager.instance.universeDifficulty = difficulty1;
         CreateZones(red1, green1, blue1);
         GameManager.instance.resetUniverse = true;
     }
@@ -171,6 +223,7 @@ public class CreateUniverse : MonoBehaviour
         GameManager.instance.sizeChange = sizeChange2;
         GameManager.instance.spreadChange = spreadChange2;
         GameManager.instance.speedChange = speedChange2;
+        GameManager.instance.universeDifficulty = difficulty2;
         CreateZones(red2, green2, blue2);
         GameManager.instance.resetUniverse = true;
     }
@@ -179,6 +232,7 @@ public class CreateUniverse : MonoBehaviour
         GameManager.instance.sizeChange = sizeChange3;
         GameManager.instance.spreadChange = spreadChange3;
         GameManager.instance.speedChange = speedChange3;
+        GameManager.instance.universeDifficulty = difficulty3;
         CreateZones(red3, green3, blue3);
         GameManager.instance.resetUniverse = true;
     }

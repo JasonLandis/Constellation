@@ -10,9 +10,16 @@ public class LockInfo : MonoBehaviour
 
     [Header("Lock Objects")]
     public List<GameObject> locks;
+    [HideInInspector] public List<string> lockedText;
 
     private void Awake()
     {
+        lockedText.Add("Achieve a <color=#00C9FF>High Score</color> of <color=#11DC58>100</color>");
+        lockedText.Add("Achieve a score of <color=#11DC58>50</color> in <color=#00C9FF>One Universe</color>");
+        lockedText.Add("Achieve a total distance traveled of 1000");
+        lockedText.Add("Clear one universe");
+        lockedText.Add("Reach a size of 2");
+
         if (PlayerPrefs.GetInt("High Score", 0) >= 100)
         {
             locks[0].SetActive(false);
@@ -33,36 +40,6 @@ public class LockInfo : MonoBehaviour
         {
             locks[4].SetActive(false);
         }
-    }
-
-    public void IconTwo()
-    {
-        background.SetActive(true);
-        description.text = "Achieve a high score of 100";
-    }
-
-    public void IconThree()
-    {
-        background.SetActive(true);
-        description.text = "Achieve a single universe score of 50";
-    }
-
-    public void IconFour()
-    {
-        background.SetActive(true);
-        description.text = "Achieve a total distance traveled of 1000";
-    }
-
-    public void IconFive()
-    {
-        background.SetActive(true);
-        description.text = "Clear one universe";
-    }
-
-    public void IconSix()
-    {
-        background.SetActive(true);
-        description.text = "Reach a size of 2";
     }
 
     public void Back()

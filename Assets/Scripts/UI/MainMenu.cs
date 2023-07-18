@@ -1,47 +1,67 @@
+using System.Drawing;
 using TMPro;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
-{
-    [Header("Customizable")]
-    public List<Sprite> icons;
-    public SpriteRenderer player;
-    public Image playerIcon;
-
+{   
     [Header("Objects")]
     public GameObject stats;
     public GameObject shop;
 
     [Header("Stats Text")]
     public TextMeshProUGUI highScoreText;
-    public TextMeshProUGUI singleScoreText;
-    public TextMeshProUGUI universesClearedText;
+    public TextMeshProUGUI statsHighScoreText;
+    public TextMeshProUGUI largestUniverseText;
+    public TextMeshProUGUI quickestUniverseText;
     public TextMeshProUGUI totalDistanceText;
-    public TextMeshProUGUI maxSizeText;
-    public TextMeshProUGUI maxSpreadText;
-    public TextMeshProUGUI maxSpeedText;
-    public TextMeshProUGUI minSizeText;
-    public TextMeshProUGUI minSpreadText;
-    public TextMeshProUGUI minSpeedText;
+    public TextMeshProUGUI totalUniversesText;
+    public TextMeshProUGUI mostUniversesText;
+    public TextMeshProUGUI EasyUniversesText;
+    public TextMeshProUGUI NormalUniversesText;
+    public TextMeshProUGUI HardUniversesText;
+    public TextMeshProUGUI hitlessUniversesText;
+    public TextMeshProUGUI hitlessEasyUniversesText;
+    public TextMeshProUGUI hitlessNormalUniversesText;
+    public TextMeshProUGUI hitlessHardUniversesText;
+    public TextMeshProUGUI largestSizeText;
+    public TextMeshProUGUI largestSpreadText;
+    public TextMeshProUGUI largestSpeedText;
+    public TextMeshProUGUI smallestSizeText;
+    public TextMeshProUGUI smallestSpreadText;
+    public TextMeshProUGUI smallestSpeedText;
+    public TextMeshProUGUI mostLivesText;
 
     private void Start()
     {
-        player.sprite = icons[PlayerPrefs.GetInt("Skin", 0)];
-        playerIcon.sprite = icons[PlayerPrefs.GetInt("Skin", 0)];
-
-        highScoreText.text = PlayerPrefs.GetInt("High Score", 0).ToString();
-        singleScoreText.text = PlayerPrefs.GetInt("Single Score", 0).ToString();
-        universesClearedText.text = PlayerPrefs.GetInt("Universes Cleared", 0).ToString();
-        totalDistanceText.text = PlayerPrefs.GetInt("Total Distance", 0).ToString();
-        maxSizeText.text = PlayerPrefs.GetFloat("Max Size", 1).ToString();
-        maxSpreadText.text = PlayerPrefs.GetFloat("Max Spread", 5).ToString();
-        maxSpeedText.text = PlayerPrefs.GetFloat("Max Speed", 10).ToString();
-        minSizeText.text = PlayerPrefs.GetFloat("Min Size", 1).ToString();
-        minSpreadText.text = PlayerPrefs.GetFloat("Min Spread", 5).ToString();
-        minSpeedText.text = PlayerPrefs.GetFloat("Min Speed", 10).ToString();
+        highScoreText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("High Score", 0).ToString() + "</color>";
+        statsHighScoreText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("High Score", 0).ToString() + "</color>";
+        largestUniverseText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("Largest Universe", 0).ToString() + "</color>";
+        if (PlayerPrefs.HasKey("Quickest Universe"))
+        {
+            quickestUniverseText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("Quickest Universe").ToString() + "</color>";
+        }
+        else
+        {
+            quickestUniverseText.text = "<color=#11DC58>NA</color>";
+        }
+        totalDistanceText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("Total Distance", 0).ToString() + "</color>";
+        totalUniversesText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("Total Universes", 0).ToString() + "</color>";
+        mostUniversesText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("Most Universes", 0).ToString() + "</color>";
+        EasyUniversesText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("Easy Universes", 0).ToString() + "</color>";
+        NormalUniversesText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("Normal Universes", 0).ToString() + "</color>";
+        HardUniversesText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("Hard Universes", 0).ToString() + "</color>";
+        hitlessUniversesText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("Hitless Universes", 0).ToString() + "</color>";
+        hitlessEasyUniversesText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("Hitless Easy Universes", 0).ToString() + "</color>";
+        hitlessNormalUniversesText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("Hitless Normal Universes", 0).ToString() + "</color>";
+        hitlessHardUniversesText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("Hitless Hard Universes", 0).ToString() + "</color>";
+        largestSizeText.text = "<color=#11DC58>" + PlayerPrefs.GetFloat("Largest Size", 1).ToString() + "</color>";
+        largestSpreadText.text = "<color=#11DC58>" + PlayerPrefs.GetFloat("Largest Spread", 5).ToString() + "</color>";
+        largestSpeedText.text = "<color=#11DC58>" + PlayerPrefs.GetFloat("Largest Speed", 10).ToString() + "</color>";
+        smallestSizeText.text = "<color=#11DC58>" + PlayerPrefs.GetFloat("Smallest Size", 1).ToString() + "</color>";
+        smallestSpreadText.text = "<color=#11DC58>" + PlayerPrefs.GetFloat("Smallest Spread", 5).ToString() + "</color>";
+        smallestSpeedText.text = "<color=#11DC58>" + PlayerPrefs.GetFloat("Smallest Speed", 10).ToString() + "</color>";
+        mostLivesText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("Most Lives", 0).ToString() + "</color>";
 
         // PlayerPrefs.DeleteAll();
     }
@@ -71,48 +91,4 @@ public class MainMenu : MonoBehaviour
         shop.SetActive(false);
         stats.SetActive(false);
     }
-
-    public void SetSkinOne()
-    {
-        PlayerPrefs.SetInt("Skin", 0);
-        player.sprite = icons[PlayerPrefs.GetInt("Skin", 0)];
-        playerIcon.sprite = icons[PlayerPrefs.GetInt("Skin", 0)];
-    }
-
-    public void SetSkinTwo()
-    {
-        PlayerPrefs.SetInt("Skin", 1);
-        player.sprite = icons[PlayerPrefs.GetInt("Skin", 0)];
-        playerIcon.sprite = icons[PlayerPrefs.GetInt("Skin", 0)];
-    }
-
-    public void SetSkinThree()
-    {
-        PlayerPrefs.SetInt("Skin", 2);
-        player.sprite = icons[PlayerPrefs.GetInt("Skin", 0)];
-        playerIcon.sprite = icons[PlayerPrefs.GetInt("Skin", 0)];
-    }
-
-    public void SetSkinFour()
-    {
-        PlayerPrefs.SetInt("Skin", 3);
-        player.sprite = icons[PlayerPrefs.GetInt("Skin", 0)];
-        playerIcon.sprite = icons[PlayerPrefs.GetInt("Skin", 0)];
-    }
-
-    public void SetSkinFive()
-    {
-        PlayerPrefs.SetInt("Skin", 4);
-        player.sprite = icons[PlayerPrefs.GetInt("Skin", 0)];
-        playerIcon.sprite = icons[PlayerPrefs.GetInt("Skin", 0)];
-    }
-
-    public void SetSkinSix()
-    {
-        PlayerPrefs.SetInt("Skin", 5);
-        player.sprite = icons[PlayerPrefs.GetInt("Skin", 0)];
-        playerIcon.sprite = icons[PlayerPrefs.GetInt("Skin", 0)];
-    }
-
-
 }
