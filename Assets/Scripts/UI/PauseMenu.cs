@@ -86,6 +86,10 @@ public class PauseMenu : MonoBehaviour
         GameManager.instance.SaveGameScores();
         SceneManager.LoadScene("Menu");
     }
+    public void MenuFromEnd()
+    {
+        SceneManager.LoadScene("Menu");
+    }
     public void Restart()
     {
         SceneManager.LoadScene("Main");

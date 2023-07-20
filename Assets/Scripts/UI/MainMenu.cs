@@ -30,6 +30,7 @@ public class MainMenu : MonoBehaviour
     public TextMeshProUGUI smallestSpreadText;
     public TextMeshProUGUI smallestSpeedText;
     public TextMeshProUGUI mostLivesText;
+    public TextMeshProUGUI unlockedIconsText;
 
     void Awake()
     {
@@ -62,6 +63,8 @@ public class MainMenu : MonoBehaviour
         smallestSpreadText.text = "<color=#11DC58>" + PlayerPrefs.GetFloat("Smallest Spread", 5).ToString() + "</color>";
         smallestSpeedText.text = "<color=#11DC58>" + PlayerPrefs.GetFloat("Smallest Speed", 10).ToString() + "</color>";
         mostLivesText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("Most Lives", 0).ToString() + "</color>";
+        unlockedIconsText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("Unlocked Icons", 1).ToString() + "</color>";
+
 
         // PlayerPrefs.DeleteAll();
     }

@@ -23378,7 +23378,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 780453187}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: Menu
+        m_MethodName: MenuFromEnd
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
