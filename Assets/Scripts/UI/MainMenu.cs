@@ -1,4 +1,3 @@
-using System.Drawing;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,7 +11,7 @@ public class MainMenu : MonoBehaviour
     [Header("Stats Text")]
     public TextMeshProUGUI highScoreText;
     public TextMeshProUGUI statsHighScoreText;
-    public TextMeshProUGUI largestUniverseText;
+    public TextMeshProUGUI largestConstellationText;
     public TextMeshProUGUI quickestUniverseText;
     public TextMeshProUGUI totalDistanceText;
     public TextMeshProUGUI totalUniversesText;
@@ -32,11 +31,12 @@ public class MainMenu : MonoBehaviour
     public TextMeshProUGUI smallestSpeedText;
     public TextMeshProUGUI mostLivesText;
 
-    private void Start()
+    void Awake()
     {
+        Application.targetFrameRate = 60;
         highScoreText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("High Score", 0).ToString() + "</color>";
         statsHighScoreText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("High Score", 0).ToString() + "</color>";
-        largestUniverseText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("Largest Universe", 0).ToString() + "</color>";
+        largestConstellationText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("Largest Constellation", 0).ToString() + "</color>";
         if (PlayerPrefs.HasKey("Quickest Universe"))
         {
             quickestUniverseText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("Quickest Universe").ToString() + "</color>";

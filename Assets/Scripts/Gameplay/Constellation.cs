@@ -307,6 +307,10 @@ public class Constellation : MonoBehaviour
         {
             Destroy(star.gameObject);
         }
+        foreach (Transform star in createdStars.transform)
+        {
+            Destroy(star.gameObject);
+        }
         vectors.Clear();
         smallestX = 0;
         largestX = 0;

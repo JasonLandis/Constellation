@@ -7,18 +7,24 @@ public class GameUI : MonoBehaviour
     [Header("Objects")]
     public GameObject directionUI;
     public GameObject distanceUI;
+    public GameObject totalScoreUI;
+    public GameObject universeScoreUI;
+    public GameObject distanceLeftUI;
 
     [Header("Text")]
     public TextMeshProUGUI livesText;
     public TextMeshProUGUI spreadText;
     public TextMeshProUGUI sizeText;
     public TextMeshProUGUI speedText;
-    public TextMeshProUGUI scoreText;
     public TextMeshProUGUI zoneText;
     public TextMeshProUGUI sizeChangeText;
     public TextMeshProUGUI spreadChangeText;
     public TextMeshProUGUI speedChangeText;
     public TextMeshProUGUI difficultyText;
+    public TextMeshProUGUI difficultyUIText;
+    public TextMeshProUGUI totalScoreText;
+    public TextMeshProUGUI universeScoreText;
+    public TextMeshProUGUI distanceLeftText;
 
     void Start()
     {
@@ -83,6 +89,7 @@ public class GameUI : MonoBehaviour
         GameManager.instance.player.SetActive(true);
         GameManager.instance.mapLength = 10;
         GameManager.instance.limit = 10;
+        GameManager.instance.distanceLeft = 10;
         GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
         distanceUI.SetActive(false);
         GameManager.instance.cover.SetActive(true);
@@ -92,6 +99,7 @@ public class GameUI : MonoBehaviour
         GameManager.instance.player.SetActive(true);
         GameManager.instance.mapLength = 20;
         GameManager.instance.limit = 20;
+        GameManager.instance.distanceLeft = 20;
         GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
         distanceUI.SetActive(false);
         GameManager.instance.cover.SetActive(true);
@@ -101,69 +109,7 @@ public class GameUI : MonoBehaviour
         GameManager.instance.player.SetActive(true);
         GameManager.instance.mapLength = 30;
         GameManager.instance.limit = 30;
-        GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
-        distanceUI.SetActive(false);
-        GameManager.instance.cover.SetActive(true);
-    }
-    public void Forty()
-    {
-        GameManager.instance.player.SetActive(true);
-        GameManager.instance.mapLength = 40;
-        GameManager.instance.limit = 40;
-        GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
-        distanceUI.SetActive(false);
-        GameManager.instance.cover.SetActive(true);
-    }
-    public void Fifty()
-    {
-        GameManager.instance.player.SetActive(true);
-        GameManager.instance.mapLength = 50;
-        GameManager.instance.limit = 50;
-        GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
-        distanceUI.SetActive(false);
-        GameManager.instance.cover.SetActive(true);
-    }
-    public void Sixty()
-    {
-        GameManager.instance.player.SetActive(true);
-        GameManager.instance.mapLength = 60;
-        GameManager.instance.limit = 60;
-        GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
-        distanceUI.SetActive(false);
-        GameManager.instance.cover.SetActive(true);
-    }
-    public void Seventy()
-    {
-        GameManager.instance.player.SetActive(true);
-        GameManager.instance.mapLength = 70;
-        GameManager.instance.limit = 70;
-        GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
-        distanceUI.SetActive(false);
-        GameManager.instance.cover.SetActive(true);
-    }
-    public void Eighty()
-    {
-        GameManager.instance.player.SetActive(true);
-        GameManager.instance.mapLength = 80;
-        GameManager.instance.limit = 80;
-        GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
-        distanceUI.SetActive(false);
-        GameManager.instance.cover.SetActive(true);
-    }
-    public void Ninety()
-    {
-        GameManager.instance.player.SetActive(true);
-        GameManager.instance.mapLength = 90;
-        GameManager.instance.limit = 90;
-        GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
-        distanceUI.SetActive(false);
-        GameManager.instance.cover.SetActive(true);
-    }
-    public void Hundred()
-    {
-        GameManager.instance.player.SetActive(true);
-        GameManager.instance.mapLength = 100;
-        GameManager.instance.limit = 100;
+        GameManager.instance.distanceLeft = 30;
         GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
         distanceUI.SetActive(false);
         GameManager.instance.cover.SetActive(true);
@@ -188,7 +134,9 @@ public class GameUI : MonoBehaviour
         spreadText.text = Math.Round(GameManager.instance.spread, 1).ToString();
         sizeText.text = Math.Round(GameManager.instance.size, 1).ToString();
         speedText.text = Math.Round(GameManager.instance.speed, 1).ToString();
-        scoreText.text = ((int)GameManager.instance.score).ToString();
+        totalScoreText.text = ((int)GameManager.instance.score).ToString();
+        universeScoreText.text = ((int)GameManager.instance.universeScore).ToString();
+        distanceLeftText.text = (Math.Ceiling(GameManager.instance.distanceLeft)).ToString();
         zoneText.text = GameManager.instance.zone.ToString();
     }
     public void ShowStatText()
@@ -197,6 +145,7 @@ public class GameUI : MonoBehaviour
         spreadChangeText.text = "- " + GameManager.instance.spreadChange.ToString();
         speedChangeText.text = "+ " + GameManager.instance.speedChange.ToString();
         difficultyText.text = GameManager.instance.universeDifficulty;
+        difficultyUIText.text = GameManager.instance.universeDifficulty;
     }
 
     // Set the distance UI to active
@@ -204,4 +153,21 @@ public class GameUI : MonoBehaviour
     {
         directionUI.SetActive(true);
     }
+
+    // Toggling score UI
+    public void SwapToTotalScore()
+    {
+        distanceLeftUI.SetActive(false);
+        totalScoreUI.SetActive(true);
+    }
+    public void SwapToUniverseScore()
+    {
+        totalScoreUI.SetActive(false);
+        universeScoreUI.SetActive(true);
+    }
+    public void SwapToDistanceLeft()
+    {
+        universeScoreUI.SetActive(false);
+        distanceLeftUI.SetActive(true);
+    }    
 }

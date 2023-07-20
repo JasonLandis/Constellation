@@ -60,7 +60,7 @@ public class CreateUniverse : MonoBehaviour
     public GameObject background;
     public GameObject constellationBackground;
 
-    private void Start()
+    void Start()
     {
         GameManager.instance.createUniverseStats += CreateUniverseStats;
     }
@@ -75,10 +75,10 @@ public class CreateUniverse : MonoBehaviour
     // Randomly generate stats for the next 3 possible universes
     public void CreateUniverseStats()
     {
-        sizeChange1 = Random.Range(2, 6) / 10f;
-        spreadChange1 = Random.Range(3, 8) / 10f;
-        speedChange1 = Random.Range(7, 13) / 10f;
-        if (sizeChange1 + spreadChange1 + speedChange1 < 1.7)
+        sizeChange1 = Random.Range(2, 7) / 10f;
+        spreadChange1 = Random.Range(3, 9) / 10f;
+        speedChange1 = Random.Range(7, 14) / 10f;
+        if (sizeChange1 + spreadChange1 + speedChange1 < 1.9)
         {
             difficulty1 = "<color=#11DC58>Easy</color>";
         }
@@ -102,10 +102,10 @@ public class CreateUniverse : MonoBehaviour
         symbol1.GetComponent<Image>().color = new(red1, green1, blue1, 1);
         Instantiate(universe1, item1.transform.position, Quaternion.identity, item1.transform);
 
-        sizeChange2 = Random.Range(2, 6) / 10f;
-        spreadChange2 = Random.Range(3, 8) / 10f;
-        speedChange2 = Random.Range(7, 13) / 10f;
-        if (sizeChange2 + spreadChange2 + speedChange2 < 1.7)
+        sizeChange2 = Random.Range(2, 7) / 10f;
+        spreadChange2 = Random.Range(3, 9) / 10f;
+        speedChange2 = Random.Range(7, 14) / 10f;
+        if (sizeChange2 + spreadChange2 + speedChange2 < 1.9)
         {
             difficulty2 = "<color=#11DC58>Easy</color>";
         }
@@ -129,10 +129,10 @@ public class CreateUniverse : MonoBehaviour
         symbol2.GetComponent<Image>().color = new(red2, green2, blue2, 1);
         Instantiate(universe2, item2.transform.position, Quaternion.identity, item2.transform);
 
-        sizeChange3 = Random.Range(2, 6) / 10f;
-        spreadChange3 = Random.Range(3, 8) / 10f;
-        speedChange3 = Random.Range(7, 13) / 10f;
-        if (sizeChange3 + spreadChange3 + speedChange3 < 1.7)
+        sizeChange3 = Random.Range(2, 7) / 10f;
+        spreadChange3 = Random.Range(3, 9) / 10f;
+        speedChange3 = Random.Range(7, 14) / 10f;
+        if (sizeChange3 + spreadChange3 + speedChange3 < 1.9)
         {
             difficulty3 = "<color=#11DC58>Easy</color>";
         }

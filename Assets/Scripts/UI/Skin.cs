@@ -9,6 +9,7 @@ public class Skin : MonoBehaviour
     {
         PlayerPrefs.SetInt("Skin", skinIndex);
         skinInfo.player.sprite = skinInfo.icons[PlayerPrefs.GetInt("Skin", 0)];
+        skinInfo.star.sprite = skinInfo.icons[PlayerPrefs.GetInt("Skin", 0)];
         skinInfo.playerIcon.sprite = skinInfo.icons[PlayerPrefs.GetInt("Skin", 0)];
     }
 }

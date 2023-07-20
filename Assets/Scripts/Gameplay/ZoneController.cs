@@ -118,7 +118,7 @@ public class ZoneController : MonoBehaviour
         {
             GameManager.instance.zone = 10;
         }
-        else if (GameManager.instance.star.transform.position.y > -31.0 && GameManager.instance.star.transform.position.y < 31.0 && GameManager.instance.star.transform.position.x > -31.0 && GameManager.instance.star.transform.position.x < 31.0)
+        else if (GameManager.instance.star.transform.position.y > -31 && GameManager.instance.star.transform.position.y < 31 && GameManager.instance.star.transform.position.x > -31 && GameManager.instance.star.transform.position.x < 31)
         {
             GameManager.instance.destroyMeteors = true;
         }
@@ -258,7 +258,7 @@ public class ZoneController : MonoBehaviour
                     GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
                 }
                 value = 10;
-                break;            
+                break;
         }        
     }
 

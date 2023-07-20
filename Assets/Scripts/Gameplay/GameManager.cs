@@ -25,20 +25,22 @@ public class GameManager : MonoBehaviour
     public GameObject playerPrefab;
     public GameObject meteor;
     public GameObject map;
-    public GameObject star;
+    public GameObject starPrefab;
     public GameObject background;
     public GameObject mapTracker;
     public GameObject endScreen;
     public GameObject cover;
     public GameObject createdStars;
+    public GameObject yourConstellation;
 
     [Header("Other")]
     public TextMeshProUGUI endScore;
     public Animator hit;
+    public Animator complete;
 
     [Header("Player Prefs")]
     [HideInInspector] public float score;
-    private float universeScore = 0;
+    [HideInInspector] public float universeScore = 0;
     private int universesCleared;
     [HideInInspector] public string universeDifficulty;
     private bool hitless = true;
@@ -55,11 +57,13 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public List<Vector3> constellationVectors;
     [HideInInspector] public bool isGameOver;
     [HideInInspector] public GameObject player;
-    private BoxCollider2D boxCollider;
-    private Animator end;
+    [HideInInspector] public GameObject star;
+    [HideInInspector] public bool finished;
+    [HideInInspector] public float distanceLeft;
+    private BoxCollider2D playerBoxCollider;
+    private Animator deathAnimation;
     private float countdownTime = 3;
     private float endTime = 2;
-    private bool finished;
 
     // Functions from ZoneController
     public Action zoneDetection;
@@ -98,48 +102,62 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        // Instantiate the player
         player = Instantiate(playerPrefab, new(0, -0.432f, 0), Quaternion.identity, transform);
-        boxCollider = player.GetComponent<BoxCollider2D>();
-        end = player.GetComponent<Animator>();
-        Application.targetFrameRate = 60;
+        playerBoxCollider = player.GetComponent<BoxCollider2D>();
+        deathAnimation = player.GetComponent<Animator>();
+
+        // Instantiate the star
+        star = Instantiate(starPrefab, new(0, 0, 0), Quaternion.identity, yourConstellation.transform);
+
+        // Create the universe stats and show the text
         CreateUniverseStats();
         showStatText.Invoke();
+
+        Application.targetFrameRate = 60;
         Time.timeScale = 1f;
     }
 
     void Update()
     {
-        if (mapTracker.transform.position.y >= limit && finished == false)
+        if (mapTracker.transform.position.y >= limit && finished == false) // Run this code only once when the destination is reached
         {
-            SaveGameScores();
             finished = true;
             mapTracker.transform.position = new(0f, 0f, 0f);
+
+            // Round and save the scores
             score = Mathf.Round(score);
             universeScore = Mathf.Round(universeScore);
+            distanceLeft = 0;
+            SaveGameScores();
 
+            // Setup the UI
             player.SetActive(false);
+            player.transform.position = new(0, -0.432f, 0);
             cover.SetActive(false);
+            createNewStar.Invoke();
             showText.Invoke();
             showDistanceUI.Invoke();
-            createNewStar.Invoke();
 
+            // Show roguelike if player landed on a star
             if (constellationVectors.Contains(star.transform.position))
             {
                 constellationVectors.Remove(star.transform.position);
                 showRoguelike.Invoke();
-            }
-            
+            }            
         }
 
-        else if (boxCollider.IsTouchingLayers(LayerMask.GetMask("Meteor")) && immortal == false && finished == false)
+        else if (playerBoxCollider.IsTouchingLayers(LayerMask.GetMask("Meteor")) && immortal == false)
         {
             if (lives == 0)
             {
-                hitless = false;
                 isGameOver = true;
-                end.Play("End");
-                hit.Play("Hit");
+                hitless = false;
+
+                // Player animation
                 player.isStatic = true;
+                deathAnimation.Play("End");
+                hit.Play("Hit");
                 endTime -= Time.deltaTime;
                 if (endTime <= 0)
                 {
@@ -148,6 +166,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+                // Temporarily immortal
                 hitless = false;
                 immortal = true;
                 lives -= 1;
@@ -179,11 +198,11 @@ public class GameManager : MonoBehaviour
     // Creates the zone change values for the universe
     public void CreateUniverseStats()
     {
-        sizeChange = UnityEngine.Random.Range(2, 6) / 10f;
-        spreadChange = UnityEngine.Random.Range(3, 8) / 10f;
-        speedChange = UnityEngine.Random.Range(7, 13) / 10f;
+        sizeChange = UnityEngine.Random.Range(2, 7) / 10f;
+        spreadChange = UnityEngine.Random.Range(3, 9) / 10f;
+        speedChange = UnityEngine.Random.Range(7, 14) / 10f;
         
-        if (sizeChange + spreadChange + speedChange < 1.7)
+        if (sizeChange + spreadChange + speedChange < 1.9)
         {
             universeDifficulty = "<color=#11DC58>Easy</color>";
         }
@@ -283,10 +302,11 @@ public class GameManager : MonoBehaviour
             star.transform.Translate(speed * Time.deltaTime * (Vector3.left / 100));
         }
 
-        // Move the map tracker
+        // Move the map tracker and keep score
         mapTracker.transform.Translate(speed * Time.deltaTime * Vector3.up / 10);
         score += speed * Time.deltaTime / 10;
         universeScore += speed * Time.deltaTime / 10;
+        distanceLeft -= speed * Time.deltaTime / 10;
     }
 
     // Generates a map of meteors
@@ -335,9 +355,9 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("High Score", (int)score);
         }
 
-        if (universeScore > PlayerPrefs.GetInt("Largest Universe", 0))
+        if (universeScore > PlayerPrefs.GetInt("Largest Constellation", 0))
         {
-            PlayerPrefs.SetInt("Largest Universe", (int)universeScore);
+            PlayerPrefs.SetInt("Largest Constellation", (int)universeScore);
         }
 
         PlayerPrefs.SetInt("Total Distance", PlayerPrefs.GetInt("Total Distance", 0) + (int)score);
@@ -358,9 +378,9 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("Quickest Universe", (int)universeScore);
         }
 
-        if (universeScore > PlayerPrefs.GetInt("Largest Universe", 0))
+        if (universeScore > PlayerPrefs.GetInt("Largest Constellation", 0))
         {
-            PlayerPrefs.SetInt("Largest Universe", (int)universeScore);
+            PlayerPrefs.SetInt("Largest Constellation", (int)universeScore);
         }
 
         PlayerPrefs.SetInt("Total Universes", PlayerPrefs.GetInt("Total Universes", 0) + 1);
@@ -460,6 +480,7 @@ public class GameManager : MonoBehaviour
     {
         if (destroyMeteors == true)
         {
+            complete.Play("Complete");
             limit = 110;
             foreach (Transform child in map.transform)
             {
