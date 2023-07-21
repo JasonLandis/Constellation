@@ -18,15 +18,15 @@ public class LockInfo : MonoBehaviour
         lockedText.Add("Achieve a <color=#00C9FF>High Score</color> of <color=#11DC58>2,500</color>");
         lockedText.Add("Achieve a <color=#00C9FF>High Score</color> of <color=#11DC58>5,000</color>");
         lockedText.Add("Achieve a <color=#00C9FF>High Score</color> of <color=#11DC58>10,000</color>");
-        lockedText.Add("Achieve a <color=#00C9FF>Constellation Score</color> score of <color=#11DC58>500</color>");
-        lockedText.Add("Achieve a <color=#00C9FF>Constellation Score</color> score of <color=#11DC58>1,000</color>");
-        lockedText.Add("Achieve a <color=#00C9FF>Constellation Score</color> score of <color=#11DC58>2,500</color>");
+        lockedText.Add("Achieve a <color=#00C9FF>Universe Score</color> of <color=#11DC58>500</color>");
+        lockedText.Add("Achieve a <color=#00C9FF>Universe Score</color> of <color=#11DC58>1,000</color>");
+        lockedText.Add("Achieve a <color=#00C9FF>Universe Score</color> of <color=#11DC58>2,500</color>");
         lockedText.Add("Achieve a <color=#00C9FF>Total Distance</color> of <color=#11DC58>10,000</color>");
         lockedText.Add("Achieve a <color=#00C9FF>Total Distance</color> of <color=#11DC58>25,000</color>");
         lockedText.Add("Achieve a <color=#00C9FF>Total Distance</color> of <color=#11DC58>50,000</color>");
-        lockedText.Add("Clear a universe <color=#E54B4B>before</color> reaching a <color=#00C9FF>Constellation Score</color> score of <color=#11DC58>600</color>");
-        lockedText.Add("Clear a universe <color=#E54B4B>before</color> reaching a <color=#00C9FF>Constellation Score</color> score of <color=#11DC58>500</color>");
-        lockedText.Add("Clear a universe <color=#E54B4B>before</color> reaching a <color=#00C9FF>Constellation Score</color> score of <color=#11DC58>400</color>");
+        lockedText.Add("Clear a universe <color=#E54B4B>before</color> reaching a <color=#00C9FF>Universe Score</color> of <color=#11DC58>600</color>");
+        lockedText.Add("Clear a universe <color=#E54B4B>before</color> reaching a <color=#00C9FF>Universe Score</color> of <color=#11DC58>500</color>");
+        lockedText.Add("Clear a universe <color=#E54B4B>before</color> reaching a <color=#00C9FF>Universe Score</color> of <color=#11DC58>400</color>");
         lockedText.Add("Clear <color=#11DC58>2</color> universes <color=#00C9FF>in one run</color>");
         lockedText.Add("Clear <color=#11DC58>5</color> universes <color=#00C9FF>in one run</color>");
         lockedText.Add("Clear <color=#11DC58>10</color> universes <color=#00C9FF>in one run</color>");
@@ -39,7 +39,7 @@ public class LockInfo : MonoBehaviour
         lockedText.Add("Clear <color=#11DC58>15</color> <color=#00C9FF>Normal Universes</color>");
         lockedText.Add("Clear <color=#11DC58>5</color> <color=#00C9FF>Hard Universes</color>");
         lockedText.Add("Clear <color=#11DC58>15</color> <color=#00C9FF>Hard Universes</color>");
-        lockedText.Add("Clear <color=#11DC58>5</color> <color=#00C9FF>universe</color> <color=#E54B4B>without being hit</color>");
+        lockedText.Add("Clear <color=#11DC58>5</color> <color=#00C9FF>universes</color> <color=#E54B4B>without being hit</color>");
         lockedText.Add("Clear <color=#11DC58>15</color> <color=#00C9FF>universes</color> <color=#E54B4B>without being hit</color>");
         lockedText.Add("Clear <color=#11DC58>1</color> <color=#00C9FF>Easy Universe</color> <color=#E54B4B>without being hit</color>");
         lockedText.Add("Clear <color=#11DC58>5</color> <color=#00C9FF>Easy Universes</color> <color=#E54B4B>without being hit</color>");
@@ -92,7 +92,7 @@ public class LockInfo : MonoBehaviour
             }
 
         }
-        if (PlayerPrefs.GetInt("Largest Constellation", 0) >= 500)
+        if (PlayerPrefs.GetInt("Universe Score", 0) >= 500)
         {
             unlockCount += 1;
             locks[4].SetActive(false);

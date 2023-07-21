@@ -3,10 +3,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
-{   
+{
     [Header("Objects")]
-    public GameObject stats;
     public GameObject shop;
+    public GameObject upgrades;
+    public GameObject stats;
 
     [Header("Stats Text")]
     public TextMeshProUGUI highScoreText;
@@ -37,7 +38,7 @@ public class MainMenu : MonoBehaviour
         Application.targetFrameRate = 60;
         highScoreText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("High Score", 0).ToString() + "</color>";
         statsHighScoreText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("High Score", 0).ToString() + "</color>";
-        largestConstellationText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("Largest Constellation", 0).ToString() + "</color>";
+        largestConstellationText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("Universe Score", 0).ToString() + "</color>";
         if (PlayerPrefs.HasKey("Quickest Universe"))
         {
             quickestUniverseText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("Quickest Universe").ToString() + "</color>";
@@ -65,7 +66,6 @@ public class MainMenu : MonoBehaviour
         mostLivesText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("Most Lives", 0).ToString() + "</color>";
         unlockedIconsText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("Unlocked Icons", 1).ToString() + "</color>";
 
-
         // PlayerPrefs.DeleteAll();
     }
 
@@ -82,6 +82,11 @@ public class MainMenu : MonoBehaviour
     public void Shop()
     {
         shop.SetActive(true);
+    }
+
+    public void Upgrades()
+    {
+        upgrades.SetActive(true);
     }
 
     public void Stats()

@@ -23,9 +23,7 @@ public class CreateUniverse : MonoBehaviour
     private float sizeChange1;
     private float spreadChange1;
     private float speedChange1;
-    private float red1;
-    private float green1;
-    private float blue1;
+    private float[] color1;
     private string difficulty1;
 
     [Header("Universe 2")]
@@ -37,9 +35,7 @@ public class CreateUniverse : MonoBehaviour
     private float sizeChange2;
     private float spreadChange2;
     private float speedChange2;
-    private float red2;
-    private float green2;
-    private float blue2;
+    private float[] color2;
     private string difficulty2;
 
     [Header("Universe 3")]
@@ -51,9 +47,7 @@ public class CreateUniverse : MonoBehaviour
     private float sizeChange3;
     private float spreadChange3;
     private float speedChange3;
-    private float red3;
-    private float green3;
-    private float blue3;
+    private float[] color3;
     private string difficulty3;
 
     [Header("Backgrounds")]
@@ -96,10 +90,8 @@ public class CreateUniverse : MonoBehaviour
         spreadChangeText1.text = "- " + spreadChange1.ToString();
         speedChangeText1.text = "+ " + speedChange1.ToString();
         difficultyText1.text = difficulty1;
-        red1 = GetColor()[0];
-        green1 = GetColor()[1];
-        blue1 = GetColor()[2];
-        symbol1.GetComponent<Image>().color = new(red1, green1, blue1, 1);
+        color1 = GetColor();
+        symbol1.GetComponent<Image>().color = new(color1[0], color1[1], color1[2], 1);
         Instantiate(universe1, item1.transform.position, Quaternion.identity, item1.transform);
 
         sizeChange2 = Random.Range(2, 7) / 10f;
@@ -123,10 +115,8 @@ public class CreateUniverse : MonoBehaviour
         spreadChangeText2.text = "- " + spreadChange2.ToString();
         speedChangeText2.text = "+ " + speedChange2.ToString();
         difficultyText2.text = difficulty2;
-        red2 = GetColor()[0];
-        green2 = GetColor()[1];
-        blue2 = GetColor()[2];
-        symbol2.GetComponent<Image>().color = new(red2, green2, blue2, 1);
+        color2 = GetColor();
+        symbol2.GetComponent<Image>().color = new(color2[0], color2[1], color2[2], 1);
         Instantiate(universe2, item2.transform.position, Quaternion.identity, item2.transform);
 
         sizeChange3 = Random.Range(2, 7) / 10f;
@@ -150,10 +140,8 @@ public class CreateUniverse : MonoBehaviour
         spreadChangeText3.text = "- " + spreadChange3.ToString();
         speedChangeText3.text = "+ " + speedChange3.ToString();
         difficultyText3.text = difficulty3;
-        red3 = GetColor()[0];
-        green3 = GetColor()[1];
-        blue3 = GetColor()[2];
-        symbol3.GetComponent<Image>().color = new(red3, green3, blue3, 1);
+        color3 = GetColor();
+        symbol3.GetComponent<Image>().color = new(color3[0], color3[1], color3[2], 1);
         Instantiate(universe3, item3.transform.position, Quaternion.identity, item3.transform);
     }
 
@@ -215,7 +203,7 @@ public class CreateUniverse : MonoBehaviour
         GameManager.instance.spreadChange = spreadChange1;
         GameManager.instance.speedChange = speedChange1;
         GameManager.instance.universeDifficulty = difficulty1;
-        CreateZones(red1, green1, blue1);
+        CreateZones(color1[0], color1[1], color1[2]);
         GameManager.instance.resetUniverse = true;
     }
     public void UniverseTwo()
@@ -224,7 +212,7 @@ public class CreateUniverse : MonoBehaviour
         GameManager.instance.spreadChange = spreadChange2;
         GameManager.instance.speedChange = speedChange2;
         GameManager.instance.universeDifficulty = difficulty2;
-        CreateZones(red2, green2, blue2);
+        CreateZones(color2[0], color2[1], color2[2]);
         GameManager.instance.resetUniverse = true;
     }
     public void UniverseThree()
@@ -233,7 +221,7 @@ public class CreateUniverse : MonoBehaviour
         GameManager.instance.spreadChange = spreadChange3;
         GameManager.instance.speedChange = speedChange3;
         GameManager.instance.universeDifficulty = difficulty3;
-        CreateZones(red3, green3, blue3);
+        CreateZones(color3[0], color3[1], color3[2]);
         GameManager.instance.resetUniverse = true;
     }
 }

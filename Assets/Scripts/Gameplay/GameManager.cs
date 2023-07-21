@@ -35,8 +35,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Other")]
     public TextMeshProUGUI endScore;
-    public Animator hit;
-    public Animator complete;
+    public Animator screen;
 
     [Header("Player Prefs")]
     [HideInInspector] public float score;
@@ -60,6 +59,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public GameObject star;
     [HideInInspector] public bool finished;
     [HideInInspector] public float distanceLeft;
+    [HideInInspector] public Vector3 previousPosition = new(0, 0, 0);
     private BoxCollider2D playerBoxCollider;
     private Animator deathAnimation;
     private float countdownTime = 3;
@@ -103,7 +103,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         // Instantiate the player
-        player = Instantiate(playerPrefab, new(0, -0.432f, 0), Quaternion.identity, transform);
+        player = Instantiate(playerPrefab, new(0, -0.4197f, 0), Quaternion.identity, transform);
         playerBoxCollider = player.GetComponent<BoxCollider2D>();
         deathAnimation = player.GetComponent<Animator>();
 
@@ -133,7 +133,7 @@ public class GameManager : MonoBehaviour
 
             // Setup the UI
             player.SetActive(false);
-            player.transform.position = new(0, -0.432f, 0);
+            player.transform.position = new(0, -0.4197f, 0);
             cover.SetActive(false);
             createNewStar.Invoke();
             showText.Invoke();
@@ -157,7 +157,7 @@ public class GameManager : MonoBehaviour
                 // Player animation
                 player.isStatic = true;
                 deathAnimation.Play("End");
-                hit.Play("Hit");
+                screen.Play("Hit");
                 endTime -= Time.deltaTime;
                 if (endTime <= 0)
                 {
@@ -170,7 +170,7 @@ public class GameManager : MonoBehaviour
                 hitless = false;
                 immortal = true;
                 lives -= 1;
-                hit.Play("Hit");
+                screen.Play("Hit");
             }
         }        
 
@@ -341,7 +341,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        map.transform.SetPositionAndRotation(new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
+        map.transform.SetPositionAndRotation(new Vector3(0, -0.4197f, 0), Quaternion.Euler(0, 0, 0));
         GenerateMap(limit - (int)mapTracker.transform.position.y - 1);
         map.transform.rotation = Quaternion.Euler(vector);
         finished = false;
@@ -355,9 +355,9 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("High Score", (int)score);
         }
 
-        if (universeScore > PlayerPrefs.GetInt("Largest Constellation", 0))
+        if (universeScore > PlayerPrefs.GetInt("Universe Score", 0))
         {
-            PlayerPrefs.SetInt("Largest Constellation", (int)universeScore);
+            PlayerPrefs.SetInt("Universe Score", (int)universeScore);
         }
 
         PlayerPrefs.SetInt("Total Distance", PlayerPrefs.GetInt("Total Distance", 0) + (int)score);
@@ -378,9 +378,9 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("Quickest Universe", (int)universeScore);
         }
 
-        if (universeScore > PlayerPrefs.GetInt("Largest Constellation", 0))
+        if (universeScore > PlayerPrefs.GetInt("Universe Score", 0))
         {
-            PlayerPrefs.SetInt("Largest Constellation", (int)universeScore);
+            PlayerPrefs.SetInt("Universe Score", (int)universeScore);
         }
 
         PlayerPrefs.SetInt("Total Universes", PlayerPrefs.GetInt("Total Universes", 0) + 1);
@@ -480,7 +480,10 @@ public class GameManager : MonoBehaviour
     {
         if (destroyMeteors == true)
         {
-            complete.Play("Complete");
+            if (limit != 110)
+            {
+                screen.Play("Complete");
+            }
             limit = 110;
             foreach (Transform child in map.transform)
             {
@@ -491,6 +494,7 @@ public class GameManager : MonoBehaviour
             }
             if (finishedUniverse == true)
             {
+                cover.SetActive(false);
                 player.SetActive(false);
                 createUniverseStats.Invoke();
                 createNewStar();
@@ -508,6 +512,7 @@ public class GameManager : MonoBehaviour
         resetZones.Invoke();
         resetConstellation.Invoke();
         star.GetComponent<LineRenderer>().positionCount = 0;
+        previousPosition = new(0, 0, 0);
         star.transform.position = Vector3.zero;
         background.transform.position = Vector3.zero;
         mapTracker.transform.position = new(0f, 0f, 0f);

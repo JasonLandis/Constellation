@@ -268,8 +268,11 @@ public class Constellation : MonoBehaviour
         }
 
         // Render a line and alter UI components
-        GameManager.instance.star.GetComponent<LineRenderer>().positionCount++;
+        GameManager.instance.star.GetComponent<LineRenderer>().positionCount += 3;
+        GameManager.instance.star.GetComponent<LineRenderer>().SetPosition(GameManager.instance.star.GetComponent<LineRenderer>().positionCount - 3, GameManager.instance.star.transform.position);
+        GameManager.instance.star.GetComponent<LineRenderer>().SetPosition(GameManager.instance.star.GetComponent<LineRenderer>().positionCount - 2, GameManager.instance.previousPosition);
         GameManager.instance.star.GetComponent<LineRenderer>().SetPosition(GameManager.instance.star.GetComponent<LineRenderer>().positionCount - 1, GameManager.instance.star.transform.position);
+        GameManager.instance.previousPosition = GameManager.instance.star.transform.position;
         MoveFullCamera(vectors);
     }
 
