@@ -1,18 +1,12 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+public class StatsMenu : MonoBehaviour
 {
-    [Header("Objects")]
-    public GameObject shop;
-    public GameObject upgrades;
-    public GameObject stats;
-
     [Header("Stats Text")]
     public TextMeshProUGUI highScoreText;
     public TextMeshProUGUI statsHighScoreText;
-    public TextMeshProUGUI largestConstellationText;
+    public TextMeshProUGUI highestUniverseScoreText;
     public TextMeshProUGUI quickestUniverseText;
     public TextMeshProUGUI totalDistanceText;
     public TextMeshProUGUI totalUniversesText;
@@ -25,20 +19,20 @@ public class MainMenu : MonoBehaviour
     public TextMeshProUGUI hitlessNormalUniversesText;
     public TextMeshProUGUI hitlessHardUniversesText;
     public TextMeshProUGUI largestSizeText;
-    public TextMeshProUGUI largestSpreadText;
+    public TextMeshProUGUI smallestSpreadText;
     public TextMeshProUGUI largestSpeedText;
     public TextMeshProUGUI smallestSizeText;
-    public TextMeshProUGUI smallestSpreadText;
+    public TextMeshProUGUI largestSpreadText;
     public TextMeshProUGUI smallestSpeedText;
     public TextMeshProUGUI mostLivesText;
+    public TextMeshProUGUI unlockedUpgradesText;
     public TextMeshProUGUI unlockedIconsText;
 
-    void Awake()
+    public void LoadStatsValues()
     {
-        Application.targetFrameRate = 60;
         highScoreText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("High Score", 0).ToString() + "</color>";
         statsHighScoreText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("High Score", 0).ToString() + "</color>";
-        largestConstellationText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("Universe Score", 0).ToString() + "</color>";
+        highestUniverseScoreText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("Universe Score", 0).ToString() + "</color>";
         if (PlayerPrefs.HasKey("Quickest Universe"))
         {
             quickestUniverseText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("Quickest Universe").ToString() + "</color>";
@@ -58,45 +52,13 @@ public class MainMenu : MonoBehaviour
         hitlessNormalUniversesText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("Hitless Normal Universes", 0).ToString() + "</color>";
         hitlessHardUniversesText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("Hitless Hard Universes", 0).ToString() + "</color>";
         largestSizeText.text = "<color=#11DC58>" + PlayerPrefs.GetFloat("Largest Size", 1).ToString() + "</color>";
-        largestSpreadText.text = "<color=#11DC58>" + PlayerPrefs.GetFloat("Largest Spread", 5).ToString() + "</color>";
+        smallestSpreadText.text = "<color=#11DC58>" + PlayerPrefs.GetFloat("Smallest Spread", 5).ToString() + "</color>";
         largestSpeedText.text = "<color=#11DC58>" + PlayerPrefs.GetFloat("Largest Speed", 10).ToString() + "</color>";
         smallestSizeText.text = "<color=#11DC58>" + PlayerPrefs.GetFloat("Smallest Size", 1).ToString() + "</color>";
-        smallestSpreadText.text = "<color=#11DC58>" + PlayerPrefs.GetFloat("Smallest Spread", 5).ToString() + "</color>";
+        largestSpreadText.text = "<color=#11DC58>" + PlayerPrefs.GetFloat("Largest Spread", 5).ToString() + "</color>";
         smallestSpeedText.text = "<color=#11DC58>" + PlayerPrefs.GetFloat("Smallest Speed", 10).ToString() + "</color>";
         mostLivesText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("Most Lives", 0).ToString() + "</color>";
+        unlockedUpgradesText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("Unlocked Upgrades", 1).ToString() + "</color>";
         unlockedIconsText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("Unlocked Icons", 1).ToString() + "</color>";
-
-        // PlayerPrefs.DeleteAll();
-    }
-
-    public void Play()
-    {
-        SceneManager.LoadScene("Main");
-    }
-
-    public void Quit()
-    {
-        Application.Quit();
-    }
-
-    public void Shop()
-    {
-        shop.SetActive(true);
-    }
-
-    public void Upgrades()
-    {
-        upgrades.SetActive(true);
-    }
-
-    public void Stats()
-    {
-        stats.SetActive(true);
-    }
-
-    public void Menu()
-    {
-        shop.SetActive(false);
-        stats.SetActive(false);
     }
 }

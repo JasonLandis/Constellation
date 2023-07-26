@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour
 {
@@ -10,6 +11,13 @@ public class GameUI : MonoBehaviour
     public GameObject totalScoreUI;
     public GameObject universeScoreUI;
     public GameObject distanceLeftUI;
+    public Image statsButton;
+    public Image sizeButton;
+    public Image spreadButton;
+    public Image speedButton;
+    public Image livesButton;
+    public Image zoneButton;
+    public Image constellationButton;
 
     [Header("Text")]
     public TextMeshProUGUI livesText;
@@ -31,6 +39,7 @@ public class GameUI : MonoBehaviour
         GameManager.instance.showText += ShowText;
         GameManager.instance.showStatText += ShowStatText;
         GameManager.instance.showDistanceUI += ShowDistanceUI;
+        GameManager.instance.openRaycast += OpenRaycast;
     }
 
     // Button functions for arrow directions
@@ -92,7 +101,7 @@ public class GameUI : MonoBehaviour
         GameManager.instance.distanceLeft = 10;
         GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
         distanceUI.SetActive(false);
-        GameManager.instance.cover.SetActive(true);
+        BlockRaycast();
     }
     public void Twenty()
     {
@@ -102,7 +111,7 @@ public class GameUI : MonoBehaviour
         GameManager.instance.distanceLeft = 20;
         GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
         distanceUI.SetActive(false);
-        GameManager.instance.cover.SetActive(true);
+        BlockRaycast();
     }
     public void Thirty()
     {
@@ -112,7 +121,7 @@ public class GameUI : MonoBehaviour
         GameManager.instance.distanceLeft = 30;
         GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
         distanceUI.SetActive(false);
-        GameManager.instance.cover.SetActive(true);
+        BlockRaycast();
     }
 
     // Button functions for switching between arrows and direction screen
@@ -139,6 +148,7 @@ public class GameUI : MonoBehaviour
         distanceLeftText.text = (Math.Ceiling(GameManager.instance.distanceLeft)).ToString();
         zoneText.text = GameManager.instance.zone.ToString();
     }
+
     public void ShowStatText()
     {
         sizeChangeText.text = "+ " + GameManager.instance.sizeChange.ToString();
@@ -170,4 +180,26 @@ public class GameUI : MonoBehaviour
         universeScoreUI.SetActive(false);
         distanceLeftUI.SetActive(true);
     }    
+
+    public void BlockRaycast()
+    {
+        statsButton.raycastTarget = false;
+        sizeButton.raycastTarget = false;
+        spreadButton.raycastTarget = false;
+        speedButton.raycastTarget = false;
+        livesButton.raycastTarget = false;
+        zoneButton.raycastTarget = false;
+        constellationButton.raycastTarget = false;
+    }
+
+    public void OpenRaycast()
+    {
+        statsButton.raycastTarget = true;
+        sizeButton.raycastTarget = true;
+        spreadButton.raycastTarget = true;
+        speedButton.raycastTarget = true;
+        livesButton.raycastTarget = true;
+        zoneButton.raycastTarget = true;
+        constellationButton.raycastTarget = true;
+    }
 }

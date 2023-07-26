@@ -1,18 +1,25 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class LockInfo : MonoBehaviour
+public class ShopMenu : MonoBehaviour
 {
     [Header("Locked Text")]
-    public GameObject background;
+    public GameObject lockPopup;
     public TextMeshProUGUI description;
+
+    [Header("Skin Objects")]
+    public List<Sprite> icons;
+    public SpriteRenderer player;
+    public SpriteRenderer star;
+    public Image playerIcon;
 
     [Header("Lock Objects")]
     public List<GameObject> locks;
     [HideInInspector] public List<string> lockedText;
 
-    void Awake()
+    public void LoadSkinLocks()
     {
         lockedText.Add("Achieve a <color=#00C9FF>High Score</color> of <color=#11DC58>1,000</color>");
         lockedText.Add("Achieve a <color=#00C9FF>High Score</color> of <color=#11DC58>2,500</color>");
@@ -46,28 +53,15 @@ public class LockInfo : MonoBehaviour
         lockedText.Add("Clear <color=#11DC58>1</color> <color=#00C9FF>Normal Universe</color> <color=#E54B4B>without being hit</color>");
         lockedText.Add("Clear <color=#11DC58>5</color> <color=#00C9FF>Normal Universes</color> <color=#E54B4B>without being hit</color>");
         lockedText.Add("Clear <color=#11DC58>1</color> <color=#00C9FF>Hard Universe</color> <color=#E54B4B>without being hit</color>");
-        lockedText.Add("Clear <color=#11DC58>5</color> <color=#00C9FF>Hard Universes</color> <color=#E54B4B>without being hit</color>");
-        lockedText.Add("Reach a <color=#00C9FF>Size</color> of <color=#11DC58>0.5</color>");
-        lockedText.Add("Reach a <color=#00C9FF>Size</color> of <color=#11DC58>0.1</color>");
-        lockedText.Add("Reach a <color=#00C9FF>Size</color> of <color=#11DC58>4</color>");
-        lockedText.Add("Reach a <color=#00C9FF>Size</color> of <color=#11DC58>7</color>");
-        lockedText.Add("Reach a <color=#00C9FF>Spread</color> of <color=#11DC58>8</color>");
-        lockedText.Add("Reach a <color=#00C9FF>Spread</color> of <color=#11DC58>10</color>");
-        lockedText.Add("Reach a <color=#00C9FF>Spread</color> of <color=#11DC58>4</color>");
-        lockedText.Add("Reach a <color=#00C9FF>Spread</color> of <color=#11DC58>2</color>");
-        lockedText.Add("Reach a <color=#00C9FF>Speed</color> of <color=#11DC58>7</color>");
-        lockedText.Add("Reach a <color=#00C9FF>Speed</color> of <color=#11DC58>5</color>");
-        lockedText.Add("Reach a <color=#00C9FF>Speed</color> of <color=#11DC58>15</color>");
-        lockedText.Add("Reach a <color=#00C9FF>Speed</color> of <color=#11DC58>20</color>");
-        lockedText.Add("Carry <color=#11DC58>10</color> <color=#00C9FF>Extra Lives</color> at once");
-        lockedText.Add("Carry <color=#11DC58>25</color> <color=#00C9FF>Extra Lives</color> at once");
-        lockedText.Add("Carry <color=#11DC58>50</color> <color=#00C9FF>Extra Lives</color> at once");
-        lockedText.Add("<color=#00C9FF>Unlock</color> <color=#11DC58>5</color> icons");
-        lockedText.Add("<color=#00C9FF>Unlock</color> <color=#11DC58>15</color> icons");
-        lockedText.Add("<color=#00C9FF>Unlock</color> <color=#11DC58>30</color> icons");
-        lockedText.Add("<color=#00C9FF>Unlock</color> <color=#11DC58>45</color> icons");
-        lockedText.Add("<color=#00C9FF>Unlock</color> <color=#11DC58>All</color> icons");
-
+        lockedText.Add("Clear <color=#11DC58>5</color> <color=#00C9FF>Hard Universes</color> <color=#E54B4B>without being hit</color>");  
+        lockedText.Add("Unlock <color=#11DC58>10</color> <color=#00C9FF>Upgrades</color>");
+        lockedText.Add("Unlock <color=#11DC58>20</color> <color=#00C9FF>Upgrades</color>");
+        lockedText.Add("Unlock <color=#11DC58>All</color> <color=#00C9FF>Upgrades</color>");
+        lockedText.Add("Unlock <color=#11DC58>5</color> <color=#00C9FF>Icons</color>");
+        lockedText.Add("Unlock <color=#11DC58>10</color> <color=#00C9FF>Icons</color>");
+        lockedText.Add("Unlock <color=#11DC58>20</color> <color=#00C9FF>Icons</color>");
+        lockedText.Add("Unlock <color=#11DC58>30</color> <color=#00C9FF>Icons</color>");
+        lockedText.Add("Unlock <color=#11DC58>All</color> <color=#00C9FF>Icons</color>");
 
         int unlockCount = 1;
 
@@ -240,100 +234,40 @@ public class LockInfo : MonoBehaviour
                 locks[32].SetActive(false);
             }
         }
-        if (PlayerPrefs.GetFloat("Smallest Size", 1) <= 0.5f)
+        if (PlayerPrefs.GetInt("Unlocked Upgrades", 0) >= 10)
         {
             unlockCount += 1;
             locks[33].SetActive(false);
-            if (PlayerPrefs.GetFloat("Smallest Size", 1) <= 0.1f)
+            if (PlayerPrefs.GetInt("Unlocked Upgrades", 0) >= 20)
             {
                 unlockCount += 1;
                 locks[34].SetActive(false);
-            }
-        }
-        if (PlayerPrefs.GetFloat("Largest Size", 1) >= 4)
-        {
-            unlockCount += 1;
-            locks[35].SetActive(false);
-            if (PlayerPrefs.GetFloat("Largest Size", 1) >= 7)
-            {
-                unlockCount += 1;
-                locks[36].SetActive(false);
-            }
-        }
-        if (PlayerPrefs.GetFloat("Largest Spread", 5) >= 8)
-        {
-            unlockCount += 1;
-            locks[37].SetActive(false);
-            if (PlayerPrefs.GetFloat("Largest Spread", 5) >= 10)
-            {
-                unlockCount += 1;
-                locks[38].SetActive(false);
-            }
-        }
-        if (PlayerPrefs.GetFloat("Smallest Spread", 5) <= 4)
-        {
-            unlockCount += 1;
-            locks[39].SetActive(false);
-            if (PlayerPrefs.GetFloat("Smallest Spread", 5) <= 2)
-            {
-                unlockCount += 1;
-                locks[40].SetActive(false);
-            }
-        }
-        if (PlayerPrefs.GetFloat("Smallest Speed", 10) <= 7)
-        {
-            unlockCount += 1;
-            locks[41].SetActive(false);
-            if (PlayerPrefs.GetFloat("Smallest Speed", 10) <= 5)
-            {
-                unlockCount += 1;
-                locks[42].SetActive(false);
-            }
-        }
-        if (PlayerPrefs.GetFloat("Largest Speed", 10) >= 15)
-        {
-            unlockCount += 1;
-            locks[43].SetActive(false);
-            if (PlayerPrefs.GetFloat("Largest Speed", 10) >= 20)
-            {
-                unlockCount += 1;
-                locks[44].SetActive(false);
-            }
-        }
-        if (PlayerPrefs.GetInt("Most Lives", 0) >= 10)
-        {
-            unlockCount += 1;
-            locks[45].SetActive(false);
-            if (PlayerPrefs.GetInt("Most Lives", 0) >= 25)
-            {
-                unlockCount += 1;
-                locks[46].SetActive(false);
-                if (PlayerPrefs.GetInt("Most Lives", 0) >= 50)
+                if (PlayerPrefs.GetInt("Unlocked Upgrades", 0) >= 36)
                 {
                     unlockCount += 1;
-                    locks[47].SetActive(false);
+                    locks[35].SetActive(false);
                 }
             }
         }
         if (unlockCount >= 5)
         {
             unlockCount += 1;
-            locks[48].SetActive(false);
-            if (unlockCount >= 15)
+            locks[36].SetActive(false);
+            if (unlockCount >= 10)
             {
                 unlockCount += 1;
-                locks[49].SetActive(false);
-                if (unlockCount >= 30)
+                locks[37].SetActive(false);
+                if (unlockCount >= 20)
                 {
                     unlockCount += 1;
-                    locks[50].SetActive(false);
-                    if (unlockCount >= 45)
+                    locks[38].SetActive(false);
+                    if (unlockCount >= 30)
                     {
                         unlockCount += 1;
-                        locks[51].SetActive(false);
-                        if (unlockCount >= 51)
+                        locks[39].SetActive(false);
+                        if (unlockCount >= 39)
                         {
-                            locks[52].SetActive(false);
+                            locks[40].SetActive(false);
                         }
                     }
                 }
@@ -343,10 +277,14 @@ public class LockInfo : MonoBehaviour
         {
             PlayerPrefs.SetInt("Unlocked Icons", unlockCount);
         }
+
+        player.sprite = icons[PlayerPrefs.GetInt("Skin", 0)];
+        star.sprite = icons[PlayerPrefs.GetInt("Skin", 0)];
+        playerIcon.sprite = icons[PlayerPrefs.GetInt("Skin", 0)];
     }
 
-    public void Back()
+    public void BackToShop()
     {
-        background.SetActive(false);
+        lockPopup.SetActive(false);
     }
 }
