@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Constellation : MonoBehaviour
 {
@@ -45,6 +46,7 @@ public class Constellation : MonoBehaviour
                 float blue = Random.Range(100, 255) / 255f;
 
                 constellationStar.GetComponent<SpriteRenderer>().color = new(red, green, blue, 1);
+                constellationStar.GetComponent<Light2D>().color = new(red, green, blue, 1);
 
                 if (i > -3.5 && i < 3.5 && j > -3.5 && j < 3.5)
                 {
@@ -247,8 +249,6 @@ public class Constellation : MonoBehaviour
         {
             fullCamera.transform.position = new(fullCamera.transform.position.x - (addedWidth / 2), fullCamera.transform.position.y, -1);
         }
-
-        fullCameraObject.SetActive(true);
     }
 
     // Adds a new star to the constellation
@@ -279,10 +279,12 @@ public class Constellation : MonoBehaviour
     // Button functions for viewing the full constellation
     public void ShowFullConstellation()
     {
+        fullCameraObject.SetActive(true);
         fullConstellation.SetActive(true);
     }
     public void HideFullConstellation()
     {
+        fullCameraObject.SetActive(false);
         fullConstellation.SetActive(false);
     }
 
@@ -294,6 +296,7 @@ public class Constellation : MonoBehaviour
         fullCamera.transform.position = constellationCamera.transform.position;
         fullCamera.orthographicSize = 2;
     }
+
     public void FullCameraTransition()
     {
         fullCamera.transform.position = Vector3.MoveTowards(fullCamera.transform.position, new(0, 0, -1), 0.2f);

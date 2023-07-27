@@ -95,7 +95,6 @@ public class GameUI : MonoBehaviour
     // Button functions for map length
     public void Ten()
     {
-        GameManager.instance.player.SetActive(true);
         GameManager.instance.mapLength = 10;
         GameManager.instance.limit = 10;
         GameManager.instance.distanceLeft = 10;
@@ -105,7 +104,6 @@ public class GameUI : MonoBehaviour
     }
     public void Twenty()
     {
-        GameManager.instance.player.SetActive(true);
         GameManager.instance.mapLength = 20;
         GameManager.instance.limit = 20;
         GameManager.instance.distanceLeft = 20;
@@ -115,7 +113,6 @@ public class GameUI : MonoBehaviour
     }
     public void Thirty()
     {
-        GameManager.instance.player.SetActive(true);
         GameManager.instance.mapLength = 30;
         GameManager.instance.limit = 30;
         GameManager.instance.distanceLeft = 30;

@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     public GameObject endMenu;
     public GameObject createdStars;
     public GameObject yourConstellation;
+    public GameObject fullCameraObject;
     [HideInInspector] public GameObject player;
     [HideInInspector] public GameObject star;
     private BoxCollider2D playerBoxCollider;
@@ -147,8 +148,6 @@ public class GameManager : MonoBehaviour
             SaveGameScores();
 
             // Setup the UI
-            player.SetActive(false);
-            player.transform.position = new(0, -0.4197f, 0);
             createNewStar.Invoke();
             showText.Invoke();
             showDistanceUI.Invoke();
@@ -162,12 +161,12 @@ public class GameManager : MonoBehaviour
             }            
         }
 
-        else if (playerBoxCollider.IsTouchingLayers(LayerMask.GetMask("Meteor")) && immortal == false)
+        else if (playerBoxCollider.IsTouchingLayers(LayerMask.GetMask("Meteor")) && immortal == false && finished == false)
         {
             if (lives == 0)
             {
-                isGameOver = true;
                 hitless = false;
+                isGameOver = true;
 
                 // Player animation
                 player.isStatic = true;
@@ -478,16 +477,19 @@ public class GameManager : MonoBehaviour
     // Creates the last star and ends the game
     public void EndGame()
     {
-        SaveScores();
-        SaveGameScores();
-        player.SetActive(false);
-        endScore.text = ((int)score).ToString();
-        showText.Invoke();
-        isGameOver = true;
-        createNewStar.Invoke();
-        endMenu.SetActive(true);
-        createdStars.SetActive(false);
-        Time.timeScale = 0f;
+        if (!finished)
+        {
+            SaveScores();
+            SaveGameScores();
+            endScore.text = ((int)score).ToString();
+            showText.Invoke();
+            createNewStar.Invoke();
+            fullCameraObject.SetActive(true);
+            endMenu.SetActive(true);
+            createdStars.SetActive(false);
+            Time.timeScale = 0f;
+        }
+        finished = true;
     }
 
     // Destroys remaining meteors and detects if the universe is finished
@@ -509,9 +511,9 @@ public class GameManager : MonoBehaviour
             }
             if (finishedUniverse == true)
             {
-                player.SetActive(false);
                 createUniverseStats.Invoke();
                 createNewStar();
+                fullCameraObject.SetActive(true);
                 setFullCamera.Invoke();
                 universesCleared += 1;
                 SaveUniverseScores();

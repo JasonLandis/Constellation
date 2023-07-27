@@ -28,10 +28,6 @@ public class PauseMenu : MonoBehaviour
     // Menu buttons
     public void Resume()
     {
-        if (GameManager.instance.finished == false)
-        {
-            GameManager.instance.player.SetActive(true);
-        }
         pauseMenu.SetActive(false);
         sureMenu.SetActive(false);
         stats.SetActive(false);
@@ -44,7 +40,6 @@ public class PauseMenu : MonoBehaviour
     }
     public void Pause()
     {
-        GameManager.instance.player.SetActive(false);
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
     }
