@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
@@ -10,7 +11,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject spreadInfo;
     public GameObject speedInfo;
     public GameObject livesInfo;
-    public GameObject zoneInfo;
+    public GameObject zoneInfo;    
 
     void Awake()
     {
@@ -25,6 +26,14 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    public void ResumeFromPause()
+    {
+        pauseMenu.SetActive(false);
+        sureMenu.SetActive(false);
+        GameManager.instance.isGamePaused = false;
+        Time.timeScale = 1f;
+    }
+
     // Menu buttons
     public void Resume()
     {
@@ -36,17 +45,17 @@ public class PauseMenu : MonoBehaviour
         speedInfo.SetActive(false);
         livesInfo.SetActive(false);
         zoneInfo.SetActive(false);
-        Time.timeScale = 1f;
     }
     public void Pause()
     {
         pauseMenu.SetActive(true);
+        GameManager.instance.isGamePaused = true;
         Time.timeScale = 0f;
     }
+
     public void Stats()
     {
         stats.SetActive(true);
-        Time.timeScale = 0f;
     }
     public void Sure()
     {

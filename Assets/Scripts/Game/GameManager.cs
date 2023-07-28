@@ -38,10 +38,13 @@ public class GameManager : MonoBehaviour
 
     [Header("Gameplay")]
     public TextMeshProUGUI endScore;
+    public TextMeshProUGUI endUniverseScore;
+    public TextMeshProUGUI endCompletedScore;
     public Animator screen;
     public Camera mainCamera;
     private Animator deathAnimation;
     [HideInInspector] public bool isGameOver;
+    [HideInInspector] public bool isGamePaused;
     [HideInInspector] public bool finished;
     [HideInInspector] public float distanceLeft;
     [HideInInspector] public bool immortal;
@@ -94,6 +97,9 @@ public class GameManager : MonoBehaviour
     // Functions from CreateUniverse
     public Action createUniverseStats;
 
+    // Functions from LightManager
+    public Action initializeLights;
+
     void Awake()
     {
         if (instance == null)
@@ -125,6 +131,7 @@ public class GameManager : MonoBehaviour
         // Create the universe stats and show the text
         CreateUniverseStats();
         showStatText.Invoke();
+        initializeLights.Invoke();
 
         Application.targetFrameRate = 60;
         Time.timeScale = 1f;
@@ -161,7 +168,7 @@ public class GameManager : MonoBehaviour
             }            
         }
 
-        else if (playerBoxCollider.IsTouchingLayers(LayerMask.GetMask("Meteor")) && immortal == false && finished == false)
+        else if (playerBoxCollider.IsTouchingLayers(LayerMask.GetMask("Meteor")) && !immortal && !finished && !isGamePaused)
         {
             if (lives == 0)
             {
@@ -169,7 +176,6 @@ public class GameManager : MonoBehaviour
                 isGameOver = true;
 
                 // Player animation
-                player.isStatic = true;
                 deathAnimation.Play("End");
                 screen.Play("Hit");
                 endTime -= Time.deltaTime;
@@ -188,7 +194,7 @@ public class GameManager : MonoBehaviour
             }
         }        
 
-        else if (finished == false)
+        else if (!finished && !isGamePaused)
         {
             ImmortalCheck();
             zoneDetection.Invoke();
@@ -199,7 +205,7 @@ public class GameManager : MonoBehaviour
             DestroyMeteors();
         }
 
-        else if (finishedUniverse == true)
+        else if (finishedUniverse && !isGamePaused)
         {
             fullCameraTransition.Invoke();
             if (resetUniverse == true)
@@ -482,12 +488,14 @@ public class GameManager : MonoBehaviour
             SaveScores();
             SaveGameScores();
             endScore.text = ((int)score).ToString();
+            endUniverseScore.text = ((int)universeScore).ToString();
+            endCompletedScore.text = ((int)universesCleared).ToString();
             showText.Invoke();
             createNewStar.Invoke();
+            player.transform.position = new(0, 0, 0);
             fullCameraObject.SetActive(true);
             endMenu.SetActive(true);
             createdStars.SetActive(false);
-            Time.timeScale = 0f;
         }
         finished = true;
     }

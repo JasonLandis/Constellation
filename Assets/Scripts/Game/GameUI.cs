@@ -7,10 +7,7 @@ public class GameUI : MonoBehaviour
 {
     [Header("Objects")]
     public GameObject directionUI;
-    public GameObject distanceUI;
-    public GameObject totalScoreUI;
-    public GameObject universeScoreUI;
-    public GameObject distanceLeftUI;
+    public GameObject distanceUI;    
     public Image statsButton;
     public Image sizeButton;
     public Image spreadButton;
@@ -160,23 +157,6 @@ public class GameUI : MonoBehaviour
     {
         directionUI.SetActive(true);
     }
-
-    // Toggling score UI
-    public void SwapToTotalScore()
-    {
-        distanceLeftUI.SetActive(false);
-        totalScoreUI.SetActive(true);
-    }
-    public void SwapToUniverseScore()
-    {
-        totalScoreUI.SetActive(false);
-        universeScoreUI.SetActive(true);
-    }
-    public void SwapToDistanceLeft()
-    {
-        universeScoreUI.SetActive(false);
-        distanceLeftUI.SetActive(true);
-    }    
 
     public void BlockRaycast()
     {
