@@ -219,15 +219,15 @@ public class GameManager : MonoBehaviour
     public void CreateUniverseStats()
     {
         sizeChange = UnityEngine.Random.Range(2, 7) / 10f;
-        spreadChange = UnityEngine.Random.Range(3, 9) / 10f;
-        speedChange = UnityEngine.Random.Range(7, 14) / 10f;
+        spreadChange = UnityEngine.Random.Range(7, 15) / 10f;
+        speedChange = UnityEngine.Random.Range(13, 21) / 10f;
         
-        if (sizeChange + spreadChange + speedChange < 1.9)
+        if (sizeChange + spreadChange + speedChange < 3)
         {
             universeDifficulty = "<color=#11DC58>Easy</color>";
         }
 
-        else if (sizeChange + spreadChange + speedChange < 2.1)
+        else if (sizeChange + spreadChange + speedChange < 3.3)
         {
             universeDifficulty = "<color=#E0E0E0>Normal</color>";
         }

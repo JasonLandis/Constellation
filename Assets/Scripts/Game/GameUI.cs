@@ -7,7 +7,7 @@ public class GameUI : MonoBehaviour
 {
     [Header("Objects")]
     public GameObject directionUI;
-    public GameObject distanceUI;    
+    public GameObject distanceUI;
     public Image statsButton;
     public Image sizeButton;
     public Image spreadButton;

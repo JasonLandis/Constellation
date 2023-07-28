@@ -20,33 +20,43 @@ public class Roguelike : MonoBehaviour
     {
         GameManager.instance.showRoguelike += ShowRoguelike;
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 100; i++)
         {
             rarityList.Add(abilities[0]);
-            rarityList.Add(abilities[1]);
-            rarityList.Add(abilities[2]);
-            rarityList.Add(abilities[3]);
-        }
-
-        for (int i = 0; i < 6; i++)
-        {
             rarityList.Add(abilities[4]);
-            rarityList.Add(abilities[5]);
-            rarityList.Add(abilities[6]);
-            rarityList.Add(abilities[7]);
-        }
-
-        for (int i = 0; i < 3; i++)
-        {
             rarityList.Add(abilities[8]);
-            rarityList.Add(abilities[9]);
-            rarityList.Add(abilities[10]);
-            rarityList.Add(abilities[11]);
         }
 
-        rarityList.Add(abilities[12]);
-        rarityList.Add(abilities[13]);
-        rarityList.Add(abilities[14]);
+        for (int i = 0; i < 60; i++)
+        {
+            rarityList.Add(abilities[1]);
+            rarityList.Add(abilities[5]);
+            rarityList.Add(abilities[9]);
+        }
+
+        for (int i = 0; i < 30; i++)
+        {
+            rarityList.Add(abilities[2]);
+            rarityList.Add(abilities[6]);
+            rarityList.Add(abilities[10]);
+
+            rarityList.Add(abilities[12]);
+        }
+
+        for (int i = 0; i < 15; i++)
+        {
+            rarityList.Add(abilities[3]);
+            rarityList.Add(abilities[7]);
+            rarityList.Add(abilities[11]);
+
+            rarityList.Add(abilities[13]);
+        }
+
+        for (int i = 0; i < 5; i++)
+        {
+            rarityList.Add(abilities[14]);
+        }
+
         rarityList.Add(abilities[15]);
     }
 
@@ -123,7 +133,7 @@ public class Roguelike : MonoBehaviour
     }
     public void SizeFour()
     {
-        GameManager.instance.size -= 0.5f;
+        GameManager.instance.size -= 0.4f;
         if (GameManager.instance.size < 0.1f)
         {
             GameManager.instance.size = 0.1f;
@@ -137,11 +147,7 @@ public class Roguelike : MonoBehaviour
     // Functions for the spread ability
     public void SpreadOne()
     {
-        GameManager.instance.spread += 0.2f;
-        if (GameManager.instance.spread > 10)
-        {
-            GameManager.instance.spread = 10;
-        }
+        GameManager.instance.spread += 0.3f;
         GameManager.instance.showText.Invoke();
         DestroyRoguelike();
         roguelike.SetActive(false);
@@ -149,11 +155,7 @@ public class Roguelike : MonoBehaviour
     }
     public void SpreadTwo()
     {
-        GameManager.instance.spread += 0.4f;
-        if (GameManager.instance.spread > 10)
-        {
-            GameManager.instance.spread = 10;
-        }
+        GameManager.instance.spread += 0.7f;
         GameManager.instance.showText.Invoke();
         DestroyRoguelike();
         roguelike.SetActive(false);
@@ -161,11 +163,7 @@ public class Roguelike : MonoBehaviour
     }
     public void SpreadThree()
     {
-        GameManager.instance.spread += 0.6f;
-        if (GameManager.instance.spread > 10)
-        {
-            GameManager.instance.spread = 10;
-        }
+        GameManager.instance.spread += 1.1f;
         GameManager.instance.showText.Invoke();
         DestroyRoguelike();
         roguelike.SetActive(false);
@@ -173,11 +171,7 @@ public class Roguelike : MonoBehaviour
     }
     public void SpreadFour()
     {
-        GameManager.instance.spread += 1;
-        if (GameManager.instance.spread > 10)
-        {
-            GameManager.instance.spread = 10;
-        }
+        GameManager.instance.spread += 1.5f;
         GameManager.instance.showText.Invoke();
         DestroyRoguelike();
         roguelike.SetActive(false);
@@ -187,7 +181,7 @@ public class Roguelike : MonoBehaviour
     // Functions for the speed ability
     public void SpeedOne()
     {
-        GameManager.instance.speed -= 0.2f;
+        GameManager.instance.speed -= 0.5f;
         if (GameManager.instance.speed < 1)
         {
             GameManager.instance.speed = 1;
@@ -199,7 +193,7 @@ public class Roguelike : MonoBehaviour
     }
     public void SpeedTwo()
     {
-        GameManager.instance.speed -= 0.4f;
+        GameManager.instance.speed -= 1;
         if (GameManager.instance.speed < 1)
         {
             GameManager.instance.speed = 1;
@@ -211,7 +205,7 @@ public class Roguelike : MonoBehaviour
     }
     public void SpeedThree()
     {
-        GameManager.instance.speed -= 0.6f;
+        GameManager.instance.speed -= 1.5f;
         if (GameManager.instance.speed < 1)
         {
             GameManager.instance.speed = 1;
@@ -223,7 +217,7 @@ public class Roguelike : MonoBehaviour
     }
     public void SpeedFour()
     {
-        GameManager.instance.speed -= 1;
+        GameManager.instance.speed -= 2;
         if (GameManager.instance.speed < 1)
         {
             GameManager.instance.speed = 1;

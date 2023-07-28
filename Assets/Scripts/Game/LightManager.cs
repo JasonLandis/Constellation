@@ -6,14 +6,14 @@ public class LightManager : MonoBehaviour
     public Light2D globalLight;
     public GameObject lightsOffButton;
 
-    void Start()
+    void Awake()
     {
         GameManager.instance.initializeLights += InitializeLights;
     }
 
-    public void InitializeLights()
+    private void InitializeLights()
     {
-        if (PlayerPrefs.GetInt("Lights", 1)  == 1)
+        if (PlayerPrefs.GetInt("Lights", 1) == 1)
         {
             LightsOn();
         }
