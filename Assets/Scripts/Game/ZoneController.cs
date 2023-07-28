@@ -296,12 +296,12 @@ public class ZoneController : MonoBehaviour
                 maxSpreadZone = GameManager.instance.zone + 1;
             }
         }
-        if (GameManager.instance.size > 0.2f)
+        if (GameManager.instance.size > 0.1f)
         {
             GameManager.instance.size -= GameManager.instance.sizeChange;
-            if (GameManager.instance.size < 0.2f)
+            if (GameManager.instance.size < 0.1f)
             {
-                GameManager.instance.size = 0.2f;
+                GameManager.instance.size = 0.1f;
             }
         }
         else
