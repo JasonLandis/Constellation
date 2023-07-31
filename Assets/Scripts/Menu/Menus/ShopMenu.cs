@@ -10,14 +10,20 @@ public class ShopMenu : MonoBehaviour
     public TextMeshProUGUI description;
 
     [Header("Skin Objects")]
-    public List<Sprite> icons;
-    public SpriteRenderer player;
-    public SpriteRenderer star;
-    public Image playerIcon;
+    public List<GameObject> icons;
+    public GameObject playerHolder;
 
     [Header("Lock Objects")]
     public List<GameObject> locks;
     [HideInInspector] public List<string> lockedText;
+
+    [Header("Skin Screens")]
+    public GameObject screen1;
+    public GameObject screen2;
+    public GameObject screen3;
+    public GameObject screen4;
+
+    private int activeScreen = 1;
 
     public void LoadSkinLocks()
     {
@@ -278,9 +284,64 @@ public class ShopMenu : MonoBehaviour
             PlayerPrefs.SetInt("Unlocked Icons", unlockCount);
         }
 
-        player.sprite = icons[PlayerPrefs.GetInt("Skin", 0)];
-        star.sprite = icons[PlayerPrefs.GetInt("Skin", 0)];
-        playerIcon.sprite = icons[PlayerPrefs.GetInt("Skin", 0)];
+        Destroy(playerHolder.transform.GetChild(0).gameObject);
+        Instantiate(icons[PlayerPrefs.GetInt("Skin")], playerHolder.transform.position, Quaternion.identity, playerHolder.transform);
+    }
+
+    public void SwapRight()
+    {
+        if (activeScreen == 1)
+        {
+            screen1.SetActive(false);
+            screen2.SetActive(true);
+            activeScreen = 2;
+        }
+        else if (activeScreen == 2)
+        {
+            screen2.SetActive(false);
+            screen3.SetActive(true);
+            activeScreen = 3;
+        }
+        else if (activeScreen == 3)
+        {
+            screen3.SetActive(false);
+            screen4.SetActive(true);
+            activeScreen = 4;
+        }
+        else
+        {
+            screen4.SetActive(false);
+            screen1.SetActive(true);
+            activeScreen = 1;
+        }
+    }
+
+    public void SwapLeft()
+    {
+        if (activeScreen == 1)
+        {
+            screen1.SetActive(false);
+            screen4.SetActive(true);
+            activeScreen = 4;
+        }
+        else if (activeScreen == 2)
+        {
+            screen2.SetActive(false);
+            screen1.SetActive(true);
+            activeScreen = 1;
+        }
+        else if (activeScreen == 3)
+        {
+            screen3.SetActive(false);
+            screen2.SetActive(true);
+            activeScreen = 2;
+        }
+        else
+        {
+            screen4.SetActive(false);
+            screen3.SetActive(true);
+            activeScreen = 3;
+        }
     }
 
     public void BackToShop()

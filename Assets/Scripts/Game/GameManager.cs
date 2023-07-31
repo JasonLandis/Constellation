@@ -22,8 +22,8 @@ public class GameManager : MonoBehaviour
     public int zone = 1;
 
     [Header("Objects")]
-    public GameObject playerPrefab;
-    public GameObject starPrefab;
+    public List<GameObject> playerPrefabs;
+    public List<GameObject> starPrefabs;
     public GameObject meteorPrefab;
     public GameObject map;
     public GameObject mapTracker;
@@ -121,12 +121,12 @@ public class GameManager : MonoBehaviour
         speed = PlayerPrefs.GetInt("Start Speed", 10);
 
         // Instantiate the player
-        player = Instantiate(playerPrefab, new(0, -0.4197f, 0), Quaternion.identity, transform);
+        player = Instantiate(playerPrefabs[PlayerPrefs.GetInt("Skin", 0)], new(0, -0.4197f, 0), Quaternion.identity, transform);
         playerBoxCollider = player.GetComponent<BoxCollider2D>();
         deathAnimation = player.GetComponent<Animator>();
 
         // Instantiate the star
-        star = Instantiate(starPrefab, new(0, 0, 0), Quaternion.identity, yourConstellation.transform);
+        star = Instantiate(starPrefabs[PlayerPrefs.GetInt("Skin", 0)], new(0, 0, 0), Quaternion.identity, yourConstellation.transform);
 
         // Create the universe stats and show the text
         CreateUniverseStats();
@@ -342,7 +342,7 @@ public class GameManager : MonoBehaviour
 
                 meteorPrefab.transform.localScale = new Vector3(size / 10, size / 10, 1);
 
-                float color = UnityEngine.Random.Range(20, 50) / 255f;
+                float color = UnityEngine.Random.Range(20, 40) / 255f;
 
                 meteorPrefab.GetComponent<SpriteRenderer>().color = new(color, color, color, 1);
                 Instantiate(meteorPrefab, new(x, y, 0), Quaternion.identity, map.transform);

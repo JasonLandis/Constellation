@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour
     public GameObject shop;
     public GameObject upgrades;
     public GameObject stats;
+    public GameObject starsAnimation;
 
     [Header("Scripts")]
     public ShopMenu shopMenu;
