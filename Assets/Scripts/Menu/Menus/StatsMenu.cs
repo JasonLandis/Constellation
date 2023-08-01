@@ -30,7 +30,7 @@ public class StatsMenu : MonoBehaviour
 
     public void LoadStatsValues()
     {
-        highScoreText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("High Score", 0).ToString() + "</color>";
+        highScoreText.text = "<color=#FFF97A>" + PlayerPrefs.GetInt("High Score", 0).ToString() + "</color>";
         statsHighScoreText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("High Score", 0).ToString() + "</color>";
         highestUniverseScoreText.text = "<color=#11DC58>" + PlayerPrefs.GetInt("Universe Score", 0).ToString() + "</color>";
         if (PlayerPrefs.HasKey("Quickest Universe"))

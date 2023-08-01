@@ -27,7 +27,7 @@ public class LightManager : MonoBehaviour
     {
         GameManager.instance.player.GetComponent<Light2D>().enabled = false;
         GameManager.instance.star.GetComponent<Light2D>().enabled = false;
-        globalLight.color = Color.white;
+        globalLight.color = new(0.78f, 0.78f, 0.78f, 1);
         lightsOffButton.SetActive(true);
         PlayerPrefs.SetInt("Lights", 0);
     }

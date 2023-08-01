@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour
     [Header("Constellation")]
     [HideInInspector] public List<Vector3> constellationVectors;
     [HideInInspector] public Vector3 previousPosition = new(0, 0, 0);
+    [HideInInspector] public bool transitionIsDone;
 
     [Header("End of Universe")]
     [HideInInspector] public bool destroyMeteors;
@@ -207,7 +208,10 @@ public class GameManager : MonoBehaviour
 
         else if (finishedUniverse && !isGamePaused)
         {
-            fullCameraTransition.Invoke();
+            if (!transitionIsDone)
+            {
+                fullCameraTransition.Invoke();
+            }
             if (resetUniverse == true)
             {
                 ResetUniverse();

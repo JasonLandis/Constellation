@@ -98,27 +98,7 @@ public class ZoneController : MonoBehaviour
         {
             GameManager.instance.zone = 5;
         }
-        else if (GameManager.instance.star.transform.position.y > -18.5 && GameManager.instance.star.transform.position.y < 18.5 && GameManager.instance.star.transform.position.x > -18.5 && GameManager.instance.star.transform.position.x < 18.5)
-        {
-            GameManager.instance.zone = 6;
-        }
-        else if (GameManager.instance.star.transform.position.y > -21.5 && GameManager.instance.star.transform.position.y < 21.5 && GameManager.instance.star.transform.position.x > -21.5 && GameManager.instance.star.transform.position.x < 21.5)
-        {
-            GameManager.instance.zone = 7;
-        }
-        else if (GameManager.instance.star.transform.position.y > -24.5 && GameManager.instance.star.transform.position.y < 24.5 && GameManager.instance.star.transform.position.x > -24.5 && GameManager.instance.star.transform.position.x < 24.5)
-        {
-            GameManager.instance.zone = 8;
-        }
-        else if (GameManager.instance.star.transform.position.y > -27.5 && GameManager.instance.star.transform.position.y < 27.5 && GameManager.instance.star.transform.position.x > -27.5 && GameManager.instance.star.transform.position.x < 27.5)
-        {
-            GameManager.instance.zone = 9;
-        }
-        else if (GameManager.instance.star.transform.position.y > -30.5 && GameManager.instance.star.transform.position.y < 30.5 && GameManager.instance.star.transform.position.x > -30.5 && GameManager.instance.star.transform.position.x < 30.5)
-        {
-            GameManager.instance.zone = 10;
-        }
-        else if (GameManager.instance.star.transform.position.y > -31 && GameManager.instance.star.transform.position.y < 31 && GameManager.instance.star.transform.position.x > -31 && GameManager.instance.star.transform.position.x < 31)
+        else if (GameManager.instance.star.transform.position.y > -16 && GameManager.instance.star.transform.position.y < 16 && GameManager.instance.star.transform.position.x > -16 && GameManager.instance.star.transform.position.x < 16)
         {
             GameManager.instance.destroyMeteors = true;
         }
@@ -193,71 +173,6 @@ public class ZoneController : MonoBehaviour
                     GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
                 }
                 value = 5;
-                break;
-            case 6:
-                if (value > 6)
-                {
-                    DecreaseZone();
-                    GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
-                }
-                else if (value < 6)
-                {
-                    IncreaseZone();
-                    GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
-                }
-                value = 6;
-                break;
-            case 7:
-                if (value > 7)
-                {
-                    DecreaseZone();
-                    GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
-                }
-                else if (value < 7)
-                {
-                    IncreaseZone();
-                    GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
-                }
-                value = 7;
-                break;
-            case 8:
-                if (value > 8)
-                {
-                    DecreaseZone();
-                    GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
-                }
-                else if (value < 8)
-                {
-                    IncreaseZone();
-                    GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
-                }
-                value = 8;
-                break;
-            case 9:
-                if (value > 9)
-                {
-                    DecreaseZone();
-                    GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
-                }
-                else if (value < 9)
-                {
-                    IncreaseZone();
-                    GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
-                }
-                value = 9;
-                break;
-            case 10:
-                if (value > 10)
-                {
-                    DecreaseZone();
-                    GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
-                }
-                else if (value < 10)
-                {
-                    IncreaseZone();
-                    GameManager.instance.GenerateNewMap(GameManager.instance.directionVector);
-                }
-                value = 10;
                 break;
         }        
     }

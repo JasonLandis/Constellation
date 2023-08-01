@@ -100,51 +100,6 @@ public class Constellation : MonoBehaviour
                         GameManager.instance.constellationVectors.Add(new(i, j, 0));
                     }
                 }
-                else if (i > -18.5 && i < 18.5 && j > -18.5 && j < 18.5)
-                {
-                    rand = Random.Range(0, 10);
-                    if (rand == 0)
-                    {
-                        Instantiate(constellationStar, new(i, j, 0), Quaternion.identity, constellationStars.transform);
-                        GameManager.instance.constellationVectors.Add(new(i, j, 0));
-                    }
-                }
-                else if (i > -21.5 && i < 21.5 && j > -21.5 && j < 21.5)
-                {
-                    rand = Random.Range(0, 10);
-                    if (rand == 0)
-                    {
-                        Instantiate(constellationStar, new(i, j, 0), Quaternion.identity, constellationStars.transform);
-                        GameManager.instance.constellationVectors.Add(new(i, j, 0));
-                    }
-                }
-                else if (i > -24.5 && i < 24.5 && j > -24.5 && j < 24.5)
-                {
-                    rand = Random.Range(0, 11);
-                    if (rand == 0)
-                    {
-                        Instantiate(constellationStar, new(i, j, 0), Quaternion.identity, constellationStars.transform);
-                        GameManager.instance.constellationVectors.Add(new(i, j, 0));
-                    }
-                }
-                else if (i > -27.5 && i < 27.5 && j > -27.5 && j < 27.5)
-                {
-                    rand = Random.Range(0, 11);
-                    if (rand == 0)
-                    {
-                        Instantiate(constellationStar, new(i, j, 0), Quaternion.identity, constellationStars.transform);
-                        GameManager.instance.constellationVectors.Add(new(i, j, 0));
-                    }
-                }
-                else if (i > -30.0 && i < 30.0 && j > -30.0 && j < 30.0)
-                {
-                    rand = Random.Range(0, 12);
-                    if (rand == 0)
-                    {
-                        Instantiate(constellationStar, new(i, j, 0), Quaternion.identity, constellationStars.transform);
-                        GameManager.instance.constellationVectors.Add(new(i, j, 0));
-                    }
-                }
             }
         }
     }
@@ -299,10 +254,11 @@ public class Constellation : MonoBehaviour
 
     public void FullCameraTransition()
     {
-        fullCamera.transform.position = Vector3.MoveTowards(fullCamera.transform.position, new(0, 0, -1), 0.2f);
-        if (fullCamera.orthographicSize < 34)
+        fullCamera.transform.position = Vector3.MoveTowards(fullCamera.transform.position, new(0, 0, -1), 0.15f);
+        fullCamera.orthographicSize += Time.deltaTime * 4;
+        if (fullCamera.orthographicSize >= 17 && fullCamera.transform.position == new Vector3(0, 0, -1))
         {
-            fullCamera.orthographicSize += Time.deltaTime * 8;
+            GameManager.instance.transitionIsDone = true;
         }
     }
 
