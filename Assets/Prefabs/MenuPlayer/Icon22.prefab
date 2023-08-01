@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5706873387352023605}
-  - component: {fileID: 5193039672438282138}
+  - component: {fileID: 4473812620109733264}
   - component: {fileID: 6137299035868179314}
-  - component: {fileID: 4858813470831773110}
+  - component: {fileID: 2436553517319381634}
   m_Layer: 5
   m_Name: Icon22
   m_TagString: Untagged
@@ -39,7 +39,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &5193039672438282138
+--- !u!114 &4473812620109733264
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5393c2dc7903c1e46bab6f0545c93046, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 800d95be338201d4d960aa4c0dbc2c30, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -85,7 +85,7 @@ MonoBehaviour:
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
-  m_Color: {r: 0.008547783, g: 0, b: 1, a: 1}
+  m_Color: {r: 0.3958471, g: 1, b: 0.28773582, a: 1}
   m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
@@ -119,7 +119,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
---- !u!222 &4858813470831773110
+--- !u!222 &2436553517319381634
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
