@@ -81,13 +81,55 @@ public class StatsMenu : MonoBehaviour
         hitlessNormalUniversesText.text = "<color=#FFF97A>" + PlayerPrefs.GetInt("Hitless Normal Universes", 0).ToString() + "</color>";
         hitlessHardUniversesText.text = "<color=#FFF97A>" + PlayerPrefs.GetInt("Hitless Hard Universes", 0).ToString() + "</color>";
 
-        largestSizeText.text = "<color=#FFF97A>" + PlayerPrefs.GetFloat("Largest Size", 1).ToString() + "</color>";
-        largestSpreadText.text = "<color=#FFF97A>" + PlayerPrefs.GetFloat("Largest Spread", 5).ToString() + "</color>";       
-        largestSpeedText.text = "<color=#FFF97A>" + PlayerPrefs.GetFloat("Largest Speed", 10).ToString() + "</color>";
+        if (PlayerPrefs.HasKey("Largest Size"))
+        {
+            largestSizeText.text = "<color=#FFF97A>" + PlayerPrefs.GetFloat("Largest Size").ToString() + "</color>";
+        }
+        else
+        {
+            largestSizeText.text = "<color=#FFF97A>NA</color>";
+        }
+        if (PlayerPrefs.HasKey("Largest Spread"))
+        {
+            largestSpreadText.text = "<color=#FFF97A>" + PlayerPrefs.GetFloat("Largest Spread").ToString() + "</color>";
+        }
+        else
+        {
+            largestSpreadText.text = "<color=#FFF97A>NA</color>";
+        }
+        if (PlayerPrefs.HasKey("Largest Speed"))
+        {
+            largestSpeedText.text = "<color=#FFF97A>" + PlayerPrefs.GetFloat("Largest Speed").ToString() + "</color>";
+        }
+        else
+        {
+            largestSpeedText.text = "<color=#FFF97A>NA</color>";
+        }
 
-        smallestSizeText.text = "<color=#FFF97A>" + PlayerPrefs.GetFloat("Smallest Size", 1).ToString() + "</color>";
-        smallestSpreadText.text = "<color=#FFF97A>" + PlayerPrefs.GetFloat("Smallest Spread", 5).ToString() + "</color>";
-        smallestSpeedText.text = "<color=#FFF97A>" + PlayerPrefs.GetFloat("Smallest Speed", 10).ToString() + "</color>";
+        if (PlayerPrefs.HasKey("Smallest Size"))
+        {
+            smallestSizeText.text = "<color=#FFF97A>" + PlayerPrefs.GetFloat("Smallest Size").ToString() + "</color>";
+        }
+        else
+        {
+            smallestSizeText.text = "<color=#FFF97A>NA</color>";
+        }
+        if (PlayerPrefs.HasKey("Smallest Spread"))
+        {
+            smallestSpreadText.text = "<color=#FFF97A>" + PlayerPrefs.GetFloat("Smallest Spread").ToString() + "</color>";
+        }
+        else
+        {
+            smallestSpreadText.text = "<color=#FFF97A>NA</color>";
+        }
+        if (PlayerPrefs.HasKey("Smallest Speed"))
+        {
+            smallestSpeedText.text = "<color=#FFF97A>" + PlayerPrefs.GetFloat("Smallest Speed").ToString() + "</color>";
+        }
+        else
+        {
+            smallestSpeedText.text = "<color=#FFF97A>NA</color>";
+        }
 
         mostLivesText.text = "<color=#FFF97A>" + PlayerPrefs.GetInt("Most Lives", 0).ToString() + "</color>";
         unlockedUpgradesText.text = "<color=#FFF97A>" + PlayerPrefs.GetInt("Unlocked Upgrades", 1).ToString() + "</color>";

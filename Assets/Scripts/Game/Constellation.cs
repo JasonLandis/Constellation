@@ -50,7 +50,7 @@ public class Constellation : MonoBehaviour
 
                 if (i > -3.5 && i < 3.5 && j > -3.5 && j < 3.5)
                 {
-                    rand = Random.Range(0, 10);
+                    rand = Random.Range(0, 8);
                     if (rand == 0)
                     {
                         if (i == 0 && j == 0)
@@ -84,7 +84,7 @@ public class Constellation : MonoBehaviour
                 }
                 else if (i > -12.5 && i < 12.5 && j > -12.5 && j < 12.5)
                 {
-                    rand = Random.Range(0, 9);
+                    rand = Random.Range(0, 8);
                     if (rand == 0)
                     {
                         Instantiate(constellationStar, new(i, j, 0), Quaternion.identity, constellationStars.transform);
@@ -93,7 +93,7 @@ public class Constellation : MonoBehaviour
                 }
                 else if (i > -15.5 && i < 15.5 && j > -15.5 && j < 15.5)
                 {
-                    rand = Random.Range(0, 9);
+                    rand = Random.Range(0, 8);
                     if (rand == 0)
                     {
                         Instantiate(constellationStar, new(i, j, 0), Quaternion.identity, constellationStars.transform);

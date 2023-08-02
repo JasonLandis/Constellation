@@ -7860,7 +7860,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Increase the distance between asteroids by 0.7
+  m_text: Increase the distance between asteroids by 0.6
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a13f2f121b4eae243ad32f2d52557842, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -11196,7 +11196,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: + 0.7
+  m_text: + 0.6
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a13f2f121b4eae243ad32f2d52557842, type: 2}
   m_sharedMaterial: {fileID: -4217208617979994223, guid: a13f2f121b4eae243ad32f2d52557842, type: 2}
@@ -14481,7 +14481,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: + 1.1
+  m_text: + 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a13f2f121b4eae243ad32f2d52557842, type: 2}
   m_sharedMaterial: {fileID: -4217208617979994223, guid: a13f2f121b4eae243ad32f2d52557842, type: 2}
@@ -19055,7 +19055,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Increase the distance between asteroids by 1.1
+  m_text: Increase the distance between asteroids by 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a13f2f121b4eae243ad32f2d52557842, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

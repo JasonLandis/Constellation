@@ -199,12 +199,12 @@ public class ZoneController : MonoBehaviour
                 minSpeedZone = GameManager.instance.zone + 1;
             }
         }
-        if (GameManager.instance.spread < 10)
+        if (GameManager.instance.spread < 20)
         {
             GameManager.instance.spread += GameManager.instance.spreadChange;
-            if (GameManager.instance.spread > 10)
+            if (GameManager.instance.spread > 20)
             {
-                GameManager.instance.spread = 10;
+                GameManager.instance.spread = 20;
             }
         }
         else

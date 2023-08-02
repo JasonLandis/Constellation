@@ -148,9 +148,9 @@ public class Roguelike : MonoBehaviour
     public void SpreadOne()
     {
         GameManager.instance.spread += 0.3f;
-        if (GameManager.instance.spread > 10)
+        if (GameManager.instance.spread > 20)
         {
-            GameManager.instance.spread = 10;
+            GameManager.instance.spread = 20;
         }
         GameManager.instance.showText.Invoke();
         DestroyRoguelike();
@@ -159,10 +159,10 @@ public class Roguelike : MonoBehaviour
     }
     public void SpreadTwo()
     {
-        GameManager.instance.spread += 0.7f;
-        if (GameManager.instance.spread > 10)
+        GameManager.instance.spread += 0.6f;
+        if (GameManager.instance.spread > 20)
         {
-            GameManager.instance.spread = 10;
+            GameManager.instance.spread = 20;
         }
         GameManager.instance.showText.Invoke();
         DestroyRoguelike();
@@ -171,10 +171,10 @@ public class Roguelike : MonoBehaviour
     }
     public void SpreadThree()
     {
-        GameManager.instance.spread += 1.1f;
-        if (GameManager.instance.spread > 10)
+        GameManager.instance.spread += 1;
+        if (GameManager.instance.spread > 20)
         {
-            GameManager.instance.spread = 10;
+            GameManager.instance.spread = 20;
         }
         GameManager.instance.showText.Invoke();
         DestroyRoguelike();
@@ -184,9 +184,9 @@ public class Roguelike : MonoBehaviour
     public void SpreadFour()
     {
         GameManager.instance.spread += 1.5f;
-        if (GameManager.instance.spread > 10)
+        if (GameManager.instance.spread > 20)
         {
-            GameManager.instance.spread = 10;
+            GameManager.instance.spread = 20;
         }
         GameManager.instance.showText.Invoke();
         DestroyRoguelike();
