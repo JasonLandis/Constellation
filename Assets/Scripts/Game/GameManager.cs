@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.UI;
 
 // I am Matthew. I leave my easter egg here. I hope you enjoy it. :) 
 
@@ -14,6 +16,10 @@ public class GameManager : MonoBehaviour
     public float spread;
     public float speed;
     public int lives;
+
+    [Header("Transition")]
+    public GameObject panel;
+    public float duration;
 
     [Header("Universe Stats")]
     public float sizeChange;
@@ -115,6 +121,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        panel.GetComponent<Image>().color = new(0, 0, 0, 1);
+        LeanTween.color(panel.GetComponent<Image>().rectTransform, new(0, 0, 0, 0), duration).setOnComplete(DeactivatePanel);
+
         // Set starting values
         lives = PlayerPrefs.GetInt("Start Lives", 0);
         size = PlayerPrefs.GetFloat("Start Size", 1);
@@ -217,6 +226,11 @@ public class GameManager : MonoBehaviour
                 ResetUniverse();
             }
         }
+    }
+
+    private void DeactivatePanel()
+    {
+        panel.SetActive(false);
     }
 
     // Creates the zone change values for the universe
@@ -540,6 +554,8 @@ public class GameManager : MonoBehaviour
         resetZones.Invoke();
         resetConstellation.Invoke();
         star.GetComponent<LineRenderer>().positionCount = 0;
+        star.GetComponent<SpriteRenderer>().enabled = true;
+        star.GetComponent<Light2D>().enabled = true;
         previousPosition = new(0, 0, 0);
         star.transform.position = Vector3.zero;
         background.transform.position = Vector3.zero;

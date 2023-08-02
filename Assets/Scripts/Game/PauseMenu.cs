@@ -1,9 +1,10 @@
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
+    public GameObject panel;
     public GameObject pauseMenu;
     public GameObject sureMenu;
     public GameObject stats;
@@ -86,18 +87,39 @@ public class PauseMenu : MonoBehaviour
 
     public void Menu()
     {
+        Time.timeScale = 1f;
+        panel.SetActive(true);
+        panel.GetComponent<Image>().raycastTarget = true;
+        panel.GetComponent<Image>().color = new(0, 0, 0, 0);
+        LeanTween.color(panel.GetComponent<Image>().rectTransform, new(0, 0, 0, 1), 0.3f).setOnComplete(Load);
+    }
+
+    private void Load()
+    {
         GameManager.instance.SaveScores();
         GameManager.instance.SaveGameScores();
         SceneManager.LoadScene("Menu");
     }
+
     public void MenuFromEnd()
     {
-        SceneManager.LoadScene("Menu");
+        panel.SetActive(true);
+        panel.GetComponent<Image>().raycastTarget = true;
+        LeanTween.color(panel.GetComponent<Image>().rectTransform, new(0, 0, 0, 1), 0.3f).setOnComplete(Load);
     }
+
     public void Restart()
+    {
+        panel.SetActive(true);
+        panel.GetComponent<Image>().raycastTarget = true;
+        LeanTween.color(panel.GetComponent<Image>().rectTransform, new(0, 0, 0, 1), 0.3f).setOnComplete(LoadMain);
+    }
+
+    private void LoadMain()
     {
         SceneManager.LoadScene("Main");
     }
+
     public void Quit()
     {
         Application.Quit();

@@ -254,9 +254,9 @@ public class Constellation : MonoBehaviour
 
     public void FullCameraTransition()
     {
-        fullCamera.transform.position = Vector3.MoveTowards(fullCamera.transform.position, new(0, 0, -1), 0.15f);
+        fullCamera.transform.position = new(0, 0, -1);
         fullCamera.orthographicSize += Time.deltaTime * 4;
-        if (fullCamera.orthographicSize >= 17 && fullCamera.transform.position == new Vector3(0, 0, -1))
+        if (fullCamera.orthographicSize >= 17)
         {
             GameManager.instance.transitionIsDone = true;
         }

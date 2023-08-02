@@ -2303,6 +2303,11 @@ public class LTDescr
 
 		return this;
 	}
+
+    internal void setOnComplete(object v)
+    {
+        throw new NotImplementedException();
+    }
 }
 
 //}

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class ZoneController : MonoBehaviour
 {
@@ -104,6 +105,8 @@ public class ZoneController : MonoBehaviour
         }
         else
         {
+            GameManager.instance.star.GetComponent<SpriteRenderer> ().enabled = false;
+            GameManager.instance.star.GetComponent<Light2D>().enabled = false;
             GameManager.instance.finishedUniverse = true;
 ;       }
     }

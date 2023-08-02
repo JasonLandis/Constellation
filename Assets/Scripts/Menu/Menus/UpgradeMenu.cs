@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UpgradeMenu : MonoBehaviour
 {
@@ -13,6 +15,11 @@ public class UpgradeMenu : MonoBehaviour
     public GameObject spreadMenu;
     public GameObject speedMenu;
     public GameObject livesMenu;
+
+    [Header("Transition")]
+    public Image panel;
+    public float color;
+    public float duration;
 
     [Header("Start Values Text")]
     public TextMeshProUGUI sizeText;
@@ -243,34 +250,84 @@ public class UpgradeMenu : MonoBehaviour
 
     public void SizeMenu()
     {
-        sizeMenu.SetActive(true);
+        panel.raycastTarget = true;
+        panel.color = new(color, color, color, 0);
+        Action action = () => FinishTransition(sizeMenu);
+        LeanTween.color(panel.rectTransform, new(color, color, color, 1), duration).setOnComplete(action);
     }
 
     public void SpreadMenu()
     {
-        spreadMenu.SetActive(true);
+        panel.raycastTarget = true;
+        panel.color = new(color, color, color, 0);
+        Action action = () => FinishTransition(spreadMenu);
+        LeanTween.color(panel.rectTransform, new(color, color, color, 1), duration).setOnComplete(action);
     }
 
     public void SpeedMenu()
     {
-        speedMenu.SetActive(true);
+        panel.raycastTarget = true;
+        panel.color = new(color, color, color, 0);
+        Action action = () => FinishTransition(speedMenu);
+        LeanTween.color(panel.rectTransform, new(color, color, color, 1), duration).setOnComplete(action);
     }
 
     public void LivesMenu()
     {
-        livesMenu.SetActive(true);
-    }
-
-    public void BackToUpgradeMenu()
-    {
-        sizeMenu.SetActive(false);
-        spreadMenu.SetActive(false);
-        speedMenu.SetActive(false);
-        livesMenu.SetActive(false);
+        panel.raycastTarget = true;
+        panel.color = new(color, color, color, 0);
+        Action action = () => FinishTransition(livesMenu);
+        LeanTween.color(panel.rectTransform, new(color, color, color, 1), duration).setOnComplete(action);
     }
 
     public void BackToUpgrades()
     {
         lockPopup.SetActive(false);
+    }   
+
+    private void FinishTransition(GameObject menu)
+    {
+        panel.raycastTarget = false;
+        menu.SetActive(true);
+        LeanTween.color(panel.rectTransform, new(color, color, color, 0), duration);
+    }
+
+    public void MenuFromSize()
+    {
+        panel.raycastTarget = true;
+        panel.color = new(color, color, color, 0);
+        Action action = () => FinishTransitionBack(sizeMenu);
+        LeanTween.color(panel.rectTransform, new(color, color, color, 1), duration).setOnComplete(action);
+    }
+
+    public void MenuFromSpread()
+    {
+        panel.raycastTarget = true;
+        panel.color = new(color, color, color, 0);
+        Action action = () => FinishTransitionBack(spreadMenu);
+        LeanTween.color(panel.rectTransform, new(color, color, color, 1), duration).setOnComplete(action);
+    }
+
+    public void MenuFromSpeed()
+    {
+        panel.raycastTarget = true;
+        panel.color = new(color, color, color, 0);
+        Action action = () => FinishTransitionBack(speedMenu);
+        LeanTween.color(panel.rectTransform, new(color, color, color, 1), duration).setOnComplete(action);
+    }
+
+    public void MenuFromLives()
+    {
+        panel.raycastTarget = true;
+        panel.color = new(color, color, color, 0);
+        Action action = () => FinishTransitionBack(livesMenu);
+        LeanTween.color(panel.rectTransform, new(color, color, color, 1), duration).setOnComplete(action);
+    }
+
+    private void FinishTransitionBack(GameObject menu)
+    {
+        panel.raycastTarget = false;
+        menu.SetActive(false);
+        LeanTween.color(panel.rectTransform, new(color, color, color, 0), duration);
     }
 }

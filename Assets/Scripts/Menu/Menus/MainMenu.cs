@@ -1,5 +1,8 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
@@ -9,6 +12,11 @@ public class MainMenu : MonoBehaviour
     public GameObject stats;
     public GameObject starsAnimation;
 
+    [Header("Transition")]
+    public Image panel;
+    public float color;
+    public float duration;
+
     [Header("Scripts")]
     public ShopMenu shopMenu;
     public UpgradeMenu upgradeMenu;
@@ -17,6 +25,7 @@ public class MainMenu : MonoBehaviour
     void Awake()
     {
         Application.targetFrameRate = 60;
+        Time.timeScale = 1;
 
         // Load player data
         upgradeMenu.LoadUpgradeLocks();
@@ -26,7 +35,20 @@ public class MainMenu : MonoBehaviour
         // PlayerPrefs.DeleteAll();
     }
 
+    private void Start()
+    {
+        panel.color = new(0, 0, 0, 1);
+        LeanTween.color(panel.rectTransform, new(0, 0, 0, 0), duration);
+    }
+
     public void Play()
+    {
+        panel.raycastTarget = true;
+        panel.color = new(0, 0, 0, 0);
+        LeanTween.color(panel.rectTransform, new(0, 0, 0, 1), duration).setOnComplete(Load);
+    }
+
+    private void Load()
     {
         SceneManager.LoadScene("Main");
     }
@@ -38,23 +60,63 @@ public class MainMenu : MonoBehaviour
 
     public void Shop()
     {
-        shop.SetActive(true);
+        panel.raycastTarget = true;
+        panel.color = new(color, color, color, 0);
+        Action action = () => FinishTransition(shop);
+        LeanTween.color(panel.rectTransform, new(color, color, color, 1), duration).setOnComplete(action);
     }
 
     public void Upgrades()
     {
-        upgrades.SetActive(true);
+        panel.raycastTarget = true;
+        panel.color = new(color, color, color, 0);
+        Action action = () => FinishTransition(upgrades);
+        LeanTween.color(panel.rectTransform, new(color, color, color, 1), duration).setOnComplete(action);
     }
 
     public void Stats()
     {
-        stats.SetActive(true);
+        panel.raycastTarget = true;
+        panel.color = new(color, color, color, 0);
+        Action action = () => FinishTransition(stats);
+        LeanTween.color(panel.rectTransform, new(color, color, color, 1), duration).setOnComplete(action);
     }
 
-    public void Menu()
+    private void FinishTransition(GameObject menu)
     {
-        shop.SetActive(false);
-        stats.SetActive(false);
-        upgrades.SetActive(false);
+        panel.raycastTarget = false;
+        menu.SetActive(true);
+        LeanTween.color(panel.rectTransform, new(color, color, color, 0), duration);
+    }
+
+    public void MenuFromShop()
+    {
+        panel.raycastTarget = true;
+        panel.color = new(color, color, color, 0);
+        Action action = () => FinishTransitionBack(shop);
+        LeanTween.color(panel.rectTransform, new(color, color, color, 1), duration).setOnComplete(action);
+    }
+
+    public void MenuFromUpgrades()
+    {
+        panel.raycastTarget = true;
+        panel.color = new(color, color, color, 0);
+        Action action = () => FinishTransitionBack(upgrades);
+        LeanTween.color(panel.rectTransform, new(color, color, color, 1), duration).setOnComplete(action);
+    }
+
+    public void MenuFromStats()
+    {
+        panel.raycastTarget = true;
+        panel.color = new(color, color, color, 0);
+        Action action = () => FinishTransitionBack(stats);
+        LeanTween.color(panel.rectTransform, new(color, color, color, 1), duration).setOnComplete(action);
+    }
+
+    private void FinishTransitionBack(GameObject menu)
+    {
+        panel.raycastTarget = false;
+        menu.SetActive(false);
+        LeanTween.color(panel.rectTransform, new(color, color, color, 0), duration);
     }
 }
