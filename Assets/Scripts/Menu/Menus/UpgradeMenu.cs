@@ -252,7 +252,7 @@ public class UpgradeMenu : MonoBehaviour
     {
         panel.raycastTarget = true;
         panel.color = new(color, color, color, 0);
-        Action action = () => FinishTransition(sizeMenu);
+        void action() => FinishTransition(sizeMenu);
         LeanTween.color(panel.rectTransform, new(color, color, color, 1), duration).setOnComplete(action);
     }
 
@@ -260,7 +260,7 @@ public class UpgradeMenu : MonoBehaviour
     {
         panel.raycastTarget = true;
         panel.color = new(color, color, color, 0);
-        Action action = () => FinishTransition(spreadMenu);
+        void action() => FinishTransition(spreadMenu);
         LeanTween.color(panel.rectTransform, new(color, color, color, 1), duration).setOnComplete(action);
     }
 
@@ -268,7 +268,7 @@ public class UpgradeMenu : MonoBehaviour
     {
         panel.raycastTarget = true;
         panel.color = new(color, color, color, 0);
-        Action action = () => FinishTransition(speedMenu);
+        void action() => FinishTransition(speedMenu);
         LeanTween.color(panel.rectTransform, new(color, color, color, 1), duration).setOnComplete(action);
     }
 
@@ -276,7 +276,7 @@ public class UpgradeMenu : MonoBehaviour
     {
         panel.raycastTarget = true;
         panel.color = new(color, color, color, 0);
-        Action action = () => FinishTransition(livesMenu);
+        void action() => FinishTransition(livesMenu);
         LeanTween.color(panel.rectTransform, new(color, color, color, 1), duration).setOnComplete(action);
     }
 
@@ -296,7 +296,7 @@ public class UpgradeMenu : MonoBehaviour
     {
         panel.raycastTarget = true;
         panel.color = new(color, color, color, 0);
-        Action action = () => FinishTransitionBack(sizeMenu);
+        void action() => FinishTransitionBack(sizeMenu);
         LeanTween.color(panel.rectTransform, new(color, color, color, 1), duration).setOnComplete(action);
     }
 
@@ -304,7 +304,7 @@ public class UpgradeMenu : MonoBehaviour
     {
         panel.raycastTarget = true;
         panel.color = new(color, color, color, 0);
-        Action action = () => FinishTransitionBack(spreadMenu);
+        void action() => FinishTransitionBack(spreadMenu);
         LeanTween.color(panel.rectTransform, new(color, color, color, 1), duration).setOnComplete(action);
     }
 
@@ -312,7 +312,7 @@ public class UpgradeMenu : MonoBehaviour
     {
         panel.raycastTarget = true;
         panel.color = new(color, color, color, 0);
-        Action action = () => FinishTransitionBack(speedMenu);
+        void action() => FinishTransitionBack(speedMenu);
         LeanTween.color(panel.rectTransform, new(color, color, color, 1), duration).setOnComplete(action);
     }
 
@@ -320,7 +320,7 @@ public class UpgradeMenu : MonoBehaviour
     {
         panel.raycastTarget = true;
         panel.color = new(color, color, color, 0);
-        Action action = () => FinishTransitionBack(livesMenu);
+        void action() => FinishTransitionBack(livesMenu);
         LeanTween.color(panel.rectTransform, new(color, color, color, 1), duration).setOnComplete(action);
     }
 

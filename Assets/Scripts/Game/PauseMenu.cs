@@ -88,6 +88,7 @@ public class PauseMenu : MonoBehaviour
     public void Menu()
     {
         Time.timeScale = 1f;
+        pauseMenu.SetActive(false);
         panel.SetActive(true);
         panel.GetComponent<Image>().raycastTarget = true;
         panel.GetComponent<Image>().color = new(0, 0, 0, 0);
@@ -105,7 +106,12 @@ public class PauseMenu : MonoBehaviour
     {
         panel.SetActive(true);
         panel.GetComponent<Image>().raycastTarget = true;
-        LeanTween.color(panel.GetComponent<Image>().rectTransform, new(0, 0, 0, 1), 0.3f).setOnComplete(Load);
+        LeanTween.color(panel.GetComponent<Image>().rectTransform, new(0, 0, 0, 1), 0.3f).setOnComplete(Load2);
+    }
+
+    private void Load2()
+    {
+        SceneManager.LoadScene("Menu");
     }
 
     public void Restart()

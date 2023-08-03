@@ -46,6 +46,9 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI endScore;
     public TextMeshProUGUI endUniverseScore;
     public TextMeshProUGUI endCompletedScore;
+    public TextMeshProUGUI completeScore;
+    public TextMeshProUGUI completeUniverseScore;
+    public TextMeshProUGUI completeCompletedScore;
     public Animator screen;
     public Camera mainCamera;
     private Animator deathAnimation;
@@ -458,32 +461,74 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("Most Universes", universesCleared);
         }
 
-        if (size > PlayerPrefs.GetFloat("Largest Size", 1))
+        if (PlayerPrefs.HasKey("Largest Size"))
+        {
+            if (size > PlayerPrefs.GetFloat("Largest Size"))
+            {
+                PlayerPrefs.SetFloat("Largest Size", (float)Math.Round(size, 1));
+            }
+        }
+        else
         {
             PlayerPrefs.SetFloat("Largest Size", (float)Math.Round(size, 1));
         }
 
-        if (spread < PlayerPrefs.GetFloat("Smallest Spread", 5))
+        if (PlayerPrefs.HasKey("Smallest Spread"))
+        {
+            if (spread < PlayerPrefs.GetFloat("Smallest Spread"))
+            {
+                PlayerPrefs.SetFloat("Smallest Spread", (float)Math.Round(spread, 1));
+            }
+        }
+        else
         {
             PlayerPrefs.SetFloat("Smallest Spread", (float)Math.Round(spread, 1));
         }
 
-        if (speed > PlayerPrefs.GetFloat("Largest Speed", 10))
+        if (PlayerPrefs.HasKey("Largest Speed"))
+        {
+            if (speed > PlayerPrefs.GetFloat("Largest Speed"))
+            {
+                PlayerPrefs.SetFloat("Largest Speed", (float)Math.Round(speed, 1));
+            }
+        }
+        else
         {
             PlayerPrefs.SetFloat("Largest Speed", (float)Math.Round(speed, 1));
         }
 
-        if (size < PlayerPrefs.GetFloat("Smallest Size", 1))
+        if (PlayerPrefs.HasKey("Smallest Size"))
+        {
+            if (size < PlayerPrefs.GetFloat("Smallest Size"))
+            {
+                PlayerPrefs.SetFloat("Smallest Size", (float)Math.Round(size, 1));
+            }
+        }
+        else
         {
             PlayerPrefs.SetFloat("Smallest Size", (float)Math.Round(size, 1));
         }
 
-        if (spread > PlayerPrefs.GetFloat("Largest Spread", 5))
+        if (PlayerPrefs.HasKey("Largest Spread"))
+        {
+            if (spread > PlayerPrefs.GetFloat("Largest Spread"))
+            {
+                PlayerPrefs.SetFloat("Largest Spread", (float)Math.Round(spread, 1));
+            }
+        }
+        else
         {
             PlayerPrefs.SetFloat("Largest Spread", (float)Math.Round(spread, 1));
         }
 
-        if (speed < PlayerPrefs.GetFloat("Smallest Speed", 10))
+        if (PlayerPrefs.HasKey("Smallest Speed"))
+        {
+            if (speed < PlayerPrefs.GetFloat("Smallest Speed"))
+            {
+                PlayerPrefs.SetFloat("Smallest Speed", (float)Math.Round(speed, 1));
+            }
+        }
+        else
         {
             PlayerPrefs.SetFloat("Smallest Speed", (float)Math.Round(speed, 1));
         }
@@ -538,12 +583,15 @@ public class GameManager : MonoBehaviour
             if (finishedUniverse == true)
             {
                 createUniverseStats.Invoke();
+                universesCleared += 1;
+                completeScore.text = ((int)score).ToString();
+                completeUniverseScore.text = ((int)universeScore).ToString();
+                completeCompletedScore.text = ((int)universesCleared).ToString();
                 createNewStar();
                 fullCameraObject.SetActive(true);
                 setFullCamera.Invoke();
-                universesCleared += 1;
                 SaveUniverseScores();
-                finished = true;
+                finished = true;                
             }
         }
     }
@@ -558,11 +606,11 @@ public class GameManager : MonoBehaviour
         star.GetComponent<Light2D>().enabled = true;
         previousPosition = new(0, 0, 0);
         star.transform.position = Vector3.zero;
-        background.transform.position = Vector3.zero;
-        mapTracker.transform.position = new(0f, 0f, 0f);
+        background.transform.position = new(0, -0.4197f, 0);
+        mapTracker.transform.position = new(0, 0, 0);
         limit = 0;
-        size = PlayerPrefs.GetFloat("Start Size", 1);;
-        spread = PlayerPrefs.GetInt("Start Spread", 5);;
+        size = PlayerPrefs.GetFloat("Start Size", 1);
+        spread = PlayerPrefs.GetInt("Start Spread", 5);
         speed = PlayerPrefs.GetInt("Start Speed", 10);
         zone = 1;
         universeScore = 0;

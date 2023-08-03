@@ -62,7 +62,7 @@ public class MainMenu : MonoBehaviour
     {
         panel.raycastTarget = true;
         panel.color = new(color, color, color, 0);
-        Action action = () => FinishTransition(shop);
+        void action() => FinishTransition(shop);
         LeanTween.color(panel.rectTransform, new(color, color, color, 1), duration).setOnComplete(action);
     }
 
@@ -70,7 +70,7 @@ public class MainMenu : MonoBehaviour
     {
         panel.raycastTarget = true;
         panel.color = new(color, color, color, 0);
-        Action action = () => FinishTransition(upgrades);
+        void action() => FinishTransition(upgrades);
         LeanTween.color(panel.rectTransform, new(color, color, color, 1), duration).setOnComplete(action);
     }
 
@@ -78,7 +78,7 @@ public class MainMenu : MonoBehaviour
     {
         panel.raycastTarget = true;
         panel.color = new(color, color, color, 0);
-        Action action = () => FinishTransition(stats);
+        void action() => FinishTransition(stats);
         LeanTween.color(panel.rectTransform, new(color, color, color, 1), duration).setOnComplete(action);
     }
 
@@ -93,7 +93,7 @@ public class MainMenu : MonoBehaviour
     {
         panel.raycastTarget = true;
         panel.color = new(color, color, color, 0);
-        Action action = () => FinishTransitionBack(shop);
+        void action() => FinishTransitionBack(shop);
         LeanTween.color(panel.rectTransform, new(color, color, color, 1), duration).setOnComplete(action);
     }
 
@@ -101,7 +101,7 @@ public class MainMenu : MonoBehaviour
     {
         panel.raycastTarget = true;
         panel.color = new(color, color, color, 0);
-        Action action = () => FinishTransitionBack(upgrades);
+        void action() => FinishTransitionBack(upgrades);
         LeanTween.color(panel.rectTransform, new(color, color, color, 1), duration).setOnComplete(action);
     }
 
@@ -109,7 +109,7 @@ public class MainMenu : MonoBehaviour
     {
         panel.raycastTarget = true;
         panel.color = new(color, color, color, 0);
-        Action action = () => FinishTransitionBack(stats);
+        void action() => FinishTransitionBack(stats);
         LeanTween.color(panel.rectTransform, new(color, color, color, 1), duration).setOnComplete(action);
     }
 
