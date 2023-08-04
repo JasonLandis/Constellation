@@ -16,6 +16,9 @@ public class Roguelike : MonoBehaviour
     public List<GameObject> abilities;
     public List<GameObject> rarityList;
 
+    [Header("Scripts")]
+    public GameUI gameUI;
+
     private void Start()
     {
         GameManager.instance.showRoguelike += ShowRoguelike;
@@ -64,7 +67,7 @@ public class Roguelike : MonoBehaviour
     public void HeartOne()
     {
         GameManager.instance.lives += 1;
-        GameManager.instance.showText.Invoke();
+        gameUI.ShowGameplayText();
         DestroyRoguelike();
         roguelike.SetActive(false);
         direction.SetActive(true);
@@ -72,7 +75,7 @@ public class Roguelike : MonoBehaviour
     public void HeartTwo()
     {
         GameManager.instance.lives += 2;
-        GameManager.instance.showText.Invoke();
+        gameUI.ShowGameplayText();
         DestroyRoguelike();
         roguelike.SetActive(false);
         direction.SetActive(true);
@@ -80,7 +83,7 @@ public class Roguelike : MonoBehaviour
     public void HeartThree()
     {
         GameManager.instance.lives += 3;
-        GameManager.instance.showText.Invoke();
+        gameUI.ShowGameplayText();
         DestroyRoguelike();
         roguelike.SetActive(false);
         direction.SetActive(true);
@@ -88,7 +91,7 @@ public class Roguelike : MonoBehaviour
     public void HeartFour()
     {
         GameManager.instance.lives += 5;
-        GameManager.instance.showText.Invoke();
+        gameUI.ShowGameplayText();
         DestroyRoguelike();
         roguelike.SetActive(false);
         direction.SetActive(true);
@@ -102,7 +105,7 @@ public class Roguelike : MonoBehaviour
         {
             GameManager.instance.size = 0.1f;
         }
-        GameManager.instance.showText.Invoke();
+        gameUI.ShowGameplayText();
         DestroyRoguelike();
         roguelike.SetActive(false);
         direction.SetActive(true);
@@ -114,7 +117,7 @@ public class Roguelike : MonoBehaviour
         {
             GameManager.instance.size = 0.1f;
         }
-        GameManager.instance.showText.Invoke();
+        gameUI.ShowGameplayText();
         DestroyRoguelike();
         roguelike.SetActive(false);
         direction.SetActive(true);
@@ -126,7 +129,7 @@ public class Roguelike : MonoBehaviour
         {
             GameManager.instance.size = 0.1f;
         }
-        GameManager.instance.showText.Invoke();
+        gameUI.ShowGameplayText();
         DestroyRoguelike();
         roguelike.SetActive(false);
         direction.SetActive(true);
@@ -138,7 +141,7 @@ public class Roguelike : MonoBehaviour
         {
             GameManager.instance.size = 0.1f;
         }
-        GameManager.instance.showText.Invoke();
+        gameUI.ShowGameplayText();
         DestroyRoguelike();
         roguelike.SetActive(false);
         direction.SetActive(true);
@@ -152,7 +155,7 @@ public class Roguelike : MonoBehaviour
         {
             GameManager.instance.spread = 20;
         }
-        GameManager.instance.showText.Invoke();
+        gameUI.ShowGameplayText();
         DestroyRoguelike();
         roguelike.SetActive(false);
         direction.SetActive(true);
@@ -164,7 +167,7 @@ public class Roguelike : MonoBehaviour
         {
             GameManager.instance.spread = 20;
         }
-        GameManager.instance.showText.Invoke();
+        gameUI.ShowGameplayText();
         DestroyRoguelike();
         roguelike.SetActive(false);
         direction.SetActive(true);
@@ -176,7 +179,7 @@ public class Roguelike : MonoBehaviour
         {
             GameManager.instance.spread = 20;
         }
-        GameManager.instance.showText.Invoke();
+        gameUI.ShowGameplayText();
         DestroyRoguelike();
         roguelike.SetActive(false);
         direction.SetActive(true);
@@ -188,7 +191,7 @@ public class Roguelike : MonoBehaviour
         {
             GameManager.instance.spread = 20;
         }
-        GameManager.instance.showText.Invoke();
+        gameUI.ShowGameplayText();
         DestroyRoguelike();
         roguelike.SetActive(false);
         direction.SetActive(true);
@@ -202,7 +205,7 @@ public class Roguelike : MonoBehaviour
         {
             GameManager.instance.speed = 1;
         }
-        GameManager.instance.showText.Invoke();
+        gameUI.ShowGameplayText();
         DestroyRoguelike();
         roguelike.SetActive(false);
         direction.SetActive(true);
@@ -214,7 +217,7 @@ public class Roguelike : MonoBehaviour
         {
             GameManager.instance.speed = 1;
         }
-        GameManager.instance.showText.Invoke();
+        gameUI.ShowGameplayText();
         DestroyRoguelike();
         roguelike.SetActive(false);
         direction.SetActive(true);
@@ -226,7 +229,7 @@ public class Roguelike : MonoBehaviour
         {
             GameManager.instance.speed = 1;
         }
-        GameManager.instance.showText.Invoke();
+        gameUI.ShowGameplayText();
         DestroyRoguelike();
         roguelike.SetActive(false);
         direction.SetActive(true);
@@ -238,7 +241,7 @@ public class Roguelike : MonoBehaviour
         {
             GameManager.instance.speed = 1;
         }
-        GameManager.instance.showText.Invoke();
+        gameUI.ShowGameplayText();
         DestroyRoguelike();
         roguelike.SetActive(false);
         direction.SetActive(true);

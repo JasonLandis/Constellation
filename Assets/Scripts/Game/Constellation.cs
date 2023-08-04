@@ -46,7 +46,6 @@ public class Constellation : MonoBehaviour
                 float blue = Random.Range(100, 255) / 255f;
 
                 constellationStar.GetComponent<SpriteRenderer>().color = new(red, green, blue, 1);
-                constellationStar.GetComponent<Light2D>().color = new(red, green, blue, 1);
 
                 if (i > -3.5 && i < 3.5 && j > -3.5 && j < 3.5)
                 {

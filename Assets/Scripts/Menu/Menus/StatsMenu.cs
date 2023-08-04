@@ -132,8 +132,8 @@ public class StatsMenu : MonoBehaviour
         }
 
         mostLivesText.text = "<color=#FFF97A>" + PlayerPrefs.GetInt("Most Lives", 0).ToString() + "</color>";
-        unlockedUpgradesText.text = "<color=#FFF97A>" + PlayerPrefs.GetInt("Unlocked Upgrades", 1).ToString() + "</color>";
-        unlockedIconsText.text = "<color=#FFF97A>" + PlayerPrefs.GetInt("Unlocked Icons", 1).ToString() + "</color>";
+        unlockedUpgradesText.text = "<color=#FFF97A>" + PlayerPrefs.GetInt("Unlocked Upgrades", 1).ToString() + "/32</color>";
+        unlockedIconsText.text = "<color=#FFF97A>" + PlayerPrefs.GetInt("Unlocked Icons", 1).ToString() + "/42</color>";
     }
 
     public void SwapRight()

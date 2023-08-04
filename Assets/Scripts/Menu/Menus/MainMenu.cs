@@ -1,5 +1,3 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,6 +5,7 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     [Header("Objects")]
+    public GameObject main;
     public GameObject shop;
     public GameObject upgrades;
     public GameObject stats;
@@ -53,11 +52,6 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("Main");
     }
 
-    public void Quit()
-    {
-        Application.Quit();
-    }
-
     public void Shop()
     {
         panel.raycastTarget = true;
@@ -85,6 +79,7 @@ public class MainMenu : MonoBehaviour
     private void FinishTransition(GameObject menu)
     {
         panel.raycastTarget = false;
+        main.SetActive(false);
         menu.SetActive(true);
         LeanTween.color(panel.rectTransform, new(color, color, color, 0), duration);
     }
@@ -117,6 +112,7 @@ public class MainMenu : MonoBehaviour
     {
         panel.raycastTarget = false;
         menu.SetActive(false);
+        main.SetActive(true);
         LeanTween.color(panel.rectTransform, new(color, color, color, 0), duration);
     }
 }

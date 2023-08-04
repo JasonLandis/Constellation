@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI completeCompletedScore;
     public Animator screen;
     public Camera mainCamera;
+    public Image pauseButton;
     private Animator deathAnimation;
     [HideInInspector] public bool isGameOver;
     [HideInInspector] public bool isGamePaused;
@@ -88,7 +89,8 @@ public class GameManager : MonoBehaviour
     public Action resetZones;
 
     // Functions from GameUI
-    public Action showText;
+    public Action showScoreText;
+    public Action showGameplayText;
     public Action showStatText;
     public Action showUniverseTokensText;
     public Action openRaycast;
@@ -169,7 +171,7 @@ public class GameManager : MonoBehaviour
 
             // Setup the UI
             createNewStar.Invoke();
-            showText.Invoke();
+            showScoreText.Invoke();
             showDistanceUI.Invoke();
             openRaycast.Invoke();
 
@@ -185,6 +187,7 @@ public class GameManager : MonoBehaviour
         {
             if (lives == 0)
             {
+                pauseButton.raycastTarget = false;
                 hitless = false;
                 isGameOver = true;
 
@@ -200,9 +203,11 @@ public class GameManager : MonoBehaviour
             else
             {
                 // Temporarily immortal
+                FindObjectOfType<AudioManager>().Play("DeathSound");
                 hitless = false;
                 immortal = true;
                 lives -= 1;
+                showGameplayText.Invoke();
                 screen.Play("Hit");
             }
         }        
@@ -211,7 +216,7 @@ public class GameManager : MonoBehaviour
         {
             ImmortalCheck();
             zoneDetection.Invoke();
-            showText.Invoke();
+            showScoreText.Invoke();
             moveConstellationCamera.Invoke();
             DetectMeteors();
             MoveObjects();
@@ -550,10 +555,11 @@ public class GameManager : MonoBehaviour
         {
             SaveScores();
             SaveGameScores();
+            star.GetComponent<SpriteRenderer>().enabled = false;
+            star.GetComponent<Light2D>().enabled = false;
             endScore.text = ((int)score).ToString();
             endUniverseScore.text = ((int)universeScore).ToString();
-            endCompletedScore.text = ((int)universesCleared).ToString();
-            showText.Invoke();
+            endCompletedScore.text = universesCleared.ToString();
             createNewStar.Invoke();
             player.transform.position = new(0, 0, 0);
             fullCameraObject.SetActive(true);
@@ -619,6 +625,7 @@ public class GameManager : MonoBehaviour
         destroyMeteors = false;
         resetUniverse = false;
         showStatText.Invoke();
+        showGameplayText.Invoke();
         showDistanceUI.Invoke();
     }
 }

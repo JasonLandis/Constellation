@@ -10,6 +10,9 @@ public class ZoneController : MonoBehaviour
     [Header("Animation")]
     public Animator zoneChange;
 
+    [Header("Scripts")]
+    public GameUI gameUI;
+
     private int value = 0; // Used for the previous zone the star was in
     private int minSpeedZone = 1; // Used for the highest zone at which speed should not decrease
     private int minSizeZone = 1; // Used for the highest zone at which size should not decrease
@@ -183,6 +186,7 @@ public class ZoneController : MonoBehaviour
     // Decreases the speed, spread, and size when moving to a lower zone
     void DecreaseZone()
     {
+        FindObjectOfType<AudioManager>().Play("Zone");
         zoneChange.Play("Zone");
         if (GameManager.instance.speed > 1)
         {
@@ -229,11 +233,13 @@ public class ZoneController : MonoBehaviour
                 minSizeZone = GameManager.instance.zone + 1;
             }
         }
+        gameUI.ShowGameplayText();
     }
 
     // Increases the speed, spread, and size when moving to a higher zone
     void IncreaseZone()
     {
+        FindObjectOfType<AudioManager>().Play("Zone");
         zoneChange.Play("Zone");
         if (minSpeedZone < GameManager.instance.zone)
         {
@@ -247,6 +253,7 @@ public class ZoneController : MonoBehaviour
         {
             GameManager.instance.size += GameManager.instance.sizeChange;
         }
+        gameUI.ShowGameplayText();
     }
 
     // Function for reseting the zone values on a universe reset

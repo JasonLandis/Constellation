@@ -11,11 +11,8 @@ public class ScaleTween : MonoBehaviour
     public void OnEnable()
     {
         transform.localScale = new(0.85f, 0.85f, 0.85f);
+        panel.color = new(0, 0, 0, 0);
         LeanTween.scale(gameObject, new(1, 1, 1), duration).setEase(inType);
-        if (panel != null)
-        {
-            panel.color = new(0, 0, 0, 0);
-            LeanTween.color(panel.rectTransform, new(0, 0, 0, 0.7f), duration2);
-        }
+        LeanTween.color(panel.rectTransform, new(0, 0, 0, 0.7f), duration2);
     }
 }

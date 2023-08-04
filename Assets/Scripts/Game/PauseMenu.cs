@@ -1,3 +1,5 @@
+using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -12,7 +14,13 @@ public class PauseMenu : MonoBehaviour
     public GameObject spreadInfo;
     public GameObject speedInfo;
     public GameObject livesInfo;
-    public GameObject zoneInfo;    
+    public GameObject zoneInfo;
+
+    [Header("Pause Mechanics")]
+    private bool unPaused = false;
+    public GameObject pauseText;
+    public TextMeshProUGUI count;
+    private float timer = 3;
 
     void Awake()
     {
@@ -27,9 +35,39 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    public void ResumeFromPause()
+    private void Update()
+    {
+        if (unPaused)
+        {
+            Time.timeScale = 1f;
+            timer -= Time.deltaTime;
+            count.text = Math.Ceiling(timer).ToString();
+            if (timer < 0)
+            {
+                ResumeFromPause();
+                pauseText.SetActive(false);
+                timer = 3;
+                unPaused = false;
+            }
+        }
+    }
+
+    public void UnPause()
     {
         pauseMenu.SetActive(false);
+        if (!GameManager.instance.finished)
+        {
+            pauseText.SetActive(true);
+            unPaused = true;
+        }
+        else
+        {
+            ResumeFromPause();
+        }
+    }
+
+    public void ResumeFromPause()
+    {
         sureMenu.SetActive(false);
         GameManager.instance.isGamePaused = false;
         Time.timeScale = 1f;

@@ -11,6 +11,7 @@ public class UpgradeMenu : MonoBehaviour
     public TextMeshProUGUI description;
 
     [Header("Objects")]
+    public GameObject upgradesMenu;
     public GameObject sizeMenu;
     public GameObject spreadMenu;
     public GameObject speedMenu;
@@ -288,6 +289,7 @@ public class UpgradeMenu : MonoBehaviour
     private void FinishTransition(GameObject menu)
     {
         panel.raycastTarget = false;
+        upgradesMenu.SetActive(false);
         menu.SetActive(true);
         LeanTween.color(panel.rectTransform, new(color, color, color, 0), duration);
     }
@@ -328,6 +330,7 @@ public class UpgradeMenu : MonoBehaviour
     {
         panel.raycastTarget = false;
         menu.SetActive(false);
+        upgradesMenu.SetActive(true);
         LeanTween.color(panel.rectTransform, new(color, color, color, 0), duration);
     }
 }

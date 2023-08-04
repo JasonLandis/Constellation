@@ -33,7 +33,8 @@ public class GameUI : MonoBehaviour
 
     void Start()
     {
-        GameManager.instance.showText += ShowText;
+        GameManager.instance.showScoreText += ShowScoreText;
+        GameManager.instance.showGameplayText += ShowGameplayText;
         GameManager.instance.showStatText += ShowStatText;
         GameManager.instance.showDistanceUI += ShowDistanceUI;
         GameManager.instance.openRaycast += OpenRaycast;
@@ -131,15 +132,19 @@ public class GameUI : MonoBehaviour
     }
 
     // Updates the text objects
-    public void ShowText()
+    public void ShowScoreText()
+    {
+        totalScoreText.text = ((int)GameManager.instance.score).ToString();
+        universeScoreText.text = ((int)GameManager.instance.universeScore).ToString();
+        distanceLeftText.text = (Math.Ceiling(GameManager.instance.distanceLeft)).ToString();
+    }
+
+    public void ShowGameplayText()
     {
         livesText.text = GameManager.instance.lives.ToString();
         spreadText.text = Math.Round(GameManager.instance.spread, 1).ToString();
         sizeText.text = Math.Round(GameManager.instance.size, 1).ToString();
         speedText.text = Math.Round(GameManager.instance.speed, 1).ToString();
-        totalScoreText.text = ((int)GameManager.instance.score).ToString();
-        universeScoreText.text = ((int)GameManager.instance.universeScore).ToString();
-        distanceLeftText.text = (Math.Ceiling(GameManager.instance.distanceLeft)).ToString();
         zoneText.text = GameManager.instance.zone.ToString();
     }
 

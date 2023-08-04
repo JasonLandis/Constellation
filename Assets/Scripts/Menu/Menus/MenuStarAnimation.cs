@@ -7,7 +7,6 @@ public class MenuStarAnimation : MonoBehaviour
 {
     public GameObject menuStar;
     public Light2D menuStarLight;
-    public Image menuStarSprite;
 
     public GameObject motion1;
     public GameObject motion2;
@@ -172,7 +171,6 @@ public class MenuStarAnimation : MonoBehaviour
         green /= 255;
         blue /= 255;
 
-        star.GetComponent<Image>().color = new(red, green, blue, 1);
         star.GetComponent<Light2D>().color = new(red, green, blue, 1);
     }
 
@@ -226,7 +224,6 @@ public class MenuStarAnimation : MonoBehaviour
         green /= 255;
         blue /= 255;
 
-        menuStarSprite.color = new(red, green, blue, 1);
         menuStarLight.color = new(red, green, blue, 1);
         
         Instantiate(menuStar, motion.transform.position, Quaternion.identity, motion.transform);

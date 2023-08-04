@@ -27,21 +27,21 @@ public class ShopMenu : MonoBehaviour
     public void LoadSkinLocks()
     {
         lockedText.Add("Achieve a <color=#00C9FF>High Score</color> of <color=#11DC58>500</color>");
-        lockedText.Add("Achieve a <color=#00C9FF>High Score</color> of <color=#11DC58>1,000</color>");
-        lockedText.Add("Achieve a <color=#00C9FF>High Score</color> of <color=#11DC58>2,500</color>");
-        lockedText.Add("Achieve a <color=#00C9FF>High Score</color> of <color=#11DC58>5,000</color>");
+        lockedText.Add("Achieve a <color=#00C9FF>High Score</color> of <color=#11DC58>1000</color>");
+        lockedText.Add("Achieve a <color=#00C9FF>High Score</color> of <color=#11DC58>2,000</color>");
+        lockedText.Add("Achieve a <color=#00C9FF>High Score</color> of <color=#11DC58>3,000</color>");
         lockedText.Add("Achieve a <color=#00C9FF>Universe Score</color> of <color=#11DC58>250</color>");
         lockedText.Add("Achieve a <color=#00C9FF>Universe Score</color> of <color=#11DC58>500</color>");
         lockedText.Add("Achieve a <color=#00C9FF>Universe Score</color> of <color=#11DC58>1,000</color>");
         lockedText.Add("Achieve a <color=#00C9FF>Total Distance Traveled</color> of <color=#11DC58>10,000</color>");
-        lockedText.Add("Achieve a <color=#00C9FF>Total Distance Traveled</color> of <color=#11DC58>25,000</color>");
-        lockedText.Add("Achieve a <color=#00C9FF>Total Distance Traveled</color> of <color=#11DC58>50,000</color>");
+        lockedText.Add("Achieve a <color=#00C9FF>Total Distance Traveled</color> of <color=#11DC58>20,000</color>");
+        lockedText.Add("Achieve a <color=#00C9FF>Total Distance Traveled</color> of <color=#11DC58>30,000</color>");
         lockedText.Add("Clear a universe <color=#E54B4B>before</color> reaching a <color=#00C9FF>Universe Score</color> of <color=#11DC58>400</color>");
         lockedText.Add("Clear a universe <color=#E54B4B>before</color> reaching a <color=#00C9FF>Universe Score</color> of <color=#11DC58>300</color>");
         lockedText.Add("Clear a universe <color=#E54B4B>before</color> reaching a <color=#00C9FF>Universe Score</color> of <color=#11DC58>200</color>");
         lockedText.Add("Clear <color=#11DC58>2</color> universes <color=#00C9FF>in one run</color>");
-        lockedText.Add("Clear <color=#11DC58>5</color> universes <color=#00C9FF>in one run</color>");
-        lockedText.Add("Clear <color=#11DC58>10</color> universes <color=#00C9FF>in one run</color>");
+        lockedText.Add("Clear <color=#11DC58>4</color> universes <color=#00C9FF>in one run</color>");
+        lockedText.Add("Clear <color=#11DC58>6</color> universes <color=#00C9FF>in one run</color>");
         lockedText.Add("Clear <color=#11DC58>5</color> <color=#00C9FF>Total Universes</color>");
         lockedText.Add("Clear <color=#11DC58>25</color> <color=#00C9FF>Total Universes</color>");
         lockedText.Add("Clear <color=#11DC58>50</color> <color=#00C9FF>Total Universes</color>");
@@ -78,11 +78,11 @@ public class ShopMenu : MonoBehaviour
             {
                 unlockCount += 1;
                 locks[1].SetActive(false);
-                if (PlayerPrefs.GetInt("High Score", 0) >= 2500)
+                if (PlayerPrefs.GetInt("High Score", 0) >= 2000)
                 {
                     unlockCount += 1;
                     locks[2].SetActive(false);
-                    if (PlayerPrefs.GetInt("High Score", 0) >= 5000)
+                    if (PlayerPrefs.GetInt("High Score", 0) >= 3000)
                     {
                         unlockCount += 1;
                         locks[3].SetActive(false);
@@ -110,11 +110,11 @@ public class ShopMenu : MonoBehaviour
         {
             unlockCount += 1;
             locks[7].SetActive(false);
-            if (PlayerPrefs.GetInt("Total Distance", 0) >= 25000)
+            if (PlayerPrefs.GetInt("Total Distance", 0) >= 20000)
             {
                 unlockCount += 1;
                 locks[8].SetActive(false);
-                if (PlayerPrefs.GetInt("Total Distance", 0) >= 50000)
+                if (PlayerPrefs.GetInt("Total Distance", 0) >= 30000)
                 {
                     unlockCount += 1;
                     locks[9].SetActive(false);
@@ -143,11 +143,11 @@ public class ShopMenu : MonoBehaviour
         {
             unlockCount += 1;
             locks[13].SetActive(false);
-            if (PlayerPrefs.GetInt("Most Universes", 0) >= 5)
+            if (PlayerPrefs.GetInt("Most Universes", 0) >= 4)
             {
                 unlockCount += 1;
                 locks[14].SetActive(false);
-                if (PlayerPrefs.GetInt("Most Universes", 0) >= 10)
+                if (PlayerPrefs.GetInt("Most Universes", 0) >= 6)
                 {
                     unlockCount += 1;
                     locks[15].SetActive(false);
@@ -247,7 +247,7 @@ public class ShopMenu : MonoBehaviour
             {
                 unlockCount += 1;
                 locks[34].SetActive(false);
-                if (PlayerPrefs.GetInt("Unlocked Upgrades", 0) >= 36)
+                if (PlayerPrefs.GetInt("Unlocked Upgrades", 0) >= 32)
                 {
                     unlockCount += 1;
                     locks[35].SetActive(false);

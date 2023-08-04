@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (Input.touchCount > 0 && !GameManager.instance.isGameOver && !GameManager.instance.isGamePaused)
+        if (Input.touchCount > 0 && !GameManager.instance.isGameOver)
         {
             Touch touch = Input.GetTouch(0);
             Vector2 touchPosition = mainCamera.ScreenToWorldPoint(touch.position);
@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
                 case TouchPhase.Ended:
                     rb.velocity = Vector2.zero;
                     break;
-            }
+            }            
         }
     }
 }
