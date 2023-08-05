@@ -23,7 +23,6 @@ public class ZoneController : MonoBehaviour
         CreateZoneColors();
         GameManager.instance.zoneDetection += DetectDifficulty;
         GameManager.instance.zoneDetection += SetDifficulty;
-        GameManager.instance.resetZones += ResetZones;
     }
 
     // Create random zone colors
@@ -186,8 +185,7 @@ public class ZoneController : MonoBehaviour
     // Decreases the speed, spread, and size when moving to a lower zone
     void DecreaseZone()
     {
-        FindObjectOfType<AudioManager>().Play("Zone");
-        zoneChange.Play("Zone");
+        FindObjectOfType<AudioManager>().Play("DecreaseZone");
         if (GameManager.instance.speed > 1)
         {
             GameManager.instance.speed -= GameManager.instance.speedChange;
@@ -239,8 +237,7 @@ public class ZoneController : MonoBehaviour
     // Increases the speed, spread, and size when moving to a higher zone
     void IncreaseZone()
     {
-        FindObjectOfType<AudioManager>().Play("Zone");
-        zoneChange.Play("Zone");
+        FindObjectOfType<AudioManager>().Play("IncreaseZone");
         if (minSpeedZone < GameManager.instance.zone)
         {
             GameManager.instance.speed += GameManager.instance.speedChange;
@@ -254,14 +251,5 @@ public class ZoneController : MonoBehaviour
             GameManager.instance.size += GameManager.instance.sizeChange;
         }
         gameUI.ShowGameplayText();
-    }
-
-    // Function for reseting the zone values on a universe reset
-    public void ResetZones()
-    {
-        value = 0;
-        minSpeedZone = 1;
-        minSizeZone = 1;
-        maxSpreadZone = 1;
     }
 }

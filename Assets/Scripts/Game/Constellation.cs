@@ -30,7 +30,6 @@ public class Constellation : MonoBehaviour
         GameManager.instance.moveConstellationCamera += MoveConstellationCamera;
         GameManager.instance.setFullCamera += SetFullCamera;
         GameManager.instance.fullCameraTransition += FullCameraTransition;
-        GameManager.instance.resetConstellation += ResetConstellation;
     }
 
     // Generates stars on the constellation map
@@ -259,29 +258,5 @@ public class Constellation : MonoBehaviour
         {
             GameManager.instance.transitionIsDone = true;
         }
-    }
-
-    // Resets the constellation components on universe reset
-    public void ResetConstellation()
-    {
-        foreach (Transform star in constellationStars.transform)
-        {
-            Destroy(star.gameObject);
-        }
-        foreach (Transform star in createdStars.transform)
-        {
-            Destroy(star.gameObject);
-        }
-        vectors.Clear();
-        smallestX = 0;
-        largestX = 0;
-        smallestY = 0;
-        largestY = 0;
-        constellationCamera.transform.position = new(0, 0, -1);
-        fullCamera.transform.position = new(0, 0, -1);
-        fullCamera.orthographicSize = 2;
-        GenerateConstellation();
-        constellationStars.SetActive(true);
-        endConstellation.SetActive(false);
     }
 }

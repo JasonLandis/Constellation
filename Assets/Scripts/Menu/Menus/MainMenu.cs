@@ -31,11 +31,16 @@ public class MainMenu : MonoBehaviour
         shopMenu.LoadSkinLocks();
         statsMenu.LoadStatsValues();
 
+        PlayerPrefs.DeleteKey("Current Score");
+        PlayerPrefs.DeleteKey("Current Lives");
+        PlayerPrefs.DeleteKey("Current Universes");
+
         // PlayerPrefs.DeleteAll();
     }
 
     private void Start()
     {
+        FindObjectOfType<AudioManager>().Play("Menu");
         panel.color = new(0, 0, 0, 1);
         LeanTween.color(panel.rectTransform, new(0, 0, 0, 0), duration);
     }

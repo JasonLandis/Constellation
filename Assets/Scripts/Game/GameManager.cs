@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 // I am Matthew. I leave my easter egg here. I hope you enjoy it. :) 
@@ -64,7 +65,7 @@ public class GameManager : MonoBehaviour
     [Header("Player Prefs")]
     [HideInInspector] public float score;
     [HideInInspector] public float universeScore = 0;
-    private int universesCleared;
+    [HideInInspector] public int universesCleared;
     [HideInInspector] public string universeDifficulty;
     private bool hitless = true;
 
@@ -86,7 +87,6 @@ public class GameManager : MonoBehaviour
 
     // Functions from ZoneController
     public Action zoneDetection;
-    public Action resetZones;
 
     // Functions from GameUI
     public Action showScoreText;
@@ -100,7 +100,6 @@ public class GameManager : MonoBehaviour
     public Action moveConstellationCamera;
     public Action fullCameraTransition;
     public Action setFullCamera;
-    public Action resetConstellation;
 
     // Functions from Roguelike
     public Action showRoguelike;
@@ -112,6 +111,9 @@ public class GameManager : MonoBehaviour
     // Functions from LightManager
     public Action initializeLights;
 
+    // Functions from AudioManager
+    public Action initializeAudio;
+
     void Awake()
     {
         if (instance == null)
@@ -122,18 +124,26 @@ public class GameManager : MonoBehaviour
         {
             Destroy(instance);
         }
+        panel.GetComponent<Image>().color = new(0, 0, 0, 1);
+        LeanTween.color(panel.GetComponent<Image>().rectTransform, new(0, 0, 0, 0), duration).setOnComplete(DeactivatePanel);
     }
 
     void Start()
     {
-        panel.GetComponent<Image>().color = new(0, 0, 0, 1);
-        LeanTween.color(panel.GetComponent<Image>().rectTransform, new(0, 0, 0, 0), duration).setOnComplete(DeactivatePanel);
-
         // Set starting values
-        lives = PlayerPrefs.GetInt("Start Lives", 0);
+        if (PlayerPrefs.HasKey("Current Lives"))
+        {
+            lives = PlayerPrefs.GetInt("Current Lives");
+        }
+        else
+        {
+            lives = PlayerPrefs.GetInt("Start Lives", 0);
+        }
         size = PlayerPrefs.GetFloat("Start Size", 1);
         spread = PlayerPrefs.GetInt("Start Spread", 5);
         speed = PlayerPrefs.GetInt("Start Speed", 10);
+        score = PlayerPrefs.GetInt("Current Score", 0);
+        universesCleared = PlayerPrefs.GetInt("Current Universes", 0);
 
         // Instantiate the player
         player = Instantiate(playerPrefabs[PlayerPrefs.GetInt("Skin", 0)], new(0, -0.4197f, 0), Quaternion.identity, transform);
@@ -146,7 +156,10 @@ public class GameManager : MonoBehaviour
         // Create the universe stats and show the text
         CreateUniverseStats();
         showStatText.Invoke();
+        showGameplayText.Invoke();
+
         initializeLights.Invoke();
+        initializeAudio.Invoke();
 
         Application.targetFrameRate = 60;
         Time.timeScale = 1f;
@@ -180,13 +193,14 @@ public class GameManager : MonoBehaviour
             {
                 constellationVectors.Remove(star.transform.position);
                 showRoguelike.Invoke();
-            }            
+            }
         }
 
         else if (playerBoxCollider.IsTouchingLayers(LayerMask.GetMask("Meteor")) && !immortal && !finished && !isGamePaused)
         {
             if (lives == 0)
             {
+                FindAnyObjectByType<AudioManager>().Play("Death");
                 pauseButton.raycastTarget = false;
                 hitless = false;
                 isGameOver = true;
@@ -203,14 +217,14 @@ public class GameManager : MonoBehaviour
             else
             {
                 // Temporarily immortal
-                FindObjectOfType<AudioManager>().Play("DeathSound");
+                FindAnyObjectByType<AudioManager>().Play("Hit");
                 hitless = false;
                 immortal = true;
                 lives -= 1;
                 showGameplayText.Invoke();
                 screen.Play("Hit");
             }
-        }        
+        }
 
         else if (!finished && !isGamePaused)
         {
@@ -231,9 +245,16 @@ public class GameManager : MonoBehaviour
             }
             if (resetUniverse == true)
             {
-                ResetUniverse();
+                panel.SetActive(true);
+                panel.GetComponent<Image>().raycastTarget = true;
+                LeanTween.color(panel.GetComponent<Image>().rectTransform, new(0, 0, 0, 1), 0.3f).setOnComplete(Load);
             }
         }
+    }
+
+    private void Load()
+    {        
+        SceneManager.LoadScene("Main");
     }
 
     private void DeactivatePanel()
@@ -588,11 +609,16 @@ public class GameManager : MonoBehaviour
             }
             if (finishedUniverse == true)
             {
+                isGameOver = true;
+                player.transform.position = new(0, 0, 0);
                 createUniverseStats.Invoke();
                 universesCleared += 1;
+                PlayerPrefs.SetInt("Current Score", (int)score);
+                PlayerPrefs.SetInt("Current Lives", lives);
+                PlayerPrefs.SetInt("Current Universes", universesCleared);
                 completeScore.text = ((int)score).ToString();
                 completeUniverseScore.text = ((int)universeScore).ToString();
-                completeCompletedScore.text = ((int)universesCleared).ToString();
+                completeCompletedScore.text = (universesCleared).ToString();
                 createNewStar();
                 fullCameraObject.SetActive(true);
                 setFullCamera.Invoke();
@@ -600,32 +626,5 @@ public class GameManager : MonoBehaviour
                 finished = true;                
             }
         }
-    }
-
-    // Reset the universe
-    public void ResetUniverse()
-    {
-        resetZones.Invoke();
-        resetConstellation.Invoke();
-        star.GetComponent<LineRenderer>().positionCount = 0;
-        star.GetComponent<SpriteRenderer>().enabled = true;
-        star.GetComponent<Light2D>().enabled = true;
-        previousPosition = new(0, 0, 0);
-        star.transform.position = Vector3.zero;
-        background.transform.position = new(0, -0.4197f, 0);
-        mapTracker.transform.position = new(0, 0, 0);
-        limit = 0;
-        size = PlayerPrefs.GetFloat("Start Size", 1);
-        spread = PlayerPrefs.GetInt("Start Spread", 5);
-        speed = PlayerPrefs.GetInt("Start Speed", 10);
-        zone = 1;
-        universeScore = 0;
-        finished = false;
-        finishedUniverse = false;
-        destroyMeteors = false;
-        resetUniverse = false;
-        showStatText.Invoke();
-        showGameplayText.Invoke();
-        showDistanceUI.Invoke();
     }
 }

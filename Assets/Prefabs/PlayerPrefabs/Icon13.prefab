@@ -212,7 +212,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.735
   m_Color: {r: 1, g: 0, b: 0.019607844, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.8
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -257,3 +257,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5296e8d9ebbd56c4bbcc7c4d68e28cb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  yLimit: 0

@@ -30,6 +30,7 @@ public class GameUI : MonoBehaviour
     public TextMeshProUGUI totalScoreText;
     public TextMeshProUGUI universeScoreText;
     public TextMeshProUGUI distanceLeftText;
+    public TextMeshProUGUI universesClearedText;
 
     void Start()
     {
@@ -137,6 +138,7 @@ public class GameUI : MonoBehaviour
         totalScoreText.text = ((int)GameManager.instance.score).ToString();
         universeScoreText.text = ((int)GameManager.instance.universeScore).ToString();
         distanceLeftText.text = (Math.Ceiling(GameManager.instance.distanceLeft)).ToString();
+        universesClearedText.text = (GameManager.instance.universesCleared).ToString();
     }
 
     public void ShowGameplayText()

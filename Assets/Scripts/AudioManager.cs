@@ -15,26 +15,30 @@ public class AudioManager : MonoBehaviour
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
         }
-    }
+    }   
 
     void Start()
     {
-        int rand = UnityEngine.Random.Range(0, 4);
-        if (rand == 0)
+        if (GameManager.instance == null)
         {
-            Play("Game1");
+            return;
         }
-        if (rand == 1)
+        GameManager.instance.initializeAudio += InitializeAudio;
+    }
+
+    void InitializeAudio()
+    {
+        if (GameManager.instance.universeDifficulty == "<color=#11DC58>Easy</color>")
         {
-            Play("Game2");
+            Play("Easy");
         }
-        if (rand == 2)
+        else if (GameManager.instance.universeDifficulty == "<color=#E0E0E0>Normal</color>")
         {
-            Play("Game3");
+            Play("Normal");
         }
-        if (rand == 3)
+        else
         {
-            Play("Game4");
+            Play("Hard");
         }
     }
 
