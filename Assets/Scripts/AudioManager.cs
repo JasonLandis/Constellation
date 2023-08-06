@@ -21,7 +21,6 @@ public class AudioManager : MonoBehaviour
             return;
         }
         InitializeAudio();
-        GameManager.instance.initializeAudio += InitializeAudio;
     }
 
     void InitializeAudio()

@@ -11948,7 +11948,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ad120f4f8c442a145a1e04f137b0b2d7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d17d21327dd71724ba48af9891e81588, type: 3}
   m_Color: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -34285,8 +34285,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: ad120f4f8c442a145a1e04f137b0b2d7, type: 3}
+  m_SortingOrder: -2
+  m_Sprite: {fileID: 21300000, guid: d17d21327dd71724ba48af9891e81588, type: 3}
   m_Color: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -40837,6 +40837,13 @@ MonoBehaviour:
   finished: 0
   distanceLeft: 0
   immortal: 0
+  meteors:
+  - {fileID: 21300000, guid: c6515b234ecce1b4b952366266383cd4, type: 3}
+  - {fileID: 21300000, guid: 7b2c45cd53a420b4bacbbe7425f1c564, type: 3}
+  - {fileID: 21300000, guid: 4a6da73168414ea4fb8a68b03a784d0d, type: 3}
+  - {fileID: 21300000, guid: 0dd55afe4fbce39449de97d8a023c934, type: 3}
+  - {fileID: 21300000, guid: 1d38ccad4560ace47bcb571542988133, type: 3}
+  - {fileID: 21300000, guid: f766c43dbec21e244a14e2d305882b0e, type: 3}
   score: 0
   universeScore: 0
   universesCleared: 0
@@ -42070,7 +42077,7 @@ MonoBehaviour:
   m_LightType: 4
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
-  m_Color: {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 1}
+  m_Color: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0

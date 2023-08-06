@@ -9,7 +9,6 @@ public class LightManager : MonoBehaviour
     void Start()
     {
         InitializeLights();
-        GameManager.instance.initializeLights += InitializeLights;
     }
 
     private void InitializeLights()
@@ -37,7 +36,7 @@ public class LightManager : MonoBehaviour
     {
         GameManager.instance.player.GetComponent<Light2D>().enabled = true;
         GameManager.instance.star.GetComponent<Light2D>().enabled = true;
-        globalLight.color = new(0.57f, 0.57f, 0.57f, 1);
+        globalLight.color = new(0.6f, 0.6f, 0.6f, 1);
         lightsOffButton.SetActive(false);
         PlayerPrefs.SetInt("Lights", 1);
     }

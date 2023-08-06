@@ -69,6 +69,10 @@ public class GameManager : MonoBehaviour
     private float countdownTime = 3;
     private float endTime = 2;
 
+    [Header("Meteors")]
+    public List<Sprite> meteors;
+    private SpriteRenderer meteorSprite;
+
     [Header("Player Prefs")]
     [HideInInspector] public float score;
     [HideInInspector] public float universeScore = 0;
@@ -99,7 +103,6 @@ public class GameManager : MonoBehaviour
     public Action showScoreText;
     public Action showGameplayText;
     public Action showStatText;
-    public Action showUniverseTokensText;
     public Action openRaycast;
 
     // Functions from Constellation
@@ -114,12 +117,6 @@ public class GameManager : MonoBehaviour
 
     // Functions from CreateUniverse
     public Action createUniverseStats;
-
-    // Functions from LightManager
-    public Action initializeLights;
-
-    // Functions from AudioManager
-    public Action initializeAudio;
 
     void Awake()
     {
@@ -177,6 +174,8 @@ public class GameManager : MonoBehaviour
         player = Instantiate(playerPrefabs[PlayerPrefs.GetInt("Skin", 0)], new(0, -0.4197f, 0), Quaternion.identity, transform);
         playerBoxCollider = player.GetComponent<BoxCollider2D>();
         deathAnimation = player.GetComponent<Animator>();
+
+        meteorSprite = meteorPrefab.GetComponent<SpriteRenderer>();
 
         // Instantiate the star
         star = Instantiate(starPrefabs[PlayerPrefs.GetInt("Skin", 0)], new(0, 0, 0), Quaternion.identity, yourConstellation.transform);
@@ -414,9 +413,12 @@ public class GameManager : MonoBehaviour
 
                 meteorPrefab.transform.localScale = new Vector3(size / 10, size / 10, 1);
 
-                float color = UnityEngine.Random.Range(20, 40) / 255f;
+                float color = UnityEngine.Random.Range(180, 220) / 255f;
 
-                meteorPrefab.GetComponent<SpriteRenderer>().color = new(color, color, color, 1);
+                int rand = UnityEngine.Random.Range(0, 5);
+
+                meteorSprite.sprite = meteors[rand];
+                meteorSprite.color = new(color, color, color, 1);
                 Instantiate(meteorPrefab, new(x, y, 0), Quaternion.identity, map.transform);
             }
         }
