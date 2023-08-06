@@ -5,7 +5,7 @@ public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
 
-    void Awake()
+    void Start()
     {
         foreach (Sound s in sounds)
         {
@@ -15,14 +15,12 @@ public class AudioManager : MonoBehaviour
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
         }
-    }   
 
-    void Start()
-    {
         if (GameManager.instance == null)
         {
             return;
         }
+        InitializeAudio();
         GameManager.instance.initializeAudio += InitializeAudio;
     }
 

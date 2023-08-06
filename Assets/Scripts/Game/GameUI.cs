@@ -34,6 +34,8 @@ public class GameUI : MonoBehaviour
 
     void Start()
     {
+        ShowStatText();
+        ShowGameplayText();
         GameManager.instance.showScoreText += ShowScoreText;
         GameManager.instance.showGameplayText += ShowGameplayText;
         GameManager.instance.showStatText += ShowStatText;

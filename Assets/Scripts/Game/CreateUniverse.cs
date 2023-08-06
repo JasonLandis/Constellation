@@ -50,20 +50,9 @@ public class CreateUniverse : MonoBehaviour
     private float[] color3;
     private string difficulty3;
 
-    [Header("Backgrounds")]
-    public GameObject background;
-    public GameObject constellationBackground;
-
     void Start()
     {
         GameManager.instance.createUniverseStats += CreateUniverseStats;
-    }
-
-    // Resets the zones colors based on the universe selected by the player
-    public void CreateZones(float red, float green, float blue)
-    {
-        background.GetComponent<SpriteRenderer>().color = new(red, green, blue, 1);
-        constellationBackground.GetComponent<SpriteRenderer>().color = new(red, green, blue, 1);
     }
 
     // Randomly generate stats for the next 3 possible universes
@@ -199,29 +188,35 @@ public class CreateUniverse : MonoBehaviour
     // Button functions for the 3 universes
     public void UniverseOne()
     {
-        GameManager.instance.sizeChange = sizeChange1;
-        GameManager.instance.spreadChange = spreadChange1;
-        GameManager.instance.speedChange = speedChange1;
-        GameManager.instance.universeDifficulty = difficulty1;
-        CreateZones(color1[0], color1[1], color1[2]);
+        PlayerPrefs.SetFloat("Size Change", sizeChange1);
+        PlayerPrefs.SetFloat("Spread Change", spreadChange1);
+        PlayerPrefs.SetFloat("Speed Change", speedChange1);
+        PlayerPrefs.SetString("Difficulty", difficulty1);
+        PlayerPrefs.SetFloat("Red", color1[0]);
+        PlayerPrefs.SetFloat("Green", color1[1]);
+        PlayerPrefs.SetFloat("Blue", color1[2]);
         GameManager.instance.resetUniverse = true;
     }
     public void UniverseTwo()
     {
-        GameManager.instance.sizeChange = sizeChange2;
-        GameManager.instance.spreadChange = spreadChange2;
-        GameManager.instance.speedChange = speedChange2;
-        GameManager.instance.universeDifficulty = difficulty2;
-        CreateZones(color2[0], color2[1], color2[2]);
+        PlayerPrefs.SetFloat("Size Change", sizeChange2);
+        PlayerPrefs.SetFloat("Spread Change", spreadChange2);
+        PlayerPrefs.SetFloat("Speed Change", speedChange2);
+        PlayerPrefs.SetString("Difficulty", difficulty2);
+        PlayerPrefs.SetFloat("Red", color2[0]);
+        PlayerPrefs.SetFloat("Green", color2[1]);
+        PlayerPrefs.SetFloat("Blue", color2[2]);
         GameManager.instance.resetUniverse = true;
     }
     public void UniverseThree()
     {
-        GameManager.instance.sizeChange = sizeChange3;
-        GameManager.instance.spreadChange = spreadChange3;
-        GameManager.instance.speedChange = speedChange3;
-        GameManager.instance.universeDifficulty = difficulty3;
-        CreateZones(color3[0], color3[1], color3[2]);
+        PlayerPrefs.SetFloat("Size Change", sizeChange3);
+        PlayerPrefs.SetFloat("Spread Change", spreadChange3);
+        PlayerPrefs.SetFloat("Speed Change", speedChange3);
+        PlayerPrefs.SetString("Difficulty", difficulty3);
+        PlayerPrefs.SetFloat("Red", color3[0]);
+        PlayerPrefs.SetFloat("Green", color3[1]);
+        PlayerPrefs.SetFloat("Blue", color3[2]);
         GameManager.instance.resetUniverse = true;
     }
 }

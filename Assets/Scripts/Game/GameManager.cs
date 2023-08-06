@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     public GameObject createdStars;
     public GameObject yourConstellation;
     public GameObject fullCameraObject;
+    public GameObject constellationBackground;
     [HideInInspector] public GameObject player;
     [HideInInspector] public GameObject star;
     private BoxCollider2D playerBoxCollider;
@@ -54,6 +55,12 @@ public class GameManager : MonoBehaviour
     public Camera mainCamera;
     public Image pauseButton;
     private Animator deathAnimation;
+    private Vector2 bounds;
+    private float negBoundsx;
+    private float posBoundsx;
+    private float negBoundsy;
+    private float posBoundsy;
+    private float yLimit;
     [HideInInspector] public bool isGameOver;
     [HideInInspector] public bool isGamePaused;
     [HideInInspector] public bool finished;
@@ -126,6 +133,14 @@ public class GameManager : MonoBehaviour
         }
         panel.GetComponent<Image>().color = new(0, 0, 0, 1);
         LeanTween.color(panel.GetComponent<Image>().rectTransform, new(0, 0, 0, 0), duration).setOnComplete(DeactivatePanel);
+
+        bounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, mainCamera.transform.position.z));
+        yLimit = bounds.x * 0.31695f;
+
+        negBoundsx = bounds.x * -1 - 0.2f;
+        posBoundsx = bounds.x + 0.2f;
+        negBoundsy = bounds.y * -1 - 0.2f;
+        posBoundsy = yLimit + 0.2f;
     }
 
     void Start()
@@ -145,6 +160,19 @@ public class GameManager : MonoBehaviour
         score = PlayerPrefs.GetInt("Current Score", 0);
         universesCleared = PlayerPrefs.GetInt("Current Universes", 0);
 
+        if (PlayerPrefs.HasKey("Size Change"))
+        {
+            sizeChange = PlayerPrefs.GetFloat("Size Change");
+            spreadChange = PlayerPrefs.GetFloat("Spread Change");
+            speedChange = PlayerPrefs.GetFloat("Speed Change");
+            universeDifficulty = PlayerPrefs.GetString("Difficulty");
+            CreateZones();
+        }
+        else
+        {
+            CreateUniverseStats();
+        }
+
         // Instantiate the player
         player = Instantiate(playerPrefabs[PlayerPrefs.GetInt("Skin", 0)], new(0, -0.4197f, 0), Quaternion.identity, transform);
         playerBoxCollider = player.GetComponent<BoxCollider2D>();
@@ -152,14 +180,6 @@ public class GameManager : MonoBehaviour
 
         // Instantiate the star
         star = Instantiate(starPrefabs[PlayerPrefs.GetInt("Skin", 0)], new(0, 0, 0), Quaternion.identity, yourConstellation.transform);
-
-        // Create the universe stats and show the text
-        CreateUniverseStats();
-        showStatText.Invoke();
-        showGameplayText.Invoke();
-
-        initializeLights.Invoke();
-        initializeAudio.Invoke();
 
         Application.targetFrameRate = 60;
         Time.timeScale = 1f;
@@ -251,6 +271,11 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+    private void CreateZones()
+    {
+        background.GetComponent<SpriteRenderer>().color = new(PlayerPrefs.GetFloat("Red"), PlayerPrefs.GetFloat("Green"), PlayerPrefs.GetFloat("Blue"), 1);
+        constellationBackground.GetComponent<SpriteRenderer>().color = new(PlayerPrefs.GetFloat("Red"), PlayerPrefs.GetFloat("Green"), PlayerPrefs.GetFloat("Blue"), 1); ;
+    }
 
     private void Load()
     {        
@@ -305,8 +330,8 @@ public class GameManager : MonoBehaviour
         foreach (Transform child in map.transform)
         {
             child.transform.Translate(speed * Time.deltaTime * Vector3.down / 10);
-            if (child.transform.position.x < -1 || child.transform.position.x > 1 ||
-                child.transform.position.y < -2 || child.transform.position.y > 0.5)
+            if (child.transform.position.x < negBoundsx || child.transform.position.x > posBoundsx ||
+                child.transform.position.y < negBoundsy || child.transform.position.y > posBoundsy)
             {
                 child.gameObject.SetActive(false);
             }
@@ -402,7 +427,7 @@ public class GameManager : MonoBehaviour
     {
         foreach (Transform child in map.transform)
         {
-            if (child.transform.position.x < -1 || child.transform.position.x > 1 || child.transform.position.y < -1.4 || child.transform.position.y > 0.4)
+            if (child.transform.position.x < negBoundsx || child.transform.position.x > posBoundsx || child.transform.position.y < negBoundsy || child.transform.position.y > posBoundsy)
             {
                 Destroy(child.gameObject);
             }
@@ -583,6 +608,7 @@ public class GameManager : MonoBehaviour
             endCompletedScore.text = universesCleared.ToString();
             createNewStar.Invoke();
             player.transform.position = new(0, 0, 0);
+            player.GetComponent<Light2D>().volumeIntensityEnabled = true;
             fullCameraObject.SetActive(true);
             endMenu.SetActive(true);
             createdStars.SetActive(false);
@@ -611,6 +637,7 @@ public class GameManager : MonoBehaviour
             {
                 isGameOver = true;
                 player.transform.position = new(0, 0, 0);
+                player.GetComponent<Light2D>().volumeIntensityEnabled = true;
                 createUniverseStats.Invoke();
                 universesCleared += 1;
                 PlayerPrefs.SetInt("Current Score", (int)score);

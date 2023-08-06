@@ -27,7 +27,7 @@ MonoImporter:
   - shrink: {instanceID: 0}
   - invisibility: {instanceID: 0}
   - speed: {instanceID: 0}
-  executionOrder: 0
+  executionOrder: -20
   icon: {instanceID: 0}
   userData: 
   assetBundleName: 

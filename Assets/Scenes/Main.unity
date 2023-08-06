@@ -6252,8 +6252,6 @@ MonoBehaviour:
   speedChangeText3: {fileID: 1582410830}
   difficultyText3: {fileID: 1355193241}
   symbol3: {fileID: 254500618}
-  background: {fileID: 1416096165}
-  constellationBackground: {fileID: 532982937}
 --- !u!1 &289210700
 GameObject:
   m_ObjectHideFlags: 0
@@ -11950,7 +11948,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 021a88c4c2a0f4a418349ef8b305725c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ad120f4f8c442a145a1e04f137b0b2d7, type: 3}
   m_Color: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -34288,7 +34286,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 021a88c4c2a0f4a418349ef8b305725c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ad120f4f8c442a145a1e04f137b0b2d7, type: 3}
   m_Color: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -40822,6 +40820,7 @@ MonoBehaviour:
   createdStars: {fileID: 1955582008}
   yourConstellation: {fileID: 1534761918}
   fullCameraObject: {fileID: 1140142020}
+  constellationBackground: {fileID: 532982937}
   player: {fileID: 5706873387352023607, guid: d9c9cd75d3da62441964141614e34670, type: 3}
   star: {fileID: 0}
   endScore: {fileID: 987891282}

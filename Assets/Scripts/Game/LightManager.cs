@@ -6,8 +6,9 @@ public class LightManager : MonoBehaviour
     public Light2D globalLight;
     public GameObject lightsOffButton;
 
-    void Awake()
+    void Start()
     {
+        InitializeLights();
         GameManager.instance.initializeLights += InitializeLights;
     }
 

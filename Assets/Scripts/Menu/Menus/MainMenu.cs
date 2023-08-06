@@ -34,6 +34,13 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.DeleteKey("Current Score");
         PlayerPrefs.DeleteKey("Current Lives");
         PlayerPrefs.DeleteKey("Current Universes");
+        PlayerPrefs.DeleteKey("Size Change");
+        PlayerPrefs.DeleteKey("Spread Change");
+        PlayerPrefs.DeleteKey("Speed Change");
+        PlayerPrefs.DeleteKey("Difficulty");
+        PlayerPrefs.DeleteKey("Red");
+        PlayerPrefs.DeleteKey("Green");
+        PlayerPrefs.DeleteKey("Blue");
 
         // PlayerPrefs.DeleteAll();
     }

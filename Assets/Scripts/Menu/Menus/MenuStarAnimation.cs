@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.UI;
 
 public class MenuStarAnimation : MonoBehaviour
 {
@@ -32,8 +31,13 @@ public class MenuStarAnimation : MonoBehaviour
     public List<GameObject> left;
     public List<GameObject> right;
 
+    private Vector2 bounds;
+
     void Start()
     {
+        bounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+        SetPositions();
+
         CreateStar(motion1);
         CreateStar(motion2);
         CreateStar(motion3);
@@ -105,6 +109,26 @@ public class MenuStarAnimation : MonoBehaviour
             ChangeStar(motion6.transform.GetChild(0).gameObject);
             end6 = ChooseEndPoint(motion6);
             speed6 = Random.Range(4, 10) / 500f;
+        }
+    }
+
+    private void SetPositions()
+    {
+        motion1.transform.position = new(bounds.x * -1 - 1, motion1.transform.position.y, 0);
+        motion2.transform.position = new(bounds.x * -1 - 1, motion2.transform.position.y, 0);
+        motion3.transform.position = new(bounds.x * -1 - 1, motion3.transform.position.y, 0);
+        motion4.transform.position = new(bounds.x + 1, motion4.transform.position.y, 0);
+        motion5.transform.position = new(bounds.x + 1, motion5.transform.position.y, 0);
+        motion6.transform.position = new(bounds.x + 1, motion6.transform.position.y, 0);
+
+        foreach (GameObject l in left)
+        {
+            l.transform.position = new(bounds.x * -1 - 1, l.transform.position.y, 0);
+        }
+
+        foreach (GameObject r in right)
+        {
+            r.transform.position = new(bounds.x + 1, r.transform.position.y, 0);
         }
     }
 

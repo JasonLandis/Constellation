@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -142,6 +143,7 @@ public class PauseMenu : MonoBehaviour
 
     public void MenuFromEnd()
     {
+        GameManager.instance.player.GetComponent<Light2D>().volumeIntensityEnabled = false;
         panel.SetActive(true);
         panel.GetComponent<Image>().raycastTarget = true;
         LeanTween.color(panel.GetComponent<Image>().rectTransform, new(0, 0, 0, 1), 0.3f).setOnComplete(Load2);
@@ -154,6 +156,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Restart()
     {
+        GameManager.instance.player.GetComponent<Light2D>().volumeIntensityEnabled = false;
         panel.SetActive(true);
         panel.GetComponent<Image>().raycastTarget = true;
         LeanTween.color(panel.GetComponent<Image>().rectTransform, new(0, 0, 0, 1), 0.3f).setOnComplete(LoadMain);
