@@ -29,8 +29,8 @@ public class GameManager : MonoBehaviour
     public int zone = 1;
 
     [Header("Objects")]
-    public List<GameObject> playerPrefabs;
-    public List<GameObject> starPrefabs;
+    public GameObject playerPrefab;
+    public GameObject starPrefab;
     public GameObject meteorPrefab;
     public GameObject map;
     public GameObject mapTracker;
@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
     public GameObject yourConstellation;
     public GameObject fullCameraObject;
     public GameObject constellationBackground;
+    public Sprite endBackround;
+    public GameObject lightObject;
     [HideInInspector] public GameObject player;
     [HideInInspector] public GameObject star;
     private BoxCollider2D playerBoxCollider;
@@ -115,9 +117,6 @@ public class GameManager : MonoBehaviour
     public Action showRoguelike;
     public Action showDistanceUI;
 
-    // Functions from CreateUniverse
-    public Action createUniverseStats;
-
     void Awake()
     {
         if (instance == null)
@@ -157,28 +156,19 @@ public class GameManager : MonoBehaviour
         score = PlayerPrefs.GetInt("Current Score", 0);
         universesCleared = PlayerPrefs.GetInt("Current Universes", 0);
 
-        if (PlayerPrefs.HasKey("Size Change"))
-        {
-            sizeChange = PlayerPrefs.GetFloat("Size Change");
-            spreadChange = PlayerPrefs.GetFloat("Spread Change");
-            speedChange = PlayerPrefs.GetFloat("Speed Change");
-            universeDifficulty = PlayerPrefs.GetString("Difficulty");
-            CreateZones();
-        }
-        else
-        {
-            CreateUniverseStats();
-        }
+        CreateUniverseStats();
 
         // Instantiate the player
-        player = Instantiate(playerPrefabs[PlayerPrefs.GetInt("Skin", 0)], new(0, -0.4197f, 0), Quaternion.identity, transform);
+        player = Instantiate(playerPrefab, new(0, -0.4197f, 0), Quaternion.identity, transform);
         playerBoxCollider = player.GetComponent<BoxCollider2D>();
         deathAnimation = player.GetComponent<Animator>();
 
         meteorSprite = meteorPrefab.GetComponent<SpriteRenderer>();
 
+        lightObject.GetComponent<Light2D>().color = player.GetComponent<Light2D>().color;
+
         // Instantiate the star
-        star = Instantiate(starPrefabs[PlayerPrefs.GetInt("Skin", 0)], new(0, 0, 0), Quaternion.identity, yourConstellation.transform);
+        star = Instantiate(starPrefab, new(0, 0, 0), Quaternion.identity, yourConstellation.transform);
 
         Application.targetFrameRate = 60;
         Time.timeScale = 1f;
@@ -269,11 +259,6 @@ public class GameManager : MonoBehaviour
                 LeanTween.color(panel.GetComponent<Image>().rectTransform, new(0, 0, 0, 1), 0.3f).setOnComplete(Load);
             }
         }
-    }
-    private void CreateZones()
-    {
-        background.GetComponent<SpriteRenderer>().color = new(PlayerPrefs.GetFloat("Red"), PlayerPrefs.GetFloat("Green"), PlayerPrefs.GetFloat("Blue"), 1);
-        constellationBackground.GetComponent<SpriteRenderer>().color = new(PlayerPrefs.GetFloat("Red"), PlayerPrefs.GetFloat("Green"), PlayerPrefs.GetFloat("Blue"), 1); ;
     }
 
     private void Load()
@@ -413,12 +398,8 @@ public class GameManager : MonoBehaviour
 
                 meteorPrefab.transform.localScale = new Vector3(size / 10, size / 10, 1);
 
-                float color = UnityEngine.Random.Range(180, 220) / 255f;
-
                 int rand = UnityEngine.Random.Range(0, 5);
-
                 meteorSprite.sprite = meteors[rand];
-                meteorSprite.color = new(color, color, color, 1);
                 Instantiate(meteorPrefab, new(x, y, 0), Quaternion.identity, map.transform);
             }
         }
@@ -454,7 +435,7 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("Universe Score", (int)universeScore);
         }
 
-        PlayerPrefs.SetInt("Total Distance", PlayerPrefs.GetInt("Total Distance", 0) + (int)score);
+        PlayerPrefs.SetInt("Total Distance", PlayerPrefs.GetInt("Total Distance", 0) + (int)universeScore);
     }
 
     // Saves Player Prefs universe data
@@ -603,8 +584,13 @@ public class GameManager : MonoBehaviour
         {
             SaveScores();
             SaveGameScores();
+            PlayerPrefs.DeleteKey("Current Score");
+            PlayerPrefs.DeleteKey("Current Lives");
+            PlayerPrefs.DeleteKey("Current Universes");
+            constellationBackground.GetComponent<SpriteRenderer>().sprite = endBackround;
             star.GetComponent<SpriteRenderer>().enabled = false;
             star.GetComponent<Light2D>().enabled = false;
+            lightObject.GetComponent<Light2D>().enabled = false;
             endScore.text = ((int)score).ToString();
             endUniverseScore.text = ((int)universeScore).ToString();
             endCompletedScore.text = universesCleared.ToString();
@@ -638,9 +624,11 @@ public class GameManager : MonoBehaviour
             if (finishedUniverse == true)
             {
                 isGameOver = true;
+                constellationBackground.GetComponent<SpriteRenderer>().sprite = endBackround;
                 player.transform.position = new(0, 0, 0);
                 player.GetComponent<Light2D>().volumeIntensityEnabled = true;
-                createUniverseStats.Invoke();
+                star.GetComponent<SpriteRenderer>().enabled = false;
+                star.GetComponent<Light2D>().enabled = false;
                 universesCleared += 1;
                 PlayerPrefs.SetInt("Current Score", (int)score);
                 PlayerPrefs.SetInt("Current Lives", lives);
@@ -652,6 +640,7 @@ public class GameManager : MonoBehaviour
                 fullCameraObject.SetActive(true);
                 setFullCamera.Invoke();
                 SaveUniverseScores();
+                SaveScores();
                 finished = true;                
             }
         }

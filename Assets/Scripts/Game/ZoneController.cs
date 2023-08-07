@@ -20,61 +20,9 @@ public class ZoneController : MonoBehaviour
 
     void Start()
     {
-        CreateZoneColors();
+        // CreateZoneColors();
         GameManager.instance.zoneDetection += DetectDifficulty;
         GameManager.instance.zoneDetection += SetDifficulty;
-    }
-
-    // Create random zone colors
-    void CreateZoneColors()
-    {
-        float red = Random.Range(83, 147);
-        float green = Random.Range(83, 147);
-        float blue = Random.Range(83, 147);
-
-        if (red >= green && red >= blue)
-        {
-            red = 147;
-            if (green >= blue)
-            {
-                blue = 83;
-            }
-            else
-            {
-                green = 83;
-            }
-        }
-        else if (green >= red && green >= blue)
-        {
-            green = 147;
-            if (red >= blue)
-            {
-                blue = 83;
-            }
-            else
-            {
-                red = 83;
-            }
-        }
-        else if (blue >= red && blue >= green)
-        {
-            blue = 147;
-            if (green >= red)
-            {
-                red = 83;
-            }
-            else
-            {
-                green = 83;
-            }
-        }
-
-        red /= 255;
-        green /= 255;
-        blue /= 255;
-
-        background.GetComponent<SpriteRenderer>().color = new(red, green, blue, 1);
-        constellationBackground.GetComponent<SpriteRenderer>().color = new(red, green, blue, 1);
     }
 
     // Detects which zone the star is in
@@ -186,6 +134,7 @@ public class ZoneController : MonoBehaviour
     void DecreaseZone()
     {
         FindObjectOfType<AudioManager>().Play("DecreaseZone");
+        zoneChange.Play("Zone");
         if (GameManager.instance.speed > 1)
         {
             GameManager.instance.speed -= GameManager.instance.speedChange;
@@ -238,6 +187,7 @@ public class ZoneController : MonoBehaviour
     void IncreaseZone()
     {
         FindObjectOfType<AudioManager>().Play("IncreaseZone");
+        zoneChange.Play("Zone");
         if (minSpeedZone < GameManager.instance.zone)
         {
             GameManager.instance.speed += GameManager.instance.speedChange;

@@ -1,17 +1,29 @@
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.UI;
 
 public class Skin : MonoBehaviour
 {
-    public int skinIndex;
+    public Color color;
     public ShopMenu shopMenu;
+
+    void Start()
+    {
+        color = gameObject.GetComponent<Image>().color;
+    }
 
     public void SetSkin()
     {
-        PlayerPrefs.SetInt("Skin", skinIndex);
-        foreach (Transform child in shopMenu.playerHolder.transform)
-        {
-            Destroy(child.gameObject);
-        }
-        Instantiate(shopMenu.icons[PlayerPrefs.GetInt("Skin")], shopMenu.playerHolder.transform.position, Quaternion.identity, shopMenu.playerHolder.transform);
+        PlayerPrefs.SetFloat("Red", color.r);
+        PlayerPrefs.SetFloat("Green", color.g);
+        PlayerPrefs.SetFloat("Blue", color.b);
+
+        shopMenu.playerIcon.GetComponent<Image>().color = new(color.r, color.g, color.b, 1);
+        shopMenu.playerPrefab.GetComponent<SpriteRenderer>().color = new(color.r, color.g, color.b, 1);
+        shopMenu.starPrefab.GetComponent<SpriteRenderer>().color = new(color.r, color.g, color.b, 1);
+
+        shopMenu.playerIcon.GetComponent<Light2D>().color = new(color.r, color.g, color.b, 1);
+        shopMenu.playerPrefab.GetComponent<Light2D>().color = new(color.r, color.g, color.b, 1);
+        shopMenu.starPrefab.GetComponent<Light2D>().color = new(color.r, color.g, color.b, 1);
     }
 }

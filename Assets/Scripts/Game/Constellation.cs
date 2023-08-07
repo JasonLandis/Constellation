@@ -153,11 +153,11 @@ public class Constellation : MonoBehaviour
         float completeWidth = largestX - smallestX;
         float completeHeight = largestY - smallestY;
 
-        if (completeHeight > completeWidth)
+        if (completeHeight >= completeWidth)
         {
             fullCamera.orthographicSize = completeHeight / 2 + 1;
         }
-        else if (completeWidth > completeHeight)
+        else if (completeWidth >= completeHeight)
         {
             fullCamera.orthographicSize = completeWidth / 2 + 1;
         }

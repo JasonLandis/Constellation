@@ -38,54 +38,54 @@ public class UpgradeMenu : MonoBehaviour
 
     public void LoadUpgradeLocks()
     {
-        lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Size</color> of <color=#11DC58>6</color> or greater");
-        lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Size</color> of <color=#11DC58>5</color> or greater");
-        lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Size</color> of <color=#11DC58>4</color> or greater");
         lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Size</color> of <color=#11DC58>3</color> or greater");
+        lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Size</color> of <color=#11DC58>2.5</color> or greater");
+        lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Size</color> of <color=#11DC58>2</color> or greater");
+        lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Size</color> of <color=#11DC58>1.5</color> or greater");
         lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Size</color> of <color=#11DC58>0.8</color> or lower");
         lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Size</color> of <color=#11DC58>0.6</color> or lower");
         lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Size</color> of <color=#11DC58>0.4</color> or lower");
         lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Size</color> of <color=#11DC58>0.2</color> or lower");
-        lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Spread</color> of <color=#11DC58>2</color> or lower");
-        lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Spread</color> of <color=#11DC58>2.8</color> or lower");
-        lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Spread</color> of <color=#11DC58>3.5</color> or lower");
-        lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Spread</color> of <color=#11DC58>4.2</color> or lower");
+        lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Spread</color> of <color=#11DC58>2.6</color> or lower");
+        lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Spread</color> of <color=#11DC58>3.2</color> or lower");
+        lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Spread</color> of <color=#11DC58>3.8</color> or lower");
+        lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Spread</color> of <color=#11DC58>4.4</color> or lower");
         lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Spread</color> of <color=#11DC58>7</color> or greater");
+        lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Spread</color> of <color=#11DC58>8</color> or greater");
         lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Spread</color> of <color=#11DC58>9</color> or greater");
-        lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Spread</color> of <color=#11DC58>11</color> or greater");
-        lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Spread</color> of <color=#11DC58>13</color> or greater");
-        lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Speed</color> of <color=#11DC58>20</color> or greater");
-        lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Speed</color> of <color=#11DC58>18</color> or greater");
+        lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Spread</color> of <color=#11DC58>10</color> or greater");
+        lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Speed</color> of <color=#11DC58>16</color> or greater");
         lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Speed</color> of <color=#11DC58>15</color> or greater");
-        lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Speed</color> of <color=#11DC58>12</color> or greater");
+        lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Speed</color> of <color=#11DC58>14</color> or greater");
+        lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Speed</color> of <color=#11DC58>13</color> or greater");
+        lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Speed</color> of <color=#11DC58>9</color> or lower");
         lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Speed</color> of <color=#11DC58>8</color> or lower");
         lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Speed</color> of <color=#11DC58>7</color> or lower");
         lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Speed</color> of <color=#11DC58>6</color> or lower");
-        lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Speed</color> of <color=#11DC58>5</color> or lower");
+        lockedText.Add("Carry <color=#11DC58>5</color> <color=#00C9FF>Extra Lives</color> at once");
         lockedText.Add("Carry <color=#11DC58>10</color> <color=#00C9FF>Extra Lives</color> at once");
+        lockedText.Add("Carry <color=#11DC58>15</color> <color=#00C9FF>Extra Lives</color> at once");
         lockedText.Add("Carry <color=#11DC58>20</color> <color=#00C9FF>Extra Lives</color> at once");
+        lockedText.Add("Carry <color=#11DC58>25</color> <color=#00C9FF>Extra Lives</color> at once");
         lockedText.Add("Carry <color=#11DC58>30</color> <color=#00C9FF>Extra Lives</color> at once");
-        lockedText.Add("Carry <color=#11DC58>40</color> <color=#00C9FF>Extra Lives</color> at once");
+        lockedText.Add("Carry <color=#11DC58>35</color> <color=#00C9FF>Extra Lives</color> at once");
         lockedText.Add("Carry <color=#11DC58>50</color> <color=#00C9FF>Extra Lives</color> at once");
-        lockedText.Add("Carry <color=#11DC58>60</color> <color=#00C9FF>Extra Lives</color> at once");
-        lockedText.Add("Carry <color=#11DC58>70</color> <color=#00C9FF>Extra Lives</color> at once");
-        lockedText.Add("Carry <color=#11DC58>100</color> <color=#00C9FF>Extra Lives</color> at once");
 
         int unlockedUpgradesCount = 0;
 
-        if (PlayerPrefs.GetFloat("Largest Size", 1) >= 3)
+        if (PlayerPrefs.GetFloat("Largest Size", 1) >= 1.5)
         {
             unlockedUpgradesCount += 1;
             locks[3].SetActive(false);
-            if (PlayerPrefs.GetFloat("Largest Size", 0) >= 4)
+            if (PlayerPrefs.GetFloat("Largest Size", 0) >= 2)
             {
                 unlockedUpgradesCount += 1;
                 locks[2].SetActive(false);
-                if (PlayerPrefs.GetFloat("Largest Size", 0) >= 5)
+                if (PlayerPrefs.GetFloat("Largest Size", 0) >= 2.5)
                 {
                     unlockedUpgradesCount += 1;
                     locks[1].SetActive(false);
-                    if (PlayerPrefs.GetFloat("Largest Size", 0) >= 6)
+                    if (PlayerPrefs.GetFloat("Largest Size", 0) >= 3)
                     {
                         unlockedUpgradesCount += 1;
                         locks[0].SetActive(false);
@@ -115,19 +115,19 @@ public class UpgradeMenu : MonoBehaviour
             }
 
         }
-        if (PlayerPrefs.GetFloat("Smallest Spread", 5) <= 4.2f)
+        if (PlayerPrefs.GetFloat("Smallest Spread", 5) <= 4.4)
         {
             unlockedUpgradesCount += 1;
             locks[11].SetActive(false);
-            if (PlayerPrefs.GetFloat("Smallest Spread", 0) <= 3.5f)
+            if (PlayerPrefs.GetFloat("Smallest Spread", 0) <= 3.8)
             {
                 unlockedUpgradesCount += 1;
                 locks[10].SetActive(false);
-                if (PlayerPrefs.GetFloat("Smallest Spread", 0) <= 2.8f)
+                if (PlayerPrefs.GetFloat("Smallest Spread", 0) <= 3.2)
                 {
                     unlockedUpgradesCount += 1;
                     locks[9].SetActive(false);
-                    if (PlayerPrefs.GetFloat("Smallest Spread", 0) <= 2)
+                    if (PlayerPrefs.GetFloat("Smallest Spread", 0) <= 2.6)
                     {
                         unlockedUpgradesCount += 1;
                         locks[8].SetActive(false);
@@ -139,15 +139,15 @@ public class UpgradeMenu : MonoBehaviour
         {
             unlockedUpgradesCount += 1;
             locks[12].SetActive(false);
-            if (PlayerPrefs.GetFloat("Largest Spread", 0) >= 9)
+            if (PlayerPrefs.GetFloat("Largest Spread", 0) >= 8)
             {
                 unlockedUpgradesCount += 1;
                 locks[13].SetActive(false);
-                if (PlayerPrefs.GetFloat("Largest Spread", 0) >= 11)
+                if (PlayerPrefs.GetFloat("Largest Spread", 0) >= 9)
                 {
                     unlockedUpgradesCount += 1;
                     locks[14].SetActive(false);
-                    if (PlayerPrefs.GetFloat("Largest Spread", 0) >= 13)
+                    if (PlayerPrefs.GetFloat("Largest Spread", 0) >= 10)
                     {
                         unlockedUpgradesCount += 1;
                         locks[15].SetActive(false);
@@ -155,19 +155,19 @@ public class UpgradeMenu : MonoBehaviour
                 }
             }
         }
-        if (PlayerPrefs.GetFloat("Largest Speed", 10) >= 12)
+        if (PlayerPrefs.GetFloat("Largest Speed", 10) >= 13)
         {
             unlockedUpgradesCount += 1;
             locks[19].SetActive(false);
-            if (PlayerPrefs.GetFloat("Largest Speed", 0) >= 15)
+            if (PlayerPrefs.GetFloat("Largest Speed", 0) >= 14)
             {
                 unlockedUpgradesCount += 1;
                 locks[18].SetActive(false);
-                if (PlayerPrefs.GetFloat("Largest Speed", 0) >= 18)
+                if (PlayerPrefs.GetFloat("Largest Speed", 0) >= 15)
                 {
                     unlockedUpgradesCount += 1;
                     locks[17].SetActive(false);
-                    if (PlayerPrefs.GetFloat("Largest Speed", 0) >= 20)
+                    if (PlayerPrefs.GetFloat("Largest Speed", 0) >= 16)
                     {
                         unlockedUpgradesCount += 1;
                         locks[16].SetActive(false);
@@ -175,19 +175,19 @@ public class UpgradeMenu : MonoBehaviour
                 }
             }
         }
-        if (PlayerPrefs.GetFloat("Smallest Speed", 10) <= 8)
+        if (PlayerPrefs.GetFloat("Smallest Speed", 10) <= 9)
         {
             unlockedUpgradesCount += 1;
             locks[20].SetActive(false);
-            if (PlayerPrefs.GetFloat("Smallest Speed", 0) <= 7)
+            if (PlayerPrefs.GetFloat("Smallest Speed", 0) <= 8)
             {
                 unlockedUpgradesCount += 1;
                 locks[21].SetActive(false);
-                if (PlayerPrefs.GetFloat("Smallest Speed", 0) <= 6)
+                if (PlayerPrefs.GetFloat("Smallest Speed", 0) <= 7)
                 {
                     unlockedUpgradesCount += 1;
                     locks[22].SetActive(false);
-                    if (PlayerPrefs.GetFloat("Smallest Speed", 0) <= 5)
+                    if (PlayerPrefs.GetFloat("Smallest Speed", 0) <= 6)
                     {
                         unlockedUpgradesCount += 1;
                         locks[23].SetActive(false);

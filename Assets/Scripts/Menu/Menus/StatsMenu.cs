@@ -55,85 +55,85 @@ public class StatsMenu : MonoBehaviour
 
     public void LoadStatsValues()
     {
-        highScoreText.text = "<color=#FFF97A>" + PlayerPrefs.GetInt("High Score", 0).ToString() + "</color>";
+        highScoreText.text = PlayerPrefs.GetInt("High Score", 0).ToString();
 
-        statsHighScoreText.text = "<color=#FFF97A>" + PlayerPrefs.GetInt("High Score", 0).ToString() + "</color>";
-        totalDistanceText.text = "<color=#FFF97A>" + PlayerPrefs.GetInt("Total Distance", 0).ToString() + "</color>";
+        statsHighScoreText.text = PlayerPrefs.GetInt("High Score", 0).ToString();
+        totalDistanceText.text = PlayerPrefs.GetInt("Total Distance", 0).ToString();
 
-        highestUniverseScoreText.text = "<color=#FFF97A>" + PlayerPrefs.GetInt("Universe Score", 0).ToString() + "</color>";
-        mostUniversesText.text = "<color=#FFF97A>" + PlayerPrefs.GetInt("Most Universes", 0).ToString() + "</color>";
+        highestUniverseScoreText.text = PlayerPrefs.GetInt("Universe Score", 0).ToString();
+        mostUniversesText.text = PlayerPrefs.GetInt("Most Universes", 0).ToString();
         if (PlayerPrefs.HasKey("Quickest Universe"))
         {
-            quickestUniverseText.text = "<color=#FFF97A>" + PlayerPrefs.GetInt("Quickest Universe").ToString() + "</color>";
+            quickestUniverseText.text = PlayerPrefs.GetInt("Quickest Universe").ToString();
         }
         else
         {
-            quickestUniverseText.text = "<color=#FFF97A>NA</color>";
+            quickestUniverseText.text = "-";
         }
         
-        totalUniversesText.text = "<color=#FFF97A>" + PlayerPrefs.GetInt("Total Universes", 0).ToString() + "</color>";        
-        EasyUniversesText.text = "<color=#FFF97A>" + PlayerPrefs.GetInt("Easy Universes", 0).ToString() + "</color>";
-        NormalUniversesText.text = "<color=#FFF97A>" + PlayerPrefs.GetInt("Normal Universes", 0).ToString() + "</color>";
-        HardUniversesText.text = "<color=#FFF97A>" + PlayerPrefs.GetInt("Hard Universes", 0).ToString() + "</color>";
+        totalUniversesText.text = PlayerPrefs.GetInt("Total Universes", 0).ToString();
+        EasyUniversesText.text = PlayerPrefs.GetInt("Easy Universes", 0).ToString();
+        NormalUniversesText.text = PlayerPrefs.GetInt("Normal Universes", 0).ToString();
+        HardUniversesText.text = PlayerPrefs.GetInt("Hard Universes", 0).ToString();
 
-        hitlessUniversesText.text = "<color=#FFF97A>" + PlayerPrefs.GetInt("Hitless Universes", 0).ToString() + "</color>";
-        hitlessEasyUniversesText.text = "<color=#FFF97A>" + PlayerPrefs.GetInt("Hitless Easy Universes", 0).ToString() + "</color>";
-        hitlessNormalUniversesText.text = "<color=#FFF97A>" + PlayerPrefs.GetInt("Hitless Normal Universes", 0).ToString() + "</color>";
-        hitlessHardUniversesText.text = "<color=#FFF97A>" + PlayerPrefs.GetInt("Hitless Hard Universes", 0).ToString() + "</color>";
+        hitlessUniversesText.text = PlayerPrefs.GetInt("Hitless Universes", 0).ToString();
+        hitlessEasyUniversesText.text = PlayerPrefs.GetInt("Hitless Easy Universes", 0).ToString();
+        hitlessNormalUniversesText.text = PlayerPrefs.GetInt("Hitless Normal Universes", 0).ToString();
+        hitlessHardUniversesText.text = PlayerPrefs.GetInt("Hitless Hard Universes", 0).ToString();
 
         if (PlayerPrefs.HasKey("Largest Size"))
         {
-            largestSizeText.text = "<color=#FFF97A>" + PlayerPrefs.GetFloat("Largest Size").ToString() + "</color>";
+            largestSizeText.text = PlayerPrefs.GetFloat("Largest Size").ToString();
         }
         else
         {
-            largestSizeText.text = "<color=#FFF97A>NA</color>";
+            largestSizeText.text = "-";
         }
         if (PlayerPrefs.HasKey("Largest Spread"))
         {
-            largestSpreadText.text = "<color=#FFF97A>" + PlayerPrefs.GetFloat("Largest Spread").ToString() + "</color>";
+            largestSpreadText.text = PlayerPrefs.GetFloat("Largest Spread").ToString();
         }
         else
         {
-            largestSpreadText.text = "<color=#FFF97A>NA</color>";
+            largestSpreadText.text = "-";
         }
         if (PlayerPrefs.HasKey("Largest Speed"))
         {
-            largestSpeedText.text = "<color=#FFF97A>" + PlayerPrefs.GetFloat("Largest Speed").ToString() + "</color>";
+            largestSpeedText.text = PlayerPrefs.GetFloat("Largest Speed").ToString();
         }
         else
         {
-            largestSpeedText.text = "<color=#FFF97A>NA</color>";
+            largestSpeedText.text = "-";
         }
 
         if (PlayerPrefs.HasKey("Smallest Size"))
         {
-            smallestSizeText.text = "<color=#FFF97A>" + PlayerPrefs.GetFloat("Smallest Size").ToString() + "</color>";
+            smallestSizeText.text = PlayerPrefs.GetFloat("Smallest Size").ToString();
         }
         else
         {
-            smallestSizeText.text = "<color=#FFF97A>NA</color>";
+            smallestSizeText.text = "-";
         }
         if (PlayerPrefs.HasKey("Smallest Spread"))
         {
-            smallestSpreadText.text = "<color=#FFF97A>" + PlayerPrefs.GetFloat("Smallest Spread").ToString() + "</color>";
+            smallestSpreadText.text = PlayerPrefs.GetFloat("Smallest Spread").ToString();
         }
         else
         {
-            smallestSpreadText.text = "<color=#FFF97A>NA</color>";
+            smallestSpreadText.text = "-";
         }
         if (PlayerPrefs.HasKey("Smallest Speed"))
         {
-            smallestSpeedText.text = "<color=#FFF97A>" + PlayerPrefs.GetFloat("Smallest Speed").ToString() + "</color>";
+            smallestSpeedText.text = PlayerPrefs.GetFloat("Smallest Speed").ToString();
         }
         else
         {
-            smallestSpeedText.text = "<color=#FFF97A>NA</color>";
+            smallestSpeedText.text = "-";
         }
 
-        mostLivesText.text = "<color=#FFF97A>" + PlayerPrefs.GetInt("Most Lives", 0).ToString() + "</color>";
-        unlockedUpgradesText.text = "<color=#FFF97A>" + PlayerPrefs.GetInt("Unlocked Upgrades", 1).ToString() + "/32</color>";
-        unlockedIconsText.text = "<color=#FFF97A>" + PlayerPrefs.GetInt("Unlocked Icons", 1).ToString() + "/42</color>";
+        mostLivesText.text = PlayerPrefs.GetInt("Most Lives", 0).ToString();
+        unlockedUpgradesText.text = PlayerPrefs.GetInt("Unlocked Upgrades", 1).ToString() + "/32";
+        unlockedIconsText.text = PlayerPrefs.GetInt("Unlocked Icons", 1).ToString() + "/42";
     }
 
     public void SwapRight()

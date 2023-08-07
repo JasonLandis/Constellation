@@ -124,6 +124,11 @@ public class PauseMenu : MonoBehaviour
         zoneInfo.SetActive(true);
     }
 
+    public void Continue()
+    {
+        GameManager.instance.resetUniverse = true;
+    }
+
     public void Menu()
     {
         Time.timeScale = 1f;
