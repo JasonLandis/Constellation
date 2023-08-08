@@ -66,11 +66,11 @@ public class ShopMenu : MonoBehaviour
         lockedText.Add("Unlock <color=#11DC58>10</color> <color=#00C9FF>Upgrades</color>");
         lockedText.Add("Unlock <color=#11DC58>20</color> <color=#00C9FF>Upgrades</color>");
         lockedText.Add("Unlock <color=#11DC58>All</color> <color=#00C9FF>Upgrades</color>");
-        lockedText.Add("Unlock <color=#11DC58>5</color> <color=#00C9FF>Colors</color>");
-        lockedText.Add("Unlock <color=#11DC58>10</color> <color=#00C9FF>Colors</color>");
-        lockedText.Add("Unlock <color=#11DC58>20</color> <color=#00C9FF>Colors</color>");
-        lockedText.Add("Unlock <color=#11DC58>30</color> <color=#00C9FF>Colors</color>");
-        lockedText.Add("Unlock <color=#11DC58>All</color> <color=#00C9FF>Colors</color>");
+        lockedText.Add("Unlock <color=#11DC58>5</color> <color=#00C9FF>Stars</color>");
+        lockedText.Add("Unlock <color=#11DC58>10</color> <color=#00C9FF>Stars</color>");
+        lockedText.Add("Unlock <color=#11DC58>20</color> <color=#00C9FF>Stars</color>");
+        lockedText.Add("Unlock <color=#11DC58>30</color> <color=#00C9FF>Stars</color>");
+        lockedText.Add("Unlock <color=#11DC58>All</color> <color=#00C9FF>Stars</color>");
 
         int unlockCount = 1;
 

@@ -42,6 +42,8 @@ public class GameManager : MonoBehaviour
     public GameObject constellationBackground;
     public Sprite endBackround;
     public GameObject lightObject;
+    public GameObject infoScreen;
+    public GameObject designBackground;
     [HideInInspector] public GameObject player;
     [HideInInspector] public GameObject star;
     private BoxCollider2D playerBoxCollider;
@@ -141,19 +143,17 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        // Set starting values
-        if (PlayerPrefs.HasKey("Current Lives"))
+        if (!PlayerPrefs.HasKey("First"))
         {
-            lives = PlayerPrefs.GetInt("Current Lives");
+            infoScreen.SetActive(true);
         }
-        else
-        {
-            lives = PlayerPrefs.GetInt("Start Lives", 0);
-        }
+        PlayerPrefs.SetInt("First", 0);
+
         size = PlayerPrefs.GetFloat("Start Size", 1);
         spread = PlayerPrefs.GetInt("Start Spread", 5);
         speed = PlayerPrefs.GetInt("Start Speed", 10);
         score = PlayerPrefs.GetInt("Current Score", 0);
+        lives = PlayerPrefs.GetInt("Start Lives", 0);
         universesCleared = PlayerPrefs.GetInt("Current Universes", 0);
 
         CreateUniverseStats();
@@ -189,7 +189,6 @@ public class GameManager : MonoBehaviour
             score = Mathf.Round(score);
             universeScore = Mathf.Round(universeScore);
             distanceLeft = 0;
-            SaveGameScores();
 
             // Setup the UI
             createNewStar.Invoke();
@@ -210,6 +209,8 @@ public class GameManager : MonoBehaviour
             if (lives == 0)
             {
                 FindAnyObjectByType<AudioManager>().Play("Death");
+                PlayerPrefs.DeleteKey("Current Score");
+                PlayerPrefs.DeleteKey("Current Universes");
                 pauseButton.raycastTarget = false;
                 hitless = false;
                 isGameOver = true;
@@ -333,21 +334,25 @@ public class GameManager : MonoBehaviour
         {
             background.transform.Translate(speed * Time.deltaTime * (Vector3.down / 100));
             star.transform.Translate(speed * Time.deltaTime * (Vector3.up / 100));
+            designBackground.transform.Translate(speed * Time.deltaTime * (Vector3.down / 300));
         }
         else if (direction == "left")
         {
             background.transform.Translate(speed * Time.deltaTime * (Vector3.right / 100));
             star.transform.Translate(speed * Time.deltaTime * (Vector3.left / 100));
+            designBackground.transform.Translate(speed * Time.deltaTime * (Vector3.right / 300));
         }
         else if (direction == "right")
         {
             background.transform.Translate(speed * Time.deltaTime * (Vector3.left / 100));
             star.transform.Translate(speed * Time.deltaTime * (Vector3.right / 100));
+            designBackground.transform.Translate(speed * Time.deltaTime * (Vector3.left / 300));
         }
         else if (direction == "down")
         {
             background.transform.Translate(speed * Time.deltaTime * (Vector3.up / 100));
             star.transform.Translate(speed * Time.deltaTime * (Vector3.down / 100));
+            designBackground.transform.Translate(speed * Time.deltaTime * (Vector3.up / 300));
         }
         else if (direction == "upright")
         {
@@ -355,6 +360,8 @@ public class GameManager : MonoBehaviour
             background.transform.Translate(speed * Time.deltaTime * (Vector3.left / 100));
             star.transform.Translate(speed * Time.deltaTime * (Vector3.up / 100));
             star.transform.Translate(speed * Time.deltaTime * (Vector3.right / 100));
+            designBackground.transform.Translate(speed * Time.deltaTime * (Vector3.down / 300));
+            designBackground.transform.Translate(speed * Time.deltaTime * (Vector3.left / 300));
         }
         else if (direction == "upleft")
         {
@@ -362,6 +369,8 @@ public class GameManager : MonoBehaviour
             background.transform.Translate(speed * Time.deltaTime * (Vector3.right / 100));
             star.transform.Translate(speed * Time.deltaTime * (Vector3.up / 100));
             star.transform.Translate(speed * Time.deltaTime * (Vector3.left / 100));
+            designBackground.transform.Translate(speed * Time.deltaTime * (Vector3.down / 300));
+            designBackground.transform.Translate(speed * Time.deltaTime * (Vector3.right / 300));
         }
         else if (direction == "downright")
         {
@@ -369,6 +378,8 @@ public class GameManager : MonoBehaviour
             background.transform.Translate(speed * Time.deltaTime * (Vector3.left / 100));
             star.transform.Translate(speed * Time.deltaTime * (Vector3.down / 100));
             star.transform.Translate(speed * Time.deltaTime * (Vector3.right / 100));
+            designBackground.transform.Translate(speed * Time.deltaTime * (Vector3.up / 300));
+            designBackground.transform.Translate(speed * Time.deltaTime * (Vector3.left / 300));
         }
         else if (direction == "downleft")
         {
@@ -376,6 +387,8 @@ public class GameManager : MonoBehaviour
             background.transform.Translate(speed * Time.deltaTime * (Vector3.right / 100));
             star.transform.Translate(speed * Time.deltaTime * (Vector3.down / 100));
             star.transform.Translate(speed * Time.deltaTime * (Vector3.left / 100));
+            designBackground.transform.Translate(speed * Time.deltaTime * (Vector3.up / 300));
+            designBackground.transform.Translate(speed * Time.deltaTime * (Vector3.right / 300));
         }
 
         // Move the map tracker and keep score
@@ -566,12 +579,15 @@ public class GameManager : MonoBehaviour
         {
             PlayerPrefs.SetFloat("Smallest Speed", (float)Math.Round(speed, 1));
         }
-    }
 
-    //  Saves Player Prefs gameplay data
-    public void SaveGameScores()
-    {
-        if (lives > PlayerPrefs.GetInt("Most Lives", 0))
+        if (PlayerPrefs.HasKey("Most Lives"))
+        {
+            if (lives > PlayerPrefs.GetInt("Most Lives", 0))
+            {
+                PlayerPrefs.SetInt("Most Lives", lives);
+            }
+        }
+        else
         {
             PlayerPrefs.SetInt("Most Lives", lives);
         }
@@ -583,10 +599,6 @@ public class GameManager : MonoBehaviour
         if (!finished)
         {
             SaveScores();
-            SaveGameScores();
-            PlayerPrefs.DeleteKey("Current Score");
-            PlayerPrefs.DeleteKey("Current Lives");
-            PlayerPrefs.DeleteKey("Current Universes");
             constellationBackground.GetComponent<SpriteRenderer>().sprite = endBackround;
             star.GetComponent<SpriteRenderer>().enabled = false;
             star.GetComponent<Light2D>().enabled = false;

@@ -142,7 +142,6 @@ public class PauseMenu : MonoBehaviour
     private void Load()
     {
         GameManager.instance.SaveScores();
-        GameManager.instance.SaveGameScores();
         SceneManager.LoadScene("Menu");
     }
 

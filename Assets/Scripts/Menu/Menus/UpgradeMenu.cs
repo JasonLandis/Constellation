@@ -62,14 +62,14 @@ public class UpgradeMenu : MonoBehaviour
         lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Speed</color> of <color=#11DC58>8</color> or lower");
         lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Speed</color> of <color=#11DC58>7</color> or lower");
         lockedText.Add("<color=#E54B4B>Exit</color> a universe with a <color=#00C9FF>Speed</color> of <color=#11DC58>6</color> or lower");
-        lockedText.Add("Carry <color=#11DC58>5</color> <color=#00C9FF>Extra Lives</color> at once");
-        lockedText.Add("Carry <color=#11DC58>10</color> <color=#00C9FF>Extra Lives</color> at once");
-        lockedText.Add("Carry <color=#11DC58>15</color> <color=#00C9FF>Extra Lives</color> at once");
-        lockedText.Add("Carry <color=#11DC58>20</color> <color=#00C9FF>Extra Lives</color> at once");
-        lockedText.Add("Carry <color=#11DC58>25</color> <color=#00C9FF>Extra Lives</color> at once");
-        lockedText.Add("Carry <color=#11DC58>30</color> <color=#00C9FF>Extra Lives</color> at once");
-        lockedText.Add("Carry <color=#11DC58>35</color> <color=#00C9FF>Extra Lives</color> at once");
-        lockedText.Add("Carry <color=#11DC58>50</color> <color=#00C9FF>Extra Lives</color> at once");
+        lockedText.Add("<color=#E54B4B>Exit</color> a universe with <color=#11DC58>2</color> or more <color=#00C9FF>Extra Lives</color>");
+        lockedText.Add("<color=#E54B4B>Exit</color> a universe with <color=#11DC58>5</color> or more <color=#00C9FF>Extra Lives</color>");
+        lockedText.Add("<color=#E54B4B>Exit</color> a universe with <color=#11DC58>8</color> or more <color=#00C9FF>Extra Lives</color>");
+        lockedText.Add("<color=#E54B4B>Exit</color> a universe with <color=#11DC58>10</color> or more <color=#00C9FF>Extra Lives</color>");
+        lockedText.Add("<color=#E54B4B>Exit</color> a universe with <color=#11DC58>12</color> or more <color=#00C9FF>Extra Lives</color>");
+        lockedText.Add("<color=#E54B4B>Exit</color> a universe with <color=#11DC58>15</color> or more <color=#00C9FF>Extra Lives</color>");
+        lockedText.Add("<color=#E54B4B>Exit</color> a universe with <color=#11DC58>18</color> or more <color=#00C9FF>Extra Lives</color>");
+        lockedText.Add("<color=#E54B4B>Exit</color> a universe with <color=#11DC58>20</color> or more <color=#00C9FF>Extra Lives</color>");
 
         int unlockedUpgradesCount = 0;
 
@@ -195,35 +195,35 @@ public class UpgradeMenu : MonoBehaviour
                 }
             }
         }
-        if (PlayerPrefs.GetInt("Most Lives", 0) >= 10)
+        if (PlayerPrefs.GetInt("Most Lives", 0) >= 2)
         {
             unlockedUpgradesCount += 1;
             locks[24].SetActive(false);
-            if (PlayerPrefs.GetInt("Most Lives", 0) >= 20)
+            if (PlayerPrefs.GetInt("Most Lives", 0) >= 5)
             {
                 unlockedUpgradesCount += 1;
                 locks[25].SetActive(false);
-                if (PlayerPrefs.GetInt("Most Lives", 0) >= 30)
+                if (PlayerPrefs.GetInt("Most Lives", 0) >= 8)
                 {
                     unlockedUpgradesCount += 1;
                     locks[26].SetActive(false);
-                    if (PlayerPrefs.GetInt("Most Lives", 0) >= 40)
+                    if (PlayerPrefs.GetInt("Most Lives", 0) >= 10)
                     {
                         unlockedUpgradesCount += 1;
                         locks[27].SetActive(false);
-                        if (PlayerPrefs.GetInt("Most Lives", 0) >= 50)
+                        if (PlayerPrefs.GetInt("Most Lives", 0) >= 12)
                         {
                             unlockedUpgradesCount += 1;
                             locks[28].SetActive(false);
-                            if (PlayerPrefs.GetInt("Most Lives", 0) >= 60)
+                            if (PlayerPrefs.GetInt("Most Lives", 0) >= 15)
                             {
                                 unlockedUpgradesCount += 1;
                                 locks[29].SetActive(false);
-                                if (PlayerPrefs.GetInt("Most Lives", 0) >= 70)
+                                if (PlayerPrefs.GetInt("Most Lives", 0) >= 18)
                                 {
                                     unlockedUpgradesCount += 1;
                                     locks[30].SetActive(false);
-                                    if (PlayerPrefs.GetInt("Most Lives", 0) >= 100)
+                                    if (PlayerPrefs.GetInt("Most Lives", 0) >= 20)
                                     {
                                         unlockedUpgradesCount += 1;
                                         locks[31].SetActive(false);
