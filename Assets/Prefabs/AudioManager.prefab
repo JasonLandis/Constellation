@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6849345240030432491}
   - component: {fileID: 518329743408199604}
+  - component: {fileID: 7122325819948302123}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -88,8 +89,16 @@ MonoBehaviour:
     loop: 1
     source: {fileID: 0}
   - name: Menu
-    clip: {fileID: 8300000, guid: a6d8c5e8875ee2c4d882db3615da827f, type: 3}
+    clip: {fileID: 8300000, guid: e493c14cde4566b4d922c3a405e0d6b2, type: 3}
     volume: 1
     pitch: 1
     loop: 1
     source: {fileID: 0}
+--- !u!81 &7122325819948302123
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3666661218118630867}
+  m_Enabled: 1

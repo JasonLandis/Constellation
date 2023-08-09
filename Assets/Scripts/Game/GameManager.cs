@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public bool immortal;
     private float countdownTime = 3;
     private float endTime = 2;
+    private bool isPlayingAudio;
 
     [Header("Meteors")]
     public List<Sprite> meteors;
@@ -160,6 +161,7 @@ public class GameManager : MonoBehaviour
 
         // Instantiate the player
         player = Instantiate(playerPrefab, new(0, -0.4197f, 0), Quaternion.identity, transform);
+        player.GetComponent<TrailRenderer>().startColor = player.GetComponent<SpriteRenderer>().color;
         playerBoxCollider = player.GetComponent<BoxCollider2D>();
         deathAnimation = player.GetComponent<Animator>();
 
@@ -208,7 +210,11 @@ public class GameManager : MonoBehaviour
         {
             if (lives == 0)
             {
-                FindAnyObjectByType<AudioManager>().Play("Death");
+                if (!isPlayingAudio)
+                {
+                    FindAnyObjectByType<AudioManager>().Play("Hit");
+                }
+                isPlayingAudio = true;
                 PlayerPrefs.DeleteKey("Current Score");
                 PlayerPrefs.DeleteKey("Current Universes");
                 pauseButton.raycastTarget = false;

@@ -30,10 +30,10 @@ public class ShopMenu : MonoBehaviour
 
     public void LoadSkinLocks()
     {
-        lockedText.Add("Achieve a <color=#00C9FF>High Score</color> of <color=#11DC58>200</color>");
-        lockedText.Add("Achieve a <color=#00C9FF>High Score</color> of <color=#11DC58>400</color>");
-        lockedText.Add("Achieve a <color=#00C9FF>High Score</color> of <color=#11DC58>600</color>");
+        lockedText.Add(" ");
+        lockedText.Add("Achieve a <color=#00C9FF>High Score</color> of <color=#11DC58>500</color>");
         lockedText.Add("Achieve a <color=#00C9FF>High Score</color> of <color=#11DC58>1,000</color>");
+        lockedText.Add("Achieve a <color=#00C9FF>High Score</color> of <color=#11DC58>1,500</color>");
         lockedText.Add("Achieve a <color=#00C9FF>Universe Score</color> of <color=#11DC58>100</color>");
         lockedText.Add("Achieve a <color=#00C9FF>Universe Score</color> of <color=#11DC58>250</color>");
         lockedText.Add("Achieve a <color=#00C9FF>Universe Score</color> of <color=#11DC58>500</color>");
@@ -72,38 +72,31 @@ public class ShopMenu : MonoBehaviour
         lockedText.Add("Unlock <color=#11DC58>30</color> <color=#00C9FF>Stars</color>");
         lockedText.Add("Unlock <color=#11DC58>All</color> <color=#00C9FF>Stars</color>");
 
-        int unlockCount = 1;
-
-        if (PlayerPrefs.GetInt("High Score", 0) >= 200)
+        int unlockCount = 2;
+        if (PlayerPrefs.GetInt("High Score", 0) >= 500)
         {
             unlockCount += 1;
-            locks[0].SetActive(false);
-            if (PlayerPrefs.GetInt("High Score", 0) >= 400)
+            locks[1].SetActive(false);
+            if (PlayerPrefs.GetInt("High Score", 0) >= 1000)
             {
                 unlockCount += 1;
-                locks[1].SetActive(false);
-                if (PlayerPrefs.GetInt("High Score", 0) >= 600)
+                locks[2].SetActive(false);
+                if (PlayerPrefs.GetInt("High Score", 0) >= 1500)
                 {
                     unlockCount += 1;
-                    locks[2].SetActive(false);
-                    if (PlayerPrefs.GetInt("High Score", 0) >= 1000)
-                    {
-                        unlockCount += 1;
-                        locks[3].SetActive(false);
-                    }
+                    locks[3].SetActive(false);
                 }
             }
-
         }
         if (PlayerPrefs.GetInt("Universe Score", 0) >= 100)
         {
             unlockCount += 1;
             locks[4].SetActive(false);
-            if (PlayerPrefs.GetInt("Largest Constellation", 0) >= 250)
+            if (PlayerPrefs.GetInt("Universe Score", 0) >= 250)
             {
                 unlockCount += 1;
                 locks[5].SetActive(false);
-                if (PlayerPrefs.GetInt("Largest Constellation", 0) >= 500)
+                if (PlayerPrefs.GetInt("Universe Score", 0) >= 500)
                 {
                     unlockCount += 1;
                     locks[6].SetActive(false);

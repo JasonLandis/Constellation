@@ -5,6 +5,7 @@ public class LightManager : MonoBehaviour
 {
     public Light2D globalLight;
     public GameObject lightsOffButton;
+    public GameObject playerIconStar;
 
     void Start()
     {
@@ -25,20 +26,44 @@ public class LightManager : MonoBehaviour
 
     public void LightsOff()
     {
-        GameManager.instance.player.GetComponent<Light2D>().enabled = false;
-        GameManager.instance.star.GetComponent<Light2D>().enabled = false;
-        GameManager.instance.lightObject.GetComponent<Light2D>().enabled = false;
-        globalLight.color = new(0.8f, 0.8f, 0.8f, 1);
+        foreach (Light2D light in FindObjectsOfType<Light2D>())
+        {
+            if (light != globalLight)
+            {
+                light.enabled = false;
+            }
+        }
+        if (GameManager.instance == null) 
+        {
+            playerIconStar.GetComponent<Light2D>().enabled = false;
+            globalLight.color = new(0.48f, 0.48f, 0.48f, 1);
+        }
+        else
+        {
+            globalLight.color = new(1, 1, 1, 1);
+        }
         lightsOffButton.SetActive(true);
         PlayerPrefs.SetInt("Lights", 0);
     }
 
     public void LightsOn()
     {
-        GameManager.instance.player.GetComponent<Light2D>().enabled = true;
-        GameManager.instance.star.GetComponent<Light2D>().enabled = true;
-        GameManager.instance.lightObject.GetComponent<Light2D>().enabled = true;
-        globalLight.color = new(0.6f, 0.6f, 0.6f, 1);
+        foreach (Light2D light in FindObjectsOfType<Light2D>())
+        {
+            if (light != globalLight)
+            {
+                light.enabled = true;
+            }
+        }
+        if (GameManager.instance == null)
+        {
+            playerIconStar.GetComponent<Light2D>().enabled = true;
+            globalLight.color = new(0.1f, 0.1f, 0.1f, 1);
+        }
+        else
+        {
+            globalLight.color = new(0.68f, 0.68f, 0.68f, 1);
+        }
         lightsOffButton.SetActive(false);
         PlayerPrefs.SetInt("Lights", 1);
     }

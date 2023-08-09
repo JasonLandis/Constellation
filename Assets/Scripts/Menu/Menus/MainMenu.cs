@@ -36,7 +36,6 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        FindObjectOfType<AudioManager>().Play("Menu");
         panel.color = new(0, 0, 0, 1);
         LeanTween.color(panel.rectTransform, new(0, 0, 0, 0), duration);
     }
