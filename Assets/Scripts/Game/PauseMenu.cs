@@ -16,6 +16,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject speedInfo;
     public GameObject livesInfo;
     public GameObject zoneInfo;
+    public GameObject infoMenu;
 
     [Header("Pause Mechanics")]
     private bool unPaused = false;
@@ -56,6 +57,7 @@ public class PauseMenu : MonoBehaviour
     public void UnPause()
     {
         pauseMenu.SetActive(false);
+        GameManager.instance.isPlayerPaused = false;
         if (!GameManager.instance.finished)
         {
             pauseText.SetActive(true);
@@ -77,6 +79,7 @@ public class PauseMenu : MonoBehaviour
     // Menu buttons
     public void Resume()
     {
+        GameManager.instance.isPlayerPaused = false;
         pauseMenu.SetActive(false);
         sureMenu.SetActive(false);
         stats.SetActive(false);
@@ -88,6 +91,10 @@ public class PauseMenu : MonoBehaviour
     }
     public void Pause()
     {
+        pauseText.SetActive(false);
+        timer = 3;
+        unPaused = false;
+        GameManager.instance.isPlayerPaused = true;
         pauseMenu.SetActive(true);
         GameManager.instance.isGamePaused = true;
         Time.timeScale = 0f;
@@ -169,6 +176,11 @@ public class PauseMenu : MonoBehaviour
     private void LoadMain()
     {
         SceneManager.LoadScene("Main");
+    }
+
+    public void InfoMenu()
+    {
+        infoMenu.SetActive(true);
     }
 
     public void Quit()

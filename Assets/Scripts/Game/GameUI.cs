@@ -15,7 +15,6 @@ public class GameUI : MonoBehaviour
     public Image livesButton;
     public Image zoneButton;
     public Image constellationButton;
-    public GameObject infoScreen;
 
     [Header("Text")]
     public TextMeshProUGUI livesText;
@@ -188,14 +187,5 @@ public class GameUI : MonoBehaviour
         livesButton.raycastTarget = true;
         zoneButton.raycastTarget = true;
         constellationButton.raycastTarget = true;
-    }
-
-    public void Info()
-    {
-        infoScreen.SetActive(true);
-    }
-    public void BackInfo()
-    {
-        infoScreen.SetActive(false);
     }
 }

@@ -73,6 +73,7 @@ public class GameManager : MonoBehaviour
     private float countdownTime = 3;
     private float endTime = 2;
     private bool isPlayingAudio;
+    public bool isPlayerPaused;
 
     [Header("Meteors")]
     public List<Sprite> meteors;
@@ -606,6 +607,7 @@ public class GameManager : MonoBehaviour
         {
             SaveScores();
             constellationBackground.GetComponent<SpriteRenderer>().sprite = endBackround;
+            background.GetComponent<SpriteRenderer>().sprite = endBackround;
             star.GetComponent<SpriteRenderer>().enabled = false;
             star.GetComponent<Light2D>().enabled = false;
             lightObject.GetComponent<Light2D>().enabled = false;
@@ -630,6 +632,7 @@ public class GameManager : MonoBehaviour
             if (limit != 110)
             {
                 screen.Play("Complete");
+                FindAnyObjectByType<AudioManager>().Play("IncreaseZone");
             }
             limit = 110;
             foreach (Transform child in map.transform)
@@ -643,6 +646,7 @@ public class GameManager : MonoBehaviour
             {
                 isGameOver = true;
                 constellationBackground.GetComponent<SpriteRenderer>().sprite = endBackround;
+                background.GetComponent<SpriteRenderer>().sprite = endBackround;
                 player.transform.position = new(0, 0, 0);
                 player.GetComponent<Light2D>().volumeIntensityEnabled = true;
                 star.GetComponent<SpriteRenderer>().enabled = false;
