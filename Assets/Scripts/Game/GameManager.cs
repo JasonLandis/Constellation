@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
     public GameObject lightObject;
     public GameObject infoScreen;
     public GameObject designBackground;
+    public GameObject adsMenu;
     [HideInInspector] public GameObject player;
     [HideInInspector] public GameObject star;
     private BoxCollider2D playerBoxCollider;
@@ -71,9 +72,12 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public float distanceLeft;
     [HideInInspector] public bool immortal;
     private float countdownTime = 3;
-    private float endTime = 2;
-    private bool isPlayingAudio;
-    public bool isPlayerPaused;
+    [HideInInspector] public float endTime = 2;
+    [HideInInspector] public bool isPlayingAudio;
+    [HideInInspector] public bool isPlayerPaused;
+    [HideInInspector] public bool unPaused;
+    [HideInInspector] public bool cannotPause;
+    private bool canWatchAd = true;
 
     [Header("Meteors")]
     public List<Sprite> meteors;
@@ -131,9 +135,12 @@ public class GameManager : MonoBehaviour
         {
             Destroy(instance);
         }
+
+        // Begin transition animation
         panel.GetComponent<Image>().color = new(0, 0, 0, 1);
         LeanTween.color(panel.GetComponent<Image>().rectTransform, new(0, 0, 0, 0), duration).setOnComplete(DeactivatePanel);
 
+        // Detect the screen bounds
         bounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, mainCamera.transform.position.z));
         yLimit = bounds.x * 0.31695f;
 
@@ -145,33 +152,36 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        // Load the info menu if its the users first time playing
         if (!PlayerPrefs.HasKey("First"))
         {
             infoScreen.SetActive(true);
         }
         PlayerPrefs.SetInt("First", 0);
 
+        // Set the gameplay variables
         size = PlayerPrefs.GetFloat("Start Size", 1);
         spread = PlayerPrefs.GetInt("Start Spread", 5);
         speed = PlayerPrefs.GetInt("Start Speed", 10);
-        score = PlayerPrefs.GetInt("Current Score", 0);
         lives = PlayerPrefs.GetInt("Start Lives", 0);
+
+        // Get the score and universes cleared if its a saved game
+        score = PlayerPrefs.GetInt("Current Score", 0);
         universesCleared = PlayerPrefs.GetInt("Current Universes", 0);
 
+        // Create the universes difficulty
         CreateUniverseStats();
 
-        // Instantiate the player
+        // Instantiate the player and the star
         player = Instantiate(playerPrefab, new(0, -0.4197f, 0), Quaternion.identity, transform);
         player.GetComponent<TrailRenderer>().startColor = player.GetComponent<SpriteRenderer>().color;
+        star = Instantiate(starPrefab, new(0, 0, 0), Quaternion.identity, yourConstellation.transform);
+
+        // Get other objects
         playerBoxCollider = player.GetComponent<BoxCollider2D>();
         deathAnimation = player.GetComponent<Animator>();
-
         meteorSprite = meteorPrefab.GetComponent<SpriteRenderer>();
-
         lightObject.GetComponent<Light2D>().color = player.GetComponent<Light2D>().color;
-
-        // Instantiate the star
-        star = Instantiate(starPrefab, new(0, 0, 0), Quaternion.identity, yourConstellation.transform);
 
         Application.targetFrameRate = 60;
         Time.timeScale = 1f;
@@ -182,13 +192,15 @@ public class GameManager : MonoBehaviour
         if (mapTracker.transform.position.y >= limit && finished == false) // Run this code only once when the destination is reached
         {
             finished = true;
-            mapTracker.transform.position = new(0f, 0f, 0f);
+            mapTracker.transform.position = new(0f, 0f, 0f); // Reset the maptracker
+
+            // Destroy the old map
             foreach (Transform child in map.transform)
             {
                 Destroy(child.gameObject);
             }
 
-            // Round and save the scores
+            // Round the scores
             score = Mathf.Round(score);
             universeScore = Mathf.Round(universeScore);
             distanceLeft = 0;
@@ -211,29 +223,49 @@ public class GameManager : MonoBehaviour
         {
             if (lives == 0)
             {
+                cannotPause = true;
+
+                // Play audio once
                 if (!isPlayingAudio)
                 {
                     FindAnyObjectByType<AudioManager>().Play("Hit");
                 }
                 isPlayingAudio = true;
-                PlayerPrefs.DeleteKey("Current Score");
-                PlayerPrefs.DeleteKey("Current Universes");
-                pauseButton.raycastTarget = false;
-                hitless = false;
-                isGameOver = true;
 
-                // Player animation
+                // Disable pause button and player movement
+                pauseButton.raycastTarget = false;
+                isPlayerPaused = true;
+                hitless = false;
+
+                // Start other animations
                 deathAnimation.Play("End");
                 screen.Play("Hit");
+
+                // Time for animation to complete
                 endTime -= Time.deltaTime;
                 if (endTime <= 0)
                 {
-                    EndGame();
+                    if (canWatchAd)
+                    {
+                        // Show ads menu
+                        finished = true;
+                        isGamePaused = true;
+                        adsMenu.SetActive(true);
+                        canWatchAd = false;
+                    }
+                    else
+                    {
+                        if (!finished)
+                        {
+                            EndGame();
+                        }
+                        finished = true;
+                    }
                 }
             }
             else
             {
-                // Temporarily immortal
+                // Play hit animation and make player temporarily immortal
                 FindAnyObjectByType<AudioManager>().Play("Hit");
                 hitless = false;
                 immortal = true;
@@ -269,11 +301,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Reset the main scene
     private void Load()
     {        
         SceneManager.LoadScene("Main");
     }
 
+    // Deactivate the animation panel
     private void DeactivatePanel()
     {
         panel.SetActive(false);
@@ -603,25 +637,25 @@ public class GameManager : MonoBehaviour
     // Creates the last star and ends the game
     public void EndGame()
     {
-        if (!finished)
-        {
-            SaveScores();
-            constellationBackground.GetComponent<SpriteRenderer>().sprite = endBackround;
-            background.GetComponent<SpriteRenderer>().sprite = endBackround;
-            star.GetComponent<SpriteRenderer>().enabled = false;
-            star.GetComponent<Light2D>().enabled = false;
-            lightObject.GetComponent<Light2D>().enabled = false;
-            endScore.text = ((int)score).ToString();
-            endUniverseScore.text = ((int)universeScore).ToString();
-            endCompletedScore.text = universesCleared.ToString();
-            createNewStar.Invoke();
-            player.transform.position = new(0, 0, 0);
-            player.GetComponent<Light2D>().volumeIntensityEnabled = true;
-            fullCameraObject.SetActive(true);
-            endMenu.SetActive(true);
-            createdStars.SetActive(false);
-        }
-        finished = true;
+        isGameOver = true;
+        Time.timeScale = 1;
+        PlayerPrefs.DeleteKey("Current Score");
+        PlayerPrefs.DeleteKey("Current Universes");
+        SaveScores();
+        constellationBackground.GetComponent<SpriteRenderer>().sprite = endBackround;
+        background.GetComponent<SpriteRenderer>().sprite = endBackround;
+        star.GetComponent<SpriteRenderer>().enabled = false;
+        star.GetComponent<Light2D>().enabled = false;
+        lightObject.GetComponent<Light2D>().enabled = false;
+        endScore.text = ((int)score).ToString();
+        endUniverseScore.text = ((int)universeScore).ToString();
+        endCompletedScore.text = universesCleared.ToString();
+        createNewStar.Invoke();
+        player.transform.position = new(0, 0, 0);
+        player.GetComponent<Light2D>().volumeIntensityEnabled = true;
+        fullCameraObject.SetActive(true);
+        endMenu.SetActive(true);
+        createdStars.SetActive(false);
     }
 
     // Destroys remaining meteors and detects if the universe is finished
@@ -629,12 +663,15 @@ public class GameManager : MonoBehaviour
     {
         if (destroyMeteors == true)
         {
+            // Play animation and audio once
             if (limit != 110)
             {
                 screen.Play("Complete");
                 FindAnyObjectByType<AudioManager>().Play("IncreaseZone");
             }
             limit = 110;
+
+            // Deactivate all meteors not on the screen
             foreach (Transform child in map.transform)
             {
                 if (child.transform.position.x < -1 || child.transform.position.x > 1 || child.transform.position.y < -1.4 || child.transform.position.y > 0.3)
@@ -642,6 +679,8 @@ public class GameManager : MonoBehaviour
                     Destroy(child.gameObject);
                 }
             }
+
+            // Does a bunch of stuff once universe is completed
             if (finishedUniverse == true)
             {
                 isGameOver = true;

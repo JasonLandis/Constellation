@@ -20,7 +20,6 @@ public class ZoneController : MonoBehaviour
 
     void Start()
     {
-        // CreateZoneColors();
         GameManager.instance.zoneDetection += DetectDifficulty;
         GameManager.instance.zoneDetection += SetDifficulty;
     }

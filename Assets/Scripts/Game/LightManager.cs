@@ -12,6 +12,7 @@ public class LightManager : MonoBehaviour
         InitializeLights();
     }
 
+    // See if the player has lights on or not
     private void InitializeLights()
     {
         if (PlayerPrefs.GetInt("Lights", 1) == 1)
@@ -23,6 +24,7 @@ public class LightManager : MonoBehaviour
             LightsOff();
         }
     }
+
 
     public void LightsOff()
     {
@@ -45,7 +47,6 @@ public class LightManager : MonoBehaviour
         lightsOffButton.SetActive(true);
         PlayerPrefs.SetInt("Lights", 0);
     }
-
     public void LightsOn()
     {
         foreach (Light2D light in FindObjectsOfType<Light2D>())
@@ -67,5 +68,4 @@ public class LightManager : MonoBehaviour
         lightsOffButton.SetActive(false);
         PlayerPrefs.SetInt("Lights", 1);
     }
-
 }

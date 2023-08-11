@@ -142,7 +142,6 @@ public class GameUI : MonoBehaviour
         distanceLeftText.text = (Math.Ceiling(GameManager.instance.distanceLeft)).ToString();
         universesClearedText.text = (GameManager.instance.universesCleared).ToString();
     }
-
     public void ShowGameplayText()
     {
         livesText.text = GameManager.instance.lives.ToString();
@@ -151,7 +150,6 @@ public class GameUI : MonoBehaviour
         speedText.text = Math.Round(GameManager.instance.speed, 1).ToString();
         zoneText.text = GameManager.instance.zone.ToString();
     }
-
     public void ShowStatText()
     {
         sizeChangeText.text = "+ " + GameManager.instance.sizeChange.ToString();
@@ -167,6 +165,7 @@ public class GameUI : MonoBehaviour
         directionUI.SetActive(true);
     }
 
+    // Handles button raycasting while traveling
     public void BlockRaycast()
     {
         statsButton.raycastTarget = false;
@@ -177,7 +176,6 @@ public class GameUI : MonoBehaviour
         zoneButton.raycastTarget = false;
         constellationButton.raycastTarget = false;
     }
-
     public void OpenRaycast()
     {
         statsButton.raycastTarget = true;

@@ -30,8 +30,6 @@ public class MainMenu : MonoBehaviour
         upgradeMenu.LoadUpgradeLocks();
         shopMenu.LoadSkinLocks();
         statsMenu.LoadStatsValues();
-
-        // PlayerPrefs.DeleteAll();
     }
 
     private void Start()
@@ -40,13 +38,13 @@ public class MainMenu : MonoBehaviour
         LeanTween.color(panel.rectTransform, new(0, 0, 0, 0), duration);
     }
 
+    // Menu buttons
     public void Play()
     {
         panel.raycastTarget = true;
         panel.color = new(0, 0, 0, 0);
         LeanTween.color(panel.rectTransform, new(0, 0, 0, 1), duration).setOnComplete(Load);
     }
-
     private void Load()
     {
         SceneManager.LoadScene("Main");
@@ -59,7 +57,6 @@ public class MainMenu : MonoBehaviour
         void action() => FinishTransition(shop);
         LeanTween.color(panel.rectTransform, new(color, color, color, 1), duration).setOnComplete(action);
     }
-
     public void Upgrades()
     {
         panel.raycastTarget = true;
@@ -67,7 +64,6 @@ public class MainMenu : MonoBehaviour
         void action() => FinishTransition(upgrades);
         LeanTween.color(panel.rectTransform, new(color, color, color, 1), duration).setOnComplete(action);
     }
-
     public void Stats()
     {
         panel.raycastTarget = true;
@@ -76,6 +72,7 @@ public class MainMenu : MonoBehaviour
         LeanTween.color(panel.rectTransform, new(color, color, color, 1), duration).setOnComplete(action);
     }
 
+    // Animation function
     private void FinishTransition(GameObject menu)
     {
         panel.raycastTarget = false;
@@ -84,6 +81,7 @@ public class MainMenu : MonoBehaviour
         LeanTween.color(panel.rectTransform, new(color, color, color, 0), duration);
     }
 
+    // Back buttons
     public void MenuFromShop()
     {
         panel.raycastTarget = true;
@@ -91,7 +89,6 @@ public class MainMenu : MonoBehaviour
         void action() => FinishTransitionBack(shop);
         LeanTween.color(panel.rectTransform, new(color, color, color, 1), duration).setOnComplete(action);
     }
-
     public void MenuFromUpgrades()
     {
         panel.raycastTarget = true;
@@ -99,7 +96,6 @@ public class MainMenu : MonoBehaviour
         void action() => FinishTransitionBack(upgrades);
         LeanTween.color(panel.rectTransform, new(color, color, color, 1), duration).setOnComplete(action);
     }
-
     public void MenuFromStats()
     {
         panel.raycastTarget = true;
@@ -108,6 +104,7 @@ public class MainMenu : MonoBehaviour
         LeanTween.color(panel.rectTransform, new(color, color, color, 1), duration).setOnComplete(action);
     }
 
+    // Back animation function
     private void FinishTransitionBack(GameObject menu)
     {
         panel.raycastTarget = false;

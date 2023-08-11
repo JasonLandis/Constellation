@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
+    [Header("Objects")]
     public GameObject panel;
     public GameObject pauseMenu;
     public GameObject sureMenu;
@@ -19,7 +20,6 @@ public class PauseMenu : MonoBehaviour
     public GameObject infoMenu;
 
     [Header("Pause Mechanics")]
-    private bool unPaused = false;
     public GameObject pauseText;
     public TextMeshProUGUI count;
     private float timer = 3;
@@ -33,15 +33,20 @@ public class PauseMenu : MonoBehaviour
     {
         if (!focus) 
         {
+            if (GameManager.instance.cannotPause)
+            {
+                return;
+            }
             Pause();
         }
     }
 
     private void Update()
     {
-        if (unPaused)
+        if (GameManager.instance.unPaused)
         {
             Time.timeScale = 1f;
+            pauseText.SetActive(true);
             timer -= Time.deltaTime;
             count.text = Math.Ceiling(timer).ToString();
             if (timer < 0)
@@ -49,11 +54,12 @@ public class PauseMenu : MonoBehaviour
                 ResumeFromPause();
                 pauseText.SetActive(false);
                 timer = 3;
-                unPaused = false;
+                GameManager.instance.unPaused = false;
             }
         }
     }
 
+    // Detect if the player was traveling when the game unpaused
     public void UnPause()
     {
         pauseMenu.SetActive(false);
@@ -61,14 +67,13 @@ public class PauseMenu : MonoBehaviour
         if (!GameManager.instance.finished)
         {
             pauseText.SetActive(true);
-            unPaused = true;
+            GameManager.instance.unPaused = true;
         }
         else
         {
             ResumeFromPause();
         }
     }
-
     public void ResumeFromPause()
     {
         sureMenu.SetActive(false);
@@ -93,13 +98,12 @@ public class PauseMenu : MonoBehaviour
     {
         pauseText.SetActive(false);
         timer = 3;
-        unPaused = false;
+        GameManager.instance.unPaused = false;
         GameManager.instance.isPlayerPaused = true;
         pauseMenu.SetActive(true);
         GameManager.instance.isGamePaused = true;
         Time.timeScale = 0f;
     }
-
     public void Stats()
     {
         stats.SetActive(true);
@@ -131,11 +135,13 @@ public class PauseMenu : MonoBehaviour
         zoneInfo.SetActive(true);
     }
 
+    // Moves to the next universe
     public void Continue()
     {
         GameManager.instance.resetUniverse = true;
     }
 
+    // Normal menu buttons
     public void Menu()
     {
         Time.timeScale = 1f;
@@ -145,13 +151,13 @@ public class PauseMenu : MonoBehaviour
         panel.GetComponent<Image>().color = new(0, 0, 0, 0);
         LeanTween.color(panel.GetComponent<Image>().rectTransform, new(0, 0, 0, 1), 0.3f).setOnComplete(Load);
     }
-
     private void Load()
     {
         GameManager.instance.SaveScores();
         SceneManager.LoadScene("Menu");
     }
 
+    // End menu button
     public void MenuFromEnd()
     {
         GameManager.instance.player.GetComponent<Light2D>().volumeIntensityEnabled = false;
@@ -159,12 +165,10 @@ public class PauseMenu : MonoBehaviour
         panel.GetComponent<Image>().raycastTarget = true;
         LeanTween.color(panel.GetComponent<Image>().rectTransform, new(0, 0, 0, 1), 0.3f).setOnComplete(Load2);
     }
-
     private void Load2()
     {
         SceneManager.LoadScene("Menu");
     }
-
     public void Restart()
     {
         GameManager.instance.player.GetComponent<Light2D>().volumeIntensityEnabled = false;
@@ -173,18 +177,13 @@ public class PauseMenu : MonoBehaviour
         LeanTween.color(panel.GetComponent<Image>().rectTransform, new(0, 0, 0, 1), 0.3f).setOnComplete(LoadMain);
     }
 
+    // Other
     private void LoadMain()
     {
         SceneManager.LoadScene("Main");
     }
-
     public void InfoMenu()
     {
         infoMenu.SetActive(true);
-    }
-
-    public void Quit()
-    {
-        Application.Quit();
     }
 }

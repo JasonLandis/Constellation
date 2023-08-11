@@ -4,14 +4,13 @@ public class Boundaries : MonoBehaviour
 {
     private Vector2 bounds;
     private float objectWidth;
-    public float yLimit;
+    private float yLimit;
 
     private float negBoundsx;
     private float posBoundsx;
     private float negBoundsy;
     private float posBoundsy;
 
-    // Start is called before the first frame update
     void Start()
     {
         bounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
@@ -24,7 +23,6 @@ public class Boundaries : MonoBehaviour
         posBoundsy = yLimit - objectWidth;
     }
 
-    // Update is called once per frame
     void LateUpdate()
     {
         Vector3 viewPos = transform.position;

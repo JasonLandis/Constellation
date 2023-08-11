@@ -248,7 +248,6 @@ public class Constellation : MonoBehaviour
         fullCamera.transform.position = constellationCamera.transform.position;
         fullCamera.orthographicSize = 2;
     }
-
     public void FullCameraTransition()
     {
         fullCamera.transform.position = new(0, 0, -1);
