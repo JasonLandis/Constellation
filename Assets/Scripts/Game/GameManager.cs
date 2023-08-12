@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
     public GameObject infoScreen;
     public GameObject designBackground;
     public GameObject adsMenu;
+    public GameObject readyMenu;
     [HideInInspector] public GameObject player;
     [HideInInspector] public GameObject star;
     private BoxCollider2D playerBoxCollider;
@@ -299,6 +300,18 @@ public class GameManager : MonoBehaviour
                 LeanTween.color(panel.GetComponent<Image>().rectTransform, new(0, 0, 0, 1), 0.3f).setOnComplete(Load);
             }
         }
+    }
+
+    // Button function for resuming after watching an ad
+    public void Resume()
+    {
+        isGameOver = false;
+        isPlayerPaused = false;
+        isPlayingAudio = false;
+        cannotPause = false;
+        finished = false;
+        unPaused = true;
+        readyMenu.SetActive(false);
     }
 
     // Reset the main scene

@@ -57,16 +57,11 @@ public class AdsManager : MonoBehaviour
     void RewardedVideoOnAdRewardedEvent(IronSourcePlacement placement, IronSourceAdInfo adInfo)
     {
         GameManager.instance.adsMenu.SetActive(false);
-        GameManager.instance.isGameOver = false;
-        GameManager.instance.isPlayerPaused = false;
-        GameManager.instance.isPlayingAudio = false;
         GameManager.instance.lives = 1;
         GameManager.instance.pauseButton.raycastTarget = true;
-        GameManager.instance.finished = false;
         GameManager.instance.endTime = 2;
-        GameManager.instance.unPaused = true;
-        GameManager.instance.cannotPause = false;
         GameManager.instance.showGameplayText.Invoke();
+        GameManager.instance.readyMenu.SetActive(true);
     }
     // The rewarded video ad was failed to show.
     void RewardedVideoOnAdShowFailedEvent(IronSourceError error, IronSourceAdInfo adInfo)

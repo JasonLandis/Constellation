@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2564f732dcc12f4429c5b9bea87af3ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundOff: {fileID: 0}
   sounds:
   - name: IncreaseZone
     clip: {fileID: 8300000, guid: ced55a3248dfb6f4c82d3a42bec08d60, type: 3}
@@ -64,12 +65,6 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: Death
-    clip: {fileID: 8300000, guid: 0d3c968cf0cce4343ae609ba585703ac, type: 3}
-    volume: 0.6
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
   - name: Easy
     clip: {fileID: 8300000, guid: 4f1d068c33d0c3643a01bdcfa39d55c2, type: 3}
     volume: 1
@@ -77,13 +72,13 @@ MonoBehaviour:
     loop: 1
     source: {fileID: 0}
   - name: Normal
-    clip: {fileID: 8300000, guid: e8fe5e56faa078449b214d10f4060d64, type: 3}
+    clip: {fileID: 8300000, guid: 2ce49554d8d88384fa5207ec669150d1, type: 3}
     volume: 1
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: Hard
-    clip: {fileID: 8300000, guid: 2ce49554d8d88384fa5207ec669150d1, type: 3}
+    clip: {fileID: 8300000, guid: edd1cbc97c163dd429b622b88218cd54, type: 3}
     volume: 1
     pitch: 1
     loop: 1
