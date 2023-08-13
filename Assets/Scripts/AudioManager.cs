@@ -24,7 +24,7 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            InitializeAudio();
+            Play("Game");
         }
         IsSoundOn();
     }
@@ -38,22 +38,6 @@ public class AudioManager : MonoBehaviour
         else
         {
             SoundOff();
-        }
-    }
-
-    void InitializeAudio()
-    {
-        if (GameManager.instance.universeDifficulty == "<color=#11DC58>Easy</color>")
-        {
-            Play("Easy");
-        }
-        else if (GameManager.instance.universeDifficulty == "<color=#E0E0E0>Normal</color>")
-        {
-            Play("Normal");
-        }
-        else
-        {
-            Play("Hard");
         }
     }
 

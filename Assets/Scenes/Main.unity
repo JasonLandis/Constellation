@@ -3852,6 +3852,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ads Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 1926353304361306976, guid: 22bd854b0cf2ca94c91b8186c5b009ef, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4006432298106490088, guid: 22bd854b0cf2ca94c91b8186c5b009ef, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -24744,7 +24748,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &995271045
 RectTransform:
@@ -51500,12 +51504,40 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1849386158}
     - target: {fileID: 518329743408199604, guid: ffe17aff410d689459c78d593553b53a, type: 3}
+      propertyPath: sounds.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 518329743408199604, guid: ffe17aff410d689459c78d593553b53a, type: 3}
+      propertyPath: sounds.Array.data[3].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: e493c14cde4566b4d922c3a405e0d6b2, type: 3}
+    - target: {fileID: 518329743408199604, guid: ffe17aff410d689459c78d593553b53a, type: 3}
+      propertyPath: sounds.Array.data[3].name
+      value: Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 518329743408199604, guid: ffe17aff410d689459c78d593553b53a, type: 3}
+      propertyPath: sounds.Array.data[4].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: f141ef1f41e6401459f28191ef4b9d5b, type: 3}
+    - target: {fileID: 518329743408199604, guid: ffe17aff410d689459c78d593553b53a, type: 3}
+      propertyPath: sounds.Array.data[4].name
+      value: Game
+      objectReference: {fileID: 0}
+    - target: {fileID: 518329743408199604, guid: ffe17aff410d689459c78d593553b53a, type: 3}
+      propertyPath: sounds.Array.data[5].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: e493c14cde4566b4d922c3a405e0d6b2, type: 3}
+    - target: {fileID: 518329743408199604, guid: ffe17aff410d689459c78d593553b53a, type: 3}
+      propertyPath: sounds.Array.data[5].name
+      value: Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 518329743408199604, guid: ffe17aff410d689459c78d593553b53a, type: 3}
       propertyPath: sounds.Array.data[3].volume
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 518329743408199604, guid: ffe17aff410d689459c78d593553b53a, type: 3}
       propertyPath: sounds.Array.data[4].volume
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 518329743408199604, guid: ffe17aff410d689459c78d593553b53a, type: 3}
       propertyPath: sounds.Array.data[5].volume
@@ -51518,6 +51550,10 @@ PrefabInstance:
     - target: {fileID: 3666661218118630867, guid: ffe17aff410d689459c78d593553b53a, type: 3}
       propertyPath: m_Name
       value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3666661218118630867, guid: ffe17aff410d689459c78d593553b53a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 6849345240030432491, guid: ffe17aff410d689459c78d593553b53a, type: 3}
       propertyPath: m_RootOrder
