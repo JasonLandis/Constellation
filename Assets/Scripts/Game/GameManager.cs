@@ -67,6 +67,8 @@ public class GameManager : MonoBehaviour
     private float negBoundsy;
     private float posBoundsy;
     private float yLimit;
+    [HideInInspector] public int currentScore;
+    [HideInInspector] public int currentUniverseScore;
     [HideInInspector] public bool isGameOver;
     [HideInInspector] public bool isGamePaused;
     [HideInInspector] public bool finished;
@@ -230,6 +232,11 @@ public class GameManager : MonoBehaviour
                 if (!isPlayingAudio)
                 {
                     FindAnyObjectByType<AudioManager>().Play("Hit");
+                    currentScore = PlayerPrefs.GetInt("Current Score");
+                    currentUniverseScore = PlayerPrefs.GetInt("Current Universes");
+
+                    PlayerPrefs.DeleteKey("Current Score");
+                    PlayerPrefs.DeleteKey("Current Universes");
                 }
                 isPlayingAudio = true;
 
@@ -652,8 +659,6 @@ public class GameManager : MonoBehaviour
     {
         isGameOver = true;
         Time.timeScale = 1;
-        PlayerPrefs.DeleteKey("Current Score");
-        PlayerPrefs.DeleteKey("Current Universes");
         SaveScores();
         constellationBackground.GetComponent<SpriteRenderer>().sprite = endBackround;
         background.GetComponent<SpriteRenderer>().sprite = endBackround;

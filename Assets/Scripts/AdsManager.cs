@@ -62,6 +62,8 @@ public class AdsManager : MonoBehaviour
         GameManager.instance.endTime = 2;
         GameManager.instance.showGameplayText.Invoke();
         GameManager.instance.readyMenu.SetActive(true);
+        PlayerPrefs.SetInt("Current Score", GameManager.instance.currentScore);
+        PlayerPrefs.SetInt("Current Universes", GameManager.instance.currentUniverseScore);
     }
     // The rewarded video ad was failed to show.
     void RewardedVideoOnAdShowFailedEvent(IronSourceError error, IronSourceAdInfo adInfo)

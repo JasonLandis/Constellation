@@ -27,6 +27,7 @@ public class MainMenu : MonoBehaviour
         Time.timeScale = 1;
 
         // Load player data
+        PlayerPrefs.SetInt("High Score", 264);
         upgradeMenu.LoadUpgradeLocks();
         shopMenu.LoadSkinLocks();
         statsMenu.LoadStatsValues();
