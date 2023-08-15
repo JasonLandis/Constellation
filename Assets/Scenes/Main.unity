@@ -51534,6 +51534,10 @@ PrefabInstance:
       value: Menu
       objectReference: {fileID: 0}
     - target: {fileID: 518329743408199604, guid: ffe17aff410d689459c78d593553b53a, type: 3}
+      propertyPath: sounds.Array.data[2].volume
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 518329743408199604, guid: ffe17aff410d689459c78d593553b53a, type: 3}
       propertyPath: sounds.Array.data[3].volume
       value: 1
       objectReference: {fileID: 0}
