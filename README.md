@@ -1,5 +1,8 @@
 # Constellation
 
+![logo](https://github.com/JasonLandis/Constellation/assets/100310833/e47bdd8b-5c92-42d1-a144-fda32cd4c4bc)
+
+
 In Constellation, you play as a star within a universe surrounded by other stars. You have a mini-map that allows you to see where you are in the universe and any stars that are close by. You select a direction and a distance to begin traveling and grow your constellation.
 
 While traveling, you must avoid oncoming asteroids. Asteroids have three attributes: size, spread, and speed. Also, each universe has 5 zones; you start in zone 1, and each time you enter a higher zone, the size, spread, and speed of the asteroids change to increase the difficulty of the game.
