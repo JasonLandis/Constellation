@@ -1,6 +1,6 @@
 # Constellation
 
-![logo](https://github.com/JasonLandis/Constellation/assets/100310833/e47bdd8b-5c92-42d1-a144-fda32cd4c4bc)
+![feature](https://github.com/JasonLandis/Constellation/assets/100310833/95ccc9fc-0711-4aed-8d75-f35c7dd4cfaf)
 
 
 In Constellation, you play as a star within a universe surrounded by other stars. You have a mini-map that allows you to see where you are in the universe and any stars that are close by. You select a direction and a distance to begin traveling and grow your constellation.
