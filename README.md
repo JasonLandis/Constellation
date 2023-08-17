@@ -14,4 +14,5 @@ There are many different stars to unlock, each bringing a unique glow to your ga
 This is my first game of many to come. Any and all constructive criticism is highly appreciated. Thanks for playing!
 
 
-![Menu Image](https://github.com/JasonLandis/Constellation/assets/100310833/58365bdf-2437-45b1-90ac-a78ce7fc143c)
+![Menu Image](https://github.com/JasonLandis/Constellation/assets/100310833/c5d454dc-536d-4772-bec7-7803139d7248)
+
