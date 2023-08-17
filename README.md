@@ -15,4 +15,6 @@ This is my first game of many to come. Any and all constructive criticism is hig
 
 
 ![Menu Image](https://github.com/JasonLandis/Constellation/assets/100310833/c5d454dc-536d-4772-bec7-7803139d7248)
+![Shop Image](https://github.com/JasonLandis/Constellation/assets/100310833/91e41dc5-b656-497b-814e-2d1de5b977cf)
+
 
