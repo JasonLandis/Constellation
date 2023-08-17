@@ -12,3 +12,6 @@ If you land on another star in the universe, you are randomly given a choice to 
 There are many different stars to unlock, each bringing a unique glow to your game. There are also many upgrades to unlock, allowing you to choose the starting value of the size, spread, and speed of the asteroids, as well as how many extra lives you start with.
 
 This is my first game of many to come. Any and all constructive criticism is highly appreciated. Thanks for playing!
+
+
+![Menu Image](https://github.com/JasonLandis/Constellation/assets/100310833/58365bdf-2437-45b1-90ac-a78ce7fc143c)
