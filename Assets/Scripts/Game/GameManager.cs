@@ -44,7 +44,6 @@ public class GameManager : MonoBehaviour
     public GameObject lightObject;
     public GameObject infoScreen;
     public GameObject designBackground;
-    public GameObject adsMenu;
     public GameObject readyMenu;
     [HideInInspector] public GameObject player;
     [HideInInspector] public GameObject star;
@@ -80,7 +79,6 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public bool isPlayerPaused;
     [HideInInspector] public bool unPaused;
     [HideInInspector] public bool cannotPause;
-    private bool canWatchAd = true;
 
     [Header("Meteors")]
     public List<Sprite> meteors;
@@ -253,22 +251,11 @@ public class GameManager : MonoBehaviour
                 endTime -= Time.deltaTime;
                 if (endTime <= 0)
                 {
-                    if (canWatchAd)
+                    if (!finished)
                     {
-                        // Show ads menu
-                        finished = true;
-                        isGamePaused = true;
-                        adsMenu.SetActive(true);
-                        canWatchAd = false;
+                        EndGame();
                     }
-                    else
-                    {
-                        if (!finished)
-                        {
-                            EndGame();
-                        }
-                        finished = true;
-                    }
+                    finished = true;
                 }
             }
             else
