@@ -264,8 +264,8 @@ PlayerSettings:
   AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: '{inproject}: user.keystore'
-  AndroidKeyaliasName: constellation new key
+  AndroidKeystoreName: E:/GameDevelopment/UnityGames/Constellation Stuff/user.keystore
+  AndroidKeyaliasName: constellation key
   AndroidEnableArmv9SecurityFeatures: 0
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
@@ -807,7 +807,7 @@ PlayerSettings:
     Android: 2
   il2cppCodeGeneration: {}
   managedStrippingLevel:
-    Android: 3
+    Android: 1
     Bratwurst: 1
     EmbeddedLinux: 1
     GameCoreScarlett: 1
