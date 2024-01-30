@@ -1,4 +1,4 @@
-# Constellation for Mobile
+# Constellation
 
 ![feature](https://github.com/JasonLandis/Constellation/assets/100310833/95ccc9fc-0711-4aed-8d75-f35c7dd4cfaf)
 
