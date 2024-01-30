@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
                 case TouchPhase.Ended:
                     rb.velocity = Vector2.zero;
                     break;
-            }            
+            }
         }
     }
 }

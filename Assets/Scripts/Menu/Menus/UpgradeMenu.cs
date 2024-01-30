@@ -284,7 +284,7 @@ public class UpgradeMenu : MonoBehaviour
     public void BackToUpgrades()
     {
         lockPopup.SetActive(false);
-    }   
+    }
 
     private void FinishTransition(GameObject menu)
     {

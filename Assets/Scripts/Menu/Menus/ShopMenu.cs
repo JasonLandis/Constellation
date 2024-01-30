@@ -62,7 +62,7 @@ public class ShopMenu : MonoBehaviour
         lockedText.Add("Clear <color=#11DC58>1</color> <color=#00C9FF>Normal Universe</color> <color=#E54B4B>without being hit</color>");
         lockedText.Add("Clear <color=#11DC58>5</color> <color=#00C9FF>Normal Universes</color> <color=#E54B4B>without being hit</color>");
         lockedText.Add("Clear <color=#11DC58>1</color> <color=#00C9FF>Hard Universe</color> <color=#E54B4B>without being hit</color>");
-        lockedText.Add("Clear <color=#11DC58>5</color> <color=#00C9FF>Hard Universes</color> <color=#E54B4B>without being hit</color>");  
+        lockedText.Add("Clear <color=#11DC58>5</color> <color=#00C9FF>Hard Universes</color> <color=#E54B4B>without being hit</color>");
         lockedText.Add("Unlock <color=#11DC58>10</color> <color=#00C9FF>Upgrades</color>");
         lockedText.Add("Unlock <color=#11DC58>20</color> <color=#00C9FF>Upgrades</color>");
         lockedText.Add("Unlock <color=#11DC58>All</color> <color=#00C9FF>Upgrades</color>");
