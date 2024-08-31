@@ -264,8 +264,8 @@ PlayerSettings:
   AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: D:/ProjectStuff/ConstellationStuff/user.keystore
-  AndroidKeyaliasName: constellation key
+  AndroidKeystoreName: D:/ProjectStuff/UnityProjects/Constellation/user.keystore
+  AndroidKeyaliasName: 
   AndroidEnableArmv9SecurityFeatures: 0
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
