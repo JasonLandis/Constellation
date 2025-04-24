@@ -1,2 +1,0 @@
-D:\Repositories\Unity\Constellation\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\CMakeLists.txt
-D:\Repositories\Unity\Constellation\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\FramePacing\CMakeLists.txt
