@@ -224,6 +224,11 @@ public class GameManager : MonoBehaviour
         {
             if (lives == 0)
             {
+                foreach (Transform child in map.transform)
+                {
+                    child.gameObject.GetComponent<RotateMeteor>().enabled = false;
+                }
+
                 cannotPause = true;
 
                 // Play audio once
@@ -360,9 +365,12 @@ public class GameManager : MonoBehaviour
     // Detects which meteors are out of view and sets them inactive
     public void DetectMeteors()
     {
+        Vector3 moveDir = map.transform.TransformDirection(Vector3.down);
+
         foreach (Transform child in map.transform)
         {
-            child.transform.Translate(speed * Time.deltaTime * Vector3.down / 10);
+            child.transform.Translate(moveDir * speed * Time.deltaTime / 10, Space.World);
+
             if (child.transform.position.x < negBoundsx || child.transform.position.x > posBoundsx ||
                 child.transform.position.y < negBoundsy || child.transform.position.y > posBoundsy)
             {

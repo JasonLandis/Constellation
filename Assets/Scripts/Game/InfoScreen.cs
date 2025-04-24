@@ -63,6 +63,10 @@ public class InfoScreen : MonoBehaviour
     public void Ok()
     {
         screen6.SetActive(false);
+        screen5.SetActive(false);
+        screen4.SetActive(false);
+        screen3.SetActive(false);
+        screen2.SetActive(false);
         screen1.SetActive(true);
         gameObject.SetActive(false);
     }

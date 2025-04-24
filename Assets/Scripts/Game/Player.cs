@@ -14,25 +14,45 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (Input.touchCount > 0 && !GameManager.instance.isPlayerPaused)
+        if (!GameManager.instance.isPlayerPaused)
         {
-            Touch touch = Input.GetTouch(0);
-            Vector2 touchPosition = mainCamera.ScreenToWorldPoint(touch.position);
-            switch (touch.phase)
+            if (Input.touchCount > 0)  // Mobile Touch
             {
-                case TouchPhase.Began:
-                    deltaX = touchPosition.x - transform.position.x;
-                    deltaY = touchPosition.y - transform.position.y;
-                    break;
+                Touch touch = Input.GetTouch(0);
+                Vector2 touchPosition = mainCamera.ScreenToWorldPoint(touch.position);
 
-                case TouchPhase.Moved:
-                    transform.position = new(touchPosition.x - deltaX, touchPosition.y - deltaY);
-                    break;
+                switch (touch.phase)
+                {
+                    case TouchPhase.Began:
+                        deltaX = touchPosition.x - transform.position.x;
+                        deltaY = touchPosition.y - transform.position.y;
+                        break;
 
-                case TouchPhase.Ended:
-                    rb.velocity = Vector2.zero;
-                    break;
+                    case TouchPhase.Moved:
+                        transform.position = new Vector2(touchPosition.x - deltaX, touchPosition.y - deltaY);
+                        break;
+
+                    case TouchPhase.Ended:
+                        rb.linearVelocity = Vector2.zero;
+                        break;
+                }
+            }
+            else if (Input.GetMouseButtonDown(0))  // PC Mouse Start
+            {
+                Vector2 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+                deltaX = mousePosition.x - transform.position.x;
+                deltaY = mousePosition.y - transform.position.y;
+            }
+            else if (Input.GetMouseButton(0))  // PC Mouse Drag
+            {
+                Vector2 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+                transform.position = new Vector2(mousePosition.x - deltaX, mousePosition.y - deltaY);
+            }
+            else if (Input.GetMouseButtonUp(0))  // PC Mouse Release
+            {
+                rb.linearVelocity = Vector2.zero;
             }
         }
     }
+
 }
